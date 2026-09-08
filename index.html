@@ -81,9 +81,12 @@ table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table
 .short-box{margin-top:13px;border:1px solid #dce6e8;border-radius:12px;overflow:hidden}.short-box summary{list-style:none;padding:11px 13px;font-weight:900;color:var(--navy);cursor:pointer;background:#f8faf9;display:flex;align-items:center;justify-content:space-between;font-size:11px}.short-box summary::-webkit-details-marker{display:none}.short-box summary::after{content:'＋';font-size:16px;color:#69808a}.short-box[open] summary::after{content:'−'}.short-content{padding:11px 13px 13px}.short-table{width:100%;min-width:0;border-collapse:collapse}.short-table th,.short-table td{font-size:10px;padding:8px 9px}.short-note{margin:8px 1px 0;color:#778890;font-size:9px}
 
 /* PURCHASE */
-.buy-model-field{margin-bottom:12px}.model-segment{max-width:240px}.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}.buy-field label{display:block;margin:0 0 6px;color:#526771;font-size:10px;font-weight:900}.buy-field input{height:50px;width:100%;border:1px solid #cdd9de;border-radius:11px;padding:0 12px;color:var(--navy);font-size:20px;font-weight:900;outline:none;font-variant-numeric:tabular-nums}.buy-field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}
+.buy-model-field{margin-bottom:12px}.model-segment{max-width:280px;height:56px}.model-segment button{font-size:17px!important;letter-spacing:.02em}.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}.buy-field label{display:block;margin:0 0 6px;color:#526771;font-size:10px;font-weight:900}.buy-field input{height:50px;width:100%;border:1px solid #cdd9de;border-radius:11px;padding:0 12px;color:var(--navy);font-size:20px;font-weight:900;outline:none;font-variant-numeric:tabular-nums}.buy-field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}
 .segment{height:50px;display:grid;grid-template-columns:1fr 1fr;border:1px solid #cdd9de;border-radius:11px;overflow:hidden;background:#f8faf9}.segment button{border:0;background:transparent;color:#647780;font-size:10px;font-weight:900}.segment button.active{background:var(--navy);color:#fff}
 .buy-result{margin-top:14px;border:1px solid #dce7e8;border-radius:14px;display:grid;grid-template-columns:1fr 1.25fr;overflow:hidden}.buy-metric{padding:15px 14px;min-width:0}.buy-metric+ .buy-metric{border-left:1px solid #e5ecee;background:#f3fbf8}.buy-metric span{display:block;font-size:9px;text-transform:uppercase;color:#7b8b93;font-weight:850;margin-bottom:6px}.buy-metric strong{display:block;color:var(--navy);font-size:22px;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}.buy-metric:last-child strong{color:var(--teal);font-size:27px}.buy-product{margin:0 0 12px;color:#4e626d;font-size:11px}.buy-product b{color:var(--navy)}
+.buy-hint{min-height:16px;margin:7px 1px 0;color:#b65f22;font-size:9px;font-weight:750}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.action-btn{height:38px;border:1px solid #d3dfe3;background:#fff;color:var(--navy);border-radius:10px;padding:0 14px;font-weight:900;font-size:10px;display:inline-flex;align-items:center;justify-content:center;gap:6px}.action-btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}.action-btn.teal{background:var(--teal);border-color:var(--teal);color:#fff}.action-btn:hover{transform:translateY(-1px)}
+.export-row{display:flex;justify-content:flex-end;align-items:center;margin-top:2px;margin-bottom:4px}.export-row .action-btn{box-shadow:0 8px 18px rgba(7,44,67,.08)}
+.quote-form{display:grid;gap:11px}.quote-field label{display:block;margin:0 0 6px;color:#526771;font-size:10px;font-weight:900}.quote-field input{height:44px;width:100%;border:1px solid #cdd9de;border-radius:10px;padding:0 12px;color:var(--navy);font-size:13px;font-weight:750;outline:none}.quote-field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}.quote-error{min-height:15px;color:#b44e32;font-size:9px;font-weight:800;margin-top:3px}
 
 /* PROMO */
 .promo-card{width:min(540px,100%);overflow:hidden;background:#fff;border-radius:21px;box-shadow:0 30px 90px rgba(0,0,0,.32);position:relative}
@@ -102,6 +105,131 @@ table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table
   .summary-head{min-height:64px}.summary-head h2{font-size:17px}.primary-grid{grid-template-columns:1fr 1fr}.primary-metric{padding:15px 12px;min-height:100px;grid-template-rows:22px minmax(29px,auto) 22px}.primary-metric strong{font-size:21px}.primary-metric.hero-number strong{font-size:24px}.secondary-grid{grid-template-columns:1fr 1fr}
   .promo-chips{grid-template-columns:1fr}.promo-top{padding:23px 19px 18px}.promo-top h3{font-size:26px}.buy-grid{grid-template-columns:1fr}.buy-result{grid-template-columns:1fr}.buy-metric+.buy-metric{border-left:0;border-top:1px solid #e5ecee}
 }
+
+/* V12 — responsive / menu / modal refinements */
+body{overflow-x:hidden}
+.nav{display:grid;grid-template-columns:auto minmax(180px,1fr) auto;gap:14px}
+.header-title{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.desktop-menu{display:flex;gap:0;align-items:center}
+.nav-icon-btn{width:38px;height:34px;border:0;background:transparent;color:var(--navy);font-size:17px;font-weight:950;display:grid;place-items:center;line-height:1;border-radius:0;transition:.16s ease}
+.nav-icon-btn+.nav-icon-btn{border-left:1px solid #dce5e8}
+.nav-icon-btn:hover{background:#f3f8f7;color:var(--teal)}
+.nav-icon-btn.promo{color:#087263}
+.menu-toggle{display:none;width:38px;height:36px;border:1px solid #d7e2e5;border-radius:10px;background:#fff;color:var(--navy);font-size:20px;font-weight:900;line-height:1;place-items:center}
+.mobile-menu-overlay{position:fixed;inset:0;z-index:89;background:rgba(5,27,40,.42);opacity:0;pointer-events:none;transition:opacity .22s ease}
+.mobile-menu-overlay.open{opacity:1;pointer-events:auto}
+.mobile-drawer{position:fixed;z-index:90;top:0;right:0;width:min(82vw,320px);height:100dvh;background:#fff;box-shadow:-20px 0 55px rgba(3,28,43,.24);transform:translateX(102%);transition:transform .24s ease;display:flex;flex-direction:column;overflow:hidden}
+.mobile-drawer.open{transform:translateX(0)}
+.drawer-head{height:58px;flex:0 0 58px;padding:0 14px 0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e4ebed;color:var(--navy)}
+.drawer-head strong{font-size:14px;text-transform:uppercase;letter-spacing:.05em}
+.drawer-close{width:34px;height:34px;border:0;border-radius:50%;background:#f2f6f6;color:#536873;font-size:22px;display:grid;place-items:center}
+.drawer-nav{display:flex;flex-direction:column;overflow:auto}
+.drawer-nav button{min-height:54px;border:0;border-bottom:1px solid #e6edef;background:#fff;color:var(--navy);font-size:13px;font-weight:900;text-align:left;padding:0 18px;display:flex;align-items:center;gap:12px}
+.drawer-nav button span{width:22px;text-align:center;font-size:17px}
+.drawer-nav button:hover{background:#f6faf9}.drawer-nav button.promo{color:#087263}
+
+.calc-meta-row{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-top:-8px;padding-right:3px}
+.calc-unit{color:#819098;font-size:9px;font-weight:700;white-space:nowrap}
+.action-btn.export-rental{height:30px;padding:0 11px;font-size:9px;border-radius:8px}
+.unit-note,.export-row{display:none!important}
+
+/* Purchase popup: tighter modular baseline */
+#buyModal .modal-body{display:flex;flex-direction:column;gap:12px}
+#buyModal .buy-model-field{margin:0}
+#buyModal .model-segment{width:100%;max-width:none;height:48px}
+#buyModal .buy-grid{gap:12px;align-items:stretch}
+#buyModal .buy-field{display:grid;grid-template-rows:15px 48px;align-items:stretch;min-width:0}
+#buyModal .buy-field label{margin:0;display:flex;align-items:flex-start;line-height:1}
+#buyModal .buy-field input,#buyModal .segment{height:48px;min-width:0}
+#buyModal .buy-hint{margin:-3px 1px 0;min-height:13px}
+#buyModal .buy-result{margin:0;grid-template-columns:1fr 1fr;align-items:stretch}
+#buyModal .buy-metric{min-height:82px;padding:14px;display:flex;flex-direction:column;justify-content:center}
+#buyModal .buy-metric span{margin:0 0 7px;line-height:1.1}
+#buyModal .buy-metric strong{font-size:21px;line-height:1}
+#buyModal .buy-metric:last-child strong{font-size:25px}
+#buyModal .purchase-actions{margin:0;width:100%}
+#buyModal .purchase-actions .action-btn{width:100%;height:42px}
+#buyModal .table-unit{margin-top:-3px}
+
+/* Every popup stays inside the active viewport */
+.modal{padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+.modal-card,.promo-card{max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}
+.modal-card{overscroll-behavior:contain}.promo-card{overflow:auto;overscroll-behavior:contain}
+.modal-head{min-height:58px}
+
+@media(max-width:760px){
+  .wrap{width:calc(100% - 16px);max-width:none}
+  .topbar .wrap{width:calc(100% - 14px)}
+  .nav{min-height:56px;grid-template-columns:auto minmax(0,1fr) auto;gap:8px}
+  .brand img{height:28px;max-width:106px}
+  .header-title{font-size:9px;letter-spacing:0;white-space:nowrap;text-align:center}
+  .desktop-menu{display:none}
+  .menu-toggle{display:grid}
+  .main{padding:14px 0 30px}
+  .calc-shell{grid-template-columns:1fr;gap:10px;margin-bottom:12px}
+  .panel{border-radius:14px}
+  .input-panel{display:grid;grid-template-columns:1fr;padding:14px;gap:11px}
+  .field label{margin-bottom:5px;font-size:10px}
+  .field input{height:42px;font-size:18px;border-radius:10px}
+  .month-row{grid-template-columns:60px minmax(0,1fr);gap:6px}
+  .month-row input,.quick-month{height:40px}
+  .summary-head{min-height:58px;padding:11px 12px;gap:8px}
+  .summary-kicker{font-size:8px}.summary-head h2{font-size:15px}.status-pill{padding:6px 8px;font-size:7.5px}
+  .primary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .primary-metric{min-height:91px;padding:12px 10px;grid-template-rows:20px minmax(28px,auto) 20px}
+  .primary-metric:nth-child(2){border-right:0}.primary-metric:nth-child(-n+2){border-bottom:1px solid #e7edef}
+  .primary-metric span{font-size:7.5px;line-height:1.1}.primary-metric small{font-size:7.5px;min-height:18px}
+  .primary-metric strong{font-size:clamp(17px,5.3vw,23px)}.primary-metric.hero-number strong{font-size:clamp(19px,5.9vw,25px)}
+  .secondary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .secondary{padding:10px;grid-template-rows:19px minmax(20px,auto)}
+  .secondary:nth-child(2){border-right:0}.secondary:nth-child(-n+2){border-bottom:1px solid #edf1f2}
+  .secondary span{font-size:7px}.secondary strong{font-size:11px}
+  .calc-meta-row{margin-top:0;padding:0 2px;justify-content:space-between;gap:8px}
+  .calc-unit{font-size:8px}.action-btn.export-rental{height:28px;padding:0 9px;font-size:8px}
+
+  .modal{align-items:center;padding:6px}
+  .modal-card,.modal-card.compact,.promo-card{width:100%;max-width:100%;max-height:calc(100dvh - 12px);border-radius:14px}
+  .modal-head{min-height:50px;padding:10px 12px}.modal-head h3{font-size:15px}.close{width:30px;height:30px;font-size:19px}
+  .modal-body{padding:10px 11px 12px}
+  .table-shell{overflow:hidden;border-radius:10px}
+  table,.fee-table table,.short-table{width:100%;min-width:0!important;table-layout:fixed}
+  th,td{padding:7px 3px;font-size:8px;line-height:1.2;overflow-wrap:anywhere}
+  .table-unit{font-size:8px;margin-top:6px}
+  .compare-table col.label-col{width:22%}.compare-table col.plan-col{width:26%}
+  .compare-table thead th{height:66px;padding:6px 2px}.plan-title{font-size:12px}.tag{font-size:6px;padding:4px 4px;white-space:normal;justify-content:center}
+  .compare-table .price-big{font-size:10px}.compare-table .saving{font-size:10px}.compare-table .subtle{font-size:6.5px}
+  .fee-table thead th{height:44px}.fee-table tbody td:first-child{font-size:7.6px}
+  .short-box{margin-top:9px}.short-box summary{padding:9px 10px;font-size:9px}.short-content{padding:8px}.short-table th,.short-table td{font-size:7.5px;padding:6px 3px}.short-note{font-size:7.5px}
+
+  #buyModal .modal-body{gap:9px}
+  #buyModal .model-segment{height:44px}.model-segment button{font-size:15px!important}
+  #buyModal .buy-grid{grid-template-columns:1fr 1fr;gap:8px}
+  #buyModal .buy-field{grid-template-rows:14px 44px}.buy-field label{font-size:8px}
+  #buyModal .buy-field input,#buyModal .segment{height:44px}.buy-field input{font-size:17px}.segment button{font-size:8px}
+  #buyModal .buy-result{grid-template-columns:1fr 1fr}.buy-metric{min-height:70px;padding:10px}.buy-metric span{font-size:7.5px}.buy-metric strong{font-size:18px!important}.buy-metric:last-child strong{font-size:21px!important}
+  #buyModal .purchase-actions .action-btn{height:38px}
+  .quote-field input{height:40px}.quote-field label{font-size:9px}.quote-form{gap:8px}
+  .promo-top{padding:20px 17px 15px}.promo-top h3{font-size:22px}.promo-top p{font-size:10px}.promo-body{padding:12px 14px 14px}.promo-chips{grid-template-columns:repeat(3,1fr);gap:5px}.promo-chip{padding:8px 4px;font-size:8px}.promo-chip strong{font-size:13px}.promo-deadline{font-size:8px}
+}
+
+@media(max-width:390px){
+  .brand img{height:26px;max-width:92px}.header-title{font-size:8px}.menu-toggle{width:34px;height:34px}
+  .primary-metric strong{font-size:16px}.primary-metric.hero-number strong{font-size:18px}
+  .secondary strong{font-size:10px}
+  .compare-table col.label-col{width:23%}.compare-table col.plan-col{width:25.666%}
+  th,td{font-size:7.2px}.compare-table .price-big,.compare-table .saving{font-size:9px}
+  #buyModal .buy-grid{grid-template-columns:1fr}
+  #buyModal .buy-field{grid-template-rows:14px 42px}#buyModal .buy-field input,#buyModal .segment{height:42px}
+}
+
+@media(orientation:landscape) and (max-height:520px){
+  .topbar{position:relative}.main{padding-top:8px}.nav{min-height:48px}.brand img{height:24px}.header-title{font-size:8px}
+  .modal{padding:4px}.modal-card,.modal-card.compact,.promo-card{max-height:calc(100dvh - 8px);border-radius:10px}
+  .modal-head{min-height:44px;padding:7px 10px}.modal-head h3{font-size:13px}.modal-body{padding:8px 10px}
+  .promo-top{padding:14px 16px 10px}.promo-top h3{font-size:18px}.promo-body{padding:9px 12px}.promo-chips{grid-template-columns:repeat(3,1fr)}
+  .mobile-drawer{width:min(62vw,300px)}
+}
+
 </style>
 </head>
 <body>
@@ -109,14 +237,26 @@ table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table
   <div class="wrap nav">
     <a class="brand" href="./" aria-label="Rhino Cue Platform"><img src="asset/logo.png" alt="Rhino Cue Platform" /></a>
     <h1 class="header-title">Bảng tính giá thuê gậy CLB</h1>
-    <div class="nav-actions">
-      <button class="nav-btn" data-open="priceModal">▦ Bảng giá</button>
-      <button class="nav-btn" data-open="compareModal">⇄ So sánh gói</button>
-      <button class="nav-btn" data-open="buyModal">₫ Giá mua</button>
-      <button class="nav-btn promo" data-open="promoModal">★ CT Khuyến mại</button>
+    <div class="nav-actions desktop-menu" aria-label="Menu nhanh">
+      <button class="nav-icon-btn" data-open="priceModal" title="Bảng giá" aria-label="Bảng giá">▦</button>
+      <button class="nav-icon-btn" data-open="compareModal" title="So sánh gói" aria-label="So sánh gói">⇄</button>
+      <button class="nav-icon-btn" data-open="buyModal" title="Giá mua" aria-label="Giá mua">₫</button>
+      <button class="nav-icon-btn promo" data-open="promoModal" title="CT Khuyến mại" aria-label="CT Khuyến mại">★</button>
     </div>
+    <button class="menu-toggle" id="mobileMenuToggle" type="button" aria-label="Mở menu" aria-controls="mobileDrawer" aria-expanded="false">☰</button>
   </div>
 </header>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+<aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu" aria-hidden="true">
+  <div class="drawer-head"><strong>Menu</strong><button class="drawer-close" id="mobileMenuClose" type="button" aria-label="Đóng menu">×</button></div>
+  <nav class="drawer-nav">
+    <button type="button" data-open="priceModal"><span>▦</span>Bảng giá</button>
+    <button type="button" data-open="compareModal"><span>⇄</span>So sánh gói</button>
+    <button type="button" data-open="buyModal"><span>₫</span>Giá mua</button>
+    <button type="button" class="promo" data-open="promoModal"><span>★</span>CT Khuyến mại</button>
+  </nav>
+</aside>
 
 <main class="main">
   <div class="wrap">
@@ -155,9 +295,12 @@ table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table
             <div class="secondary"><span>Tiền cọc</span><strong class="num" id="depositValue">—</strong></div>
           </div>
         </div>
-        <div class="unit-note">Đơn vị tính: VND</div>
       </div>
     </section>
+    <div class="calc-meta-row">
+      <span class="calc-unit">Đơn vị tính: VND</span>
+      <button class="action-btn teal export-rental" id="exportRentalBtn" type="button">⇩ Xuất báo giá thuê</button>
+    </div>
   </div>
 </main>
 
@@ -242,14 +385,32 @@ table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table
     <div class="modal-body">
       <div class="buy-field buy-model-field"><label>Loại gậy</label><div class="segment model-segment" id="modelSegment"><button type="button" class="active" data-model="r68">R-68</button><button type="button" data-model="r88">R-88</button></div></div>
       <div class="buy-grid">
-        <div class="buy-field"><label>Số lượng gậy</label><input id="buyQty" type="number" min="1" step="1" value="" inputmode="numeric" /></div>
+        <div class="buy-field"><label>Số lượng gậy</label><input id="buyQty" type="number" min="5" step="1" value="" inputmode="numeric" /></div>
         <div class="buy-field"><label>Trạng thái khách hàng</label><div class="segment" id="customerSegment"><button type="button" class="active" data-customer="new">Khách mới</button><button type="button" data-customer="rental">Đã dùng gói thuê</button></div></div>
       </div>
+      <div class="buy-hint" id="buyHint"></div>
       <div class="buy-result">
         <div class="buy-metric"><span>Đơn giá áp dụng</span><strong class="num" id="buyUnit">—</strong></div>
         <div class="buy-metric"><span>Tổng giá bán</span><strong class="num" id="buyTotal">—</strong></div>
       </div>
+      <div class="modal-actions purchase-actions"><button class="action-btn teal" id="exportBuyBtn" type="button">⇩ Xuất báo giá</button></div>
       <div class="table-unit">Đơn vị tính: VND</div>
+    </div>
+  </div>
+</div>
+
+<!-- Quote customer modal -->
+<div class="modal" id="quoteClientModal" role="dialog" aria-modal="true" aria-labelledby="quoteClientTitle">
+  <div class="modal-card compact">
+    <div class="modal-head"><h3 id="quoteClientTitle">Thông tin báo giá</h3><button class="close" data-close="quoteClientModal" aria-label="Đóng">×</button></div>
+    <div class="modal-body">
+      <div class="quote-form">
+        <div class="quote-field"><label>Tên khách hàng</label><input id="quoteCustomerName" type="text" autocomplete="name" /></div>
+        <div class="quote-field"><label>Tên CLB / Quán</label><input id="quoteClubName" type="text" autocomplete="organization" /></div>
+        <div class="quote-field"><label>Địa chỉ</label><input id="quoteAddress" type="text" autocomplete="street-address" /></div>
+      </div>
+      <div class="quote-error" id="quoteError"></div>
+      <div class="modal-actions"><button class="action-btn" data-close="quoteClientModal" type="button">Thoát</button><button class="action-btn teal" id="confirmQuoteExport" type="button">Xác nhận & tải Excel</button></div>
     </div>
   </div>
 </div>
@@ -274,6 +435,7 @@ table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table
   </div>
 </div>
 
+<script src="asset/jszip.min.js"></script>
 <script>
 const price1=[89000,87000,85000,83000,81000];
 const price2=[79000,77000,75000,73000,71000];
@@ -381,14 +543,24 @@ document.querySelectorAll('[data-month]').forEach(btn=>btn.addEventListener('cli
 /* Purchase price */
 let buyCustomer='new';
 let buyModel='r68';
-const buyBasePrice={r68:600000,r88:550000};
-function renderBuy(){
+function buyTierPrice(qty){
+  if(!Number.isFinite(qty) || qty<5)return null;
+  if(qty<=10)return 700000;
+  if(qty<=50)return 600000;
+  return 550000;
+}
+function currentBuy(){
   const raw=$('buyQty').value.trim();
-  const qty=raw===''?null:Math.max(1,parseInt(raw,10));
-  const base=buyBasePrice[buyModel];
-  const unit=buyCustomer==='rental'?base-50000:base;
-  $('buyUnit').textContent=fmt(unit);
-  $('buyTotal').textContent=qty===null?'—':fmt(qty*unit);
+  const qty=raw===''?null:parseInt(raw,10);
+  const base=buyTierPrice(qty);
+  const unit=base===null?null:Math.max(0,base-(buyCustomer==='rental'?50000:0));
+  return {qty,base,unit,total:unit===null?null:qty*unit,model:buyModel==='r68'?'R-68':'R-88',customerType:buyCustomer};
+}
+function renderBuy(){
+  const p=currentBuy();
+  $('buyHint').textContent=(p.qty!==null && p.qty<5)?'Số lượng áp dụng từ 5 gậy.':'';
+  $('buyUnit').textContent=p.unit===null?'—':fmt(p.unit);
+  $('buyTotal').textContent=p.total===null?'—':fmt(p.total);
 }
 $('buyQty').addEventListener('input',renderBuy);
 document.querySelectorAll('[data-model]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -402,6 +574,171 @@ document.querySelectorAll('[data-customer]').forEach(btn=>btn.addEventListener('
   renderBuy();
 }));
 
+/* Excel quotation export */
+let pendingQuoteType=null;
+const xmlEsc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+const safeName=v=>String(v||'Bao_gia').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').replace(/[^a-zA-Z0-9_-]+/g,'_').replace(/^_+|_+$/g,'').slice(0,54)||'Bao_gia';
+const a1=(c,r)=>String.fromCharCode(65+c)+r;
+function cell(c,r,v,style=0,type='s'){
+  const ref=a1(c,r);
+  if(type==='n')return `<c r="${ref}" s="${style}" t="n"><v>${Number(v)||0}</v></c>`;
+  return `<c r="${ref}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xmlEsc(v)}</t></is></c>`;
+}
+function row(r,cells,height){return `<row r="${r}"${height?` ht="${height}" customHeight="1"`:''}>${cells.join('')}</row>`}
+async function tryLogoBytes(){
+  try{const res=await fetch('asset/logo.png',{cache:'no-store'});if(res.ok)return new Uint8Array(await res.arrayBuffer())}catch(e){}
+  try{
+    const img=document.querySelector('.brand img');
+    if(!img||!img.complete||!img.naturalWidth)return null;
+    const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);
+    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+    return blob?new Uint8Array(await blob.arrayBuffer()):null;
+  }catch(e){return null}
+}
+
+function workbookStyles(){return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<fonts count="6">
+<font><sz val="10"/><name val="Aptos"/><color rgb="FF20303A"/></font>
+<font><b/><sz val="11"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
+<font><b/><sz val="16"/><name val="Aptos Display"/><color rgb="FF0B3B59"/></font>
+<font><b/><sz val="12"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
+<font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF138879"/></font>
+<font><i/><sz val="9"/><name val="Aptos"/><color rgb="FF6E7E88"/></font>
+</fonts>
+<fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF0B3B59"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEAF7F4"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF5F8F8"/><bgColor indexed="64"/></patternFill></fill></fills>
+<borders count="3"><border/><border><left style="thin"><color rgb="FFD9E4E7"/></left><right style="thin"><color rgb="FFD9E4E7"/></right><top style="thin"><color rgb="FFD9E4E7"/></top><bottom style="thin"><color rgb="FFD9E4E7"/></bottom></border><border><bottom style="thin"><color rgb="FF138879"/></bottom></border></borders>
+<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+<cellXfs count="11">
+<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
+<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+<xf numFmtId="3" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+<xf numFmtId="3" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+<xf numFmtId="0" fontId="3" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+<xf numFmtId="0" fontId="4" fillId="0" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+</cellXfs>
+<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>`}
+function buildQuoteSheet(info,type,data,hasLogo){
+  const rows=[];
+  rows.push(row(1,[cell(2,1,'CÔNG TY TNHH CARBON BILLIARDS',1)],26));
+  rows.push(row(2,[cell(2,2,type==='rental'?'BÁO GIÁ THUÊ GẬY CLB':'BÁO GIÁ MUA GẬY CLB',2)],24));
+  rows.push(row(4,[cell(0,4,'Khách hàng',2),cell(1,4,info.customer,0),cell(3,4,'Ngày báo giá',2),cell(4,4,new Date().toLocaleDateString('vi-VN'),0)],20));
+  rows.push(row(5,[cell(0,5,'CLB / Quán',2),cell(1,5,info.club,0)],20));
+  rows.push(row(6,[cell(0,6,'Địa chỉ',2),cell(1,6,info.address,0)],26));
+  let r=8;
+  if(type==='rental'){
+    rows.push(row(r,[cell(0,r,'NỘI DUNG BÁO GIÁ',3),cell(1,r,'THÔNG TIN',3),cell(3,r,'GIÁ TRỊ',3)],24));r++;
+    const items=[
+      ['Phương án',data.name,''],
+      ['Số gậy tính phí',`${data.n} gậy`,''],
+      ['Đơn giá / gậy / tháng','',data.unit],
+      ['Số tháng thanh toán',`${data.paid??data.use} tháng`,''],
+      ['Tổng tiền thuê','',data.rent],
+      ['Gậy dự phòng',`${data.backup} gậy (+${Math.round(data.backupPct*100)}%)`,''],
+      ['Tổng gậy thực nhận',`${data.total} gậy`,''],
+      ['Thời gian sử dụng thực tế',`${data.use} tháng${data.gift?` (+${data.gift} tháng tặng)`:''}`,''],
+      ['Tiền cọc','',data.deposit],
+      ['Thanh toán ban đầu','',data.initial],
+      ['Chi phí thực tế / gậy / tháng','',data.effective]
+    ];
+    items.forEach((it,i)=>{const money=it[2]!=='';rows.push(row(r,[cell(0,r,it[0],i===10?7:4),cell(1,r,it[1],i===10?10:4),money?cell(3,r,it[2],i===10?6:5,'n'):cell(3,r,'',4)],22));r++});
+    rows.push(row(r+1,[cell(0,r+1,'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.',8)],28));
+    r+=3;
+  }else{
+    rows.push(row(r,[cell(0,r,'HẠNG MỤC',3),cell(1,r,'SỐ LƯỢNG',3),cell(3,r,'ĐƠN GIÁ',3),cell(4,r,'THÀNH TIỀN',3)],24));r++;
+    rows.push(row(r,[cell(0,r,`Gậy Rhino ${data.model}`,4),cell(1,r,`${data.qty} gậy`,4),cell(3,r,data.unit,5,'n'),cell(4,r,data.total,6,'n')],25));r+=2;
+  }
+  rows.push(row(r,[cell(0,r,'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.',9)],22));
+  rows.push(row(r+1,[cell(0,r+1,'Trân trọng — CÔNG TY TNHH CARBON BILLIARDS',8)],22));
+  const end=r+1;
+  const merges=['C1:F1','C2:F2','B4:C4','E4:F4','B5:F5','B6:F6'];
+  if(type==='rental'){
+    for(let rr=8;rr<=19;rr++){merges.push(`B${rr}:C${rr}`,`D${rr}:F${rr}`)}
+    merges.push(`A21:F21`,`A23:F23`,`A24:F24`);
+  }else{
+    merges.push('B8:C8','E8:F8','B9:C9','E9:F9',`A11:F11`,`A12:F12`);
+  }
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<dimension ref="A1:F${end}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="18"/><cols><col min="1" max="1" width="25" customWidth="1"/><col min="2" max="3" width="16" customWidth="1"/><col min="4" max="4" width="18" customWidth="1"/><col min="5" max="6" width="17" customWidth="1"/></cols>
+<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map(m=>`<mergeCell ref="${m}"/>`).join('')}</mergeCells>${hasLogo?'<drawing r:id="rId1"/>':''}
+<pageMargins left="0.35" right="0.35" top="0.5" bottom="0.5" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>
+</worksheet>`
+}
+async function createQuoteXlsx(type,info,data){
+  if(typeof JSZip==='undefined'){alert('Không thể khởi tạo file Excel. Vui lòng kiểm tra asset/jszip.min.js');return}
+  const zip=new JSZip();const logo=await tryLogoBytes();const hasLogo=!!logo;
+  zip.file('[Content_Types].xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>${hasLogo?'<Default Extension="png" ContentType="image/png"/>':''}<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${hasLogo?'<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>':''}</Types>`);
+  zip.folder('_rels').file('.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`);
+  zip.folder('xl').file('workbook.xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView/></bookViews><sheets><sheet name="BÁO GIÁ" sheetId="1" r:id="rId1"/></sheets></workbook>`);
+  zip.folder('xl').folder('_rels').file('workbook.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`);
+  zip.folder('xl').file('styles.xml',workbookStyles());
+  zip.folder('xl').folder('worksheets').file('sheet1.xml',buildQuoteSheet(info,type,data,hasLogo));
+  if(hasLogo){
+    zip.folder('xl').folder('worksheets').folder('_rels').file('sheet1.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing1.xml"/></Relationships>`);
+    zip.folder('xl').folder('drawings').file('drawing1.xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><xdr:twoCellAnchor editAs="oneCell"><xdr:from><xdr:col>0</xdr:col><xdr:colOff>100000</xdr:colOff><xdr:row>0</xdr:row><xdr:rowOff>100000</xdr:rowOff></xdr:from><xdr:to><xdr:col>2</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>3</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:pic><xdr:nvPicPr><xdr:cNvPr id="1" name="Rhino Logo"/><xdr:cNvPicPr/></xdr:nvPicPr><xdr:blipFill><a:blip xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></xdr:blipFill><xdr:spPr><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></xdr:spPr></xdr:pic><xdr:clientData/></xdr:twoCellAnchor></xdr:wsDr>`);
+    zip.folder('xl').folder('drawings').folder('_rels').file('drawing1.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/logo.png"/></Relationships>`);
+    zip.folder('xl').folder('media').file('logo.png',logo);
+  }
+  const blob=await zip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',compression:'DEFLATE'});
+  const nameBase=type==='rental'?'Bao_gia_thue_gay_Rhino':'Bao_gia_mua_gay_Rhino';
+  const fileName=`${nameBase}_${type==='purchase'?data.model+'_':''}${safeName(info.club)}_${new Date().toISOString().slice(0,10)}.xlsx`;
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function openQuoteClient(type){
+  if(type==='rental'){
+    const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}
+  }else{
+    const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}
+  }
+  pendingQuoteType=type;$('quoteError').textContent='';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),80);
+}
+$('exportRentalBtn').addEventListener('click',()=>openQuoteClient('rental'));
+$('exportBuyBtn').addEventListener('click',()=>openQuoteClient('purchase'));
+$('confirmQuoteExport').addEventListener('click',async()=>{
+  const info={customer:$('quoteCustomerName').value.trim(),club:$('quoteClubName').value.trim(),address:$('quoteAddress').value.trim()};
+  if(!info.customer||!info.club||!info.address){$('quoteError').textContent='Vui lòng điền đủ tên khách hàng, tên CLB / quán và địa chỉ.';return}
+  $('quoteError').textContent='';
+  const btn=$('confirmQuoteExport');const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
+  try{
+    if(pendingQuoteType==='rental'){const {cues,months}=values();await createQuoteXlsx('rental',info,combinedPlan(cues,months))}
+    else{await createQuoteXlsx('purchase',info,currentBuy())}
+    closeModal('quoteClientModal');
+  }catch(err){console.error(err);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
+  finally{btn.disabled=false;btn.textContent=old}
+});
+
+const mobileMenuToggle=$('mobileMenuToggle');
+const mobileDrawer=$('mobileDrawer');
+const mobileMenuOverlay=$('mobileMenuOverlay');
+const mobileMenuClose=$('mobileMenuClose');
+function openMobileMenu(){
+  if(!mobileDrawer)return;
+  mobileDrawer.classList.add('open');mobileMenuOverlay.classList.add('open');
+  mobileDrawer.setAttribute('aria-hidden','false');mobileMenuOverlay.setAttribute('aria-hidden','false');
+  mobileMenuToggle?.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';
+}
+function closeMobileMenu(){
+  if(!mobileDrawer)return;
+  mobileDrawer.classList.remove('open');mobileMenuOverlay.classList.remove('open');
+  mobileDrawer.setAttribute('aria-hidden','true');mobileMenuOverlay.setAttribute('aria-hidden','true');
+  mobileMenuToggle?.setAttribute('aria-expanded','false');
+  if(!document.querySelector('.modal.open'))document.body.style.overflow='';
+}
+mobileMenuToggle?.addEventListener('click',openMobileMenu);
+mobileMenuClose?.addEventListener('click',closeMobileMenu);
+mobileMenuOverlay?.addEventListener('click',closeMobileMenu);
+document.querySelectorAll('.mobile-drawer [data-open]').forEach(btn=>btn.addEventListener('click',closeMobileMenu));
+window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMobileMenu()});
+
 let promoTimer=null;
 function openModal(id,auto=false){
   const el=$(id);if(!el)return;el.classList.add('open');document.body.style.overflow='hidden';
@@ -412,7 +749,7 @@ function closeModal(id){const el=$(id);if(!el)return;el.classList.remove('open')
 document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',()=>openModal(btn.dataset.open,false)));
 document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeModal(btn.dataset.close)));
 document.querySelectorAll('.modal').forEach(modal=>modal.addEventListener('click',e=>{if(e.target===modal)closeModal(modal.id)}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>closeModal(m.id))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.open').forEach(m=>closeModal(m.id));closeMobileMenu();}});
 setTimeout(()=>{if(!document.querySelector('.modal.open'))openModal('promoModal',true)},10000);
 render();renderBuy();
 </script>
