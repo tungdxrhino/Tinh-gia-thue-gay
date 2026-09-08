@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rhino Cue Platform — Bảng tính giá CLB</title>
+<meta name="description" content="Bảng tính giá Rhino Cue Platform dành cho CLB Billiards." />
+<style>
+:root{
+  --navy:#0b3b59;--navy2:#072c43;--teal:#17877d;--orange:#d97721;
+  --ink:#17232b;--muted:#687985;--line:#dbe4e8;--soft:#f4f7f7;
+  --cream:#fbf8f1;--white:#fff;--green:#0f766e;--shadow:0 12px 36px rgba(7,44,67,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#f8faf9 0,#fff 42%,#fbfaf6 100%);color:var(--ink);line-height:1.45}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+.topbar{background:#fff;border-bottom:1px solid #e4eaed;position:sticky;top:0;z-index:30}
+.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{display:block;width:auto;height:38px;max-width:190px;object-fit:contain}
+.price-btn{border:1px solid #cddadd;background:#fff;color:var(--navy);border-radius:11px;padding:10px 14px;font-weight:850;display:inline-flex;align-items:center;gap:8px}
+.price-btn:hover{background:#f6f9f9}
+.hero{padding:34px 0 16px;text-align:center}
+.hero h1{margin:0;color:var(--navy);font-size:clamp(28px,4vw,42px);letter-spacing:-.025em}
+.hero p{margin:8px auto 0;color:var(--muted);max-width:660px;font-size:14px}
+.main{padding:14px 0 58px}
+.calc-card{background:#fff;border:1px solid #dde6e9;border-radius:22px;box-shadow:var(--shadow);padding:22px}
+.inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.field label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;color:#465965;font-size:12px;font-weight:850}
+.field label em{font-style:normal;color:#87959d;font-weight:650;font-size:10px}
+.field input{width:100%;height:54px;border:1px solid #cdd9de;border-radius:13px;padding:0 14px;font-size:20px;font-weight:850;color:var(--navy);outline:none;background:#fff}
+.field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(23,135,125,.10)}
+.helper{margin:9px 0 0;color:#7a8992;font-size:11px}
+.result{margin-top:18px;border-radius:18px;overflow:hidden;border:1px solid #dce6e8;background:#fff}
+.result-head{background:linear-gradient(135deg,var(--navy2),var(--navy) 60%,var(--teal));color:#fff;padding:17px 19px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.result-head .kicker{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#cce2e7;font-weight:800}
+.result-head h2{font-size:22px;line-height:1.15;margin:3px 0 0}
+.status-pill{white-space:nowrap;background:#fff;color:var(--navy);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:950;letter-spacing:.03em}
+.result-grid{display:grid;grid-template-columns:repeat(6,1fr);padding:0}
+.metric{padding:15px 14px;border-right:1px solid #e5ecee}
+.metric:last-child{border-right:0}
+.metric span{display:block;color:#71818b;font-size:10px;margin-bottom:4px}
+.metric strong{display:block;color:var(--navy);font-size:17px;line-height:1.2}
+.metric strong.big{font-size:20px}
+.metric small{display:block;margin-top:3px;color:#83929a;font-size:9px}
+.compare-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 2px 10px}
+.compare-title h2{margin:0;color:var(--navy);font-size:20px}
+.compare-title p{margin:0;color:#7b8a93;font-size:11px}
+.compare-wrap{overflow:auto;border:1px solid #dce5e8;border-radius:18px;background:#fff;box-shadow:0 7px 24px rgba(7,44,67,.06)}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th,td{padding:12px 14px;border-bottom:1px solid #e7edef;text-align:center;font-size:12px}
+th:first-child,td:first-child{text-align:left}
+thead th{background:#f7f9f9;color:var(--navy);vertical-align:top;border-bottom:1px solid #d7e2e5}
+thead th:first-child{background:#fff;color:#65757e}
+.plan-title{font-size:18px;font-weight:950;margin-top:4px}
+.tag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:950;letter-spacing:.025em;text-transform:uppercase;margin-bottom:4px;background:#edf1f2;color:#66757d}
+.tag.best{background:#e7f6f2;color:#087466}
+.tag.opt{background:#fff2e5;color:#b95e14}
+.star{font-size:12px;line-height:1}
+tbody td:first-child{font-weight:800;color:#52636d}
+tbody td{color:#263841}
+tbody tr:last-child td{border-bottom:0}
+.highlight{background:#f1fbf8}
+.highlight2{background:#fff8ef}
+.effective{font-size:16px;font-weight:950;color:var(--teal)}
+.effective.opt{color:#c56b22}
+.saving{font-weight:900;color:#0d7f73}
+.note{margin:12px 3px 0;color:#819098;font-size:10px}
+/* Modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(6,29,42,.54);backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.modal-card{width:min(930px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+.modal-head{position:sticky;top:0;background:#fff;z-index:2;padding:18px 20px;border-bottom:1px solid #e5ebed;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.modal-head h3{margin:0;color:var(--navy);font-size:20px}
+.close{width:36px;height:36px;border:0;border-radius:50%;background:#f1f5f5;color:#536771;font-size:22px}
+.modal-body{padding:18px 20px 22px}
+.fee-table{overflow:auto;border:1px solid #dce5e8;border-radius:14px}
+.fee-table table{min-width:720px}
+.fee-table thead th{color:#fff;border-right:1px solid rgba(255,255,255,.18)}
+.fee-table thead th:first-child{background:#263b49}
+.fee-table thead th:nth-child(2){background:#315d7a}
+.fee-table thead th:nth-child(3){background:#6b5b95}
+.fee-table thead th:nth-child(4){background:#0b5f7a}
+.fee-table thead th:nth-child(5){background:#b45f19}
+.fee-table thead th:nth-child(6){background:#177c72}
+.fee-table tbody td{font-size:12px;border-right:1px solid #edf1f2}
+.fee-table tbody td:first-child{font-weight:850;color:var(--navy);background:#f7f9fa}
+.fee-table tbody td:nth-child(2){background:#f4f8fb}
+.fee-table tbody td:nth-child(3){background:#f8f6fb}
+.fee-table tbody td:nth-child(4){background:#f2fafc}
+.fee-table tbody td:nth-child(5){background:#fff8f1}
+.fee-table tbody td:nth-child(6){background:#f1faf8}
+.fee-table tbody tr:hover td:nth-child(n+2){filter:brightness(.985)}
+.modal-note{font-size:11px;color:#71818a;margin:12px 2px 0}
+@media(max-width:900px){
+  .inputs{grid-template-columns:1fr 1fr}.field:last-child{grid-column:1/-1}
+  .result-grid{grid-template-columns:repeat(3,1fr)}.metric:nth-child(3){border-right:0}.metric:nth-child(-n+3){border-bottom:1px solid #e5ecee}
+}
+@media(max-width:590px){
+  .nav{min-height:62px}.brand img{height:34px;max-width:165px}.price-btn{padding:9px 11px;font-size:11px}
+  .hero{padding-top:26px}.hero p{font-size:12px}
+  .calc-card{padding:15px;border-radius:17px}.inputs{grid-template-columns:1fr}.field:last-child{grid-column:auto}.field input{height:50px}
+  .result-head{align-items:flex-start;flex-direction:column}.result-grid{grid-template-columns:repeat(2,1fr)}.metric{border-bottom:1px solid #e5ecee}.metric:nth-child(2n){border-right:0}.metric:nth-last-child(-n+2){border-bottom:0}
+  .compare-title{align-items:flex-start;flex-direction:column}.compare-title p{display:none}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="./" aria-label="Rhino Cue Platform"><img src="asset/logo.png" alt="Rhino Cue Platform" /></a>
+    <button class="price-btn" id="openPrice">▦ &nbsp;Bảng giá</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Bảng tính giá thuê gậy CLB</h1>
+    <p>Chỉ cần nhập số gậy, số bàn và số tháng dự kiến. Mọi chi phí, gậy dự phòng và ưu đãi sẽ tự động cập nhật.</p>
+  </div>
+</section>
+
+<main class="main">
+  <div class="wrap">
+    <section class="calc-card">
+      <div class="inputs">
+        <div class="field">
+          <label>Số gậy tính phí</label>
+          <input id="cues" type="number" min="1" step="1" value="25" inputmode="numeric" />
+        </div>
+        <div class="field">
+          <label>Số bàn <em>tham chiếu</em></label>
+          <input id="tables" type="number" min="0" step="1" value="10" inputmode="numeric" />
+        </div>
+        <div class="field">
+          <label>Số tháng dự kiến <em>1–14 tháng</em></label>
+          <input id="months" type="number" min="1" max="14" step="1" value="6" inputmode="numeric" />
+        </div>
+      </div>
+      <p class="helper" id="tableNote">Số bàn chỉ dùng để tham chiếu khi báo giá/khảo sát, không giới hạn số gậy và không tham gia công thức tính tiền.</p>
+
+      <div class="result">
+        <div class="result-head">
+          <div><div class="kicker">Phương án phù hợp theo thời gian dự kiến</div><h2 id="planName">Gói 06 tháng</h2></div>
+          <div class="status-pill" id="planStatus">★ BEST CHOICE · CÂN BẰNG</div>
+        </div>
+        <div class="result-grid">
+          <div class="metric"><span>Thời gian sử dụng</span><strong id="useMonths">—</strong><small id="giftText"></small></div>
+          <div class="metric"><span>Tổng tiền thuê</span><strong class="big" id="rentTotal">—</strong></div>
+          <div class="metric"><span>Thanh toán ban đầu</span><strong id="initialTotal">—</strong><small id="depositText"></small></div>
+          <div class="metric"><span>Gậy dự phòng</span><strong id="backup">—</strong><small id="backupPct">—</small></div>
+          <div class="metric"><span>Tổng gậy thực nhận</span><strong id="totalCues">—</strong></div>
+          <div class="metric"><span>Chi phí thực tế</span><strong class="big" id="effective">—</strong><small>đ/gậy thực nhận/tháng</small></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="compare-title">
+      <div><h2>So sánh nhanh 3 gói trả trước</h2></div>
+      <p>Cùng số lượng gậy đang nhập · cập nhật tự động</p>
+    </div>
+
+    <div class="compare-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Chỉ tiêu</th>
+            <th><span class="tag">Gói tiêu chuẩn</span><div class="plan-title">03 tháng</div></th>
+            <th class="highlight"><span class="tag best"><span class="star">★</span> Best Choice · Cân bằng</span><div class="plan-title">06 tháng</div></th>
+            <th class="highlight2"><span class="tag opt"><span class="star">★</span> Tối ưu chi phí</span><div class="plan-title">12 tháng</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Đơn giá / gậy / tháng</td><td id="c3Unit">—</td><td class="highlight" id="c6Unit">—</td><td class="highlight2" id="c12Unit">—</td></tr>
+          <tr><td>Tổng tiền thanh toán</td><td id="c3Rent">—</td><td class="highlight" id="c6Rent">—</td><td class="highlight2" id="c12Rent">—</td></tr>
+          <tr><td>Gậy dự phòng miễn phí</td><td id="c3Backup">—</td><td class="highlight" id="c6Backup">—</td><td class="highlight2" id="c12Backup">—</td></tr>
+          <tr><td>Tổng gậy thực nhận</td><td id="c3Total">—</td><td class="highlight" id="c6Total">—</td><td class="highlight2" id="c12Total">—</td></tr>
+          <tr><td>Thời gian sử dụng</td><td>3 tháng</td><td class="highlight">7 tháng <b>(+1 tặng)</b></td><td class="highlight2">14 tháng <b>(+2 tặng)</b></td></tr>
+          <tr><td>Chi phí thực tế / gậy / tháng</td><td><span class="effective" id="c3Eff">—</span></td><td class="highlight"><span class="effective" id="c6Eff">—</span></td><td class="highlight2"><span class="effective opt" id="c12Eff">—</span></td></tr>
+          <tr><td>Giá trị tiết kiệm quy đổi so với gói 3 tháng</td><td>—</td><td class="highlight"><span class="saving" id="c6Save">—</span></td><td class="highlight2"><span class="saving" id="c12Save">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Giá tính trên số gậy tính phí. Số gậy dự phòng được làm tròn đến cây nguyên gần nhất; phần từ 0,5 cây làm tròn lên. Giá đã gồm VAT, chưa gồm vận chuyển door-to-door hai chiều.</p>
+  </div>
+</main>
+
+<div class="modal" id="priceModal" role="dialog" aria-modal="true" aria-labelledby="priceTitle">
+  <div class="modal-card">
+    <div class="modal-head"><h3 id="priceTitle">Bảng giá thuê gậy CLB</h3><button class="close" id="closePrice" aria-label="Đóng">×</button></div>
+    <div class="modal-body">
+      <div class="fee-table">
+        <table>
+          <thead><tr><th>Số gậy tính phí</th><th>Kỳ 01 tháng</th><th>Kỳ 02 tháng</th><th>Gói 03 tháng</th><th>Gói 06 tháng</th><th>Gói 12 tháng</th></tr></thead>
+          <tbody>
+            <tr><td>1–9 gậy</td><td>89.000</td><td>79.000</td><td>69.000</td><td>64.000</td><td>59.000</td></tr>
+            <tr><td>10–20 gậy</td><td>87.000</td><td>77.000</td><td>67.000</td><td>62.000</td><td>57.000</td></tr>
+            <tr><td>21–49 gậy</td><td>85.000</td><td>75.000</td><td>65.000</td><td>60.000</td><td>55.000</td></tr>
+            <tr><td>50–99 gậy</td><td>83.000</td><td>73.000</td><td>63.000</td><td>58.000</td><td>53.000</td></tr>
+            <tr><td>Từ 100 gậy</td><td>81.000</td><td>71.000</td><td>61.000</td><td>56.000</td><td>51.000</td></tr>
+            <tr><td><b>Gậy dự phòng</b></td><td>10%</td><td>10%</td><td>20%</td><td>20%</td><td>20%</td></tr>
+            <tr><td><b>Thời gian sử dụng</b></td><td>1 tháng</td><td>2 tháng</td><td>3 tháng</td><td>7 tháng / trả 6</td><td>14 tháng / trả 12</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="modal-note"><b>Đơn vị:</b> đồng / gậy tính phí / tháng. Kỳ 1–2 tháng bắt đầu mới có tổng thu ban đầu bằng giá trị gói 3 tháng cùng bậc số lượng; phần chênh lệch là tiền cọc hoàn lại sau đối soát.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const tierLabels=['1–9 gậy','10–20 gậy','21–49 gậy','50–99 gậy','Từ 100 gậy'];
+const price1=[89000,87000,85000,83000,81000];
+const price2=[79000,77000,75000,73000,71000];
+const price3=[69000,67000,65000,63000,61000];
+const price6=[64000,62000,60000,58000,56000];
+const price12=[59000,57000,55000,53000,51000];
+
+const $=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('vi-VN').format(Math.round(n||0));
+function tier(n){return n<=9?0:n<=20?1:n<=49?2:n<=99?3:4}
+function roundHalfUp(x){return Math.floor(x+0.5)}
+function basePlan(n,term){
+  const t=tier(n); let unit,paid,use,gift=0,backupPct,deposit=0,rent,initial;
+  if(term===1){unit=price1[t];paid=1;use=1;backupPct=.10;rent=n*unit;initial=n*price3[t]*3;deposit=initial-rent}
+  else if(term===2){unit=price2[t];paid=2;use=2;backupPct=.10;rent=n*unit*2;initial=n*price3[t]*3;deposit=initial-rent}
+  else if(term===3){unit=price3[t];paid=3;use=3;backupPct=.20;rent=n*unit*3;initial=rent}
+  else if(term===6){unit=price6[t];paid=6;use=7;gift=1;backupPct=.20;rent=n*unit*6;initial=rent}
+  else {unit=price12[t];paid=12;use=14;gift=2;backupPct=.20;rent=n*unit*12;initial=rent}
+  const backup=roundHalfUp(n*backupPct), total=n+backup, effective=rent/(total*use);
+  return {n,t,term,unit,paid,use,gift,backupPct,backup,total,rent,deposit,initial,effective};
+}
+function combinedPlan(n,months){
+  const t=tier(n), backupPct=months<=2?.10:.20, backup=roundHalfUp(n*backupPct), total=n+backup;
+  let name,status,rent,initial,deposit=0,use=months,unit=0;
+  if(months===1){const p=basePlan(n,1);return {...p,name:'Kỳ 01 tháng',status:'THỬ NGẮN HẠN'}}
+  if(months===2){const p=basePlan(n,2);return {...p,name:'Kỳ 02 tháng',status:'THỬ NGẮN HẠN'}}
+  if(months===3){const p=basePlan(n,3);return {...p,name:'Gói 03 tháng',status:'GÓI TIÊU CHUẨN'}}
+  if(months===4){rent=n*(price3[t]*3+price1[t]);initial=rent;unit=rent/(n*4);name='Gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT'}
+  else if(months===5){rent=n*(price3[t]*3+price2[t]*2);initial=rent;unit=rent/(n*5);name='Gói 03 tháng + kỳ 02 tháng';status='LINH HOẠT'}
+  else if(months<=7){const p=basePlan(n,6);return {...p,name:'Gói 06 tháng · dùng 07 tháng',status:'★ BEST CHOICE · CÂN BẰNG'}}
+  else if(months===8){rent=n*(price6[t]*6+price1[t]);initial=rent;unit=rent/(n*7);name='Gói 06 tháng + kỳ 01 tháng';status='LINH HOẠT MỞ RỘNG'}
+  else if(months===9){rent=n*(price6[t]*6+price2[t]*2);initial=rent;unit=rent/(n*8);name='Gói 06 tháng + kỳ 02 tháng';status='LINH HOẠT MỞ RỘNG'}
+  else if(months===10){rent=n*(price6[t]*6+price3[t]*3);initial=rent;unit=rent/(n*9);name='Gói 06 tháng + gói 03 tháng';status='LINH HOẠT MỞ RỘNG'}
+  else if(months===11){rent=n*(price6[t]*6+price3[t]*3+price1[t]);initial=rent;unit=rent/(n*10);name='Gói 06 tháng + gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT MỞ RỘNG'}
+  else {const p=basePlan(n,12);return {...p,name:'Gói 12 tháng · dùng 14 tháng',status:'★ TỐI ƯU CHI PHÍ'}}
+  const effective=rent/(total*use);
+  return {n,t,unit,paid:null,use,gift:0,backupPct,backup,total,rent,deposit,initial,effective,name,status};
+}
+function clampInputs(){
+  let cues=Math.max(1,parseInt($('cues').value||1,10));
+  let tables=Math.max(0,parseInt($('tables').value||0,10));
+  let months=Math.min(14,Math.max(1,parseInt($('months').value||1,10)));
+  return {cues,tables,months};
+}
+function render(){
+  const {cues,tables,months}=clampInputs();
+  const p=combinedPlan(cues,months);
+  $('planName').textContent=p.name;
+  $('planStatus').textContent=p.status;
+  $('useMonths').textContent=p.use+' tháng';
+  $('giftText').textContent=p.gift>0?`Đã gồm +${p.gift} tháng tặng`:'';
+  $('rentTotal').textContent=fmt(p.rent)+' đ';
+  $('initialTotal').textContent=fmt(p.initial)+' đ';
+  $('depositText').textContent=p.deposit>0?`Gồm cọc hoàn lại ${fmt(p.deposit)} đ`:'Không yêu cầu cọc theo gói trả trước';
+  $('backup').textContent=`${p.backup} gậy`;
+  $('backupPct').textContent=`+${Math.round(p.backupPct*100)}% miễn phí`;
+  $('totalCues').textContent=`${p.total} gậy`;
+  $('effective').textContent=fmt(p.effective);
+
+  if(tables>0){const ratio=cues/tables;$('tableNote').textContent=`Số bàn chỉ để tham chiếu, không giới hạn số gậy. Tỷ lệ đối chiếu hiện tại: ${ratio.toFixed(2)} gậy tính phí/bàn.`}
+  else {$('tableNote').textContent='Số bàn chỉ dùng để tham chiếu khi báo giá/khảo sát, không giới hạn số gậy và không tham gia công thức tính tiền.'}
+
+  const a=basePlan(cues,3),b=basePlan(cues,6),c=basePlan(cues,12);
+  $('c3Unit').textContent=fmt(a.unit)+' đ'; $('c6Unit').textContent=fmt(b.unit)+' đ'; $('c12Unit').textContent=fmt(c.unit)+' đ';
+  $('c3Rent').textContent=fmt(a.rent)+' đ'; $('c6Rent').textContent=fmt(b.rent)+' đ'; $('c12Rent').textContent=fmt(c.rent)+' đ';
+  $('c3Backup').textContent=`${a.backup} gậy (+20%)`; $('c6Backup').textContent=`${b.backup} gậy (+20%)`; $('c12Backup').textContent=`${c.backup} gậy (+20%)`;
+  $('c3Total').textContent=a.total+' gậy'; $('c6Total').textContent=b.total+' gậy'; $('c12Total').textContent=c.total+' gậy';
+  $('c3Eff').textContent=fmt(a.effective)+' đ'; $('c6Eff').textContent=fmt(b.effective)+' đ'; $('c12Eff').textContent=fmt(c.effective)+' đ';
+  const save6=(a.effective*b.total*b.use)-b.rent;
+  const save12=(a.effective*c.total*c.use)-c.rent;
+  $('c6Save').textContent=fmt(save6)+' đ';
+  $('c12Save').textContent=fmt(save12)+' đ';
+}
+['cues','tables','months'].forEach(id=>$(id).addEventListener('input',render));
+$('openPrice').addEventListener('click',()=>{$('priceModal').classList.add('open');document.body.style.overflow='hidden'});
+$('closePrice').addEventListener('click',closeModal);
+$('priceModal').addEventListener('click',e=>{if(e.target===$('priceModal'))closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function closeModal(){$('priceModal').classList.remove('open');document.body.style.overflow=''}
+render();
+</script>
+</body>
+</html>
