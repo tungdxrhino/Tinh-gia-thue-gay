@@ -111,7 +111,7 @@ body{overflow-x:hidden}
 .nav{display:grid;grid-template-columns:auto minmax(180px,1fr) auto;gap:14px}
 .header-title{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .desktop-menu{display:flex;gap:0;align-items:center}
-.nav-icon-btn{width:38px;height:34px;border:0;background:transparent;color:var(--navy);font-size:17px;font-weight:950;display:grid;place-items:center;line-height:1;border-radius:0;transition:.16s ease}
+.nav-icon-btn{height:34px;border:0;background:transparent;color:var(--navy);padding:0 12px;font-size:10px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;border-radius:0;transition:.16s ease;white-space:nowrap}.nav-icon-btn .menu-ico{font-size:16px;line-height:1;display:inline-flex;align-items:center;justify-content:center;min-width:17px}.nav-icon-btn .menu-label{display:inline-block}
 .nav-icon-btn+.nav-icon-btn{border-left:1px solid #dce5e8}
 .nav-icon-btn:hover{background:#f3f8f7;color:var(--teal)}
 .nav-icon-btn.promo{color:#087263}
@@ -156,6 +156,10 @@ body{overflow-x:hidden}
 .modal-card,.promo-card{max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}
 .modal-card{overscroll-behavior:contain}.promo-card{overflow:auto;overscroll-behavior:contain}
 .modal-head{min-height:58px}
+
+@media(min-width:761px) and (max-width:1040px){
+  .nav-icon-btn{padding:0 8px;font-size:9px;gap:5px}.nav-icon-btn .menu-ico{font-size:14px;min-width:15px}
+}
 
 @media(max-width:760px){
   .wrap{width:calc(100% - 16px);max-width:none}
@@ -238,10 +242,10 @@ body{overflow-x:hidden}
     <a class="brand" href="./" aria-label="Rhino Cue Platform"><img src="asset/logo.png" alt="Rhino Cue Platform" /></a>
     <h1 class="header-title">Bảng tính giá thuê gậy CLB</h1>
     <div class="nav-actions desktop-menu" aria-label="Menu nhanh">
-      <button class="nav-icon-btn" data-open="priceModal" title="Bảng giá" aria-label="Bảng giá">▦</button>
-      <button class="nav-icon-btn" data-open="compareModal" title="So sánh gói" aria-label="So sánh gói">⇄</button>
-      <button class="nav-icon-btn" data-open="buyModal" title="Giá mua" aria-label="Giá mua">₫</button>
-      <button class="nav-icon-btn promo" data-open="promoModal" title="CT Khuyến mại" aria-label="CT Khuyến mại">★</button>
+      <button class="nav-icon-btn" data-open="priceModal" title="Bảng giá" aria-label="Bảng giá"><span class="menu-ico">▦</span><span class="menu-label">Bảng giá</span></button>
+      <button class="nav-icon-btn" data-open="compareModal" title="So sánh gói" aria-label="So sánh gói"><span class="menu-ico">⇄</span><span class="menu-label">So sánh gói</span></button>
+      <button class="nav-icon-btn" data-open="buyModal" title="Giá mua" aria-label="Giá mua"><span class="menu-ico">₫</span><span class="menu-label">Giá mua</span></button>
+      <button class="nav-icon-btn promo" data-open="promoModal" title="CT Khuyến mại" aria-label="CT Khuyến mại"><span class="menu-ico">★</span><span class="menu-label">CT Khuyến mại</span></button>
     </div>
     <button class="menu-toggle" id="mobileMenuToggle" type="button" aria-label="Mở menu" aria-controls="mobileDrawer" aria-expanded="false">☰</button>
   </div>
