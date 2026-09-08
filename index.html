@@ -3,108 +3,104 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Rhino Cue Platform — Bảng tính giá CLB</title>
-<meta name="description" content="Bảng tính giá Rhino Cue Platform dành cho CLB Billiards." />
+<title>Rhino Cue Platform — Bảng tính giá thuê gậy CLB</title>
+<meta name="description" content="Bảng tính giá thuê gậy Rhino Cue Platform dành cho CLB Billiards." />
 <style>
 :root{
-  --navy:#0b3b59;--navy2:#072c43;--teal:#17877d;--orange:#d97721;
-  --ink:#17232b;--muted:#687985;--line:#dbe4e8;--soft:#f4f7f7;
-  --cream:#fbf8f1;--white:#fff;--green:#0f766e;--shadow:0 12px 36px rgba(7,44,67,.10);
+  --navy:#0b3b59;--navy2:#062e48;--teal:#138879;--orange:#d97721;
+  --ink:#17232b;--muted:#6e7e88;--line:#dfe8eb;--soft:#f5f8f8;
+  --white:#fff;--shadow:0 16px 42px rgba(7,44,67,.09);--neon:#39e6c2;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#f8faf9 0,#fff 42%,#fbfaf6 100%);color:var(--ink);line-height:1.45}
-button,input{font:inherit}
-button{cursor:pointer}
-.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
-.topbar{background:#fff;border-bottom:1px solid #e4eaed;position:sticky;top:0;z-index:30}
-.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;text-decoration:none}
-.brand img{display:block;width:auto;height:38px;max-width:190px;object-fit:contain}
-.price-btn{border:1px solid #cddadd;background:#fff;color:var(--navy);border-radius:11px;padding:10px 14px;font-weight:850;display:inline-flex;align-items:center;gap:8px}
-.price-btn:hover{background:#f6f9f9}
-.hero{padding:34px 0 16px;text-align:center}
-.hero h1{margin:0;color:var(--navy);font-size:clamp(28px,4vw,42px);letter-spacing:-.025em}
-.hero p{margin:8px auto 0;color:var(--muted);max-width:660px;font-size:14px}
-.main{padding:14px 0 58px}
-.calc-card{background:#fff;border:1px solid #dde6e9;border-radius:22px;box-shadow:var(--shadow);padding:22px}
-.inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.field label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;color:#465965;font-size:12px;font-weight:850}
-.field label em{font-style:normal;color:#87959d;font-weight:650;font-size:10px}
-.field input{width:100%;height:54px;border:1px solid #cdd9de;border-radius:13px;padding:0 14px;font-size:20px;font-weight:850;color:var(--navy);outline:none;background:#fff}
-.field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(23,135,125,.10)}
-.helper{margin:9px 0 0;color:#7a8992;font-size:11px}
-.result{margin-top:18px;border-radius:18px;overflow:hidden;border:1px solid #dce6e8;background:#fff}
-.result-head{background:linear-gradient(135deg,var(--navy2),var(--navy) 60%,var(--teal));color:#fff;padding:17px 19px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.result-head .kicker{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#cce2e7;font-weight:800}
-.result-head h2{font-size:22px;line-height:1.15;margin:3px 0 0}
-.status-pill{white-space:nowrap;background:#fff;color:var(--navy);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:950;letter-spacing:.03em}
-.result-grid{display:grid;grid-template-columns:repeat(6,1fr);padding:0}
-.metric{padding:15px 14px;border-right:1px solid #e5ecee}
-.metric:last-child{border-right:0}
-.metric span{display:block;color:#71818b;font-size:10px;margin-bottom:4px}
-.metric strong{display:block;color:var(--navy);font-size:17px;line-height:1.2}
-.metric strong.big{font-size:20px}
-.metric small{display:block;margin-top:3px;color:#83929a;font-size:9px}
-.compare-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 2px 10px}
-.compare-title h2{margin:0;color:var(--navy);font-size:20px}
-.compare-title p{margin:0;color:#7b8a93;font-size:11px}
-.compare-wrap{overflow:auto;border:1px solid #dce5e8;border-radius:18px;background:#fff;box-shadow:0 7px 24px rgba(7,44,67,.06)}
-table{width:100%;border-collapse:collapse;min-width:820px}
-th,td{padding:12px 14px;border-bottom:1px solid #e7edef;text-align:center;font-size:12px}
-th:first-child,td:first-child{text-align:left}
-thead th{background:#f7f9f9;color:var(--navy);vertical-align:top;border-bottom:1px solid #d7e2e5}
-thead th:first-child{background:#fff;color:#65757e}
-.plan-title{font-size:18px;font-weight:950;margin-top:4px}
-.tag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:950;letter-spacing:.025em;text-transform:uppercase;margin-bottom:4px;background:#edf1f2;color:#66757d}
-.tag.best{background:#e7f6f2;color:#087466}
-.tag.opt{background:#fff2e5;color:#b95e14}
-.star{font-size:12px;line-height:1}
-tbody td:first-child{font-weight:800;color:#52636d}
-tbody td{color:#263841}
-tbody tr:last-child td{border-bottom:0}
-.highlight{background:#f1fbf8}
-.highlight2{background:#fff8ef}
-.effective{font-size:16px;font-weight:950;color:var(--teal)}
-.effective.opt{color:#c56b22}
-.saving{font-weight:900;color:#0d7f73}
-.note{margin:12px 3px 0;color:#819098;font-size:10px}
-/* Modal */
-.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(6,29,42,.54);backdrop-filter:blur(4px)}
-.modal.open{display:flex}
-.modal-card{width:min(930px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.28)}
-.modal-head{position:sticky;top:0;background:#fff;z-index:2;padding:18px 20px;border-bottom:1px solid #e5ebed;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.modal-head h3{margin:0;color:var(--navy);font-size:20px}
-.close{width:36px;height:36px;border:0;border-radius:50%;background:#f1f5f5;color:#536771;font-size:22px}
-.modal-body{padding:18px 20px 22px}
-.fee-table{overflow:auto;border:1px solid #dce5e8;border-radius:14px}
-.fee-table table{min-width:720px}
-.fee-table thead th{color:#fff;border-right:1px solid rgba(255,255,255,.18)}
-.fee-table thead th:first-child{background:#263b49}
-.fee-table thead th:nth-child(2){background:#315d7a}
-.fee-table thead th:nth-child(3){background:#6b5b95}
-.fee-table thead th:nth-child(4){background:#0b5f7a}
-.fee-table thead th:nth-child(5){background:#b45f19}
-.fee-table thead th:nth-child(6){background:#177c72}
-.fee-table tbody td{font-size:12px;border-right:1px solid #edf1f2}
-.fee-table tbody td:first-child{font-weight:850;color:var(--navy);background:#f7f9fa}
-.fee-table tbody td:nth-child(2){background:#f4f8fb}
-.fee-table tbody td:nth-child(3){background:#f8f6fb}
-.fee-table tbody td:nth-child(4){background:#f2fafc}
-.fee-table tbody td:nth-child(5){background:#fff8f1}
-.fee-table tbody td:nth-child(6){background:#f1faf8}
-.fee-table tbody tr:hover td:nth-child(n+2){filter:brightness(.985)}
-.modal-note{font-size:11px;color:#71818a;margin:12px 2px 0}
-@media(max-width:900px){
-  .inputs{grid-template-columns:1fr 1fr}.field:last-child{grid-column:1/-1}
-  .result-grid{grid-template-columns:repeat(3,1fr)}.metric:nth-child(3){border-right:0}.metric:nth-child(-n+3){border-bottom:1px solid #e5ecee}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#f7faf9 0,#fff 52%,#fbfaf7 100%);color:var(--ink);line-height:1.4}
+button,input{font:inherit}button{cursor:pointer}.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{width:min(1160px,calc(100% - 28px));margin:auto}
+
+/* HEADER */
+.topbar{background:rgba(255,255,255,.96);border-bottom:1px solid #e5ecee;position:sticky;top:0;z-index:30;backdrop-filter:blur(10px)}
+.nav{min-height:68px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;text-decoration:none;flex:0 0 auto;min-width:150px}.brand img{display:block;height:38px;width:auto;max-width:190px;object-fit:contain}
+.header-title{margin:0;flex:1;text-align:center;color:var(--navy);font-size:14px;font-weight:950;letter-spacing:.025em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.nav-actions{display:flex;align-items:center;gap:7px;flex:0 0 auto;flex-wrap:nowrap;justify-content:flex-end}
+.nav-btn{height:36px;border:1px solid #d3dfe3;background:#fff;color:var(--navy);border-radius:10px;padding:0 11px;font-weight:850;font-size:11px;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;line-height:1;transition:.18s ease}
+.nav-btn:hover{background:#f5f9f8;transform:translateY(-1px)}
+.nav-btn.promo{border-color:#bce7dd;background:#edf9f6;color:#087263}
+
+/* CALCULATOR */
+.main{padding:28px 0 58px}
+.calc-shell{display:grid;grid-template-columns:292px minmax(0,1fr);gap:18px;align-items:stretch;margin-bottom:18px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+.input-panel{padding:20px;display:flex;flex-direction:column;gap:15px}
+.field label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:7px;color:#405561;font-size:11px;font-weight:900;line-height:1.2}
+.field label em{font-style:normal;color:#87959d;font-size:9px;font-weight:700}
+.field input{width:100%;height:48px;border:1px solid #cdd9de;border-radius:12px;padding:0 13px;font-size:21px;font-weight:900;color:var(--navy);outline:none;background:#fff;transition:.18s ease;font-variant-numeric:tabular-nums}
+.field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}
+.month-row{display:grid;grid-template-columns:74px 1fr;gap:8px;align-items:center}.month-row input{height:44px;padding:0 8px;text-align:center}.quick-months{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#f8fbfb;border:1px solid #e2e9eb;border-radius:10px;overflow:hidden}.quick-month{height:44px;border:0;border-left:1px solid #dfe7e9;border-radius:0;background:transparent;color:var(--navy);font-weight:950;font-size:12px;line-height:1;transition:.18s ease}.quick-month:first-child{border-left:0}.quick-month:hover{background:#f1f8f6}.quick-month.active{background:var(--navy);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+
+.summary-wrap{position:relative;min-width:0;height:100%}.summary-panel{overflow:hidden;min-width:0;height:100%}
+.summary-head{min-height:68px;background:linear-gradient(135deg,var(--navy2),var(--navy) 64%,var(--teal));color:#fff;padding:14px 17px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.summary-kicker{font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:#c9dfe5;font-weight:850;line-height:1.1}.summary-head h2{margin:4px 0 0;font-size:19px;line-height:1.1}
+.status-pill{white-space:nowrap;background:#fff;color:var(--navy);padding:7px 10px;border-radius:999px;font-size:9px;font-weight:950;letter-spacing:.035em;text-transform:uppercase;line-height:1}
+.primary-grid{display:grid;grid-template-columns:1.24fr repeat(3,minmax(0,1fr));border-bottom:1px solid #e7edef;align-items:stretch}
+.primary-metric{min-width:0;padding:18px 15px;border-right:1px solid #e7edef;min-height:112px;display:grid;grid-template-rows:24px minmax(32px,auto) 24px;align-items:center}.primary-metric:last-child{border-right:0}
+.primary-metric span{display:flex;align-items:flex-end;color:#70808a;font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.03em;line-height:1.15}
+.primary-metric strong{display:block;align-self:center;color:var(--navy);font-size:clamp(20px,2.15vw,29px);line-height:1;letter-spacing:-.02em;white-space:nowrap;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:clip}
+.primary-metric.hero-number{background:linear-gradient(145deg,#f1fbf8,#fff)}
+.primary-metric.hero-number strong{font-size:clamp(23px,2.55vw,33px);color:var(--teal)}
+.primary-metric small{display:flex;align-items:flex-start;color:#83929a;font-size:9px;line-height:1.25;min-height:22px}
+.secondary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
+.secondary{min-width:0;padding:13px 14px;border-right:1px solid #edf1f2;display:grid;grid-template-rows:22px minmax(22px,auto);align-items:center}.secondary:last-child{border-right:0}
+.secondary span{display:flex;align-items:flex-end;color:#819098;font-size:8px;text-transform:uppercase;font-weight:850;letter-spacing:.03em;line-height:1.15}.secondary strong{display:block;color:#30434f;font-size:13px;line-height:1.15;white-space:nowrap;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:clip}
+.unit-note{position:absolute;top:calc(100% + 7px);right:4px;margin:0;text-align:right;color:#819098;font-size:9px;font-weight:700;white-space:nowrap}
+
+/* MODALS */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(5,27,40,.56);backdrop-filter:blur(5px)}
+.modal.open{display:flex}.modal-card{width:min(970px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.30)}
+.modal-card.compact{width:min(560px,100%)}
+.modal-head{position:sticky;top:0;z-index:3;background:#fff;padding:16px 18px;border-bottom:1px solid #e5ebed;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:66px}
+.modal-head h3{margin:0;color:var(--navy);font-size:19px;line-height:1.15}.close{width:34px;height:34px;border:0;border-radius:50%;background:#f1f5f5;color:#526670;font-size:21px;line-height:1;display:grid;place-items:center}
+.modal-body{padding:17px 19px 21px}.table-shell{overflow:auto;border:1px solid #dce5e8;border-radius:14px;background:#fff}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:720px;table-layout:fixed}th,td{padding:11px 10px;border-bottom:1px solid #e7edef;text-align:center;font-size:11px;line-height:1.3;vertical-align:middle;font-variant-numeric:tabular-nums}th:first-child,td:first-child{text-align:left}
+.table-unit{font-size:9px;color:#74848d;margin:9px 2px 0;text-align:right;font-weight:700}
+
+/* COMPARE */
+.compare-table col.label-col{width:19%}.compare-table col.plan-col{width:27%}
+.compare-table thead th{background:#f7f9f9;color:var(--navy);vertical-align:middle;border-bottom:1px solid #d7e2e5;height:84px}.compare-table thead th:first-child{background:#fff;color:#6e7e88}
+.plan-title{font-size:17px;font-weight:950;margin-top:4px;line-height:1}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:5px 7px;font-size:8px;font-weight:950;letter-spacing:.02em;text-transform:uppercase;background:#edf1f2;color:#66757d;margin-bottom:4px;line-height:1}.tag.opt{background:#fff2e4;color:#b55d17}.tag.best{background:#e7faf5;color:#087466}
+.compare-table tbody td:first-child{font-weight:850;color:#53656f;background:#fbfcfc}.compare-table tbody td{color:#253842}.compare-table tbody tr:last-child td{border-bottom:0}
+.compare-table .benefit-row td{background:#fafdfc}.compare-table .benefit-row td:first-child{color:var(--navy)}
+.compare-table .price-big{font-size:16px;font-weight:950;color:var(--teal);white-space:nowrap}.compare-table .saving{font-size:15px;font-weight:950;color:#0d7f73;white-space:nowrap}
+.compare-table .best-col{background:#f4fffb!important;box-shadow:inset 1px 0 0 rgba(57,230,194,.88),inset -1px 0 0 rgba(57,230,194,.88),0 0 15px rgba(57,230,194,.11)}
+.compare-table thead .best-col{border-top:1px solid rgba(57,230,194,.95);box-shadow:inset 1px 0 0 rgba(57,230,194,.95),inset -1px 0 0 rgba(57,230,194,.95),0 0 18px rgba(57,230,194,.18)}
+.compare-table tbody tr:last-child .best-col{border-bottom:1px solid rgba(57,230,194,.95)}
+.compare-table .subtle{font-size:9px;color:#75858d;font-weight:700;display:block;margin-top:2px}
+
+/* FEE TABLE */
+.fee-table table{min-width:650px}.fee-table thead th{color:#fff;border-right:1px solid rgba(255,255,255,.18);height:52px}.fee-table thead th:first-child{background:#273c49}.fee-table thead th:nth-child(2){background:#0a6381}.fee-table thead th:nth-child(3){background:#c16b21}.fee-table thead th:nth-child(4){background:#168377}.fee-table tbody td{border-right:1px solid #edf1f2}.fee-table tbody td:first-child{font-weight:900;color:var(--navy);background:#f7f9fa}.fee-table tbody td:nth-child(2){background:#f2fafc}.fee-table tbody td:nth-child(3){background:#fff8f1}.fee-table tbody td:nth-child(4){background:#f1faf8}.fee-table tbody tr:last-child td{border-bottom:0}
+.short-box{margin-top:13px;border:1px solid #dce6e8;border-radius:12px;overflow:hidden}.short-box summary{list-style:none;padding:11px 13px;font-weight:900;color:var(--navy);cursor:pointer;background:#f8faf9;display:flex;align-items:center;justify-content:space-between;font-size:11px}.short-box summary::-webkit-details-marker{display:none}.short-box summary::after{content:'＋';font-size:16px;color:#69808a}.short-box[open] summary::after{content:'−'}.short-content{padding:11px 13px 13px}.short-table{width:100%;min-width:0;border-collapse:collapse}.short-table th,.short-table td{font-size:10px;padding:8px 9px}.short-note{margin:8px 1px 0;color:#778890;font-size:9px}
+
+/* PURCHASE */
+.buy-model-field{margin-bottom:12px}.model-segment{max-width:240px}.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}.buy-field label{display:block;margin:0 0 6px;color:#526771;font-size:10px;font-weight:900}.buy-field input{height:50px;width:100%;border:1px solid #cdd9de;border-radius:11px;padding:0 12px;color:var(--navy);font-size:20px;font-weight:900;outline:none;font-variant-numeric:tabular-nums}.buy-field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}
+.segment{height:50px;display:grid;grid-template-columns:1fr 1fr;border:1px solid #cdd9de;border-radius:11px;overflow:hidden;background:#f8faf9}.segment button{border:0;background:transparent;color:#647780;font-size:10px;font-weight:900}.segment button.active{background:var(--navy);color:#fff}
+.buy-result{margin-top:14px;border:1px solid #dce7e8;border-radius:14px;display:grid;grid-template-columns:1fr 1.25fr;overflow:hidden}.buy-metric{padding:15px 14px;min-width:0}.buy-metric+ .buy-metric{border-left:1px solid #e5ecee;background:#f3fbf8}.buy-metric span{display:block;font-size:9px;text-transform:uppercase;color:#7b8b93;font-weight:850;margin-bottom:6px}.buy-metric strong{display:block;color:var(--navy);font-size:22px;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}.buy-metric:last-child strong{color:var(--teal);font-size:27px}.buy-product{margin:0 0 12px;color:#4e626d;font-size:11px}.buy-product b{color:var(--navy)}
+
+/* PROMO */
+.promo-card{width:min(540px,100%);overflow:hidden;background:#fff;border-radius:21px;box-shadow:0 30px 90px rgba(0,0,0,.32);position:relative}
+.promo-top{padding:25px 25px 20px;background:radial-gradient(circle at 85% 15%,rgba(57,230,194,.22),transparent 34%),linear-gradient(135deg,#062e48,#0b3b59 60%,#138879);color:#fff}.promo-top .eyebrow{font-size:9px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:#bfe7df}.promo-top h3{margin:5px 0 5px;font-size:28px;line-height:1.05}.promo-top p{margin:0;color:#dcebed;font-size:12px}.promo-close{position:absolute;right:13px;top:13px;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:21px}.promo-body{padding:17px 21px 19px}.promo-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.promo-chip{padding:10px 8px;border-radius:11px;background:#f5f9f8;text-align:center;color:#38505c;font-size:10px;font-weight:850}.promo-chip strong{display:block;color:var(--teal);font-size:15px;margin-bottom:2px}.promo-deadline{margin:12px 0 0;text-align:center;color:#5b6e78;font-size:10px}.promo-deadline b{color:#c45d18}
+
+@media(max-width:1040px){
+  .nav{gap:10px}.brand{min-width:auto}.brand img{height:34px;max-width:155px}.header-title{font-size:12px}.nav-actions{gap:5px}.nav-btn{padding:0 9px}.topbar .wrap{width:min(1160px,calc(100% - 20px))}
 }
-@media(max-width:590px){
-  .nav{min-height:62px}.brand img{height:34px;max-width:165px}.price-btn{padding:9px 11px;font-size:11px}
-  .hero{padding-top:26px}.hero p{font-size:12px}
-  .calc-card{padding:15px;border-radius:17px}.inputs{grid-template-columns:1fr}.field:last-child{grid-column:auto}.field input{height:50px}
-  .result-head{align-items:flex-start;flex-direction:column}.result-grid{grid-template-columns:repeat(2,1fr)}.metric{border-bottom:1px solid #e5ecee}.metric:nth-child(2n){border-right:0}.metric:nth-last-child(-n+2){border-bottom:0}
-  .compare-title{align-items:flex-start;flex-direction:column}.compare-title p{display:none}
+@media(max-width:900px){
+  .calc-shell{grid-template-columns:1fr}.input-panel{display:grid;grid-template-columns:repeat(3,1fr);align-items:end}
+  .primary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.primary-metric:nth-child(2){border-right:0}.primary-metric:nth-child(-n+2){border-bottom:1px solid #e7edef}
+  .secondary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.secondary:nth-child(2){border-right:0}.secondary:nth-child(-n+2){border-bottom:1px solid #edf1f2}
+}
+@media(max-width:620px){
+  .wrap{width:min(100% - 18px,1160px)}.nav{min-height:58px;gap:6px}.brand{min-width:0}.brand img{height:29px;max-width:116px}.header-title{font-size:10px;letter-spacing:.01em}.nav-actions{gap:4px;overflow:auto;max-width:46%}.nav-btn{height:31px;padding:0 7px;font-size:8px}.main{padding-top:18px}.input-panel{grid-template-columns:1fr;padding:15px}.field input{height:46px;font-size:19px}.month-row{grid-template-columns:68px 1fr}.quick-month,.month-row input{height:42px}
+  .summary-head{min-height:64px}.summary-head h2{font-size:17px}.primary-grid{grid-template-columns:1fr 1fr}.primary-metric{padding:15px 12px;min-height:100px;grid-template-rows:22px minmax(29px,auto) 22px}.primary-metric strong{font-size:21px}.primary-metric.hero-number strong{font-size:24px}.secondary-grid{grid-template-columns:1fr 1fr}
+  .promo-chips{grid-template-columns:1fr}.promo-top{padding:23px 19px 18px}.promo-top h3{font-size:26px}.buy-grid{grid-template-columns:1fr}.buy-result{grid-template-columns:1fr}.buy-metric+.buy-metric{border-left:0;border-top:1px solid #e5ecee}
 }
 </style>
 </head>
@@ -112,186 +108,313 @@ tbody tr:last-child td{border-bottom:0}
 <header class="topbar">
   <div class="wrap nav">
     <a class="brand" href="./" aria-label="Rhino Cue Platform"><img src="asset/logo.png" alt="Rhino Cue Platform" /></a>
-    <button class="price-btn" id="openPrice">▦ &nbsp;Bảng giá</button>
+    <h1 class="header-title">Bảng tính giá thuê gậy CLB</h1>
+    <div class="nav-actions">
+      <button class="nav-btn" data-open="priceModal">▦ Bảng giá</button>
+      <button class="nav-btn" data-open="compareModal">⇄ So sánh gói</button>
+      <button class="nav-btn" data-open="buyModal">₫ Giá mua</button>
+      <button class="nav-btn promo" data-open="promoModal">★ CT Khuyến mại</button>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <h1>Bảng tính giá thuê gậy CLB</h1>
-    <p>Chỉ cần nhập số gậy, số bàn và số tháng dự kiến. Mọi chi phí, gậy dự phòng và ưu đãi sẽ tự động cập nhật.</p>
-  </div>
-</section>
-
 <main class="main">
   <div class="wrap">
-    <section class="calc-card">
-      <div class="inputs">
-        <div class="field">
-          <label>Số gậy tính phí</label>
-          <input id="cues" type="number" min="1" step="1" value="25" inputmode="numeric" />
-        </div>
-        <div class="field">
-          <label>Số bàn <em>tham chiếu</em></label>
-          <input id="tables" type="number" min="0" step="1" value="10" inputmode="numeric" />
-        </div>
-        <div class="field">
-          <label>Số tháng dự kiến <em>1–14 tháng</em></label>
-          <input id="months" type="number" min="1" max="14" step="1" value="6" inputmode="numeric" />
+    <section class="calc-shell">
+      <div class="panel input-panel">
+        <div class="field"><label>Số gậy tính phí</label><input id="cues" type="number" min="1" step="1" value="" inputmode="numeric" /></div>
+        <div class="field"><label>Số bàn <em>tham chiếu</em></label><input id="tables" type="number" min="0" step="1" value="" inputmode="numeric" /></div>
+        <div class="field"><label>Số tháng dự kiến <em>1–12</em></label>
+          <div class="month-row">
+            <input id="months" type="number" min="1" max="12" step="1" value="" inputmode="numeric" />
+            <div class="quick-months" aria-label="Chọn nhanh số tháng">
+              <button type="button" class="quick-month" data-month="3">3</button>
+              <button type="button" class="quick-month" data-month="6">6</button>
+              <button type="button" class="quick-month" data-month="12">12</button>
+            </div>
+          </div>
         </div>
       </div>
-      <p class="helper" id="tableNote">Số bàn chỉ dùng để tham chiếu khi báo giá/khảo sát, không giới hạn số gậy và không tham gia công thức tính tiền.</p>
 
-      <div class="result">
-        <div class="result-head">
-          <div><div class="kicker">Phương án phù hợp theo thời gian dự kiến</div><h2 id="planName">Gói 06 tháng</h2></div>
-          <div class="status-pill" id="planStatus">★ BEST CHOICE · CÂN BẰNG</div>
+      <div class="summary-wrap">
+        <div class="panel summary-panel" id="summaryPanel">
+          <div class="summary-head">
+            <div><div class="summary-kicker">Phương án phù hợp</div><h2 id="planName">Gói 06 tháng</h2></div>
+            <div class="status-pill" id="planStatus">TỐI ƯU CHI PHÍ</div>
+          </div>
+          <div class="primary-grid">
+            <div class="primary-metric hero-number"><span>Chi phí thực tế</span><strong class="num" id="effective">—</strong><small>gậy thực nhận / tháng</small></div>
+            <div class="primary-metric"><span>Tổng gậy thực nhận</span><strong class="num" id="totalCues">—</strong><small id="backupMini">—</small></div>
+            <div class="primary-metric"><span>Tổng thời gian sử dụng</span><strong class="num" id="useMonths">—</strong><small id="giftText"></small></div>
+            <div class="primary-metric"><span>Tổng tiền thuê</span><strong class="num" id="rentTotal">—</strong><small>Đã gồm VAT</small></div>
+          </div>
+          <div class="secondary-grid">
+            <div class="secondary"><span>Đơn giá áp dụng</span><strong class="num" id="unitPrice">—</strong></div>
+            <div class="secondary"><span>Gậy dự phòng</span><strong class="num" id="backup">—</strong></div>
+            <div class="secondary"><span>Thanh toán ban đầu</span><strong class="num" id="initialTotal">—</strong></div>
+            <div class="secondary"><span>Tiền cọc</span><strong class="num" id="depositValue">—</strong></div>
+          </div>
         </div>
-        <div class="result-grid">
-          <div class="metric"><span>Thời gian sử dụng</span><strong id="useMonths">—</strong><small id="giftText"></small></div>
-          <div class="metric"><span>Tổng tiền thuê</span><strong class="big" id="rentTotal">—</strong></div>
-          <div class="metric"><span>Thanh toán ban đầu</span><strong id="initialTotal">—</strong><small id="depositText"></small></div>
-          <div class="metric"><span>Gậy dự phòng</span><strong id="backup">—</strong><small id="backupPct">—</small></div>
-          <div class="metric"><span>Tổng gậy thực nhận</span><strong id="totalCues">—</strong></div>
-          <div class="metric"><span>Chi phí thực tế</span><strong class="big" id="effective">—</strong><small>đ/gậy thực nhận/tháng</small></div>
-        </div>
+        <div class="unit-note">Đơn vị tính: VND</div>
       </div>
     </section>
-
-    <div class="compare-title">
-      <div><h2>So sánh nhanh 3 gói trả trước</h2></div>
-      <p>Cùng số lượng gậy đang nhập · cập nhật tự động</p>
-    </div>
-
-    <div class="compare-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Chỉ tiêu</th>
-            <th><span class="tag">Gói tiêu chuẩn</span><div class="plan-title">03 tháng</div></th>
-            <th class="highlight"><span class="tag best"><span class="star">★</span> Best Choice · Cân bằng</span><div class="plan-title">06 tháng</div></th>
-            <th class="highlight2"><span class="tag opt"><span class="star">★</span> Tối ưu chi phí</span><div class="plan-title">12 tháng</div></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Đơn giá / gậy / tháng</td><td id="c3Unit">—</td><td class="highlight" id="c6Unit">—</td><td class="highlight2" id="c12Unit">—</td></tr>
-          <tr><td>Tổng tiền thanh toán</td><td id="c3Rent">—</td><td class="highlight" id="c6Rent">—</td><td class="highlight2" id="c12Rent">—</td></tr>
-          <tr><td>Gậy dự phòng miễn phí</td><td id="c3Backup">—</td><td class="highlight" id="c6Backup">—</td><td class="highlight2" id="c12Backup">—</td></tr>
-          <tr><td>Tổng gậy thực nhận</td><td id="c3Total">—</td><td class="highlight" id="c6Total">—</td><td class="highlight2" id="c12Total">—</td></tr>
-          <tr><td>Thời gian sử dụng</td><td>3 tháng</td><td class="highlight">7 tháng <b>(+1 tặng)</b></td><td class="highlight2">14 tháng <b>(+2 tặng)</b></td></tr>
-          <tr><td>Chi phí thực tế / gậy / tháng</td><td><span class="effective" id="c3Eff">—</span></td><td class="highlight"><span class="effective" id="c6Eff">—</span></td><td class="highlight2"><span class="effective opt" id="c12Eff">—</span></td></tr>
-          <tr><td>Giá trị tiết kiệm quy đổi so với gói 3 tháng</td><td>—</td><td class="highlight"><span class="saving" id="c6Save">—</span></td><td class="highlight2"><span class="saving" id="c12Save">—</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Giá tính trên số gậy tính phí. Số gậy dự phòng được làm tròn đến cây nguyên gần nhất; phần từ 0,5 cây làm tròn lên. Giá đã gồm VAT, chưa gồm vận chuyển door-to-door hai chiều.</p>
   </div>
 </main>
 
-<div class="modal" id="priceModal" role="dialog" aria-modal="true" aria-labelledby="priceTitle">
+<!-- Compare modal -->
+<div class="modal" id="compareModal" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
   <div class="modal-card">
-    <div class="modal-head"><h3 id="priceTitle">Bảng giá thuê gậy CLB</h3><button class="close" id="closePrice" aria-label="Đóng">×</button></div>
+    <div class="modal-head"><h3 id="compareTitle">So sánh 3 gói trả trước</h3><button class="close" data-close="compareModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
-      <div class="fee-table">
-        <table>
-          <thead><tr><th>Số gậy tính phí</th><th>Kỳ 01 tháng</th><th>Kỳ 02 tháng</th><th>Gói 03 tháng</th><th>Gói 06 tháng</th><th>Gói 12 tháng</th></tr></thead>
+      <div class="table-shell">
+        <table class="compare-table">
+          <colgroup><col class="label-col"><col class="plan-col"><col class="plan-col"><col class="plan-col"></colgroup>
+          <thead>
+            <tr>
+              <th>Chỉ tiêu</th>
+              <th><span class="tag">Gói tiêu chuẩn</span><div class="plan-title">03 tháng</div></th>
+              <th><span class="tag opt">Tối ưu chi phí</span><div class="plan-title">06 tháng</div></th>
+              <th class="best-col"><span class="tag best">★ Best Choice</span><div class="plan-title">12 tháng</div></th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>1–9 gậy</td><td>89.000</td><td>79.000</td><td>69.000</td><td>64.000</td><td>59.000</td></tr>
-            <tr><td>10–20 gậy</td><td>87.000</td><td>77.000</td><td>67.000</td><td>62.000</td><td>57.000</td></tr>
-            <tr><td>21–49 gậy</td><td>85.000</td><td>75.000</td><td>65.000</td><td>60.000</td><td>55.000</td></tr>
-            <tr><td>50–99 gậy</td><td>83.000</td><td>73.000</td><td>63.000</td><td>58.000</td><td>53.000</td></tr>
-            <tr><td>Từ 100 gậy</td><td>81.000</td><td>71.000</td><td>61.000</td><td>56.000</td><td>51.000</td></tr>
-            <tr><td><b>Gậy dự phòng</b></td><td>10%</td><td>10%</td><td>20%</td><td>20%</td><td>20%</td></tr>
-            <tr><td><b>Thời gian sử dụng</b></td><td>1 tháng</td><td>2 tháng</td><td>3 tháng</td><td>7 tháng / trả 6</td><td>14 tháng / trả 12</td></tr>
+            <tr class="benefit-row"><td>Giá ưu đãi thực tế</td><td><span class="price-big" id="c3Eff">—</span></td><td><span class="price-big" id="c6Eff">—</span></td><td class="best-col"><span class="price-big" id="c12Eff">—</span></td></tr>
+            <tr class="benefit-row"><td>Tiết kiệm quy đổi</td><td>—</td><td><span class="saving" id="c6Save">—</span></td><td class="best-col"><span class="saving" id="c12Save">—</span></td></tr>
+            <tr><td>Tổng gậy thực nhận</td><td id="c3Total">—</td><td id="c6Total">—</td><td class="best-col" id="c12Total">—</td></tr>
+            <tr><td>Thời gian sử dụng</td><td>3 tháng</td><td>7 tháng <span class="subtle">+1 tháng tặng</span></td><td class="best-col">14 tháng <span class="subtle">+2 tháng tặng</span></td></tr>
+            <tr><td>Tổng tiền thuê</td><td id="c3Rent">—</td><td id="c6Rent">—</td><td class="best-col" id="c12Rent">—</td></tr>
+            <tr><td>Đơn giá</td><td id="c3Unit">—</td><td id="c6Unit">—</td><td class="best-col" id="c12Unit">—</td></tr>
+            <tr><td>Gậy dự phòng</td><td id="c3Backup">—</td><td id="c6Backup">—</td><td class="best-col" id="c12Backup">—</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="modal-note"><b>Đơn vị:</b> đồng / gậy tính phí / tháng. Kỳ 1–2 tháng bắt đầu mới có tổng thu ban đầu bằng giá trị gói 3 tháng cùng bậc số lượng; phần chênh lệch là tiền cọc hoàn lại sau đối soát.</p>
+      <div class="table-unit">Đơn vị tính: VND</div>
+    </div>
+  </div>
+</div>
+
+<!-- Price modal -->
+<div class="modal" id="priceModal" role="dialog" aria-modal="true" aria-labelledby="priceTitle">
+  <div class="modal-card">
+    <div class="modal-head"><h3 id="priceTitle">Bảng giá thuê gậy CLB</h3><button class="close" data-close="priceModal" aria-label="Đóng">×</button></div>
+    <div class="modal-body">
+      <div class="table-shell fee-table">
+        <table>
+          <thead><tr><th>Số gậy tính phí</th><th>Gói 03 tháng</th><th>Gói 06 tháng</th><th>Gói 12 tháng</th></tr></thead>
+          <tbody>
+            <tr><td>1–9 gậy</td><td>69.000</td><td>64.000</td><td>59.000</td></tr>
+            <tr><td>10–20 gậy</td><td>67.000</td><td>62.000</td><td>57.000</td></tr>
+            <tr><td>21–49 gậy</td><td>65.000</td><td>60.000</td><td>55.000</td></tr>
+            <tr><td>50–99 gậy</td><td>63.000</td><td>58.000</td><td>53.000</td></tr>
+            <tr><td>Từ 100 gậy</td><td>61.000</td><td>56.000</td><td>51.000</td></tr>
+            <tr><td><b>Gậy dự phòng</b></td><td>20%</td><td>20%</td><td>20%</td></tr>
+            <tr><td><b>Thời gian sử dụng</b></td><td>3 tháng</td><td>7 tháng / trả 6</td><td>14 tháng / trả 12</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="short-box">
+        <summary>Gói dùng trải nghiệm 1–2 tháng</summary>
+        <div class="short-content">
+          <table class="short-table">
+            <thead><tr><th>Số gậy tính phí</th><th>Kỳ 01 tháng</th><th>Kỳ 02 tháng</th></tr></thead>
+            <tbody>
+              <tr><td>1–9 gậy</td><td>89.000</td><td>79.000</td></tr>
+              <tr><td>10–20 gậy</td><td>87.000</td><td>77.000</td></tr>
+              <tr><td>21–49 gậy</td><td>85.000</td><td>75.000</td></tr>
+              <tr><td>50–99 gậy</td><td>83.000</td><td>73.000</td></tr>
+              <tr><td>Từ 100 gậy</td><td>81.000</td><td>71.000</td></tr>
+              <tr><td><b>Gậy dự phòng</b></td><td>10%</td><td>10%</td></tr>
+            </tbody>
+          </table>
+          <div class="short-note">Kỳ thuê ngắn có tính phí, tách biệt với chương trình trải nghiệm miễn phí 30 ngày.</div>
+        </div>
+      </details>
+      <div class="table-unit">Đơn vị tính: VND / gậy tính phí / tháng</div>
+    </div>
+  </div>
+</div>
+
+<!-- Purchase modal -->
+<div class="modal" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="buyTitle">
+  <div class="modal-card compact">
+    <div class="modal-head"><h3 id="buyTitle">Giá mua gậy</h3><button class="close" data-close="buyModal" aria-label="Đóng">×</button></div>
+    <div class="modal-body">
+      <div class="buy-field buy-model-field"><label>Loại gậy</label><div class="segment model-segment" id="modelSegment"><button type="button" class="active" data-model="r68">R-68</button><button type="button" data-model="r88">R-88</button></div></div>
+      <div class="buy-grid">
+        <div class="buy-field"><label>Số lượng gậy</label><input id="buyQty" type="number" min="1" step="1" value="" inputmode="numeric" /></div>
+        <div class="buy-field"><label>Trạng thái khách hàng</label><div class="segment" id="customerSegment"><button type="button" class="active" data-customer="new">Khách mới</button><button type="button" data-customer="rental">Đã dùng gói thuê</button></div></div>
+      </div>
+      <div class="buy-result">
+        <div class="buy-metric"><span>Đơn giá áp dụng</span><strong class="num" id="buyUnit">—</strong></div>
+        <div class="buy-metric"><span>Tổng giá bán</span><strong class="num" id="buyTotal">—</strong></div>
+      </div>
+      <div class="table-unit">Đơn vị tính: VND</div>
+    </div>
+  </div>
+</div>
+
+<!-- Promotion modal -->
+<div class="modal" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="promoTitle">
+  <div class="promo-card">
+    <button class="promo-close" data-close="promoModal" aria-label="Đóng">×</button>
+    <div class="promo-top">
+      <div class="eyebrow">Chương trình dành cho CLB</div>
+      <h3 id="promoTitle">Trải nghiệm 30 ngày miễn phí</h3>
+      <p>Dùng thử Rhino R68 & R88 — dòng gậy mới dành cho CLB.</p>
+    </div>
+    <div class="promo-body">
+      <div class="promo-chips">
+        <div class="promo-chip"><strong>0</strong>Phí trải nghiệm</div>
+        <div class="promo-chip"><strong>0</strong>Tiền cọc</div>
+        <div class="promo-chip"><strong>30 ngày</strong>Trải nghiệm thực tế</div>
+      </div>
+      <p class="promo-deadline">Hạn đăng ký: <b>15/12/2026</b></p>
     </div>
   </div>
 </div>
 
 <script>
-const tierLabels=['1–9 gậy','10–20 gậy','21–49 gậy','50–99 gậy','Từ 100 gậy'];
 const price1=[89000,87000,85000,83000,81000];
 const price2=[79000,77000,75000,73000,71000];
 const price3=[69000,67000,65000,63000,61000];
 const price6=[64000,62000,60000,58000,56000];
 const price12=[59000,57000,55000,53000,51000];
-
 const $=id=>document.getElementById(id);
 const fmt=n=>new Intl.NumberFormat('vi-VN').format(Math.round(n||0));
-function tier(n){return n<=9?0:n<=20?1:n<=49?2:n<=99?3:4}
-function roundHalfUp(x){return Math.floor(x+0.5)}
+const tier=n=>n<=9?0:n<=20?1:n<=49?2:n<=99?3:4;
+const roundHalfUp=x=>Math.floor(x+0.5);
+
 function basePlan(n,term){
-  const t=tier(n); let unit,paid,use,gift=0,backupPct,deposit=0,rent,initial;
+  const t=tier(n);let unit,paid,use,gift=0,backupPct,deposit=0,rent,initial;
   if(term===1){unit=price1[t];paid=1;use=1;backupPct=.10;rent=n*unit;initial=n*price3[t]*3;deposit=initial-rent}
   else if(term===2){unit=price2[t];paid=2;use=2;backupPct=.10;rent=n*unit*2;initial=n*price3[t]*3;deposit=initial-rent}
   else if(term===3){unit=price3[t];paid=3;use=3;backupPct=.20;rent=n*unit*3;initial=rent}
   else if(term===6){unit=price6[t];paid=6;use=7;gift=1;backupPct=.20;rent=n*unit*6;initial=rent}
   else {unit=price12[t];paid=12;use=14;gift=2;backupPct=.20;rent=n*unit*12;initial=rent}
-  const backup=roundHalfUp(n*backupPct), total=n+backup, effective=rent/(total*use);
+  const backup=roundHalfUp(n*backupPct),total=n+backup,effective=rent/(total*use);
   return {n,t,term,unit,paid,use,gift,backupPct,backup,total,rent,deposit,initial,effective};
 }
 function combinedPlan(n,months){
-  const t=tier(n), backupPct=months<=2?.10:.20, backup=roundHalfUp(n*backupPct), total=n+backup;
-  let name,status,rent,initial,deposit=0,use=months,unit=0;
-  if(months===1){const p=basePlan(n,1);return {...p,name:'Kỳ 01 tháng',status:'THỬ NGẮN HẠN'}}
-  if(months===2){const p=basePlan(n,2);return {...p,name:'Kỳ 02 tháng',status:'THỬ NGẮN HẠN'}}
+  const t=tier(n),backupPct=months<=2?.10:.20,backup=roundHalfUp(n*backupPct),total=n+backup;
+  let name,status,rent,initial,deposit=0,use=months,unit=0,gift=0;
+  if(months===1){const p=basePlan(n,1);return {...p,name:'Kỳ 01 tháng',status:'KỲ NGẮN HẠN'}}
+  if(months===2){const p=basePlan(n,2);return {...p,name:'Kỳ 02 tháng',status:'KỲ NGẮN HẠN'}}
   if(months===3){const p=basePlan(n,3);return {...p,name:'Gói 03 tháng',status:'GÓI TIÊU CHUẨN'}}
   if(months===4){rent=n*(price3[t]*3+price1[t]);initial=rent;unit=rent/(n*4);name='Gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT'}
   else if(months===5){rent=n*(price3[t]*3+price2[t]*2);initial=rent;unit=rent/(n*5);name='Gói 03 tháng + kỳ 02 tháng';status='LINH HOẠT'}
-  else if(months<=7){const p=basePlan(n,6);return {...p,name:'Gói 06 tháng · dùng 07 tháng',status:'★ BEST CHOICE · CÂN BẰNG'}}
+  else if(months<=7){const p=basePlan(n,6);return {...p,name:'Gói 06 tháng · dùng 07 tháng',status:'TỐI ƯU CHI PHÍ'}}
   else if(months===8){rent=n*(price6[t]*6+price1[t]);initial=rent;unit=rent/(n*7);name='Gói 06 tháng + kỳ 01 tháng';status='LINH HOẠT MỞ RỘNG'}
   else if(months===9){rent=n*(price6[t]*6+price2[t]*2);initial=rent;unit=rent/(n*8);name='Gói 06 tháng + kỳ 02 tháng';status='LINH HOẠT MỞ RỘNG'}
   else if(months===10){rent=n*(price6[t]*6+price3[t]*3);initial=rent;unit=rent/(n*9);name='Gói 06 tháng + gói 03 tháng';status='LINH HOẠT MỞ RỘNG'}
   else if(months===11){rent=n*(price6[t]*6+price3[t]*3+price1[t]);initial=rent;unit=rent/(n*10);name='Gói 06 tháng + gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT MỞ RỘNG'}
-  else {const p=basePlan(n,12);return {...p,name:'Gói 12 tháng · dùng 14 tháng',status:'★ TỐI ƯU CHI PHÍ'}}
+  else {const p=basePlan(n,12);return {...p,name:'Gói 12 tháng · tặng thêm 02 tháng',status:'★ BEST CHOICE'}}
   const effective=rent/(total*use);
-  return {n,t,unit,paid:null,use,gift:0,backupPct,backup,total,rent,deposit,initial,effective,name,status};
+  return {n,t,unit,paid:null,use,gift,backupPct,backup,total,rent,deposit,initial,effective,name,status};
 }
-function clampInputs(){
-  let cues=Math.max(1,parseInt($('cues').value||1,10));
-  let tables=Math.max(0,parseInt($('tables').value||0,10));
-  let months=Math.min(14,Math.max(1,parseInt($('months').value||1,10)));
+let selectedQuickMonth=null;
+function values(){
+  const cueRaw=$('cues').value.trim();
+  const tableRaw=$('tables').value.trim();
+  const monthRaw=$('months').value.trim();
+  const cues=cueRaw===''?null:Math.max(1,parseInt(cueRaw,10));
+  const tables=tableRaw===''?null:Math.max(0,parseInt(tableRaw,10));
+  let months=null;
+  if(monthRaw!==''){
+    const parsed=parseInt(monthRaw,10);
+    if(Number.isFinite(parsed)){
+      months=Math.min(12,Math.max(1,parsed));
+      if(String(months)!==monthRaw) $('months').value=months;
+    }
+  }else if(selectedQuickMonth!==null){
+    months=selectedQuickMonth;
+  }
   return {cues,tables,months};
 }
-function render(){
-  const {cues,tables,months}=clampInputs();
-  const p=combinedPlan(cues,months);
-  $('planName').textContent=p.name;
-  $('planStatus').textContent=p.status;
-  $('useMonths').textContent=p.use+' tháng';
-  $('giftText').textContent=p.gift>0?`Đã gồm +${p.gift} tháng tặng`:'';
-  $('rentTotal').textContent=fmt(p.rent)+' đ';
-  $('initialTotal').textContent=fmt(p.initial)+' đ';
-  $('depositText').textContent=p.deposit>0?`Gồm cọc hoàn lại ${fmt(p.deposit)} đ`:'Không yêu cầu cọc theo gói trả trước';
-  $('backup').textContent=`${p.backup} gậy`;
-  $('backupPct').textContent=`+${Math.round(p.backupPct*100)}% miễn phí`;
-  $('totalCues').textContent=`${p.total} gậy`;
-  $('effective').textContent=fmt(p.effective);
-
-  if(tables>0){const ratio=cues/tables;$('tableNote').textContent=`Số bàn chỉ để tham chiếu, không giới hạn số gậy. Tỷ lệ đối chiếu hiện tại: ${ratio.toFixed(2)} gậy tính phí/bàn.`}
-  else {$('tableNote').textContent='Số bàn chỉ dùng để tham chiếu khi báo giá/khảo sát, không giới hạn số gậy và không tham gia công thức tính tiền.'}
-
-  const a=basePlan(cues,3),b=basePlan(cues,6),c=basePlan(cues,12);
-  $('c3Unit').textContent=fmt(a.unit)+' đ'; $('c6Unit').textContent=fmt(b.unit)+' đ'; $('c12Unit').textContent=fmt(c.unit)+' đ';
-  $('c3Rent').textContent=fmt(a.rent)+' đ'; $('c6Rent').textContent=fmt(b.rent)+' đ'; $('c12Rent').textContent=fmt(c.rent)+' đ';
-  $('c3Backup').textContent=`${a.backup} gậy (+20%)`; $('c6Backup').textContent=`${b.backup} gậy (+20%)`; $('c12Backup').textContent=`${c.backup} gậy (+20%)`;
-  $('c3Total').textContent=a.total+' gậy'; $('c6Total').textContent=b.total+' gậy'; $('c12Total').textContent=c.total+' gậy';
-  $('c3Eff').textContent=fmt(a.effective)+' đ'; $('c6Eff').textContent=fmt(b.effective)+' đ'; $('c12Eff').textContent=fmt(c.effective)+' đ';
-  const save6=(a.effective*b.total*b.use)-b.rent;
-  const save12=(a.effective*c.total*c.use)-c.rent;
-  $('c6Save').textContent=fmt(save6)+' đ';
-  $('c12Save').textContent=fmt(save12)+' đ';
+function clearMainSummary(){
+  $('planName').textContent='Chưa chọn phương án';$('planStatus').textContent='—';
+  ['effective','totalCues','useMonths','rentTotal','unitPrice','backup','initialTotal','depositValue'].forEach(id=>$(id).textContent='—');
+  $('backupMini').textContent='';$('giftText').textContent='';
 }
-['cues','tables','months'].forEach(id=>$(id).addEventListener('input',render));
-$('openPrice').addEventListener('click',()=>{$('priceModal').classList.add('open');document.body.style.overflow='hidden'});
-$('closePrice').addEventListener('click',closeModal);
-$('priceModal').addEventListener('click',e=>{if(e.target===$('priceModal'))closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-function closeModal(){$('priceModal').classList.remove('open');document.body.style.overflow=''}
-render();
+function clearCompare(){
+  ['c3Unit','c6Unit','c12Unit','c3Rent','c6Rent','c12Rent','c3Backup','c6Backup','c12Backup','c3Total','c6Total','c12Total','c3Eff','c6Eff','c12Eff','c6Save','c12Save'].forEach(id=>$(id).textContent='—');
+}
+function render(){
+  const {cues,tables,months}=values();
+  document.querySelectorAll('[data-month]').forEach(btn=>btn.classList.toggle('active',selectedQuickMonth!==null && Number(btn.dataset.month)===selectedQuickMonth));
+
+  if(cues!==null){
+    const a=basePlan(cues,3),b=basePlan(cues,6),c=basePlan(cues,12);
+    $('c3Unit').textContent=fmt(a.unit);$('c6Unit').textContent=fmt(b.unit);$('c12Unit').textContent=fmt(c.unit);
+    $('c3Rent').textContent=fmt(a.rent);$('c6Rent').textContent=fmt(b.rent);$('c12Rent').textContent=fmt(c.rent);
+    $('c3Backup').textContent=`${a.backup} gậy (+20%)`;$('c6Backup').textContent=`${b.backup} gậy (+20%)`;$('c12Backup').textContent=`${c.backup} gậy (+20%)`;
+    $('c3Total').textContent=a.total+' gậy';$('c6Total').textContent=b.total+' gậy';$('c12Total').textContent=c.total+' gậy';
+    $('c3Eff').textContent=fmt(a.effective);$('c6Eff').textContent=fmt(b.effective);$('c12Eff').textContent=fmt(c.effective);
+    const save6=(a.effective*b.total*b.use)-b.rent;const save12=(a.effective*c.total*c.use)-c.rent;
+    $('c6Save').textContent=fmt(save6);$('c12Save').textContent=fmt(save12);
+  }else{
+    clearCompare();
+  }
+
+  if(cues===null || months===null){
+    clearMainSummary();
+    return;
+  }
+  const p=combinedPlan(cues,months);
+  $('planName').textContent=p.name;$('planStatus').textContent=p.status;
+  $('effective').textContent=fmt(p.effective);
+  $('totalCues').textContent=p.total+' gậy';$('backupMini').textContent=`${p.backup} gậy dự phòng (+${Math.round(p.backupPct*100)}%)`;
+  $('useMonths').textContent=p.use+' tháng';$('giftText').textContent=p.gift>0?`Đã gồm +${p.gift} tháng tặng`:'';
+  $('rentTotal').textContent=fmt(p.rent);
+  $('unitPrice').textContent=fmt(p.unit);$('backup').textContent=`${p.backup} gậy (+${Math.round(p.backupPct*100)}%)`;
+  $('initialTotal').textContent=fmt(p.initial);$('depositValue').textContent=p.deposit>0?fmt(p.deposit):'0';
+}
+$('cues').addEventListener('input',render);
+$('tables').addEventListener('input',render);
+$('months').addEventListener('input',()=>{selectedQuickMonth=null;render();});
+document.querySelectorAll('[data-month]').forEach(btn=>btn.addEventListener('click',()=>{
+  selectedQuickMonth=Number(btn.dataset.month);
+  $('months').value='';
+  render();
+}));
+
+/* Purchase price */
+let buyCustomer='new';
+let buyModel='r68';
+const buyBasePrice={r68:600000,r88:550000};
+function renderBuy(){
+  const raw=$('buyQty').value.trim();
+  const qty=raw===''?null:Math.max(1,parseInt(raw,10));
+  const base=buyBasePrice[buyModel];
+  const unit=buyCustomer==='rental'?base-50000:base;
+  $('buyUnit').textContent=fmt(unit);
+  $('buyTotal').textContent=qty===null?'—':fmt(qty*unit);
+}
+$('buyQty').addEventListener('input',renderBuy);
+document.querySelectorAll('[data-model]').forEach(btn=>btn.addEventListener('click',()=>{
+  buyModel=btn.dataset.model;
+  document.querySelectorAll('[data-model]').forEach(b=>b.classList.toggle('active',b===btn));
+  renderBuy();
+}));
+document.querySelectorAll('[data-customer]').forEach(btn=>btn.addEventListener('click',()=>{
+  buyCustomer=btn.dataset.customer;
+  document.querySelectorAll('[data-customer]').forEach(b=>b.classList.toggle('active',b===btn));
+  renderBuy();
+}));
+
+let promoTimer=null;
+function openModal(id,auto=false){
+  const el=$(id);if(!el)return;el.classList.add('open');document.body.style.overflow='hidden';
+  if(id==='promoModal'&&auto){clearTimeout(promoTimer);promoTimer=setTimeout(()=>closeModal('promoModal'),12000)}
+  if(id==='buyModal')renderBuy();
+}
+function closeModal(id){const el=$(id);if(!el)return;el.classList.remove('open');document.body.style.overflow='';if(id==='promoModal')clearTimeout(promoTimer)}
+document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',()=>openModal(btn.dataset.open,false)));
+document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeModal(btn.dataset.close)));
+document.querySelectorAll('.modal').forEach(modal=>modal.addEventListener('click',e=>{if(e.target===modal)closeModal(modal.id)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>closeModal(m.id))});
+setTimeout(()=>{if(!document.querySelector('.modal.open'))openModal('promoModal',true)},10000);
+render();renderBuy();
 </script>
 </body>
 </html>
