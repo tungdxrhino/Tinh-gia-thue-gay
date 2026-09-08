@@ -319,6 +319,34 @@ th{font-weight:850}td{font-weight:550}
   .promo-top h3{font-size:20px}.promo-top p{font-size:11px}.promo-chip,.promo-deadline{font-size:10px}
 }
 
+
+
+/* V15 — protect Vietnamese diacritics/descenders in summary values */
+.primary-metric{
+  min-height:118px;
+  grid-template-rows:minmax(24px,auto) minmax(40px,auto) minmax(24px,auto);
+}
+.primary-metric strong{
+  line-height:1.16;
+  padding-block:.08em .10em;
+}
+.primary-metric small{
+  line-height:1.38;
+  padding-bottom:1px;
+}
+@media(max-width:760px){
+  .primary-metric{
+    min-height:100px;
+    grid-template-rows:minmax(21px,auto) minmax(35px,auto) minmax(21px,auto);
+  }
+  .primary-metric strong{line-height:1.18;padding-block:.07em .11em}
+  .primary-metric small{line-height:1.35;padding-bottom:1px}
+}
+@media(max-width:390px){
+  .primary-metric{min-height:96px;grid-template-rows:minmax(20px,auto) minmax(33px,auto) minmax(20px,auto)}
+  .primary-metric strong{line-height:1.2;padding-block:.06em .12em}
+}
+
 </style>
 </head>
 <body>
