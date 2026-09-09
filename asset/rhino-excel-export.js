@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V20
+  Rhino Cue Platform - Excel Export V22
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -8,6 +8,7 @@
 
   Quote info object:
     { customer, club, address, seller, sellerPhone }
+    Rental data may also include: { model: 'R-68' | 'R-88' }
 */
 (function (window, document) {
   'use strict';
@@ -123,7 +124,7 @@
   function workbookStyles() {
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-<fonts count="11">
+<fonts count="12">
   <font><sz val="10"/><name val="Aptos"/><color rgb="FF263944"/></font>
   <font><b/><sz val="10.5"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
   <font><b/><sz val="18"/><name val="Aptos Display"/><color rgb="FF0B3B59"/></font>
@@ -135,6 +136,7 @@
   <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
   <font><b/><sz val="10.5"/><name val="Aptos"/><color rgb="FF138879"/></font>
   <font><sz val="10"/><name val="Aptos"/><color rgb="FF4B5E67"/></font>
+  <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
 </fonts>
 <fills count="7">
   <fill><patternFill patternType="none"/></fill>
@@ -151,7 +153,7 @@
   <border><bottom style="thin"><color rgb="FF138879"/></bottom></border>
 </borders>
 <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-<cellXfs count="18">
+<cellXfs count="21">
   <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
@@ -170,6 +172,9 @@
   <xf numFmtId="0" fontId="8" fillId="6" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="3" fontId="8" fillId="6" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="3" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center" wrapText="1"/></xf>
 </cellXfs>
 <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
 </styleSheet>`;
@@ -183,6 +188,12 @@
     return row(r, cells, 21);
   }
 
+  function infoRowWide(r, leftLabel, leftValue, rightLabel, rightValue) {
+    const cells = [cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)];
+    if (rightLabel) cells.push(cell(5, r, rightLabel, 17), cell(6, r, textOrDash(rightValue), rightValue ? 0 : 8));
+    return row(r, cells, 21);
+  }
+
   function tableHeader(r) {
     return row(r, [
       cell(0, r, 'NỘI DUNG', 3),
@@ -192,6 +203,19 @@
       cell(4, r, 'SỐ LƯỢNG', 3),
       cell(5, r, 'THÀNH TIỀN', 3)
     ], 25);
+  }
+
+  function rentalTableHeader(r) {
+    return row(r, [
+      cell(0, r, 'NỘI DUNG', 3),
+      cell(1, r, 'THÔNG TIN', 3),
+      cell(2, r, 'QUY CÁCH', 3),
+      cell(3, r, 'ĐƠN GIÁ', 3),
+      cell(4, r, 'SỐ LƯỢNG', 3),
+      cell(5, r, 'TỔNG GIÁ / THÁNG', 3),
+      cell(6, r, 'SỐ THÁNG', 3),
+      cell(7, r, 'THÀNH TIỀN', 3)
+    ], 27);
   }
 
   function tableRow(r, values, opts = {}) {
@@ -209,8 +233,34 @@
     ], opts.height || 24);
   }
 
-  function quoteCommonRows(info, title) {
+  function rentalTableRow(r, values, opts = {}) {
+    const promo = !!opts.promo;
+    const styleText = promo ? 9 : 5;
+    const styleNum = promo ? 10 : 7;
+    const styleDash = promo ? 11 : 8;
+    return row(r, [
+      cell(0, r, textOrDash(values[0]), values[0] ? styleText : styleDash),
+      cell(1, r, textOrDash(values[1]), values[1] ? styleText : styleDash),
+      cell(2, r, textOrDash(values[2]), values[2] ? styleText : styleDash),
+      numOrDash(3, r, values[3], styleNum, styleDash),
+      numOrDash(4, r, values[4], styleNum, styleDash),
+      numOrDash(5, r, values[5], styleNum, styleDash),
+      numOrDash(6, r, values[6], styleNum, styleDash),
+      numOrDash(7, r, values[7], styleNum, styleDash)
+    ], opts.height || 25);
+  }
+
+  function quoteCommonRows(info, title, wide = false) {
     const now = new Date();
+    if (wide) {
+      return [
+        row(1, [cell(4, 1, COMPANY, 1)], 22),
+        row(2, [cell(0, 2, title, 2)], 30),
+        infoRowWide(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
+        infoRowWide(5, 'CLB / Quán', info.club, 'Người lập báo giá', info.seller),
+        infoRowWide(6, 'Địa chỉ', info.address, 'Liên hệ', info.sellerPhone)
+      ];
+    }
     return [
       row(1, [cell(3, 1, COMPANY, 1)], 22),
       row(2, [cell(0, 2, title, 2)], 30),
@@ -254,112 +304,184 @@
     return '5–10 gậy';
   }
 
-  function buildQuoteSheet(info, type, data, hasLogo) {
-    const title = type === 'rental' ? 'BÁO GIÁ THUÊ GẬY CLB' : 'BÁO GIÁ MUA GẬY CLB';
-    const rows = quoteCommonRows(info, title);
-    const merges = ['D1:F1', 'A2:F2', 'B4:C4', 'E4:F4', 'B5:C5', 'E5:F5', 'B6:C6', 'E6:F6'];
-    let r = 8;
-    rows.push(tableHeader(r));
-    r++;
+  function rentalPlanLabel(data, p) {
+    if (Number(data.term) === 1) return 'Kỳ 01 tháng';
+    if (Number(data.term) === 2) return 'Kỳ 02 tháng';
+    if (Number(data.term) === 3) return 'Gói 03 tháng';
+    if (Number(data.term) === 6) return 'Gói 06 tháng';
+    if (Number(data.term) === 12) return 'Gói 12 tháng';
+    const raw = String(data.name || 'Phương án thuê')
+      .replace(/\s*[·-]\s*dùng\s*\d+\s*tháng.*$/i, '')
+      .replace(/\s*[·-]\s*tặng\s*thêm\s*\d+\s*tháng.*$/i, '')
+      .trim();
+    return raw || `Phương án ${p.paid || ''} tháng`;
+  }
 
-    if (type === 'rental') {
+  function rentalSummaryRow(r, label, value, total = false) {
+    if (total) return row(r, [cell(0, r, label, 15), cell(7, r, value, 16, 'n')], 28);
+    return row(r, [cell(0, r, label, 14), cell(7, r, value, 18, 'n')], 27);
+  }
+
+  function purchaseSummaryRow(r, label, value, total = false) {
+    if (total) return row(r, [cell(0, r, label, 15), cell(5, r, value, 16, 'n')], 28);
+    return row(r, [cell(0, r, label, 14), cell(5, r, value, 18, 'n')], 27);
+  }
+
+  function buildQuoteSheet(info, type, data, hasLogo) {
+    const isRental = type === 'rental';
+    const title = isRental ? 'BÁO GIÁ THUÊ GẬY CLB' : 'BÁO GIÁ MUA GẬY CLB';
+    const rows = quoteCommonRows(info, title, isRental);
+    const merges = isRental
+      ? ['E1:H1', 'A2:H2', 'B4:D4', 'G4:H4', 'B5:D5', 'G5:H5', 'B6:D6', 'G6:H6']
+      : ['D1:F1', 'A2:F2', 'B4:C4', 'E4:F4', 'B5:C5', 'E5:F5', 'B6:C6', 'E6:F6'];
+    let r = 8;
+
+    if (isRental) {
+      rows.push(rentalTableHeader(r));
+      r++;
       const p = rentalPricing(data);
-      rows.push(tableRow(r, [
-        'Thuê gậy CLB',
-        data.name || 'Phương án thuê',
-        `${p.use} tháng sử dụng`,
+      const model = data.model === 'R-88' ? 'R-88' : 'R-68';
+      const monthlyTotal = Math.round(p.unit * p.n);
+      const backupCount = Math.max(0, Number(data.backup || 0));
+      const backupPct = Math.round(Math.max(0, Number(data.backupPct || 0)) * 100);
+      const giftValue = p.gift > 0 ? Math.round(monthlyTotal * p.gift) : 0;
+      const backupMonthlyValue = Math.round(p.unit * backupCount);
+      const backupValue = Math.round(backupMonthlyValue * p.use);
+      const promoTotal = giftValue + backupValue;
+
+      rows.push(rentalTableRow(r, [
+        `Thuê gậy CLB ${model}`,
+        rentalPlanLabel(data, p),
+        'Gậy',
         p.unit,
         p.n,
-        p.gross
+        monthlyTotal,
+        p.paid,
+        p.rent
       ]));
       r++;
 
-      if (p.discount > 0) {
-        rows.push(tableRow(r, [
-          '',
+      if (p.gift > 0) {
+        rows.push(rentalTableRow(r, [
           'Khuyến mại',
           `Tặng ${p.gift} tháng sử dụng`,
-          p.discount,
+          'Tháng',
+          monthlyTotal,
           '',
-          p.rent
+          monthlyTotal,
+          p.gift,
+          giftValue
         ], { promo: true }));
         r++;
       }
 
-      rows.push(tableRow(r, [
-        '',
-        'Ưu đãi',
-        `Gậy dự phòng ${Math.round((Number(data.backupPct || 0)) * 100)}%: ${Number(data.backup || 0)} gậy`,
-        '', '', ''
-      ], { promo: true }));
-      r++;
+      if (backupCount > 0) {
+        rows.push(rentalTableRow(r, [
+          'Ưu đãi',
+          `Gậy dự phòng ${backupPct}%`,
+          'Gậy',
+          p.unit,
+          backupCount,
+          backupMonthlyValue,
+          p.use,
+          backupValue
+        ], { promo: true }));
+        r++;
+      }
 
       if (p.deposit > 0) {
-        rows.push(tableRow(r, [
+        rows.push(rentalTableRow(r, [
           'Tiền cọc',
           'Hoàn lại sau đối soát',
-          'Theo điều kiện hợp đồng',
+          '-',
           p.deposit,
           1,
-          p.finalPay
+          '',
+          '',
+          p.deposit
         ]));
         r++;
       }
 
-      rows.push(row(r + 1, [cell(0, r + 1,
-        `Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 14)], 30));
-      merges.push(`A${r + 1}:F${r + 1}`);
-      rows.push(row(r + 2, [cell(0, r + 2,
-        'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], 28));
-      merges.push(`A${r + 2}:F${r + 2}`);
-      rows.push(row(r + 3, [cell(0, r + 3,
-        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 13)], 24));
-      merges.push(`A${r + 3}:F${r + 3}`);
-      const totalRow = r + 5;
-      rows.push(row(totalRow, [cell(0, totalRow, 'TỔNG GIÁ TRỊ KHÁCH HÀNG CHI TRẢ', 15), cell(5, totalRow, p.finalPay, 16, 'n')], 28));
-      merges.push(`A${totalRow}:E${totalRow}`);
-      r = totalRow;
-    } else {
-      const p = purchasePricing(data);
-      rows.push(tableRow(r, [
-        `Gậy Rhino ${data.model || ''}`,
-        'Giá gốc theo bảng giá',
-        purchaseTierText(p.qty),
-        p.baseUnit,
-        p.qty,
-        p.gross
-      ]));
+      rows.push(rentalSummaryRow(r, 'TỔNG ƯU ĐÃI TƯƠNG ĐƯƠNG', promoTotal, false));
+      merges.push(`A${r}:G${r}`);
+      r++;
+      rows.push(rentalSummaryRow(r, 'TỔNG TIỀN KHÁCH HÀNG CHI TRẢ', p.finalPay, true));
+      merges.push(`A${r}:G${r}`);
       r++;
 
-      if (p.discount > 0) {
-        rows.push(tableRow(r, [
-          '',
-          'Khuyến mại',
-          'Ưu đãi khách đang sử dụng dịch vụ thuê',
-          p.discountPerUnit,
-          p.qty,
-          p.finalPay
-        ], { promo: true }));
-        r++;
-      }
-
       rows.push(row(r + 1, [cell(0, r + 1,
-        `Quy cách giá áp dụng theo số lượng ${p.qty} gậy. Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy.`, 14)], 28));
-      merges.push(`A${r + 1}:F${r + 1}`);
+        `Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 14)], 30));
+      merges.push(`A${r + 1}:H${r + 1}`);
       rows.push(row(r + 2, [cell(0, r + 2,
-        'Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino. Báo giá áp dụng theo chính sách tại thời điểm xác nhận đơn hàng.', 13)], 28));
-      merges.push(`A${r + 2}:F${r + 2}`);
-      const totalRow = r + 4;
-      rows.push(row(totalRow, [cell(0, totalRow, 'TỔNG GIÁ TRỊ KHÁCH HÀNG CHI TRẢ', 15), cell(5, totalRow, p.finalPay, 16, 'n')], 28));
-      merges.push(`A${totalRow}:E${totalRow}`);
-      r = totalRow;
+        'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], 27));
+      merges.push(`A${r + 2}:H${r + 2}`);
+      rows.push(row(r + 4, [cell(0, r + 4,
+        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], 30));
+      merges.push(`A${r + 4}:H${r + 4}`);
+      rows.push(row(r + 6, [cell(0, r + 6,
+        `Trân trọng — ${COMPANY}`, 20)], 25));
+      merges.push(`A${r + 6}:H${r + 6}`);
+      r = r + 6;
+
+      return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="19"/><cols>
+<col min="1" max="1" width="24" customWidth="1"/><col min="2" max="2" width="25" customWidth="1"/><col min="3" max="3" width="12" customWidth="1"/><col min="4" max="4" width="14" customWidth="1"/><col min="5" max="5" width="11" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="11" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
+</cols>
+<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
+<pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
+</worksheet>`;
     }
+
+    rows.push(tableHeader(r));
+    r++;
+    const p = purchasePricing(data);
+    rows.push(tableRow(r, [
+      `Gậy Rhino ${data.model || ''}`,
+      `Giá theo bảng: ${purchaseTierText(p.qty)}`,
+      'Gậy',
+      p.baseUnit,
+      p.qty,
+      p.gross
+    ]));
+    r++;
+
+    if (p.discount > 0) {
+      rows.push(tableRow(r, [
+        'Khuyến mại',
+        'Ưu đãi khách đang sử dụng dịch vụ thuê',
+        'Gậy',
+        p.discountPerUnit,
+        p.qty,
+        p.discount
+      ], { promo: true }));
+      r++;
+      rows.push(purchaseSummaryRow(r, 'TỔNG ƯU ĐÃI TƯƠNG ĐƯƠNG', p.discount, false));
+      merges.push(`A${r}:E${r}`);
+      r++;
+    }
+
+    rows.push(purchaseSummaryRow(r, 'TỔNG TIỀN KHÁCH HÀNG CHI TRẢ', p.finalPay, true));
+    merges.push(`A${r}:E${r}`);
+    r++;
+    rows.push(row(r + 1, [cell(0, r + 1,
+      `Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy. Báo giá áp dụng cho số lượng ${p.qty} gậy.`, 14)], 28));
+    merges.push(`A${r + 1}:F${r + 1}`);
+    rows.push(row(r + 3, [cell(0, r + 3,
+      'Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino.', 19)], 30));
+    merges.push(`A${r + 3}:F${r + 3}`);
+    rows.push(row(r + 5, [cell(0, r + 5,
+      `Trân trọng — ${COMPANY}`, 20)], 25));
+    merges.push(`A${r + 5}:F${r + 5}`);
+    r = r + 5;
 
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <dimension ref="A1:F${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="19"/><cols>
-<col min="1" max="1" width="21" customWidth="1"/><col min="2" max="2" width="24" customWidth="1"/><col min="3" max="3" width="26" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="13" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/>
+<col min="1" max="1" width="22" customWidth="1"/><col min="2" max="2" width="29" customWidth="1"/><col min="3" max="3" width="13" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="13" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
@@ -476,7 +598,7 @@
 
     const blob = await createWorkbookBlob('BÁO GIÁ', (hasLogo) => buildQuoteSheet(info, type, data, hasLogo));
     const nameBase = type === 'rental' ? 'Bao_gia_thue_gay_Rhino' : 'Bao_gia_mua_gay_Rhino';
-    const model = type === 'purchase' && data.model ? `${safeName(data.model)}_` : '';
+    const model = data.model ? `${safeName(data.model)}_` : '';
     const fileName = `${nameBase}_${model}${safeName(info.club)}_${new Date().toISOString().slice(0, 10)}.xlsx`;
     downloadBlob(blob, fileName);
     return fileName;
@@ -517,7 +639,7 @@
   }
 
   const API = {
-    version: '2.0.0',
+    version: '2.2.0',
     exportQuote,
     exportPromoRegistration,
     readRegistrationFromPage,
