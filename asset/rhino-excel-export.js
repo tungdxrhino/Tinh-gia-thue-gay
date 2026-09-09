@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V30
+  Rhino Cue Platform - Excel Export V31
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -65,7 +65,40 @@
   }
 
   function row(r, cells, height) {
-    return `<row r="${r}"${height ? ` ht="${height}" customHeight="1"` : ''}>${cells.join('')}</row>`;
+    return `<row r="${r}"${height ? ` ht="${Number(height).toFixed(2)}" customHeight="1"` : ''}>${cells.join('')}</row>`;
+  }
+
+  // Ước lượng số dòng sau khi Wrap Text. XLSX không tự AutoFit ổn định với
+  // hàng có custom height / merged cells, nên exporter chủ động tính chiều cao.
+  function wrappedLineCount(value, widthChars) {
+    const text = String(value ?? '');
+    if (!text) return 1;
+    const usable = Math.max(6, Number(widthChars || 10) * 0.86);
+    return text.split(/\r?\n/).reduce((sum, paragraph) => {
+      const p = paragraph.trim();
+      if (!p) return sum + 1;
+      // Ước lượng theo từ để tránh đánh giá thấp các dòng có nhiều khoảng trắng.
+      let lines = 1, used = 0;
+      for (const word of p.split(/\s+/)) {
+        const w = Math.max(1, word.length);
+        if (used === 0) used = w;
+        else if (used + 1 + w <= usable) used += 1 + w;
+        else { lines += Math.max(1, Math.ceil(w / usable)); used = w % usable; }
+      }
+      return sum + lines;
+    }, 0);
+  }
+
+  function autoRowHeight(values, widths, minHeight = 24, lineHeight = 15, maxHeight = 120) {
+    const vals = Array.isArray(values) ? values : [values];
+    const ws = Array.isArray(widths) ? widths : [widths];
+    let maxLines = 1;
+    vals.forEach((v, i) => {
+      if (v === null || v === undefined || v === '') return;
+      maxLines = Math.max(maxLines, wrappedLineCount(v, ws[i] || ws[ws.length - 1] || 12));
+    });
+    const estimated = 8 + maxLines * lineHeight;
+    return Math.min(maxHeight, Math.max(minHeight, estimated));
   }
 
   function textOrDash(v) {
@@ -154,28 +187,28 @@
 </borders>
 <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
 <cellXfs count="25">
-  <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
   <xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="0"/></xf>
-  <xf numFmtId="0" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="0" fontId="10" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="3" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="10" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="3" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="10" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="9" fillId="4" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-  <xf numFmtId="0" fontId="4" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="9" fillId="4" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="4" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="3" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="3" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="left" vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
   <xf numFmtId="3" fontId="9" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="3" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="3" fontId="7" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
@@ -189,13 +222,13 @@
       cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)
     ];
     if (rightLabel) cells.push(cell(3, r, rightLabel, 17), cell(4, r, textOrDash(rightValue), rightValue ? 0 : 8));
-    return row(r, cells, 21);
+    return row(r, cells, autoRowHeight([leftValue, rightValue], [43.75, 35.0], 21, 14));
   }
 
   function infoRowWide(r, leftLabel, leftValue, rightLabel, rightValue) {
     const cells = [cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)];
     if (rightLabel) cells.push(cell(5, r, rightLabel, 17), cell(6, r, textOrDash(rightValue), rightValue ? 0 : 8));
-    return row(r, cells, 21);
+    return row(r, cells, autoRowHeight([leftValue, rightValue], [58.25, 30.75], 21, 14));
   }
 
   function tableHeader(r) {
@@ -246,7 +279,7 @@
       numOrDash(3, r, values[3], styleNum, styleDash),
       numOrDash(4, r, values[4], styleNum, styleDash),
       numOrDash(5, r, values[5], lastStyle, styleDash)
-    ], opts.height || 24);
+    ], Math.max(opts.height || 24, autoRowHeight(values, [21, 43.75, 17.5, 18.125, 12.75, 18], 24, 15)));
   }
 
   function rentalTableRow(r, values, opts = {}) {
@@ -264,7 +297,7 @@
       numOrDash(5, r, values[5], styleNum, styleDash),
       numOrDash(6, r, values[6], styleNum, styleDash),
       numOrDash(7, r, values[7], lastStyle, styleDash)
-    ], opts.height || 25);
+    ], Math.max(opts.height || 25, autoRowHeight(values, [25.75, 30.75, 12.75, 14.75, 12.75, 18, 12.75, 18], 25, 15)));
   }
 
   function quoteCommonRows(info, title, wide = true, subtitle = '') {
@@ -272,7 +305,7 @@
     return [
       row(1, [cell(4, 1, COMPANY, 1)], 45),
       row(2, [cell(0, 2, title, 2)], 30),
-      row(3, [cell(0, 3, subtitle || '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)', 21)], 20.1),
+      row(3, [cell(0, 3, subtitle || '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)', 21)], autoRowHeight(subtitle || '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)', 140, 20.1, 14)),
       infoRowWide(4, 'Khách hàng', info.customer, 'Thời gian lập phiếu', now.toLocaleString('vi-VN')),
       infoRowWide(5, 'Câu lạc bộ / Quán', info.club, 'Người lập báo giá', info.seller),
       infoRowWide(6, 'Địa chỉ câu lạc bộ', info.address, 'Liên hệ', info.sellerPhone),
@@ -425,17 +458,17 @@
       // Footer giữ đúng cấu trúc mẫu: 1 dòng trắng → ghi chú → điều khoản → 1 dòng trắng → cảm ơn → trân trọng.
       rows.push(row(r, [], 15));
       rows.push(row(r + 1, [cell(0, r + 1,
-        `Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 14)], 30));
+        `Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 14)], autoRowHeight(`Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 145, 30, 15)));
       merges.push(`A${r + 1}:H${r + 1}`);
       rows.push(row(r + 2, [cell(0, r + 2,
-        'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], 27));
+        'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], autoRowHeight('Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 145, 27, 14)));
       merges.push(`A${r + 2}:H${r + 2}`);
       rows.push(row(r + 3, [], 15));
       rows.push(row(r + 4, [cell(0, r + 4,
-        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], 30));
+        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], autoRowHeight('Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 145, 30, 15)));
       merges.push(`A${r + 4}:H${r + 4}`);
       rows.push(row(r + 5, [cell(0, r + 5,
-        `Trân trọng — ${COMPANY}`, 20)], 15));
+        `Trân trọng — ${COMPANY}`, 20)], autoRowHeight(`Trân trọng — ${COMPANY}`, 145, 18, 14)));
       merges.push(`A${r + 5}:H${r + 5}`);
       r = r + 5;
 
@@ -484,17 +517,17 @@
     r++;
     rows.push(row(r, [], 15));
     rows.push(row(r + 1, [cell(0, r + 1,
-      `Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy. Báo giá áp dụng cho số lượng ${p.qty} gậy.`, 14)], 30));
+      `Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy. Báo giá áp dụng cho số lượng ${p.qty} gậy.`, 14)], autoRowHeight(`Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy. Báo giá áp dụng cho số lượng ${p.qty} gậy.`, 145, 30, 15)));
     merges.push(`A${r + 1}:H${r + 1}`);
     rows.push(row(r + 2, [cell(0, r + 2,
-      'Giá bán đã gồm VAT. Các nội dung áp dụng theo chính sách tại thời điểm xác nhận.', 13)], 27));
+      'Giá bán đã gồm VAT. Các nội dung áp dụng theo chính sách tại thời điểm xác nhận.', 13)], autoRowHeight('Giá bán đã gồm VAT. Các nội dung áp dụng theo chính sách tại thời điểm xác nhận.', 145, 27, 14)));
     merges.push(`A${r + 2}:H${r + 2}`);
     rows.push(row(r + 3, [], 15));
     rows.push(row(r + 4, [cell(0, r + 4,
-      'Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino.', 19)], 30));
+      'Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino.', 19)], autoRowHeight('Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino.', 145, 30, 15)));
     merges.push(`A${r + 4}:H${r + 4}`);
     rows.push(row(r + 5, [cell(0, r + 5,
-      `Trân trọng — ${COMPANY}`, 20)], 15));
+      `Trân trọng — ${COMPANY}`, 20)], autoRowHeight(`Trân trọng — ${COMPANY}`, 145, 18, 14)));
     merges.push(`A${r + 5}:H${r + 5}`);
     r = r + 5;
 
@@ -552,7 +585,7 @@
     const rows = [
       row(1, [cell(3, 1, COMPANY, 1)], 45),
       row(2, [cell(0, 2, 'PHIẾU ĐĂNG KÝ PILOT 30 NGÀY – HỆ THỐNG GẬY CARBON CHO CLB', 2)], 30),
-      row(3, [cell(0, 3, '(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 21)], 20.1),
+      row(3, [cell(0, 3, '(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 21)], autoRowHeight('(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 120, 20.1, 14)),
       infoRow(4, 'Khách hàng', data.customer, 'Thời gian lập phiếu', createdAt),
       infoRow(5, 'Câu lạc bộ / Quán', data.club, 'Người lập phiếu', data.seller),
       infoRow(6, 'Địa chỉ câu lạc bộ', data.address, 'Liên hệ', data.sellerPhone),
@@ -601,17 +634,17 @@
 
     rows.push(row(r, [], 15));
     rows.push(row(r + 1, [cell(0, r + 1,
-      'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 14)], 33.95));
+      'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 14)], autoRowHeight('Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 120, 33.95, 15)));
     merges.push(`A${r + 1}:F${r + 1}`);
     rows.push(row(r + 2, [cell(0, r + 2,
-      'Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 13)], 30));
+      'Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 13)], autoRowHeight('Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 120, 30, 15)));
     merges.push(`A${r + 2}:F${r + 2}`);
     rows.push(row(r + 3, [], 15));
     rows.push(row(r + 4, [cell(0, r + 4,
-      'Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 19)], 30));
+      'Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 19)], autoRowHeight('Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 120, 30, 15)));
     merges.push(`A${r + 4}:F${r + 4}`);
     rows.push(row(r + 5, [cell(0, r + 5,
-      `Trân trọng — ${COMPANY}`, 20)], 15));
+      `Trân trọng — ${COMPANY}`, 20)], autoRowHeight(`Trân trọng — ${COMPANY}`, 120, 18, 14)));
     merges.push(`A${r + 5}:F${r + 5}`);
     r = r + 5;
 
@@ -753,7 +786,7 @@
   }
 
   const API = {
-    version: '3.0.0',
+    version: '3.1.0',
     exportQuote,
     exportPromoRegistration,
     readRegistrationFromPage,
