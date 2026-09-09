@@ -639,6 +639,35 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
 }
 </style>
 
+
+<style id="v24-summary-grid-fix">
+/* V24 — aligned summary modules, safe inner margins, no clipped Vietnamese glyphs. */
+#giftText{display:none!important}
+.primary-metric,.secondary{box-sizing:border-box;min-width:0;overflow:visible}
+.primary-metric{padding-left:17px!important;padding-right:17px!important}
+.secondary{padding-left:17px!important;padding-right:17px!important}
+.primary-metric span,.primary-metric strong,.secondary span,.secondary strong{max-width:100%;box-sizing:border-box}
+.primary-metric strong{padding-left:.04em!important;padding-right:.04em!important}
+.primary-metric.hero-number strong{font-size:clamp(23px,2.1vw,30px)!important;letter-spacing:-.035em}
+.primary-metric:not(:has(small:not(:empty))){grid-template-rows:minmax(25px,auto) minmax(44px,auto)!important}
+@media (min-width:761px){
+  .primary-grid,.secondary-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .primary-metric span{white-space:nowrap!important}
+}
+@media (min-width:761px) and (max-width:1100px){
+  .primary-metric,.secondary{padding-left:14px!important;padding-right:14px!important}
+  .primary-metric.hero-number strong{font-size:clamp(22px,2.65vw,28px)!important}
+}
+@media (max-width:760px){
+  .primary-grid,.secondary-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .primary-metric,.secondary{padding-left:12px!important;padding-right:12px!important}
+  .primary-metric.hero-number strong{font-size:clamp(21px,6.2vw,26px)!important}
+}
+@media (max-width:390px){
+  .primary-metric,.secondary{padding-left:10px!important;padding-right:10px!important}
+  .primary-metric.hero-number strong{font-size:clamp(20px,6vw,24px)!important}
+}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -999,12 +1028,12 @@ function combinedPlan(n,months){
   if(months===3){const p=basePlan(n,3);return {...p,name:'Gói 03 tháng',status:'GÓI TIÊU CHUẨN'}}
   if(months===4){rent=n*(price3[t]*3+price1[t]);initial=rent;unit=rent/(n*4);name='Gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT'}
   else if(months===5){rent=n*(price3[t]*3+price2[t]*2);initial=rent;unit=rent/(n*5);name='Gói 03 tháng + kỳ 02 tháng';status='LINH HOẠT'}
-  else if(months<=7){const p=basePlan(n,6);return {...p,name:'Gói 06 tháng · dùng 07 tháng',status:'TỐI ƯU CHI PHÍ'}}
+  else if(months<=7){const p=basePlan(n,6);return {...p,name:'Gói 06 tháng · tặng 01 tháng sử dụng',status:'TỐI ƯU CHI PHÍ'}}
   else if(months===8){rent=n*(price6[t]*6+price1[t]);initial=rent;unit=rent/(n*7);name='Gói 06 tháng + kỳ 01 tháng';status='LINH HOẠT MỞ RỘNG'}
   else if(months===9){rent=n*(price6[t]*6+price2[t]*2);initial=rent;unit=rent/(n*8);name='Gói 06 tháng + kỳ 02 tháng';status='LINH HOẠT MỞ RỘNG'}
   else if(months===10){rent=n*(price6[t]*6+price3[t]*3);initial=rent;unit=rent/(n*9);name='Gói 06 tháng + gói 03 tháng';status='LINH HOẠT MỞ RỘNG'}
   else if(months===11){rent=n*(price6[t]*6+price3[t]*3+price1[t]);initial=rent;unit=rent/(n*10);name='Gói 06 tháng + gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT MỞ RỘNG'}
-  else {const p=basePlan(n,12);return {...p,name:'Gói 12 tháng · tặng thêm 02 tháng',status:'★ BEST CHOICE'}}
+  else {const p=basePlan(n,12);return {...p,name:'Gói 12 tháng · tặng 02 tháng sử dụng',status:'★ BEST CHOICE'}}
   const effective=rent/(total*use);
   return {n,t,unit,paid:null,use,gift,backupPct,backup,total,rent,deposit,initial,effective,name,status};
 }
@@ -1051,7 +1080,7 @@ function render(){
   $('planName').textContent=p.name;$('planStatus').textContent=p.status;
   $('effective').textContent=fmt(p.effective)+'/tháng';
   $('totalCues').textContent=p.total+' gậy';
-  $('useMonths').textContent=p.use+' tháng';$('giftText').textContent=p.gift>0?`Đã gồm +${p.gift} tháng tặng`:'';
+  $('useMonths').textContent=p.use+' tháng';$('giftText').textContent='';
   $('rentTotal').textContent=fmt(p.rent);
   $('unitPrice').textContent=fmt(p.unit);$('backup').textContent=`${p.backup} gậy (+${Math.round(p.backupPct*100)}%)`;
   $('initialTotal').textContent=fmt(p.initial);$('depositValue').textContent=p.deposit>0?fmt(p.deposit):'0';
