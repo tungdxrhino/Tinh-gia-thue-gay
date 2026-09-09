@@ -701,11 +701,182 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
   .pilot-choice-list{gap:7px}.pilot-choice-row{padding:8px 10px}.pilot-allocation-hint{margin-top:7px;padding:7px 9px}
 }
 </style>
+
+<style id="v28-user-theme-ui">
+/* V29 — logo menu, user manager, theme and seller selects. */
+.brand-menu-wrap{position:relative;display:flex;align-items:center;align-self:stretch}.brand-menu-trigger{border:0;background:transparent;padding:0;cursor:pointer}.brand-menu-trigger:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:8px}
+.brand-dropdown{position:absolute;left:0;top:calc(100% + 8px);z-index:95;width:224px;padding:7px;background:#fff;border:1px solid #dce6e8;border-radius:13px;box-shadow:0 18px 48px rgba(6,35,50,.18);display:none}.brand-menu-wrap.open .brand-dropdown{display:block}.brand-menu-item,.brand-submenu button{width:100%;border:0;background:transparent;color:#173c50;min-height:42px;padding:0 10px;display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:7px;text-align:left;font-size:13px;font-weight:700;border-radius:8px;cursor:pointer}.brand-menu-item:hover,.brand-submenu button:hover{background:#f2f7f7}.brand-menu-item i{font-style:normal;color:#83939a;font-size:18px}.brand-submenu{display:none;margin:2px 0 5px 29px;border-left:1px solid #dce5e7;padding-left:5px}.brand-submenu.open{display:block}.brand-submenu button{grid-template-columns:24px 1fr;min-height:38px;font-weight:600}.brand-submenu button.active{color:var(--teal);background:#edf8f5;font-weight:800}
+.seller-select,.wizard-step select{width:100%;height:44px;border:1px solid #cdd9de;border-radius:10px;padding:0 12px;color:var(--navy);background:#fff;font-size:13px;font-weight:700;outline:none}.seller-select:focus,.wizard-step select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}
+.user-manager-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.9fr);gap:14px}.user-list{border:1px solid #dce6e8;border-radius:12px;overflow:hidden;align-self:start}.user-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;align-items:center;padding:10px 10px;border-bottom:1px solid #e7edef}.user-row:last-child{border-bottom:0}.user-row-info{min-width:0}.user-row-info strong{display:block;color:var(--navy);font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.user-row-info small{display:block;color:#778990;font-size:11px;line-height:1.3;margin-top:2px}.user-icon-btn{width:34px;height:34px;border:1px solid #d9e3e6;border-radius:8px;background:#fff;color:#536a74;display:grid;place-items:center;cursor:pointer;font-size:14px}.user-icon-btn:hover{border-color:#b9d6d1;color:var(--teal);background:#f3faf8}.user-icon-btn.danger:hover{border-color:#e3bbb0;color:#b64d35;background:#fff5f2}.user-edit-panel{display:grid;gap:10px;padding:12px;border-radius:12px;background:#f7faf9;border:1px solid #e1e9eb}.user-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.user-edit-actions .action-btn{width:100%}
+body[data-theme="dark"]{background:#0b1418;color:#e7f0f2;color-scheme:dark}body[data-theme="dark"] .topbar{background:#0f1c22;border-color:#273940}body[data-theme="dark"] .panel,body[data-theme="dark"] .modal-card,body[data-theme="dark"] .promo-card,body[data-theme="dark"] .brand-dropdown,body[data-theme="dark"] .mobile-drawer{background:#142128;border-color:#2b3d44;color:#e7f0f2}body[data-theme="dark"] .brand-menu-item,body[data-theme="dark"] .brand-submenu button,body[data-theme="dark"] .modal-head h3,body[data-theme="dark"] .quote-field label,body[data-theme="dark"] .wizard-step label,body[data-theme="dark"] .user-row-info strong{color:#e8f2f4}body[data-theme="dark"] .modal-head{background:#142128;border-color:#2c3d44}body[data-theme="dark"] input,body[data-theme="dark"] select,body[data-theme="dark"] .quote-field input,body[data-theme="dark"] .quote-field select,body[data-theme="dark"] .wizard-step input,body[data-theme="dark"] .wizard-step select{background:#0f1b21!important;color:#e8f2f4!important;border-color:#35474f!important}body[data-theme="dark"] .brand-menu-item:hover,body[data-theme="dark"] .brand-submenu button:hover{background:#1c2e35}body[data-theme="dark"] .brand-submenu button.active{background:#173c38;color:#65d6c5}body[data-theme="dark"] .user-list,body[data-theme="dark"] .user-edit-panel,body[data-theme="dark"] .user-row,body[data-theme="dark"] .table-shell{border-color:#30434a}body[data-theme="dark"] .user-edit-panel{background:#101c21}body[data-theme="dark"] .user-icon-btn{background:#102027;border-color:#33474f;color:#d7e5e8}body[data-theme="dark"] .primary-metric,body[data-theme="dark"] .secondary{border-color:#2c3f46}body[data-theme="dark"] .primary-metric span,body[data-theme="dark"] .secondary span{color:#a9bac0}body[data-theme="dark"] .primary-metric strong,body[data-theme="dark"] .secondary strong{color:#e9f3f5}
+@media(max-width:760px){.brand-dropdown{left:-5px;top:calc(100% + 5px);width:min(224px,calc(100vw - 22px))}.user-manager-body{grid-template-columns:1fr}.user-list{max-height:34vh;overflow:auto}.user-edit-panel{padding:10px}.seller-select,.wizard-step select{height:42px;font-size:13px}}
+</style>
+
+<style id="v29-darkmode-contrast-and-months">
+/* V29 — Dark mode contrast, highlight palette, and quick-month controls. */
+:root{--accent-warm:#e8892d;--accent-warm-deep:#c86d17;--accent-warm-soft:#fff2e2}
+.quick-months{background:transparent!important}
+.quick-month{background:transparent!important}
+.quick-month:hover{background:rgba(232,137,45,.08)!important}
+.quick-month.active{background:var(--accent-warm)!important;color:#fff!important;box-shadow:none!important}
+.primary-metric.hero-number{background:transparent!important}
+
+body[data-theme="dark"]{
+  --navy:#e7eef0;--navy2:#c8d7db;--teal:#e8892d;
+  background:#0b1418;color:#e5ecee;color-scheme:dark;
+}
+body[data-theme="dark"] .topbar{background:#0f1c22;border-color:#2a3b42}
+body[data-theme="dark"] .panel,
+body[data-theme="dark"] .summary-panel,
+body[data-theme="dark"] .modal-card,
+body[data-theme="dark"] .promo-card,
+body[data-theme="dark"] .brand-dropdown,
+body[data-theme="dark"] .mobile-drawer,
+body[data-theme="dark"] .user-edit-panel,
+body[data-theme="dark"] .table-shell,
+body[data-theme="dark"] .short-box,
+body[data-theme="dark"] .short-content,
+body[data-theme="dark"] .buy-panel,
+body[data-theme="dark"] .review-card,
+body[data-theme="dark"] .wizard-term,
+body[data-theme="dark"] .loyal-register-form,
+body[data-theme="dark"] .loyal-calc-preview,
+body[data-theme="dark"] .pilot-config>div,
+body[data-theme="dark"] .smart-suggestions{
+  background:#142128!important;border-color:#2d4149!important;color:#e8eff1!important;
+}
+body[data-theme="dark"] .summary-head,
+body[data-theme="dark"] .promo-top{background:linear-gradient(135deg,#0d2632,#123a42 68%,#17685f)!important;color:#fff!important}
+body[data-theme="dark"] .modal-head{background:#142128!important;border-color:#2d4149!important}
+body[data-theme="dark"] .primary-grid,
+body[data-theme="dark"] .secondary-grid,
+body[data-theme="dark"] .primary-metric,
+body[data-theme="dark"] .secondary,
+body[data-theme="dark"] .buy-metric,
+body[data-theme="dark"] .loyal-calc-preview>div,
+body[data-theme="dark"] .user-list,
+body[data-theme="dark"] .user-row{border-color:#2c4048!important}
+
+/* Dark surfaces: default copy becomes white/gray. */
+body[data-theme="dark"] .header-title,
+body[data-theme="dark"] .nav-btn,
+body[data-theme="dark"] .nav-icon-btn,
+body[data-theme="dark"] .brand-menu-item,
+body[data-theme="dark"] .brand-submenu button,
+body[data-theme="dark"] .drawer-head strong,
+body[data-theme="dark"] .drawer-nav button,
+body[data-theme="dark"] .drawer-subnav button,
+body[data-theme="dark"] .modal-head h3,
+body[data-theme="dark"] .field label,
+body[data-theme="dark"] .quote-field label,
+body[data-theme="dark"] .wizard-step label,
+body[data-theme="dark"] .loyal-form-row label,
+body[data-theme="dark"] .user-row-info strong,
+body[data-theme="dark"] .buy-field label,
+body[data-theme="dark"] .short-box summary,
+body[data-theme="dark"] .plan-title,
+body[data-theme="dark"] .buy-product,
+body[data-theme="dark"] .review-row strong,
+body[data-theme="dark"] .review-finance strong,
+body[data-theme="dark"] .pilot-config strong,
+body[data-theme="dark"] .loyal-calc-preview strong{color:#e8eff1!important}
+body[data-theme="dark"] .primary-metric span,
+body[data-theme="dark"] .secondary span,
+body[data-theme="dark"] .primary-metric small,
+body[data-theme="dark"] .summary-kicker,
+body[data-theme="dark"] .buy-metric span,
+body[data-theme="dark"] .review-row span,
+body[data-theme="dark"] .review-finance span,
+body[data-theme="dark"] .pilot-config span,
+body[data-theme="dark"] .loyal-calc-preview span,
+body[data-theme="dark"] .table-unit,
+body[data-theme="dark"] .calc-unit,
+body[data-theme="dark"] .short-note,
+body[data-theme="dark"] .promo-deadline{color:#aebcc1!important}
+body[data-theme="dark"] .primary-metric strong,
+body[data-theme="dark"] .secondary strong,
+body[data-theme="dark"] .price-big{color:#f0f5f6!important}
+body[data-theme="dark"] .primary-metric.hero-number strong,
+body[data-theme="dark"] .saving,
+body[data-theme="dark"] .post-pilot-badge,
+body[data-theme="dark"] .pilot-price-callout strong,
+body[data-theme="dark"] .buy-hint{color:var(--accent-warm)!important}
+
+/* Inputs and controls. */
+body[data-theme="dark"] input,
+body[data-theme="dark"] select,
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] .quote-field input,
+body[data-theme="dark"] .quote-field select,
+body[data-theme="dark"] .wizard-step input,
+body[data-theme="dark"] .wizard-step select,
+body[data-theme="dark"] .loyal-form-row input,
+body[data-theme="dark"] .loyal-form-row select{
+  background:#0f1b21!important;color:#edf3f4!important;border-color:#354950!important;
+}
+body[data-theme="dark"] input::placeholder,body[data-theme="dark"] textarea::placeholder{color:#7f9299!important}
+body[data-theme="dark"] .quick-months{background:transparent!important;border-color:#354950!important}
+body[data-theme="dark"] .quick-month{color:#d6e0e3!important;border-left-color:#3a4d54!important}
+body[data-theme="dark"] .quick-month:hover{background:rgba(232,137,45,.12)!important;color:#fff!important}
+body[data-theme="dark"] .quick-month.active{background:var(--accent-warm)!important;color:#172127!important}
+body[data-theme="dark"] .segment,
+body[data-theme="dark"] .model-segment{background:#0f1b21!important;border-color:#354950!important}
+body[data-theme="dark"] .segment button,
+body[data-theme="dark"] .model-segment button{background:transparent!important;color:#cbd7da!important}
+body[data-theme="dark"] .segment button.active,
+body[data-theme="dark"] .model-segment button.active{background:#20333a!important;color:#fff!important}
+
+/* Light/pastel surfaces inside dark theme retain dark copy for contrast. */
+body[data-theme="dark"] .promo-chip,
+body[data-theme="dark"] .pilot-price-callout,
+body[data-theme="dark"] .post-pilot-badge,
+body[data-theme="dark"] .fee-table tbody tr:nth-child(even),
+body[data-theme="dark"] .compare-table td.best-col,
+body[data-theme="dark"] .compare-table th.best-col{
+  color:#203038!important;
+}
+body[data-theme="dark"] .promo-chip{background:#eef4f2!important}
+body[data-theme="dark"] .promo-chip span,body[data-theme="dark"] .promo-chip small{color:#52656d!important}
+body[data-theme="dark"] .promo-chip strong{color:#0d7f70!important}
+body[data-theme="dark"] .pilot-price-callout{background:#fff3e2!important;border-color:#d7b786!important}
+body[data-theme="dark"] .pilot-price-callout span,body[data-theme="dark"] .pilot-price-callout small{color:#66533c!important}
+body[data-theme="dark"] .post-pilot-badge{background:#fff0dc!important;border-color:#d6a86d!important}
+
+/* Tables / popups: dark rows use light text, light highlighted rows use dark text. */
+body[data-theme="dark"] table{color:#dce6e8}
+body[data-theme="dark"] th{background:#102c38!important;color:#fff!important;border-color:#35505a!important}
+body[data-theme="dark"] td{background:#142128!important;color:#dce6e8!important;border-color:#2f444c!important}
+body[data-theme="dark"] .fee-table tbody tr:nth-child(even) td{background:#19272d!important;color:#e1eaec!important}
+body[data-theme="dark"] .compare-table .best-col{background:#fff3e2!important;color:#29343a!important}
+body[data-theme="dark"] .compare-table .best-col .price-big,
+body[data-theme="dark"] .compare-table .best-col .saving{color:#c66a16!important}
+
+body[data-theme="dark"] .action-btn{background:#17262d!important;color:#e8eff1!important;border-color:#39505a!important}
+body[data-theme="dark"] .action-btn.primary{background:#23414b!important;color:#fff!important;border-color:#385d69!important}
+body[data-theme="dark"] .action-btn.teal{background:var(--accent-warm)!important;color:#172127!important;border-color:var(--accent-warm)!important}
+body[data-theme="dark"] .brand-menu-item:hover,body[data-theme="dark"] .brand-submenu button:hover{background:#1c2e35!important}
+body[data-theme="dark"] .brand-submenu button.active{background:rgba(232,137,45,.16)!important;color:#f0a453!important}
+body[data-theme="dark"] .smart-pick{background:#142128!important}
+body[data-theme="dark"] .smart-pick:hover{background:#1c2e35!important}
+body[data-theme="dark"] .smart-pick strong{color:#e7eef0!important}
+body[data-theme="dark"] .smart-pick small,body[data-theme="dark"] .smart-suggest-head{color:#9fb0b6!important}
+</style>
+
 </head>
 <body>
 <header class="topbar">
   <div class="wrap nav">
-    <a class="brand" href="./" aria-label="Rhino Cue Platform"><img src="asset/logo.png" alt="Rhino Cue Platform" /></a>
+    <div class="brand-menu-wrap" id="brandMenuWrap">
+      <button class="brand brand-menu-trigger" id="brandMenuTrigger" type="button" aria-label="Mở cài đặt Rhino" aria-haspopup="true" aria-expanded="false"><img src="asset/logo.png" alt="Rhino Cue Platform" /></button>
+      <div class="brand-dropdown" id="brandDropdown" aria-hidden="true">
+        <button class="brand-menu-item brand-settings-toggle" id="brandSettingsToggle" type="button" aria-expanded="false"><span>⚙</span><b>Cài đặt</b><i>›</i></button>
+        <div class="brand-submenu" id="brandSettingsSubmenu" aria-hidden="true">
+          <button type="button" data-theme-choice="light"><span>☀</span>Light mode</button>
+          <button type="button" data-theme-choice="dark"><span>◐</span>Dark mode</button>
+        </div>
+        <button class="brand-menu-item" id="userManagerOpen" type="button"><span>👤</span><b>Người dùng</b><i>›</i></button>
+      </div>
+    </div>
     <h1 class="header-title">Bảng tính giá thuê gậy CLB</h1>
     <div class="nav-actions desktop-menu" aria-label="Menu nhanh">
       <button class="nav-icon-btn" data-open="priceModal" title="Bảng giá" aria-label="Bảng giá"><span class="menu-ico">▦</span><span class="menu-label">Bảng giá</span></button>
@@ -891,15 +1062,30 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
         </div>
         <div class="quote-field"><label for="quoteClubName">Tên CLB / Quán <small>* Bắt buộc</small></label><input id="quoteClubName" type="text" autocomplete="off" maxlength="100" placeholder="Nhập tên CLB / quán" /></div>
         <div class="quote-field"><label for="quoteAddress">Địa chỉ <small>* Bắt buộc</small></label><input id="quoteAddress" type="text" autocomplete="off" maxlength="180" placeholder="Nhập địa chỉ" /></div>
+        <div class="quote-field"><label for="quoteCustomerEmail">Email khách hàng <small>Không bắt buộc</small></label><input id="quoteCustomerEmail" type="email" autocomplete="email" maxlength="120" placeholder="Nhập email nếu có" /></div>
         <div class="quote-field" id="quoteRentalModelField"><label for="quoteRentalModel">Loại gậy thuê <small>* Bắt buộc</small></label><select id="quoteRentalModel"><option value="R-68">R-68</option><option value="R-88">R-88</option></select></div>
-        <div class="quote-field smart-field">
-          <label for="quoteSellerName">Người lập báo giá <small>* Bắt buộc</small></label>
-          <div class="smart-input-wrap"><input id="quoteSellerName" type="text" autocomplete="off" maxlength="60" placeholder="Nhập tên người báo giá" /><div class="smart-suggestions" id="sellerSuggestions" aria-hidden="true"></div></div>
-        </div>
-        <div class="quote-field"><label for="quoteSellerPhone">Số liên hệ người báo giá <small>* Bắt buộc</small></label><input id="quoteSellerPhone" type="tel" autocomplete="off" inputmode="tel" maxlength="16" placeholder="Ví dụ: 0912345678 hoặc +84912345678" /></div>
+        <div class="quote-field"><label for="quoteSellerSelect">Người lập báo giá <small>* Bắt buộc</small></label><select id="quoteSellerSelect" class="seller-select"><option value="">Chọn người báo giá</option></select></div>
       </div>
       <div class="quote-error" id="quoteError"></div>
       <div class="modal-actions"><button class="action-btn" data-close="quoteClientModal" type="button">Thoát</button><button class="action-btn teal" id="confirmQuoteExport" type="button">Xác nhận & tải Excel</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- User manager -->
+<div class="modal" id="userManagerModal" role="dialog" aria-modal="true" aria-labelledby="userManagerTitle">
+  <div class="modal-card compact user-manager-card">
+    <div class="modal-head"><h3 id="userManagerTitle">Quản lý người báo giá</h3><button class="close" data-close="userManagerModal" aria-label="Đóng">×</button></div>
+    <div class="modal-body user-manager-body">
+      <div class="user-list" id="userList"></div>
+      <div class="user-edit-panel">
+        <input id="userEditId" type="hidden" />
+        <div class="quote-field"><label for="userEditName">Họ và tên <small>* Bắt buộc</small></label><input id="userEditName" type="text" maxlength="60" placeholder="Nhập họ và tên" /></div>
+        <div class="quote-field"><label for="userEditPhone">Số điện thoại <small>* Bắt buộc</small></label><input id="userEditPhone" type="tel" maxlength="20" inputmode="tel" placeholder="Ví dụ: 0906.263.999" /></div>
+        <div class="quote-field"><label for="userEditShowroom">Địa chỉ / Showroom <small>* Bắt buộc</small></label><input id="userEditShowroom" type="text" maxlength="180" placeholder="Nhập địa chỉ phụ trách" /></div>
+        <div class="quote-error" id="userEditError"></div>
+        <div class="user-edit-actions"><button class="action-btn" id="userNewBtn" type="button">+ Thêm mới</button><button class="action-btn teal" id="userSaveBtn" type="button">Lưu người dùng</button></div>
+      </div>
     </div>
   </div>
 </div>
@@ -978,7 +1164,7 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
 <!-- Step-by-step 30-day registration -->
 <div class="modal wizard-modal" id="promoRegisterModal" role="dialog" aria-modal="true" aria-labelledby="promoRegisterTitle">
   <div class="modal-card compact wizard-card">
-    <div class="modal-head"><div><h3 id="promoRegisterTitle">Đăng ký Pilot 30 ngày</h3><div class="wizard-progress-text" id="wizardProgressText">Bước 1 / 9</div></div><button class="close" data-close="promoRegisterModal" aria-label="Đóng">×</button></div>
+    <div class="modal-head"><div><h3 id="promoRegisterTitle">Đăng ký Pilot 30 ngày</h3><div class="wizard-progress-text" id="wizardProgressText">Bước 1 / 10</div></div><button class="close" data-close="promoRegisterModal" aria-label="Đóng">×</button></div>
     <div class="wizard-progress"><span id="wizardProgressBar"></span></div>
     <div class="modal-body wizard-body">
       <section class="wizard-step active" data-step="0">
@@ -1041,6 +1227,11 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
           <input id="regDelivery" class="date-native" type="date" tabindex="-1" aria-hidden="true" />
         </div>
         <div class="wizard-term"><span>Thời hạn trải nghiệm</span><strong>30 ngày</strong><small id="regEndDate">Ngày kết thúc dự kiến: —</small></div>
+      </section>
+      <section class="wizard-step" data-step="9">
+        <label for="regSellerSelect">Người lập phiếu <span class="req-note">* Bắt buộc</span></label>
+        <select id="regSellerSelect" class="seller-select"><option value="">Chọn người lập phiếu</option></select>
+        <div class="wizard-term"><span>Thông tin liên hệ</span><strong>Tự động theo người đã chọn</strong><small>Số điện thoại và showroom sẽ tự điền vào file Excel.</small></div>
       </section>
       <div class="wizard-error" id="wizardError"></div>
       <div class="wizard-actions" id="wizardActions">
@@ -1212,79 +1403,97 @@ document.querySelectorAll('[data-customer]').forEach(btn=>btn.addEventListener('
   renderBuy();
 }));
 
-/* Excel quotation export + V20 validation / smart memory */
+/* Excel quotation export + V29 validation, customer memory, seller directory */
 let pendingQuoteType=null;
-const RHINO_MEMORY_KEYS={customers:'rhino_quote_customers_v2',sellers:'rhino_quote_sellers_v2'};
+const RHINO_MEMORY_KEYS={customers:'rhino_quote_customers_v3'};
+const RHINO_USER_STORE='rhino_quote_users_v1';
+const RHINO_LAST_SELLER='rhino_last_quote_user_v1';
+const DEFAULT_SHOWROOM_HN='Tòa Spring, 47 Nguyễn Tuân, Q. Thanh Xuân, Tp. Hà Nội';
+const DEFAULT_SHOWROOM_VINH='157 Lý Thường Kiệt, P. Thành Vinh, Tỉnh Nghệ An';
+const DEFAULT_USERS=[
+  {id:'le-van-nghia',name:'Lê Văn Nghĩa',phone:'0906.263.999',showroom:DEFAULT_SHOWROOM_VINH},
+  {id:'pham-duy-dong',name:'Phạm Duy Đông',phone:'0906.224.423',showroom:DEFAULT_SHOWROOM_HN},
+  {id:'tran-dinh-thuong',name:'Trần Đình Thường',phone:'0916.165.851',showroom:DEFAULT_SHOWROOM_HN},
+  {id:'nguyen-nam-hung',name:'Nguyễn Nam Hưng',phone:'0936.336.609',showroom:DEFAULT_SHOWROOM_HN},
+  {id:'nguyen-thanh-duc',name:'Nguyễn Thanh Đức',phone:'0903.232.063',showroom:DEFAULT_SHOWROOM_HN}
+];
 
+function xmlEsc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;').replace(/'/g,'&#39;')}
 function compactSpaces(v){return String(v||'').trim().replace(/\s+/g,' ')}
 function countLetters(v){return (String(v||'').match(/[\p{L}]/gu)||[]).length}
 function validHumanName(v){const s=compactSpaces(v);return s.length>=2&&s.length<=60&&countLetters(s)>=2&&/^[\p{L}\p{M} .'-]+$/u.test(s)}
 function validClub(v){const s=compactSpaces(v);return s.length>=2&&s.length<=100&&/[\p{L}\p{N}]/u.test(s)}
 function validAddress(v){const s=compactSpaces(v);return s.length>=5&&s.length<=180&&/[\p{L}\p{N}]/u.test(s)}
 function validEmail(v){const s=String(v||'').trim();if(!s)return true;if(s.length>120||s.includes('..'))return false;return /^[^\s@]+@[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?\.[A-Za-z]{2,}$/i.test(s)}
-function phoneDigits(v){return String(v||'').replace(/^\+/,'')}
-function isSimpleSequence(s){
-  const bad=['0123456789','1234567890','9876543210','0987654321'];
-  if(bad.some(x=>s.includes(x)))return true;
-  if(/^(\d)\1{9,}$/.test(s))return true;
-  return false;
-}
-function validPhone(v){const s=String(v||'').trim();if(!/^\+?\d{10,15}$/.test(s))return false;const d=phoneDigits(s);if(isSimpleSequence(d))return false;return true}
+function phoneDigits(v){return String(v||'').replace(/\D/g,'')}
+function isSimpleSequence(s){const bad=['0123456789','1234567890','9876543210','0987654321'];if(bad.some(x=>s.includes(x)))return true;if(/^(\d)\1{9,}$/.test(s))return true;return false}
+function validPhone(v){const raw=String(v||'').trim();if(!/^[+\d][\d .-]*$/.test(raw))return false;const d=phoneDigits(raw);return d.length>=10&&d.length<=15&&!isSimpleSequence(d)}
 function validOptionalInteger(raw,max=9999){const s=String(raw??'').trim();if(!s)return true;return /^\d+$/.test(s)&&Number(s)>=0&&Number(s)<=max}
 function readStore(key){try{const x=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(x)?x:[]}catch(_){return []}}
-function writeStore(key,items){try{localStorage.setItem(key,JSON.stringify(items.slice(0,40)))}catch(_){}}
-function entryKey(kind,item){return kind==='customers'?`${item.name}|${item.club}|${item.address}`:`${item.name}|${item.phone}`}
-function saveSmartEntry(kind,item){
-  const key=RHINO_MEMORY_KEYS[kind],list=readStore(key),ek=entryKey(kind,item).toLowerCase();
-  const next=[item,...list.filter(x=>entryKey(kind,x).toLowerCase()!==ek)];writeStore(key,next);
-}
+function writeStore(key,items){try{localStorage.setItem(key,JSON.stringify(items.slice(0,60)))}catch(_){}}
+function entryKey(kind,item){return `${item.name}|${item.club}|${item.address}`}
+function saveSmartEntry(kind,item){const key=RHINO_MEMORY_KEYS[kind],list=readStore(key),ek=entryKey(kind,item).toLowerCase();const next=[item,...list.filter(x=>entryKey(kind,x).toLowerCase()!==ek)];writeStore(key,next)}
 function deleteSmartEntry(kind,index){const key=RHINO_MEMORY_KEYS[kind],list=readStore(key);list.splice(index,1);writeStore(key,list)}
 
-function renderSmartSuggestions(kind,query=''){
-  const box=$(kind==='customers'?'customerSuggestions':'sellerSuggestions');if(!box)return;
-  const all=readStore(RHINO_MEMORY_KEYS[kind]);const q=compactSpaces(query).toLocaleLowerCase('vi');
-  const indexed=all.map((item,index)=>({item,index})).filter(({item})=>!q||String(item.name||'').toLocaleLowerCase('vi').includes(q)).slice(0,10);
-  box.innerHTML='';
-  if(!all.length||(!indexed.length&&q)){box.classList.remove('open');box.setAttribute('aria-hidden','true');return}
-  const head=document.createElement('div');head.className='smart-suggest-head';head.innerHTML='<span>Thông tin đã lưu</span>';
-  const clear=document.createElement('button');clear.type='button';clear.className='smart-clear';clear.textContent='Xóa tất cả';clear.addEventListener('click',e=>{e.stopPropagation();writeStore(RHINO_MEMORY_KEYS[kind],[]);renderSmartSuggestions(kind,'')});head.appendChild(clear);box.appendChild(head);
-  indexed.forEach(({item,index})=>{
-    const row=document.createElement('div');row.className='smart-option';
-    const pick=document.createElement('button');pick.type='button';pick.className='smart-pick';
-    const sub=kind==='customers'?[item.club,item.address].filter(Boolean).join(' · '):item.phone;
-    const strong=document.createElement('strong');strong.textContent=item.name||'';const small=document.createElement('small');small.textContent=sub||'';pick.append(strong,small);
-    pick.addEventListener('click',()=>{
-      if(kind==='customers'){$('quoteCustomerName').value=item.name||'';$('quoteClubName').value=item.club||'';$('quoteAddress').value=item.address||''}
-      else{$('quoteSellerName').value=item.name||'';$('quoteSellerPhone').value=item.phone||''}
-      box.classList.remove('open');box.setAttribute('aria-hidden','true');
-    });
-    const del=document.createElement('button');del.type='button';del.className='smart-delete';del.textContent='×';del.title='Xóa mục đã lưu';del.setAttribute('aria-label','Xóa mục đã lưu');
-    del.addEventListener('click',e=>{e.stopPropagation();deleteSmartEntry(kind,index);renderSmartSuggestions(kind,query)});
-    row.append(pick,del);box.appendChild(row);
+function slugUser(name){return compactSpaces(name).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||`user-${Date.now()}`}
+function ensureUsers(){
+  try{if(localStorage.getItem(RHINO_USER_STORE)===null)localStorage.setItem(RHINO_USER_STORE,JSON.stringify(DEFAULT_USERS))}catch(_){}
+  return getUsers();
+}
+function getUsers(){try{const v=JSON.parse(localStorage.getItem(RHINO_USER_STORE)||'[]');return Array.isArray(v)?v.filter(x=>x&&x.id&&x.name):[]}catch(_){return []}}
+function setUsers(list){try{localStorage.setItem(RHINO_USER_STORE,JSON.stringify(list.slice(0,60)))}catch(_){}}
+function getUserById(id){return getUsers().find(x=>x.id===id)||null}
+window.getUserById=getUserById;
+function rememberedSeller(){try{return localStorage.getItem(RHINO_LAST_SELLER)||''}catch(_){return ''}}
+function rememberSeller(id){try{if(id)localStorage.setItem(RHINO_LAST_SELLER,id)}catch(_){}}
+function sellerInfo(id){const u=getUserById(id);return u?{seller:u.name,sellerPhone:u.phone,showroom:u.showroom,sellerId:u.id}:null}
+
+function renderSellerSelects(preferredId=''){
+  const users=ensureUsers();
+  const fallback=preferredId||rememberedSeller();
+  ['quoteSellerSelect','regSellerSelect'].forEach(id=>{
+    const sel=$(id);if(!sel)return;const old=sel.value||fallback;
+    sel.innerHTML='<option value="">Chọn người báo giá</option>'+users.map(u=>`<option value="${xmlEsc(u.id)}">${xmlEsc(u.name)}</option>`).join('');
+    if(users.some(u=>u.id===old))sel.value=old;
   });
+}
+
+function renderSmartSuggestions(kind,query=''){
+  const box=$('customerSuggestions');if(!box)return;
+  const all=readStore(RHINO_MEMORY_KEYS.customers);const q=compactSpaces(query).toLocaleLowerCase('vi');
+  const indexed=all.map((item,index)=>({item,index})).filter(({item})=>!q||String(item.name||'').toLocaleLowerCase('vi').includes(q)).slice(0,10);
+  box.innerHTML='';if(!all.length||(!indexed.length&&q)){box.classList.remove('open');box.setAttribute('aria-hidden','true');return}
+  const head=document.createElement('div');head.className='smart-suggest-head';head.innerHTML='<span>Khách hàng đã lưu</span>';
+  const clear=document.createElement('button');clear.type='button';clear.className='smart-clear';clear.textContent='Xóa tất cả';clear.addEventListener('click',e=>{e.stopPropagation();writeStore(RHINO_MEMORY_KEYS.customers,[]);renderSmartSuggestions('customers','')});head.appendChild(clear);box.appendChild(head);
+  indexed.forEach(({item,index})=>{const row=document.createElement('div');row.className='smart-option';const pick=document.createElement('button');pick.type='button';pick.className='smart-pick';const sub=[item.club,item.address].filter(Boolean).join(' · ');const strong=document.createElement('strong');strong.textContent=item.name||'';const small=document.createElement('small');small.textContent=sub||'';pick.append(strong,small);pick.addEventListener('click',()=>{$('quoteCustomerName').value=item.name||'';$('quoteClubName').value=item.club||'';$('quoteAddress').value=item.address||'';$('quoteCustomerEmail').value=item.email||'';box.classList.remove('open');box.setAttribute('aria-hidden','true')});const del=document.createElement('button');del.type='button';del.className='smart-delete';del.textContent='×';del.title='Xóa mục đã lưu';del.addEventListener('click',e=>{e.stopPropagation();deleteSmartEntry('customers',index);renderSmartSuggestions('customers',query)});row.append(pick,del);box.appendChild(row)});
   box.classList.add('open');box.setAttribute('aria-hidden','false');
 }
-function setupSmartInput(inputId,kind){const input=$(inputId);if(!input)return;input.addEventListener('focus',()=>renderSmartSuggestions(kind,input.value));input.addEventListener('input',()=>renderSmartSuggestions(kind,input.value))}
-setupSmartInput('quoteCustomerName','customers');setupSmartInput('quoteSellerName','sellers');
+function setupSmartInput(inputId){const input=$(inputId);if(!input)return;input.addEventListener('focus',()=>renderSmartSuggestions('customers',input.value));input.addEventListener('input',()=>renderSmartSuggestions('customers',input.value))}
+setupSmartInput('quoteCustomerName');
 document.addEventListener('click',e=>{if(!e.target.closest('.smart-field'))document.querySelectorAll('.smart-suggestions').forEach(x=>{x.classList.remove('open');x.setAttribute('aria-hidden','true')})});
 
-function quoteInfoFromForm(){return {customer:compactSpaces($('quoteCustomerName').value),club:compactSpaces($('quoteClubName').value),address:compactSpaces($('quoteAddress').value),seller:compactSpaces($('quoteSellerName').value),sellerPhone:$('quoteSellerPhone').value.trim()}}
+function quoteInfoFromForm(){
+  const seller=sellerInfo($('quoteSellerSelect')?.value||'');
+  return {customer:compactSpaces($('quoteCustomerName').value),club:compactSpaces($('quoteClubName').value),address:compactSpaces($('quoteAddress').value),customerEmail:$('quoteCustomerEmail')?.value.trim()||'',...(seller||{})};
+}
 function validateQuoteInfo(info){
   if(!validHumanName(info.customer))return 'Tên khách hàng cần có ít nhất 2 ký tự chữ và không chứa ký tự bất thường.';
   if(!validClub(info.club))return 'Tên CLB / quán chưa hợp lệ.';
   if(!validAddress(info.address))return 'Địa chỉ cần rõ ràng và có ít nhất 5 ký tự.';
-  if(!validHumanName(info.seller))return 'Tên người lập báo giá chưa hợp lệ.';
-  if(!validPhone(info.sellerPhone))return 'Số liên hệ phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
+  if(!validEmail(info.customerEmail))return 'Email chưa đúng cấu trúc, ví dụ ten@gmail.com.';
+  if(!info.sellerId||!info.seller||!info.sellerPhone||!info.showroom)return 'Vui lòng chọn người lập báo giá.';
   return '';
 }
 function openQuoteClient(type){
   if(type==='rental'){const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}}
   else{const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}}
-  const rentalModelField=$('quoteRentalModelField');if(rentalModelField)rentalModelField.hidden=type!=='rental';
+  const rentalModelField=$('quoteRentalModelField');if(rentalModelField)rentalModelField.hidden=type!=='rental';renderSellerSelects();
   pendingQuoteType=type;$('quoteError').textContent='';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
 }
 $('exportRentalBtn').addEventListener('click',()=>openQuoteClient('rental'));
 $('exportBuyBtn').addEventListener('click',()=>openQuoteClient('purchase'));
+$('quoteSellerSelect')?.addEventListener('change',e=>rememberSeller(e.target.value));
+$('regSellerSelect')?.addEventListener('change',e=>{rememberSeller(e.target.value);renderWizard()});
 $('confirmQuoteExport').addEventListener('click',async()=>{
   const info=quoteInfoFromForm(),err=validateQuoteInfo(info);if(err){$('quoteError').textContent=err;return}$('quoteError').textContent='';
   const btn=$('confirmQuoteExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
@@ -1292,12 +1501,34 @@ $('confirmQuoteExport').addEventListener('click',async()=>{
     if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');
     if(pendingQuoteType==='rental'){const {cues,months}=values();const rentalData=combinedPlan(cues,months);rentalData.model=$('quoteRentalModel')?.value||'R-68';await window.RhinoExcel.exportQuote('rental',info,rentalData)}
     else{await window.RhinoExcel.exportQuote('purchase',info,currentBuy())}
-    saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address});saveSmartEntry('sellers',{name:info.seller,phone:info.sellerPhone});
-    closeModal('quoteClientModal');
+    saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address,email:info.customerEmail});rememberSeller(info.sellerId);closeModal('quoteClientModal');
   }catch(ex){console.error(ex);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
   finally{btn.disabled=false;btn.textContent=old}
 });
 
+/* Logo menu / theme / user directory */
+const brandMenuWrap=$('brandMenuWrap'),brandMenuTrigger=$('brandMenuTrigger'),brandDropdown=$('brandDropdown'),brandSettingsToggle=$('brandSettingsToggle'),brandSettingsSubmenu=$('brandSettingsSubmenu');
+function setBrandMenu(open){brandMenuWrap?.classList.toggle('open',open);brandMenuTrigger?.setAttribute('aria-expanded',open?'true':'false');brandDropdown?.setAttribute('aria-hidden',open?'false':'true');if(!open){brandSettingsSubmenu?.classList.remove('open');brandSettingsToggle?.setAttribute('aria-expanded','false')}}
+brandMenuTrigger?.addEventListener('click',e=>{e.stopPropagation();setBrandMenu(!brandMenuWrap.classList.contains('open'))});
+brandSettingsToggle?.addEventListener('click',e=>{e.stopPropagation();const open=!brandSettingsSubmenu.classList.contains('open');brandSettingsSubmenu.classList.toggle('open',open);brandSettingsSubmenu.setAttribute('aria-hidden',open?'false':'true');brandSettingsToggle.setAttribute('aria-expanded',open?'true':'false')});
+document.addEventListener('click',e=>{if(brandMenuWrap&&!brandMenuWrap.contains(e.target))setBrandMenu(false)});
+function applyTheme(theme){theme=theme==='dark'?'dark':'light';document.body.dataset.theme=theme;try{localStorage.setItem('rhino_theme_v1',theme)}catch(_){};document.querySelectorAll('[data-theme-choice]').forEach(b=>b.classList.toggle('active',b.dataset.themeChoice===theme))}
+document.querySelectorAll('[data-theme-choice]').forEach(btn=>btn.addEventListener('click',()=>{applyTheme(btn.dataset.themeChoice);setBrandMenu(false)}));
+try{applyTheme(localStorage.getItem('rhino_theme_v1')||'light')}catch(_){applyTheme('light')}
+
+function renderUserManager(){
+  const list=$('userList'),users=ensureUsers();if(!list)return;list.innerHTML='';
+  if(!users.length){list.innerHTML='<div class="user-row"><div class="user-row-info"><strong>Chưa có người dùng</strong><small>Hãy thêm người lập báo giá mới.</small></div></div>'}
+  users.forEach(u=>{const row=document.createElement('div');row.className='user-row';row.innerHTML=`<div class="user-row-info"><strong>${xmlEsc(u.name)}</strong><small>${xmlEsc(u.phone)} · ${xmlEsc(u.showroom)}</small></div><button type="button" class="user-icon-btn" data-user-edit="${xmlEsc(u.id)}" title="Sửa">✎</button><button type="button" class="user-icon-btn danger" data-user-delete="${xmlEsc(u.id)}" title="Xóa">×</button>`;list.appendChild(row)});
+  list.querySelectorAll('[data-user-edit]').forEach(btn=>btn.addEventListener('click',()=>loadUserEditor(btn.dataset.userEdit)));
+  list.querySelectorAll('[data-user-delete]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.userDelete,u=getUserById(id);if(!u)return;if(!confirm(`Xóa người dùng ${u.name}?`))return;setUsers(getUsers().filter(x=>x.id!==id));if(rememberedSeller()===id)try{localStorage.removeItem(RHINO_LAST_SELLER)}catch(_){};renderUserManager();renderSellerSelects()}));
+}
+function resetUserEditor(){['userEditId','userEditName','userEditPhone','userEditShowroom'].forEach(id=>{if($(id))$(id).value=''});$('userEditError').textContent=''}
+function loadUserEditor(id){const u=getUserById(id);if(!u)return;$('userEditId').value=u.id;$('userEditName').value=u.name;$('userEditPhone').value=u.phone;$('userEditShowroom').value=u.showroom;$('userEditError').textContent='';$('userEditName').focus()}
+$('userNewBtn')?.addEventListener('click',()=>{resetUserEditor();$('userEditName').focus()});
+$('userSaveBtn')?.addEventListener('click',()=>{const id=$('userEditId').value.trim(),name=compactSpaces($('userEditName').value),phone=$('userEditPhone').value.trim(),showroom=compactSpaces($('userEditShowroom').value);let err='';if(!validHumanName(name))err='Tên người dùng chưa hợp lệ.';else if(!validPhone(phone))err='Số điện thoại chưa hợp lệ.';else if(!validAddress(showroom))err='Địa chỉ / showroom chưa hợp lệ.';if(err){$('userEditError').textContent=err;return}let users=getUsers();let finalId=id||slugUser(name);if(!id&&users.some(x=>x.id===finalId))finalId=`${finalId}-${Date.now().toString().slice(-5)}`;const item={id:finalId,name,phone,showroom};users=id?users.map(x=>x.id===id?item:x):[...users,item];setUsers(users);$('userEditError').textContent='';renderUserManager();renderSellerSelects(finalId);loadUserEditor(finalId)});
+$('userManagerOpen')?.addEventListener('click',()=>{setBrandMenu(false);renderUserManager();resetUserEditor();openModal('userManagerModal',false)});
+ensureUsers();renderSellerSelects();
 
 /* V16 — promotion menu + registration wizard + keyboard-aware modal viewport */
 const promoMenuWrap=$('promoMenuWrap');
@@ -1341,8 +1572,8 @@ document.addEventListener('focusin',e=>{
   setTimeout(()=>{try{e.target.scrollIntoView({block:'center',inline:'nearest',behavior:'smooth'})}catch(_){e.target.scrollIntoView()}},220);
 });
 
-const wizardFocusIds=['regCustomer','regClub','regAddress','regPhone','regEmail','regTables','regUseR68','regUseBreak','regDeliveryDisplay'];
-const regLabels=['Tên khách hàng','Tên quán / CLB','Địa chỉ','Số điện thoại','Email','Số bàn tại CLB','Cấu hình gậy đánh','Cấu hình gậy phá / nhảy','Ngày giao nhận dự kiến'];
+const wizardFocusIds=['regCustomer','regClub','regAddress','regPhone','regEmail','regTables','regUseR68','regUseBreak','regDeliveryDisplay','regSellerSelect'];
+const regLabels=['Tên khách hàng','Tên quán / CLB','Địa chỉ','Số điện thoại','Email','Số bàn tại CLB','Cấu hình gậy đánh','Cấu hình gậy phá / nhảy','Ngày giao nhận dự kiến','Người lập phiếu'];
 let wizardStep=0;
 function dateVi(value){if(!value)return '—';const d=new Date(value+'T00:00:00');return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('vi-VN')}
 function addDays(value,days){if(!value)return null;const d=new Date(value+'T00:00:00');if(Number.isNaN(d.getTime()))return null;d.setDate(d.getDate()+days);return d}
@@ -1383,7 +1614,7 @@ function registrationData(){
   const breakCues=useBreak?Math.max(0,parseInt($('regBreakQty').value||'0',10)||0):0,jumpCues=useJump?Math.max(0,parseInt($('regJumpQty').value||'0',10)||0):0;
   const requestedPlaying=r68+r88,playing=requestedPlaying,breakJump=breakCues+jumpCues;
   const delivery=$('regDelivery').value,end=addDays(delivery,30);
-  return {customer:$('regCustomer').value.trim(),club:$('regClub').value.trim(),address:$('regAddress').value.trim(),phone:$('regPhone').value.trim(),email:$('regEmail').value.trim(),tables,useR68,useR88,r68,r88,requestedPlaying,recommendedPlaying:suggested.playing,playing,useBreak,useJump,breakCues,jumpCues,breakJump,recommendedBreakJump:suggested.breakJump,total:playing+breakJump,delivery,endDate:end?end.toLocaleDateString('vi-VN'):'—',duration:30};
+  const seller=sellerInfo($('regSellerSelect')?.value||'')||{};return {customer:$('regCustomer').value.trim(),club:$('regClub').value.trim(),address:$('regAddress').value.trim(),phone:$('regPhone').value.trim(),email:$('regEmail').value.trim(),tables,useR68,useR88,r68,r88,requestedPlaying,recommendedPlaying:suggested.playing,playing,useBreak,useJump,breakCues,jumpCues,breakJump,recommendedBreakJump:suggested.breakJump,total:playing+breakJump,delivery,endDate:end?end.toLocaleDateString('vi-VN'):'—',duration:30,...seller};
 }
 function validateWizardStep(step=wizardStep){
   const d=registrationData(),rawEmail=$('regEmail').value.trim();
@@ -1404,6 +1635,7 @@ function validateWizardStep(step=wizardStep){
     if(d.breakJump<1)return 'Tổng số gậy phá/nhảy phải lớn hơn 0.';
   }
   if(step===8&&!d.delivery)return 'Vui lòng chọn ngày giao nhận dự kiến.';
+  if(step===9&&!d.sellerId)return 'Vui lòng chọn người lập phiếu.';
   return '';
 }
 function validateRegistration(){for(let i=0;i<wizardFocusIds.length;i++){const msg=validateWizardStep(i);if(msg)return {ok:false,step:i,msg}}return {ok:true,data:registrationData()}}
@@ -1440,7 +1672,7 @@ function buildRegistrationReview(){
   const d=registrationData();
   const playingParts=[];if(d.useR68)playingParts.push(`R-68: ${d.r68} gậy`);if(d.useR88)playingParts.push(`R-88: ${d.r88} gậy`);
   const specialParts=[];if(d.useBreak)specialParts.push(`Gậy phá: ${d.breakCues}`);if(d.useJump)specialParts.push(`Gậy nhảy: ${d.jumpCues}`);
-  const vals=[d.customer,d.club,d.address,d.phone,d.email||'Không có',`${d.tables} bàn`,playingParts.join(' · '),specialParts.join(' · '),`${dateVi(d.delivery)} → ${d.endDate}`];
+  const vals=[d.customer,d.club,d.address,d.phone,d.email||'Không có',`${d.tables} bàn`,playingParts.join(' · '),specialParts.join(' · '),`${dateVi(d.delivery)} → ${d.endDate}`,d.seller||'—'];
   $('promoReviewList').innerHTML=vals.map((v,i)=>`<button class="review-row" type="button" data-edit-step="${i}"><span>${regLabels[i]}</span><strong>${xmlEsc(v)}</strong></button>`).join('');
   $('reviewTotalCues').textContent=`${d.total} gậy`;document.querySelectorAll('[data-edit-step]').forEach(btn=>btn.addEventListener('click',()=>{closeModal('promoReviewModal');gotoWizard(Number(btn.dataset.editStep))}));
 }
@@ -1451,7 +1683,7 @@ function showRegistrationReview(){
 }
 $('wizardCheck')?.addEventListener('click',showRegistrationReview);
 $('reviewBackBtn')?.addEventListener('click',()=>closeModal('promoReviewModal'));
-$('promoRegisterBtn')?.addEventListener('click',()=>{closeModal('promoModal');wizardStep=0;renderWizard();openModal('promoRegisterModal',false);setTimeout(()=>$(wizardFocusIds[0])?.focus(),120)});
+$('promoRegisterBtn')?.addEventListener('click',()=>{closeModal('promoModal');renderSellerSelects();wizardStep=0;renderWizard();openModal('promoRegisterModal',false);setTimeout(()=>$(wizardFocusIds[0])?.focus(),120)});
 function loyalOfferData(){
   const raw=$('loyalQty')?.value.trim()||'';const qty=/^\d+$/.test(raw)?Number(raw):null;const plan=$('loyalPlan')?.value||'';
   if(!Number.isSafeInteger(qty)||qty<1||!['6+2','12+6'].includes(plan))return null;
@@ -1520,7 +1752,7 @@ async function createPromoRegistrationXlsx(){
 }
 async function exportRegistration(btn){
   const check=validateRegistration();if(!check.ok){if($('promoReviewModal').classList.contains('open'))closeModal('promoReviewModal');gotoWizard(check.step);$('wizardError').textContent=check.msg;return}
-  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}await window.RhinoExcel.exportPromoRegistration(check.data);saveSmartEntry('customers',{name:check.data.customer,club:check.data.club,address:check.data.address});closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
+  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}await window.RhinoExcel.exportPromoRegistration(check.data);saveSmartEntry('customers',{name:check.data.customer,club:check.data.club,address:check.data.address,email:check.data.email||''});rememberSeller(check.data.sellerId);closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
 }
 $('wizardExport')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
 $('reviewExportBtn')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
