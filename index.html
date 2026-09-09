@@ -426,6 +426,79 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
 }
 
 </style>
+
+<style id="v20-readability-and-smart-fields">
+/* V20 — readability floor: normal UI copy never drops below 13px; true notes may use 11px. */
+:root{
+  --text-xs:clamp(13px,.42vw + 8px,14px);
+  --text-sm:clamp(13px,.52vw + 8px,15px);
+  --text-md:clamp(13.5px,.65vw + 8px,16px);
+  --text-lg:clamp(16px,.9vw + 9px,19px);
+  --text-xl:clamp(19px,1.2vw + 8px,23px);
+}
+body{font-size:var(--text-md);line-height:1.48}
+.header-title,.nav-icon-btn,.field label,.quick-month,.summary-kicker,.status-pill,
+.primary-metric span,.primary-metric small,.secondary span,.calc-unit,.table-unit,
+.action-btn,.modal-body,th,td,.tag,.short-box summary,.short-table th,.short-table td,
+.buy-field label,.segment button,.buy-metric span,.buy-product,.buy-hint,.quote-field label,
+.quote-field input,.promo-top .eyebrow,.promo-top p,.promo-chip,.promo-deadline,
+.drawer-head strong,.drawer-nav button,.promo-dropdown b,.drawer-subnav button,
+.wizard-step label,.wizard-step input,.loyal-form-row label,.loyal-form-row input,.loyal-form-row select{
+  font-size:var(--text-sm);
+}
+th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-step label,.loyal-form-row label{font-weight:800}
+.primary-metric span,.secondary span,.summary-kicker{font-weight:750}.action-btn,.nav-icon-btn,.quick-month{font-weight:800}
+.field label em,.req-note,.optional-note,.quote-error,.wizard-error,.loyal-form-error,.short-note,
+.table-unit,.calc-unit,.wizard-term small,.compare-table .subtle,.promo-dropdown small,.drawer-subnav button small{
+  font-size:11px!important;line-height:1.35;
+}
+.quote-field label small,.loyal-form-row label small{font-size:11px!important;font-weight:750}
+.nav-btn,.menu-caret,.wizard-progress-text,.wizard-step label em,.wizard-term span,.review-row span,.review-row strong,.review-finance span,.loyal-offer span,.loyal-offer small,.wizard-actions .action-btn{font-size:var(--text-sm)!important}
+.unit-note{font-size:11px!important}
+.modal-head h3{font-size:clamp(18px,1.2vw + 8px,23px)}
+.plan-title{font-size:clamp(17px,1vw + 8px,20px)}
+.compare-table .price-big{font-size:clamp(16px,.9vw + 8px,19px)}
+.compare-table .saving{font-size:clamp(15px,.8vw + 8px,18px)}
+.promo-top h3{font-size:clamp(26px,1.7vw + 10px,34px)}
+.promo-chip strong{font-size:clamp(17px,.9vw + 9px,21px)}
+.model-segment button{font-size:clamp(17px,1vw + 8px,21px)!important}
+
+/* Smart saved-entry dropdowns (customer + quote creator). */
+.smart-input-wrap{position:relative}
+.smart-suggestions{display:none;position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:120;background:#fff;border:1px solid #d7e2e5;border-radius:12px;box-shadow:0 14px 34px rgba(7,44,67,.17);max-height:min(260px,35vh);overflow:auto;padding:6px}
+.smart-suggestions.open{display:block}
+.smart-suggest-head{display:flex;align-items:center;justify-content:space-between;padding:5px 7px 7px;color:#71828a;font-size:11px;font-weight:750;border-bottom:1px solid #edf2f3}
+.smart-clear{border:0;background:transparent;color:#b44e32;font-size:11px;font-weight:800;padding:3px 4px;cursor:pointer}
+.smart-option{display:grid;grid-template-columns:minmax(0,1fr) 30px;align-items:center;border-bottom:1px solid #eef2f3}
+.smart-option:last-child{border-bottom:0}.smart-pick{border:0;background:#fff;text-align:left;padding:9px 8px;min-width:0;cursor:pointer}.smart-pick:hover{background:#f3faf8}
+.smart-pick strong{display:block;color:var(--navy);font-size:13px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.smart-pick small{display:block;color:#788990;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smart-delete{border:0;background:transparent;color:#9aa8ae;font-size:18px;line-height:1;cursor:pointer;height:32px;border-radius:8px}.smart-delete:hover{background:#fff0ed;color:#b44e32}
+.quote-field input.invalid,.wizard-step input.invalid,.loyal-form-row input.invalid,.loyal-form-row select.invalid{border-color:#cf6b55!important;box-shadow:0 0 0 3px rgba(207,107,85,.10)!important}
+
+@media(min-width:1280px){body{font-size:clamp(14px,.7vw + 7px,16px)}.header-title{font-size:clamp(13px,.7vw + 7px,16px)}}
+@media(min-width:761px) and (max-width:1100px){
+  :root{--text-xs:13px;--text-sm:13.5px;--text-md:14px;--text-lg:16px;--text-xl:19px}
+  .header-title,.nav-icon-btn,th,td{font-size:13px}
+}
+@media(max-width:760px){
+  :root{--text-xs:13px;--text-sm:13px;--text-md:13.5px;--text-lg:15px;--text-xl:18px}
+  body{font-size:13.5px}.header-title{font-size:13px}.field label,.field input,.quick-month{font-size:max(13px,inherit)}
+  .summary-kicker,.status-pill,.primary-metric span,.primary-metric small,.secondary span,.secondary strong{font-size:13px}
+  .modal-head h3{font-size:18px}.modal-body,th,td{font-size:13px}.plan-title{font-size:15px}.tag{font-size:13px}
+  .compare-table .price-big,.compare-table .saving{font-size:14px}.short-box summary,.short-table th,.short-table td{font-size:13px}
+  #buyModal .buy-field label,.segment button,.action-btn,.quote-field label,.quote-field input,.promo-top p,.promo-chip,.promo-deadline{font-size:13px}
+  .promo-top h3{font-size:clamp(23px,6.2vw,29px)}.promo-chip strong{font-size:16px}
+  .smart-suggestions{max-height:min(220px,32vh)}
+  .drawer-subnav button{font-size:13px!important}
+}
+@media(max-width:390px){
+  body,.header-title,th,td,.primary-metric span,.primary-metric small,.secondary span,.secondary strong{font-size:13px}
+  .compare-table .price-big,.compare-table .saving{font-size:13.5px}
+}
+@media(orientation:landscape) and (max-height:520px){
+  body,.modal-body,.promo-top p,.promo-chip,.promo-deadline{font-size:13px}.modal-head h3{font-size:17px}.promo-top h3{font-size:21px}
+}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -610,9 +683,17 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
     <div class="modal-head"><h3 id="quoteClientTitle">Thông tin báo giá</h3><button class="close" data-close="quoteClientModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
       <div class="quote-form">
-        <div class="quote-field"><label>Tên khách hàng</label><input id="quoteCustomerName" type="text" autocomplete="name" /></div>
-        <div class="quote-field"><label>Tên CLB / Quán</label><input id="quoteClubName" type="text" autocomplete="organization" /></div>
-        <div class="quote-field"><label>Địa chỉ</label><input id="quoteAddress" type="text" autocomplete="street-address" /></div>
+        <div class="quote-field smart-field">
+          <label for="quoteCustomerName">Tên khách hàng <small>* Bắt buộc</small></label>
+          <div class="smart-input-wrap"><input id="quoteCustomerName" type="text" autocomplete="off" maxlength="60" placeholder="Nhập tên khách hàng" /><div class="smart-suggestions" id="customerSuggestions" aria-hidden="true"></div></div>
+        </div>
+        <div class="quote-field"><label for="quoteClubName">Tên CLB / Quán <small>* Bắt buộc</small></label><input id="quoteClubName" type="text" autocomplete="off" maxlength="100" placeholder="Nhập tên CLB / quán" /></div>
+        <div class="quote-field"><label for="quoteAddress">Địa chỉ <small>* Bắt buộc</small></label><input id="quoteAddress" type="text" autocomplete="off" maxlength="180" placeholder="Nhập địa chỉ" /></div>
+        <div class="quote-field smart-field">
+          <label for="quoteSellerName">Người lập báo giá <small>* Bắt buộc</small></label>
+          <div class="smart-input-wrap"><input id="quoteSellerName" type="text" autocomplete="off" maxlength="60" placeholder="Nhập tên người báo giá" /><div class="smart-suggestions" id="sellerSuggestions" aria-hidden="true"></div></div>
+        </div>
+        <div class="quote-field"><label for="quoteSellerPhone">Số liên hệ người báo giá <small>* Bắt buộc</small></label><input id="quoteSellerPhone" type="tel" autocomplete="off" inputmode="tel" maxlength="16" placeholder="Ví dụ: 0912345678 hoặc +84912345678" /></div>
       </div>
       <div class="quote-error" id="quoteError"></div>
       <div class="modal-actions"><button class="action-btn" data-close="quoteClientModal" type="button">Thoát</button><button class="action-btn teal" id="confirmQuoteExport" type="button">Xác nhận & tải Excel</button></div>
@@ -667,9 +748,9 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
     <div class="modal-head"><h3 id="loyalRegisterTitle">Đăng ký Đặc quyền Đồng hành</h3><button class="close" data-close="loyalRegisterModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
       <div class="loyal-register-form">
-        <div class="loyal-form-row"><label for="loyalCustomer">Tên khách hàng <small>* Bắt buộc</small></label><input id="loyalCustomer" type="text" autocomplete="name" placeholder="Nhập họ và tên" /></div>
-        <div class="loyal-form-row"><label for="loyalClub">Tên quán / CLB <small>* Bắt buộc</small></label><input id="loyalClub" type="text" autocomplete="organization" placeholder="Nhập tên quán hoặc CLB" /></div>
-        <div class="loyal-form-row"><label for="loyalPhone">Số điện thoại <small>* Bắt buộc</small></label><input id="loyalPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Nhập số điện thoại" /></div>
+        <div class="loyal-form-row"><label for="loyalCustomer">Tên khách hàng <small>* Bắt buộc</small></label><input id="loyalCustomer" type="text" autocomplete="name" maxlength="60" placeholder="Nhập họ và tên" /></div>
+        <div class="loyal-form-row"><label for="loyalClub">Tên quán / CLB <small>* Bắt buộc</small></label><input id="loyalClub" type="text" autocomplete="organization" maxlength="100" placeholder="Nhập tên quán hoặc CLB" /></div>
+        <div class="loyal-form-row"><label for="loyalPhone">Số điện thoại <small>* Bắt buộc</small></label><input id="loyalPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="Nhập số điện thoại" /></div>
         <div class="loyal-form-row"><label for="loyalPlan">Gói ưu đãi <small>* Bắt buộc</small></label><select id="loyalPlan"><option value="">Chọn gói</option><option value="6+2">Gói 6 + 2</option><option value="12+6">Gói 12 + 6</option></select></div>
         <div class="loyal-form-error" id="loyalFormError"></div>
         <div class="loyal-form-actions"><button class="action-btn" type="button" data-close="loyalRegisterModal">Thoát</button><button class="action-btn teal" id="loyalSubmitBtn" type="button">Xác nhận đăng ký</button></div>
@@ -686,31 +767,31 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
     <div class="modal-body wizard-body">
       <section class="wizard-step active" data-step="0">
         <label for="regCustomer">Tên khách hàng <span class="req-note">* Bắt buộc</span></label>
-        <input id="regCustomer" type="text" autocomplete="name" placeholder="Nhập họ và tên" />
+        <input id="regCustomer" type="text" autocomplete="name" maxlength="60" placeholder="Nhập họ và tên" />
       </section>
       <section class="wizard-step" data-step="1">
         <label for="regClub">Tên quán / CLB <span class="req-note">* Bắt buộc</span></label>
-        <input id="regClub" type="text" autocomplete="organization" placeholder="Nhập tên quán hoặc CLB" />
+        <input id="regClub" type="text" autocomplete="organization" maxlength="100" placeholder="Nhập tên quán hoặc CLB" />
       </section>
       <section class="wizard-step" data-step="2">
         <label for="regAddress">Địa chỉ <span class="req-note">* Bắt buộc</span></label>
-        <input id="regAddress" type="text" autocomplete="street-address" placeholder="Nhập địa chỉ giao nhận" />
+        <input id="regAddress" type="text" autocomplete="street-address" maxlength="180" placeholder="Nhập địa chỉ giao nhận" />
       </section>
       <section class="wizard-step" data-step="3">
         <label for="regPhone">Số điện thoại <span class="req-note">* Bắt buộc</span></label>
-        <input id="regPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Nhập số điện thoại" />
+        <input id="regPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="Nhập số điện thoại" />
       </section>
       <section class="wizard-step" data-step="4">
         <label for="regEmail">Email <span class="optional-note">Không bắt buộc</span></label>
-        <input id="regEmail" type="email" autocomplete="email" inputmode="email" placeholder="Nhập email nếu có" />
+        <input id="regEmail" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="Nhập email nếu có" />
       </section>
       <section class="wizard-step" data-step="5">
         <label for="regR68">Số lượng gậy R-68 <span class="optional-note">Không bắt buộc</span></label>
-        <input id="regR68" type="number" min="0" step="1" inputmode="numeric" placeholder="0" />
+        <input id="regR68" type="number" min="0" max="9999" step="1" inputmode="numeric" placeholder="0" />
       </section>
       <section class="wizard-step" data-step="6">
         <label for="regR88">Số lượng gậy R-88 <span class="optional-note">Không bắt buộc</span></label>
-        <input id="regR88" type="number" min="0" step="1" inputmode="numeric" placeholder="0" />
+        <input id="regR88" type="number" min="0" max="9999" step="1" inputmode="numeric" placeholder="0" />
       </section>
       <section class="wizard-step" data-step="7">
         <label for="regDeliveryDisplay">Ngày giao nhận dự kiến <span class="req-note">* Bắt buộc</span></label>
@@ -788,21 +869,12 @@ function combinedPlan(n,months){
 }
 let selectedQuickMonth=null;
 function values(){
-  const cueRaw=$('cues').value.trim();
-  const tableRaw=$('tables').value.trim();
-  const monthRaw=$('months').value.trim();
-  const cues=cueRaw===''?null:Math.max(1,parseInt(cueRaw,10));
-  const tables=tableRaw===''?null:Math.max(0,parseInt(tableRaw,10));
+  const cueRaw=$('cues').value.trim(),tableRaw=$('tables').value.trim(),monthRaw=$('months').value.trim();
+  const strictInt=(raw,min,max=null)=>{if(raw==='')return null;if(!/^\d+$/.test(raw))return null;const n=Number(raw);if(!Number.isSafeInteger(n)||n<min||(max!==null&&n>max))return null;return n};
+  const cues=strictInt(cueRaw,1),tables=strictInt(tableRaw,0);
   let months=null;
-  if(monthRaw!==''){
-    const parsed=parseInt(monthRaw,10);
-    if(Number.isFinite(parsed)){
-      months=Math.min(12,Math.max(1,parsed));
-      if(String(months)!==monthRaw) $('months').value=months;
-    }
-  }else if(selectedQuickMonth!==null){
-    months=selectedQuickMonth;
-  }
+  if(monthRaw!=='')months=strictInt(monthRaw,1,12);
+  else if(selectedQuickMonth!==null)months=selectedQuickMonth;
   return {cues,tables,months};
 }
 function clearMainSummary(){
@@ -863,10 +935,11 @@ function buyTierPrice(qty){
 }
 function currentBuy(){
   const raw=$('buyQty').value.trim();
-  const qty=raw===''?null:parseInt(raw,10);
-  const base=buyTierPrice(qty);
+  const qty=raw===''?null:(/^\d+$/.test(raw)?Number(raw):null);
+  const safeQty=Number.isSafeInteger(qty)&&qty>=5?qty:null;
+  const base=buyTierPrice(safeQty);
   const unit=base===null?null:Math.max(0,base-(buyCustomer==='rental'?50000:0));
-  return {qty,base,unit,total:unit===null?null:qty*unit,model:buyModel==='r68'?'R-68':'R-88',customerType:buyCustomer};
+  return {qty:safeQty,base,unit,total:unit===null?null:safeQty*unit,model:buyModel==='r68'?'R-68':'R-88',customerType:buyCustomer};
 }
 function renderBuy(){
   const p=currentBuy();
@@ -886,149 +959,90 @@ document.querySelectorAll('[data-customer]').forEach(btn=>btn.addEventListener('
   renderBuy();
 }));
 
-/* Excel quotation export */
+/* Excel quotation export + V20 validation / smart memory */
 let pendingQuoteType=null;
-const xmlEsc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
-const safeName=v=>String(v||'Bao_gia').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').replace(/[^a-zA-Z0-9_-]+/g,'_').replace(/^_+|_+$/g,'').slice(0,54)||'Bao_gia';
-const a1=(c,r)=>String.fromCharCode(65+c)+r;
-function cell(c,r,v,style=0,type='s'){
-  const ref=a1(c,r);
-  if(type==='n')return `<c r="${ref}" s="${style}" t="n"><v>${Number(v)||0}</v></c>`;
-  return `<c r="${ref}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xmlEsc(v)}</t></is></c>`;
-}
-function row(r,cells,height){return `<row r="${r}"${height?` ht="${height}" customHeight="1"`:''}>${cells.join('')}</row>`}
-async function tryLogoBytes(){
-  try{const res=await fetch('asset/logo.png',{cache:'no-store'});if(res.ok)return new Uint8Array(await res.arrayBuffer())}catch(e){}
-  try{
-    const img=document.querySelector('.brand img');
-    if(!img||!img.complete||!img.naturalWidth)return null;
-    const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
-    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);
-    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
-    return blob?new Uint8Array(await blob.arrayBuffer()):null;
-  }catch(e){return null}
-}
+const RHINO_MEMORY_KEYS={customers:'rhino_quote_customers_v2',sellers:'rhino_quote_sellers_v2'};
 
-function workbookStyles(){return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-<fonts count="6">
-<font><sz val="10"/><name val="Aptos"/><color rgb="FF20303A"/></font>
-<font><b/><sz val="11"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
-<font><b/><sz val="16"/><name val="Aptos Display"/><color rgb="FF0B3B59"/></font>
-<font><b/><sz val="12"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
-<font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF138879"/></font>
-<font><i/><sz val="9"/><name val="Aptos"/><color rgb="FF6E7E88"/></font>
-</fonts>
-<fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF0B3B59"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEAF7F4"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF5F8F8"/><bgColor indexed="64"/></patternFill></fill></fills>
-<borders count="3"><border/><border><left style="thin"><color rgb="FFD9E4E7"/></left><right style="thin"><color rgb="FFD9E4E7"/></right><top style="thin"><color rgb="FFD9E4E7"/></top><bottom style="thin"><color rgb="FFD9E4E7"/></bottom></border><border><bottom style="thin"><color rgb="FF138879"/></bottom></border></borders>
-<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-<cellXfs count="11">
-<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-<xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
-<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-<xf numFmtId="3" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-<xf numFmtId="3" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-<xf numFmtId="0" fontId="3" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-<xf numFmtId="0" fontId="5" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-<xf numFmtId="0" fontId="4" fillId="0" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-<xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-</cellXfs>
-<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
-</styleSheet>`}
-function buildQuoteSheet(info,type,data,hasLogo){
-  const rows=[];
-  rows.push(row(1,[cell(2,1,'CÔNG TY TNHH CARBON BILLIARDS',1)],26));
-  rows.push(row(2,[cell(2,2,type==='rental'?'BÁO GIÁ THUÊ GẬY CLB':'BÁO GIÁ MUA GẬY CLB',2)],24));
-  rows.push(row(4,[cell(0,4,'Khách hàng',2),cell(1,4,info.customer,0),cell(3,4,'Ngày báo giá',2),cell(4,4,new Date().toLocaleDateString('vi-VN'),0)],20));
-  rows.push(row(5,[cell(0,5,'CLB / Quán',2),cell(1,5,info.club,0)],20));
-  rows.push(row(6,[cell(0,6,'Địa chỉ',2),cell(1,6,info.address,0)],26));
-  let r=8;
-  if(type==='rental'){
-    rows.push(row(r,[cell(0,r,'NỘI DUNG BÁO GIÁ',3),cell(1,r,'THÔNG TIN',3),cell(3,r,'GIÁ TRỊ',3)],24));r++;
-    const items=[
-      ['Phương án',data.name,''],
-      ['Số gậy tính phí',`${data.n} gậy`,''],
-      ['Đơn giá / gậy / tháng','',data.unit],
-      ['Số tháng thanh toán',`${data.paid??data.use} tháng`,''],
-      ['Tổng tiền thuê','',data.rent],
-      ['Gậy dự phòng',`${data.backup} gậy (+${Math.round(data.backupPct*100)}%)`,''],
-      ['Tổng gậy thực nhận',`${data.total} gậy`,''],
-      ['Thời gian sử dụng thực tế',`${data.use} tháng${data.gift?` (+${data.gift} tháng tặng)`:''}`,''],
-      ['Tiền cọc','',data.deposit],
-      ['Thanh toán ban đầu','',data.initial],
-      ['Chi phí thực tế / gậy / tháng','',data.effective]
-    ];
-    items.forEach((it,i)=>{const money=it[2]!=='';rows.push(row(r,[cell(0,r,it[0],i===10?7:4),cell(1,r,it[1],i===10?10:4),money?cell(3,r,it[2],i===10?6:5,'n'):cell(3,r,'',4)],22));r++});
-    rows.push(row(r+1,[cell(0,r+1,'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.',8)],28));
-    r+=3;
-  }else{
-    rows.push(row(r,[cell(0,r,'HẠNG MỤC',3),cell(1,r,'SỐ LƯỢNG',3),cell(3,r,'ĐƠN GIÁ',3),cell(4,r,'THÀNH TIỀN',3)],24));r++;
-    rows.push(row(r,[cell(0,r,`Gậy Rhino ${data.model}`,4),cell(1,r,`${data.qty} gậy`,4),cell(3,r,data.unit,5,'n'),cell(4,r,data.total,6,'n')],25));r+=2;
-  }
-  rows.push(row(r,[cell(0,r,'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.',9)],22));
-  rows.push(row(r+1,[cell(0,r+1,'Trân trọng — CÔNG TY TNHH CARBON BILLIARDS',8)],22));
-  const end=r+1;
-  const merges=['C1:F1','C2:F2','B4:C4','E4:F4','B5:F5','B6:F6'];
-  if(type==='rental'){
-    for(let rr=8;rr<=19;rr++){merges.push(`B${rr}:C${rr}`,`D${rr}:F${rr}`)}
-    merges.push(`A21:F21`,`A23:F23`,`A24:F24`);
-  }else{
-    merges.push('B8:C8','E8:F8','B9:C9','E9:F9',`A11:F11`,`A12:F12`);
-  }
-  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<dimension ref="A1:F${end}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
-<sheetFormatPr defaultRowHeight="18"/><cols><col min="1" max="1" width="25" customWidth="1"/><col min="2" max="3" width="16" customWidth="1"/><col min="4" max="4" width="18" customWidth="1"/><col min="5" max="6" width="17" customWidth="1"/></cols>
-<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map(m=>`<mergeCell ref="${m}"/>`).join('')}</mergeCells>${hasLogo?'<drawing r:id="rId1"/>':''}
-<pageMargins left="0.35" right="0.35" top="0.5" bottom="0.5" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>
-</worksheet>`
+function compactSpaces(v){return String(v||'').trim().replace(/\s+/g,' ')}
+function countLetters(v){return (String(v||'').match(/[\p{L}]/gu)||[]).length}
+function validHumanName(v){const s=compactSpaces(v);return s.length>=2&&s.length<=60&&countLetters(s)>=2&&/^[\p{L}\p{M} .'-]+$/u.test(s)}
+function validClub(v){const s=compactSpaces(v);return s.length>=2&&s.length<=100&&/[\p{L}\p{N}]/u.test(s)}
+function validAddress(v){const s=compactSpaces(v);return s.length>=5&&s.length<=180&&/[\p{L}\p{N}]/u.test(s)}
+function validEmail(v){const s=String(v||'').trim();if(!s)return true;if(s.length>120||s.includes('..'))return false;return /^[^\s@]+@[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?\.[A-Za-z]{2,}$/i.test(s)}
+function phoneDigits(v){return String(v||'').replace(/^\+/,'')}
+function isSimpleSequence(s){
+  const bad=['0123456789','1234567890','9876543210','0987654321'];
+  if(bad.some(x=>s.includes(x)))return true;
+  if(/^(\d)\1{9,}$/.test(s))return true;
+  return false;
 }
-async function createQuoteXlsx(type,info,data){
-  if(typeof JSZip==='undefined'){alert('Không thể khởi tạo file Excel. Vui lòng kiểm tra asset/jszip.min.js');return}
-  const zip=new JSZip();const logo=await tryLogoBytes();const hasLogo=!!logo;
-  zip.file('[Content_Types].xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>${hasLogo?'<Default Extension="png" ContentType="image/png"/>':''}<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${hasLogo?'<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>':''}</Types>`);
-  zip.folder('_rels').file('.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`);
-  zip.folder('xl').file('workbook.xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView/></bookViews><sheets><sheet name="BÁO GIÁ" sheetId="1" r:id="rId1"/></sheets></workbook>`);
-  zip.folder('xl').folder('_rels').file('workbook.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`);
-  zip.folder('xl').file('styles.xml',workbookStyles());
-  zip.folder('xl').folder('worksheets').file('sheet1.xml',buildQuoteSheet(info,type,data,hasLogo));
-  if(hasLogo){
-    zip.folder('xl').folder('worksheets').folder('_rels').file('sheet1.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing1.xml"/></Relationships>`);
-    zip.folder('xl').folder('drawings').file('drawing1.xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><xdr:twoCellAnchor editAs="oneCell"><xdr:from><xdr:col>0</xdr:col><xdr:colOff>100000</xdr:colOff><xdr:row>0</xdr:row><xdr:rowOff>100000</xdr:rowOff></xdr:from><xdr:to><xdr:col>2</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>3</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:pic><xdr:nvPicPr><xdr:cNvPr id="1" name="Rhino Logo"/><xdr:cNvPicPr/></xdr:nvPicPr><xdr:blipFill><a:blip xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></xdr:blipFill><xdr:spPr><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></xdr:spPr></xdr:pic><xdr:clientData/></xdr:twoCellAnchor></xdr:wsDr>`);
-    zip.folder('xl').folder('drawings').folder('_rels').file('drawing1.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/logo.png"/></Relationships>`);
-    zip.folder('xl').folder('media').file('logo.png',logo);
-  }
-  const blob=await zip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',compression:'DEFLATE'});
-  const nameBase=type==='rental'?'Bao_gia_thue_gay_Rhino':'Bao_gia_mua_gay_Rhino';
-  const fileName=`${nameBase}_${type==='purchase'?data.model+'_':''}${safeName(info.club)}_${new Date().toISOString().slice(0,10)}.xlsx`;
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+function validPhone(v){const s=String(v||'').trim();if(!/^\+?\d{10,15}$/.test(s))return false;const d=phoneDigits(s);if(isSimpleSequence(d))return false;return true}
+function validOptionalInteger(raw,max=9999){const s=String(raw??'').trim();if(!s)return true;return /^\d+$/.test(s)&&Number(s)>=0&&Number(s)<=max}
+function readStore(key){try{const x=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(x)?x:[]}catch(_){return []}}
+function writeStore(key,items){try{localStorage.setItem(key,JSON.stringify(items.slice(0,40)))}catch(_){}}
+function entryKey(kind,item){return kind==='customers'?`${item.name}|${item.club}|${item.address}`:`${item.name}|${item.phone}`}
+function saveSmartEntry(kind,item){
+  const key=RHINO_MEMORY_KEYS[kind],list=readStore(key),ek=entryKey(kind,item).toLowerCase();
+  const next=[item,...list.filter(x=>entryKey(kind,x).toLowerCase()!==ek)];writeStore(key,next);
+}
+function deleteSmartEntry(kind,index){const key=RHINO_MEMORY_KEYS[kind],list=readStore(key);list.splice(index,1);writeStore(key,list)}
+
+function renderSmartSuggestions(kind,query=''){
+  const box=$(kind==='customers'?'customerSuggestions':'sellerSuggestions');if(!box)return;
+  const all=readStore(RHINO_MEMORY_KEYS[kind]);const q=compactSpaces(query).toLocaleLowerCase('vi');
+  const indexed=all.map((item,index)=>({item,index})).filter(({item})=>!q||String(item.name||'').toLocaleLowerCase('vi').includes(q)).slice(0,10);
+  box.innerHTML='';
+  if(!all.length||(!indexed.length&&q)){box.classList.remove('open');box.setAttribute('aria-hidden','true');return}
+  const head=document.createElement('div');head.className='smart-suggest-head';head.innerHTML='<span>Thông tin đã lưu</span>';
+  const clear=document.createElement('button');clear.type='button';clear.className='smart-clear';clear.textContent='Xóa tất cả';clear.addEventListener('click',e=>{e.stopPropagation();writeStore(RHINO_MEMORY_KEYS[kind],[]);renderSmartSuggestions(kind,'')});head.appendChild(clear);box.appendChild(head);
+  indexed.forEach(({item,index})=>{
+    const row=document.createElement('div');row.className='smart-option';
+    const pick=document.createElement('button');pick.type='button';pick.className='smart-pick';
+    const sub=kind==='customers'?[item.club,item.address].filter(Boolean).join(' · '):item.phone;
+    const strong=document.createElement('strong');strong.textContent=item.name||'';const small=document.createElement('small');small.textContent=sub||'';pick.append(strong,small);
+    pick.addEventListener('click',()=>{
+      if(kind==='customers'){$('quoteCustomerName').value=item.name||'';$('quoteClubName').value=item.club||'';$('quoteAddress').value=item.address||''}
+      else{$('quoteSellerName').value=item.name||'';$('quoteSellerPhone').value=item.phone||''}
+      box.classList.remove('open');box.setAttribute('aria-hidden','true');
+    });
+    const del=document.createElement('button');del.type='button';del.className='smart-delete';del.textContent='×';del.title='Xóa mục đã lưu';del.setAttribute('aria-label','Xóa mục đã lưu');
+    del.addEventListener('click',e=>{e.stopPropagation();deleteSmartEntry(kind,index);renderSmartSuggestions(kind,query)});
+    row.append(pick,del);box.appendChild(row);
+  });
+  box.classList.add('open');box.setAttribute('aria-hidden','false');
+}
+function setupSmartInput(inputId,kind){const input=$(inputId);if(!input)return;input.addEventListener('focus',()=>renderSmartSuggestions(kind,input.value));input.addEventListener('input',()=>renderSmartSuggestions(kind,input.value))}
+setupSmartInput('quoteCustomerName','customers');setupSmartInput('quoteSellerName','sellers');
+document.addEventListener('click',e=>{if(!e.target.closest('.smart-field'))document.querySelectorAll('.smart-suggestions').forEach(x=>{x.classList.remove('open');x.setAttribute('aria-hidden','true')})});
+
+function quoteInfoFromForm(){return {customer:compactSpaces($('quoteCustomerName').value),club:compactSpaces($('quoteClubName').value),address:compactSpaces($('quoteAddress').value),seller:compactSpaces($('quoteSellerName').value),sellerPhone:$('quoteSellerPhone').value.trim()}}
+function validateQuoteInfo(info){
+  if(!validHumanName(info.customer))return 'Tên khách hàng cần có ít nhất 2 ký tự chữ và không chứa ký tự bất thường.';
+  if(!validClub(info.club))return 'Tên CLB / quán chưa hợp lệ.';
+  if(!validAddress(info.address))return 'Địa chỉ cần rõ ràng và có ít nhất 5 ký tự.';
+  if(!validHumanName(info.seller))return 'Tên người lập báo giá chưa hợp lệ.';
+  if(!validPhone(info.sellerPhone))return 'Số liên hệ phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
+  return '';
 }
 function openQuoteClient(type){
-  if(type==='rental'){
-    const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}
-  }else{
-    const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}
-  }
-  pendingQuoteType=type;$('quoteError').textContent='';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),80);
+  if(type==='rental'){const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}}
+  else{const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}}
+  pendingQuoteType=type;$('quoteError').textContent='';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
 }
 $('exportRentalBtn').addEventListener('click',()=>openQuoteClient('rental'));
 $('exportBuyBtn').addEventListener('click',()=>openQuoteClient('purchase'));
 $('confirmQuoteExport').addEventListener('click',async()=>{
-  const info={customer:$('quoteCustomerName').value.trim(),club:$('quoteClubName').value.trim(),address:$('quoteAddress').value.trim()};
-  if(!info.customer||!info.club||!info.address){$('quoteError').textContent='Vui lòng điền đủ tên khách hàng, tên CLB / quán và địa chỉ.';return}
-  $('quoteError').textContent='';
-  const btn=$('confirmQuoteExport');const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
+  const info=quoteInfoFromForm(),err=validateQuoteInfo(info);if(err){$('quoteError').textContent=err;return}$('quoteError').textContent='';
+  const btn=$('confirmQuoteExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
   try{
-    if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}
+    if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');
     if(pendingQuoteType==='rental'){const {cues,months}=values();await window.RhinoExcel.exportQuote('rental',info,combinedPlan(cues,months))}
     else{await window.RhinoExcel.exportQuote('purchase',info,currentBuy())}
+    saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address});saveSmartEntry('sellers',{name:info.seller,phone:info.sellerPhone});
     closeModal('quoteClientModal');
-  }catch(err){console.error(err);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
+  }catch(ex){console.error(ex);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
   finally{btn.disabled=false;btn.textContent=old}
 });
-
 
 
 /* V16 — promotion menu + registration wizard + keyboard-aware modal viewport */
@@ -1085,20 +1099,20 @@ function registrationData(){
   return {customer:$('regCustomer').value.trim(),club:$('regClub').value.trim(),address:$('regAddress').value.trim(),phone:$('regPhone').value.trim(),email:$('regEmail').value.trim(),r68,r88,total:r68+r88,delivery,endDate:end?end.toLocaleDateString('vi-VN'):'—',duration:30};
 }
 function validateWizardStep(step=wizardStep){
-  const d=registrationData();
-  const errors=[!d.customer?'Vui lòng nhập tên khách hàng.':'',!d.club?'Vui lòng nhập tên quán / CLB.':'',!d.address?'Vui lòng nhập địa chỉ.':'',!d.phone?'Vui lòng nhập số điện thoại.':'','',null,null,!d.delivery?'Vui lòng chọn ngày giao nhận dự kiến.':''];
-  if(step===5 && d.r68<0)return 'Số lượng R-68 không hợp lệ.';
-  if(step===6 && d.r88<0)return 'Số lượng R-88 không hợp lệ.';
-  return errors[step]||'';
+  const d=registrationData(),rawEmail=$('regEmail').value.trim(),rawR68=$('regR68').value.trim(),rawR88=$('regR88').value.trim();
+  if(step===0&&!validHumanName(d.customer))return 'Tên khách hàng cần có ít nhất 2 ký tự chữ và không chứa ký tự bất thường.';
+  if(step===1&&!validClub(d.club))return 'Tên quán / CLB chưa hợp lệ.';
+  if(step===2&&!validAddress(d.address))return 'Địa chỉ cần rõ ràng và có ít nhất 5 ký tự.';
+  if(step===3&&!validPhone(d.phone))return 'Số điện thoại phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
+  if(step===4&&!validEmail(rawEmail))return 'Email chưa đúng cấu trúc, ví dụ ten@gmail.com.';
+  if(step===5&&!validOptionalInteger(rawR68))return 'Số lượng R-68 phải là số nguyên từ 0 đến 9.999.';
+  if(step===6&&!validOptionalInteger(rawR88))return 'Số lượng R-88 phải là số nguyên từ 0 đến 9.999.';
+  if(step===7&&!d.delivery)return 'Vui lòng chọn ngày giao nhận dự kiến.';
+  return '';
 }
 function validateRegistration(){
-  const d=registrationData();
-  if(!d.customer)return {ok:false,step:0,msg:'Vui lòng nhập tên khách hàng.'};
-  if(!d.club)return {ok:false,step:1,msg:'Vui lòng nhập tên quán / CLB.'};
-  if(!d.address)return {ok:false,step:2,msg:'Vui lòng nhập địa chỉ.'};
-  if(!d.phone)return {ok:false,step:3,msg:'Vui lòng nhập số điện thoại.'};
-  if(!d.delivery)return {ok:false,step:7,msg:'Vui lòng chọn ngày giao nhận dự kiến.'};
-  return {ok:true,data:d};
+  for(let i=0;i<regFieldIds.length;i++){const msg=validateWizardStep(i);if(msg)return {ok:false,step:i,msg}}
+  return {ok:true,data:registrationData()};
 }
 function renderWizard(){
   document.querySelectorAll('.wizard-step').forEach((el,i)=>el.classList.toggle('active',i===wizardStep));
@@ -1109,9 +1123,8 @@ function renderWizard(){
   const deliveryValue=$('regDelivery').value;
   $('regDeliveryDisplay').value=deliveryValue?dateVi(deliveryValue):'';
   const end=addDays(deliveryValue,30);$('regEndDate').textContent=`Ngày kết thúc dự kiến: ${end?end.toLocaleDateString('vi-VN'):'—'}`;
-  const requiredSteps=new Set([0,1,2,3,7]);
   const next=$('wizardNext');
-  if(next)next.disabled=requiredSteps.has(wizardStep)&&!!validateWizardStep(wizardStep);
+  if(next)next.disabled=!!validateWizardStep(wizardStep);
   setTimeout(()=>{const el=$(regFieldIds[wizardStep]);if(el && window.innerWidth>760 && wizardStep!==7)el.focus({preventScroll:true})},80);
 }
 function gotoWizard(step,focus=true){wizardStep=Math.max(0,Math.min(regFieldIds.length-1,step));renderWizard();if(focus)setTimeout(()=>$(regFieldIds[wizardStep])?.focus(),120)}
@@ -1147,8 +1160,12 @@ $('reviewBackBtn')?.addEventListener('click',()=>closeModal('promoReviewModal'))
 $('promoRegisterBtn')?.addEventListener('click',()=>{closeModal('promoModal');wizardStep=0;renderWizard();openModal('promoRegisterModal',false);setTimeout(()=>$(regFieldIds[0])?.focus(),120)});
 $('loyalRegisterBtn')?.addEventListener('click',()=>{closeModal('loyalPromoModal');$('loyalFormError').textContent='';openModal('loyalRegisterModal',false);setTimeout(()=>$('loyalCustomer')?.focus(),120)});
 $('loyalSubmitBtn')?.addEventListener('click',()=>{
-  const customer=$('loyalCustomer').value.trim(),club=$('loyalClub').value.trim(),phone=$('loyalPhone').value.trim(),plan=$('loyalPlan').value;
-  const err=!customer?'Vui lòng nhập tên khách hàng.':!club?'Vui lòng nhập tên quán / CLB.':!phone?'Vui lòng nhập số điện thoại.':!plan?'Vui lòng chọn gói ưu đãi.':'';
+  const customer=compactSpaces($('loyalCustomer').value),club=compactSpaces($('loyalClub').value),phone=$('loyalPhone').value.trim(),plan=$('loyalPlan').value;
+  let err='';
+  if(!validHumanName(customer))err='Tên khách hàng chưa hợp lệ.';
+  else if(!validClub(club))err='Tên quán / CLB chưa hợp lệ.';
+  else if(!validPhone(phone))err='Số điện thoại phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
+  else if(!plan)err='Vui lòng chọn gói ưu đãi.';
   if(err){$('loyalFormError').textContent=err;return}
   $('loyalFormError').textContent='Thông tin đã đầy đủ. Bản demo chưa kết nối hệ thống tiếp nhận đăng ký.';
 });
@@ -1195,7 +1212,7 @@ async function createPromoRegistrationXlsx(){
 }
 async function exportRegistration(btn){
   const check=validateRegistration();if(!check.ok){if($('promoReviewModal').classList.contains('open'))closeModal('promoReviewModal');gotoWizard(check.step);$('wizardError').textContent=check.msg;return}
-  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}await window.RhinoExcel.exportPromoRegistration(check.data);closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
+  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}await window.RhinoExcel.exportPromoRegistration(check.data);saveSmartEntry('customers',{name:check.data.customer,club:check.data.club,address:check.data.address});closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
 }
 $('wizardExport')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
 $('reviewExportBtn')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
