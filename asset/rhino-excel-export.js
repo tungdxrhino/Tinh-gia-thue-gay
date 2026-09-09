@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V22
+  Rhino Cue Platform - Excel Export V23
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -153,28 +153,29 @@
   <border><bottom style="thin"><color rgb="FF138879"/></bottom></border>
 </borders>
 <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-<cellXfs count="21">
+<cellXfs count="22">
   <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
   <xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
   <xf numFmtId="0" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="10" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="3" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="10" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="3" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="3" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="9" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="0" fontId="9" fillId="4" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="8" fillId="6" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="3" fontId="8" fillId="6" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="3" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="3" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
   <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
 </cellXfs>
 <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
 </styleSheet>`;
@@ -221,7 +222,7 @@
   function tableRow(r, values, opts = {}) {
     const promo = !!opts.promo;
     const styleText = promo ? 9 : 5;
-    const styleNum = promo ? 10 : 7;
+    const styleNum = promo ? 18 : 7;
     const styleDash = promo ? 11 : 8;
     return row(r, [
       cell(0, r, textOrDash(values[0]), values[0] ? styleText : styleDash),
@@ -236,8 +237,9 @@
   function rentalTableRow(r, values, opts = {}) {
     const promo = !!opts.promo;
     const styleText = promo ? 9 : 5;
-    const styleNum = promo ? 10 : 7;
+    const styleNum = promo ? 18 : 7;
     const styleDash = promo ? 11 : 8;
+    const payableStyle = opts.payableLast ? 10 : styleNum;
     return row(r, [
       cell(0, r, textOrDash(values[0]), values[0] ? styleText : styleDash),
       cell(1, r, textOrDash(values[1]), values[1] ? styleText : styleDash),
@@ -246,20 +248,24 @@
       numOrDash(4, r, values[4], styleNum, styleDash),
       numOrDash(5, r, values[5], styleNum, styleDash),
       numOrDash(6, r, values[6], styleNum, styleDash),
-      numOrDash(7, r, values[7], styleNum, styleDash)
+      numOrDash(7, r, values[7], payableStyle, styleDash)
     ], opts.height || 25);
   }
 
-  function quoteCommonRows(info, title, wide = false) {
+  function quoteCommonRows(info, title, wide = false, subtitle = '') {
     const now = new Date();
     if (wide) {
-      return [
+      const out = [
         row(1, [cell(4, 1, COMPANY, 1)], 22),
-        row(2, [cell(0, 2, title, 2)], 30),
+        row(2, [cell(0, 2, title, 2)], 30)
+      ];
+      if (subtitle) out.push(row(3, [cell(0, 3, subtitle, 21)], 20));
+      out.push(
         infoRowWide(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
         infoRowWide(5, 'CLB / Quán', info.club, 'Người lập báo giá', info.seller),
         infoRowWide(6, 'Địa chỉ', info.address, 'Liên hệ', info.sellerPhone)
-      ];
+      );
+      return out;
     }
     return [
       row(1, [cell(3, 1, COMPANY, 1)], 22),
@@ -330,9 +336,10 @@
   function buildQuoteSheet(info, type, data, hasLogo) {
     const isRental = type === 'rental';
     const title = isRental ? 'BÁO GIÁ THUÊ GẬY CLB' : 'BÁO GIÁ MUA GẬY CLB';
-    const rows = quoteCommonRows(info, title, isRental);
+    const validityNote = isRental ? '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)' : '';
+    const rows = quoteCommonRows(info, title, isRental, validityNote);
     const merges = isRental
-      ? ['E1:H1', 'A2:H2', 'B4:D4', 'G4:H4', 'B5:D5', 'G5:H5', 'B6:D6', 'G6:H6']
+      ? ['E1:H1', 'A2:H2', 'A3:H3', 'B4:D4', 'G4:H4', 'B5:D5', 'G5:H5', 'B6:D6', 'G6:H6']
       : ['D1:F1', 'A2:F2', 'B4:C4', 'E4:F4', 'B5:C5', 'E5:F5', 'B6:C6', 'E6:F6'];
     let r = 8;
 
@@ -358,7 +365,7 @@
         monthlyTotal,
         p.paid,
         p.rent
-      ]));
+      ], { payableLast: true }));
       r++;
 
       if (p.gift > 0) {
