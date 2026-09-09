@@ -1021,8 +1021,9 @@ $('confirmQuoteExport').addEventListener('click',async()=>{
   $('quoteError').textContent='';
   const btn=$('confirmQuoteExport');const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
   try{
-    if(pendingQuoteType==='rental'){const {cues,months}=values();await createQuoteXlsx('rental',info,combinedPlan(cues,months))}
-    else{await createQuoteXlsx('purchase',info,currentBuy())}
+    if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}
+    if(pendingQuoteType==='rental'){const {cues,months}=values();await window.RhinoExcel.exportQuote('rental',info,combinedPlan(cues,months))}
+    else{await window.RhinoExcel.exportQuote('purchase',info,currentBuy())}
     closeModal('quoteClientModal');
   }catch(err){console.error(err);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
   finally{btn.disabled=false;btn.textContent=old}
@@ -1194,7 +1195,7 @@ async function createPromoRegistrationXlsx(){
 }
 async function exportRegistration(btn){
   const check=validateRegistration();if(!check.ok){if($('promoReviewModal').classList.contains('open'))closeModal('promoReviewModal');gotoWizard(check.step);$('wizardError').textContent=check.msg;return}
-  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{await createPromoRegistrationXlsx();closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
+  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}await window.RhinoExcel.exportPromoRegistration(check.data);closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
 }
 $('wizardExport')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
 $('reviewExportBtn')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
