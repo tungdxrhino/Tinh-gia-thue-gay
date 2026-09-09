@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V24
+  Rhino Cue Platform - Excel Export V26
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -187,13 +187,13 @@
       cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)
     ];
     if (rightLabel) cells.push(cell(3, r, rightLabel, 17), cell(4, r, textOrDash(rightValue), rightValue ? 0 : 8));
-    return row(r, cells, 23);
+    return row(r, cells, 21);
   }
 
   function infoRowWide(r, leftLabel, leftValue, rightLabel, rightValue) {
     const cells = [cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)];
     if (rightLabel) cells.push(cell(5, r, rightLabel, 17), cell(6, r, textOrDash(rightValue), rightValue ? 0 : 8));
-    return row(r, cells, 23);
+    return row(r, cells, 21);
   }
 
   function tableHeader(r) {
@@ -214,7 +214,7 @@
       cell(2, r, 'QUY CÁCH', 3),
       cell(3, r, 'ĐƠN GIÁ', 3),
       cell(4, r, 'SỐ LƯỢNG', 3),
-      cell(5, r, 'TỔNG GIÁ / THÁNG', 3),
+      cell(5, r, 'GIÁ / THÁNG', 3),
       cell(6, r, 'SỐ THÁNG', 3),
       cell(7, r, 'THÀNH TIỀN', 3)
     ], 28);
@@ -254,27 +254,15 @@
     ], opts.height || 25);
   }
 
-  function quoteCommonRows(info, title, wide = false, subtitle = '') {
+  function quoteCommonRows(info, title, wide = true, subtitle = '') {
     const now = new Date();
-    if (wide) {
-      const out = [
-        row(1, [cell(4, 1, COMPANY, 1)], 24),
-        row(2, [cell(0, 2, title, 2)], 34)
-      ];
-      if (subtitle) out.push(row(3, [cell(0, 3, subtitle, 21)], 23));
-      out.push(
-        infoRowWide(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
-        infoRowWide(5, 'CLB / Quán', info.club, 'Người lập báo giá', info.seller),
-        infoRowWide(6, 'Địa chỉ', info.address, 'Liên hệ', info.sellerPhone)
-      );
-      return out;
-    }
     return [
-      row(1, [cell(3, 1, COMPANY, 1)], 24),
-      row(2, [cell(0, 2, title, 2)], 34),
-      infoRow(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
-      infoRow(5, 'CLB / Quán', info.club, 'Người lập báo giá', info.seller),
-      infoRow(6, 'Địa chỉ', info.address, 'Liên hệ', info.sellerPhone)
+      row(1, [cell(4, 1, COMPANY, 1)], 21.95),
+      row(2, [cell(0, 2, title, 2)], 30),
+      row(3, [cell(0, 3, subtitle || '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)', 21)], 20.1),
+      infoRowWide(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
+      infoRowWide(5, 'Câu lạc bộ / Quán', info.club, 'Người lập báo giá', info.seller),
+      infoRowWide(6, 'Địa chỉ câu lạc bộ', info.address, 'Liên hệ', info.sellerPhone)
     ];
   }
 
@@ -326,7 +314,7 @@
   }
 
   function rentalSummaryRow(r, label, value, total = false) {
-    if (total) return row(r, [cell(0, r, label, 15), cell(7, r, value, 16, 'n')], 28);
+    if (total) return row(r, [cell(0, r, label, 15), cell(7, r, value, 16, 'n')], 27.95);
     return row(r, [cell(0, r, label, 14), cell(7, r, value, 22, 'n')], 27);
   }
 
@@ -338,11 +326,8 @@
   function buildQuoteSheet(info, type, data, hasLogo) {
     const isRental = type === 'rental';
     const title = isRental ? 'BÁO GIÁ THUÊ GẬY CLB' : 'BÁO GIÁ MUA GẬY CLB';
-    const validityNote = isRental ? '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)' : '';
-    const rows = quoteCommonRows(info, title, isRental, validityNote);
-    const merges = isRental
-      ? ['E1:H1', 'A2:H2', 'A3:H3', 'B4:D4', 'G4:H4', 'B5:D5', 'G5:H5', 'B6:D6', 'G6:H6']
-      : ['D1:F1', 'A2:F2', 'B4:C4', 'E4:F4', 'B5:C5', 'E5:F5', 'B6:C6', 'E6:F6'];
+    const rows = quoteCommonRows(info, title, true, '(Báo giá có giá trị 14 ngày kể từ ngày báo giá)');
+    const merges = ['E1:H1', 'A2:H2', 'A3:H3', 'B4:D4', 'G4:H4', 'B5:D5', 'G5:H5', 'B6:D6', 'G6:H6'];
     let r = 8;
 
     if (isRental) {
@@ -367,7 +352,7 @@
         monthlyTotal,
         p.paid,
         p.rent
-      ], { payableLast: true }));
+      ], { payableLast: true, height: 24.95 }));
       r++;
 
       if (p.gift > 0) {
@@ -380,7 +365,7 @@
           monthlyTotal,
           p.gift,
           giftValue
-        ], { promo: true }));
+        ], { promo: true, height: 24.95 }));
         r++;
       }
 
@@ -394,7 +379,7 @@
           backupMonthlyValue,
           p.use,
           backupValue
-        ], { promo: true }));
+        ], { promo: true, height: 24.95 }));
         r++;
       }
 
@@ -408,7 +393,7 @@
           '',
           '',
           p.deposit
-        ]));
+        ], { height: 24.95 }));
         r++;
       }
 
@@ -419,31 +404,35 @@
       merges.push(`A${r}:G${r}`);
       r++;
 
+      // Footer giữ đúng cấu trúc mẫu: 1 dòng trắng → ghi chú → điều khoản → 1 dòng trắng → cảm ơn → trân trọng.
+      rows.push(row(r, [], 15));
       rows.push(row(r + 1, [cell(0, r + 1,
         `Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 14)], 30));
       merges.push(`A${r + 1}:H${r + 1}`);
       rows.push(row(r + 2, [cell(0, r + 2,
         'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], 27));
       merges.push(`A${r + 2}:H${r + 2}`);
+      rows.push(row(r + 3, [], 15));
       rows.push(row(r + 4, [cell(0, r + 4,
-        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], 32));
+        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], 30));
       merges.push(`A${r + 4}:H${r + 4}`);
-      rows.push(row(r + 6, [cell(0, r + 6,
-        `Trân trọng — ${COMPANY}`, 20)], 27));
-      merges.push(`A${r + 6}:H${r + 6}`);
-      r = r + 6;
+      rows.push(row(r + 5, [cell(0, r + 5,
+        `Trân trọng — ${COMPANY}`, 20)], 15));
+      merges.push(`A${r + 5}:H${r + 5}`);
+      r = r + 5;
 
       return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
-<sheetFormatPr defaultRowHeight="19"/><cols>
-<col min="1" max="1" width="25" customWidth="1"/><col min="2" max="2" width="27" customWidth="1"/><col min="3" max="3" width="12.5" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="12.5" customWidth="1"/><col min="6" max="6" width="21" customWidth="1"/><col min="7" max="7" width="12.5" customWidth="1"/><col min="8" max="8" width="19" customWidth="1"/>
+<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="13.5"/><cols>
+<col min="1" max="1" width="25.7109375" customWidth="1"/><col min="2" max="2" width="30.7109375" customWidth="1"/><col min="3" max="3" width="12.7109375" customWidth="1"/><col min="4" max="4" width="14.7109375" customWidth="1"/><col min="5" max="5" width="12.7109375" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.7109375" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
-<pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
+<pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
 </worksheet>`;
     }
 
+    // Báo giá mua: dùng cùng header/footer 8 cột của mẫu, giữ nguyên nội dung bảng mua hiện tại.
     rows.push(tableHeader(r));
     r++;
     const p = purchasePricing(data);
@@ -475,63 +464,116 @@
     rows.push(purchaseSummaryRow(r, 'TỔNG TIỀN KHÁCH HÀNG CHI TRẢ', p.finalPay, true));
     merges.push(`A${r}:E${r}`);
     r++;
+    rows.push(row(r, [], 15));
     rows.push(row(r + 1, [cell(0, r + 1,
-      `Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy. Báo giá áp dụng cho số lượng ${p.qty} gậy.`, 14)], 28));
-    merges.push(`A${r + 1}:F${r + 1}`);
-    rows.push(row(r + 3, [cell(0, r + 3,
+      `Đơn giá sau ưu đãi: ${moneyText(p.finalUnit)} VND / gậy. Báo giá áp dụng cho số lượng ${p.qty} gậy.`, 14)], 30));
+    merges.push(`A${r + 1}:H${r + 1}`);
+    rows.push(row(r + 2, [cell(0, r + 2,
+      'Giá bán đã gồm VAT. Các nội dung áp dụng theo chính sách tại thời điểm xác nhận.', 13)], 27));
+    merges.push(`A${r + 2}:H${r + 2}`);
+    rows.push(row(r + 3, [], 15));
+    rows.push(row(r + 4, [cell(0, r + 4,
       'Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino.', 19)], 30));
-    merges.push(`A${r + 3}:F${r + 3}`);
+    merges.push(`A${r + 4}:H${r + 4}`);
     rows.push(row(r + 5, [cell(0, r + 5,
-      `Trân trọng — ${COMPANY}`, 20)], 27));
-    merges.push(`A${r + 5}:F${r + 5}`);
+      `Trân trọng — ${COMPANY}`, 20)], 15));
+    merges.push(`A${r + 5}:H${r + 5}`);
     r = r + 5;
 
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<dimension ref="A1:F${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
-<sheetFormatPr defaultRowHeight="19"/><cols>
-<col min="1" max="1" width="24" customWidth="1"/><col min="2" max="2" width="30" customWidth="1"/><col min="3" max="3" width="13" customWidth="1"/><col min="4" max="4" width="16" customWidth="1"/><col min="5" max="5" width="14" customWidth="1"/><col min="6" max="6" width="19" customWidth="1"/>
+<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="13.5"/><cols>
+<col min="1" max="1" width="25.7109375" customWidth="1"/><col min="2" max="2" width="30.7109375" customWidth="1"/><col min="3" max="3" width="12.7109375" customWidth="1"/><col min="4" max="4" width="14.7109375" customWidth="1"/><col min="5" max="5" width="12.7109375" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.7109375" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
 </worksheet>`;
   }
 
+
   function buildPromoRegistrationSheet(data, hasLogo, createdAt) {
+    const tables = Math.max(0, Number(data.tables || 0));
+    const recommendedPlaying = Math.max(0, Number(data.recommendedPlaying || (tables * 2)));
+    const requestedPlaying = Math.max(0, Number(data.requestedPlaying || ((Number(data.r68 || 0)) + (Number(data.r88 || 0)))));
+    const playing = requestedPlaying > 0 ? requestedPlaying : recommendedPlaying;
+    const breakCues = Math.max(0, Number(data.breakCues ?? 0));
+    const jumpCues = Math.max(0, Number(data.jumpCues ?? 0));
+    const legacyBreakJump = Math.max(0, Number(data.breakJump ?? data.recommendedBreakJump ?? (tables ? Math.ceil(tables / 3) : 0)));
+    const breakJump = (breakCues + jumpCues) > 0 ? (breakCues + jumpCues) : legacyBreakJump;
+    const total = playing + breakJump;
     const rows = [
-      row(1, [cell(3, 1, COMPANY, 1)], 22),
-      row(2, [cell(0, 2, 'PHIẾU ĐĂNG KÝ TRẢI NGHIỆM GẬY 30 NGÀY', 2)], 30),
-      infoRow(4, 'Thời gian lập phiếu', createdAt, 'Hạn đăng ký CT', '15/12/2026'),
-      infoRow(5, 'Khách hàng', data.customer, 'Số điện thoại', data.phone),
-      infoRow(6, 'CLB / Quán', data.club, 'Email', data.email || ''),
-      infoRow(7, 'Địa chỉ', data.address, 'Giao nhận dự kiến', formatDateVi(data.delivery)),
-      infoRow(8, 'Kết thúc dự kiến', data.endDate, 'Thời hạn', '30 ngày')
+      row(1, [cell(4, 1, COMPANY, 1)], 21.95),
+      row(2, [cell(0, 2, 'PHIẾU ĐĂNG KÝ PILOT 30 NGÀY – HỆ THỐNG GẬY CARBON CHO CLB', 2)], 30),
+      row(3, [cell(0, 3, '(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 21)], 20.1),
+      infoRowWide(4, 'Khách hàng', data.customer, 'Thời gian lập phiếu', createdAt),
+      infoRowWide(5, 'Câu lạc bộ / Quán', data.club, 'Số điện thoại', data.phone),
+      infoRowWide(6, 'Địa chỉ câu lạc bộ', data.address, 'Email', data.email || ''),
+      infoRowWide(7, 'Số bàn', tables ? `${tables} bàn` : '', 'Giao nhận dự kiến', formatDateVi(data.delivery)),
+      infoRowWide(8, 'Thời hạn Pilot', '30 ngày', 'Kết thúc dự kiến', data.endDate),
+      infoRowWide(9, 'Cấu hình tham chiếu', tables ? '2 gậy đánh/bàn · ~1 phá/nhảy/3 bàn' : '', 'Hạn đăng ký CT', '15/12/2026')
     ];
-    const merges = ['D1:F1', 'A2:F2', 'B4:C4', 'E4:F4', 'B5:C5', 'E5:F5', 'B6:C6', 'E6:F6', 'B7:C7', 'E7:F7', 'B8:C8', 'E8:F8'];
-    let r = 10;
+    const merges = [
+      'E1:H1','A2:H2','A3:H3',
+      'B4:D4','G4:H4','B5:D5','G5:H5','B6:D6','G6:H6','B7:D7','G7:H7','B8:D8','G8:H8','B9:D9','G9:H9'
+    ];
+    let r = 11;
     rows.push(tableHeader(r)); r++;
-    rows.push(tableRow(r, ['Rhino R-68', 'Trải nghiệm 30 ngày', 'Dòng gậy mới dành cho CLB', '', Number(data.r68 || 0), 0])); r++;
-    rows.push(tableRow(r, ['Rhino R-88', 'Trải nghiệm 30 ngày', 'Dòng gậy mới dành cho CLB', '', Number(data.r88 || 0), 0])); r++;
-    rows.push(tableRow(r, ['', 'Khuyến mại', 'Miễn phí 100% phí trải nghiệm', '', '', 0], { promo: true })); r++;
-    rows.push(tableRow(r, ['', 'Ưu đãi', 'Không đặt cọc', '', '', 0], { promo: true })); r++;
-    rows.push(row(r + 1, [cell(0, r + 1, 'Chương trình áp dụng theo điều kiện xác nhận của Rhino tại thời điểm triển khai.', 13)], 28));
-    merges.push(`A${r + 1}:F${r + 1}`);
-    rows.push(row(r + 2, [cell(0, r + 2, 'Cảm ơn Quý CLB đã đăng ký trải nghiệm sản phẩm Rhino.', 13)], 24));
-    merges.push(`A${r + 2}:F${r + 2}`);
-    const totalRow = r + 4;
-    rows.push(row(totalRow, [cell(0, totalRow, 'TỔNG GIÁ TRỊ KHÁCH HÀNG CHI TRẢ', 15), cell(5, totalRow, 0, 16, 'n')], 28));
-    merges.push(`A${totalRow}:E${totalRow}`);
+
+    if (requestedPlaying > 0) {
+      if (Number(data.r68 || 0) > 0) {
+        rows.push(tableRow(r, ['Gậy đánh CLB R-68', 'Pilot 30 ngày', 'Gậy', 0, Number(data.r68 || 0), 0])); r++;
+      }
+      if (Number(data.r88 || 0) > 0) {
+        rows.push(tableRow(r, ['Gậy đánh CLB R-88', 'Pilot 30 ngày', 'Gậy', 0, Number(data.r88 || 0), 0])); r++;
+      }
+    } else {
+      rows.push(tableRow(r, ['Gậy đánh CLB R-68 / R-88', 'Cấu hình đề xuất – Carbon duyệt', 'Gậy', 0, playing, 0])); r++;
+    }
+
+    if ((breakCues + jumpCues) > 0) {
+      if (breakCues > 0) { rows.push(tableRow(r, ['Gậy phá CLB', 'Cấu hình Pilot – Carbon duyệt', 'Gậy', 0, breakCues, 0])); r++; }
+      if (jumpCues > 0) { rows.push(tableRow(r, ['Gậy nhảy CLB', 'Cấu hình Pilot – Carbon duyệt', 'Gậy', 0, jumpCues, 0])); r++; }
+    } else if (breakJump > 0) {
+      rows.push(tableRow(r, ['Gậy phá/nhảy CLB', 'Trung bình ~3 bàn dùng chung 1 cây', 'Gậy', 0, breakJump, 0])); r++;
+    }
+
+    rows.push(tableRow(r, ['Dịch vụ bảo dưỡng', 'Bao gồm trong thời gian Pilot', 'Gói', 0, 1, 0])); r++;
+    rows.push(tableRow(r, ['Khuyến mại', 'Miễn phí 100% chương trình Pilot', 'Gói', 0, 1, 0], { promo: true })); r++;
+    rows.push(tableRow(r, ['Ưu đãi', 'Không đặt cọc', 'Gói', 0, 1, 0], { promo: true })); r++;
+
+    rows.push(purchaseSummaryRow(r, 'TỔNG SỐ GẬY DỰ KIẾN', total, false));
+    merges.push(`A${r}:E${r}`); r++;
+    rows.push(purchaseSummaryRow(r, 'TỔNG GIÁ TRỊ KHÁCH HÀNG CHI TRẢ', 0, true));
+    merges.push(`A${r}:E${r}`); r++;
+
+    rows.push(row(r, [], 15));
+    rows.push(row(r + 1, [cell(0, r + 1,
+      'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 14)], 34));
+    merges.push(`A${r + 1}:H${r + 1}`);
+    rows.push(row(r + 2, [cell(0, r + 2,
+      'Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 13)], 30));
+    merges.push(`A${r + 2}:H${r + 2}`);
+    rows.push(row(r + 3, [], 15));
+    rows.push(row(r + 4, [cell(0, r + 4,
+      'Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 19)], 30));
+    merges.push(`A${r + 4}:H${r + 4}`);
+    rows.push(row(r + 5, [cell(0, r + 5,
+      `Trân trọng — ${COMPANY}`, 20)], 15));
+    merges.push(`A${r + 5}:H${r + 5}`);
+    r = r + 5;
 
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<dimension ref="A1:F${totalRow}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
-<sheetFormatPr defaultRowHeight="19"/><cols>
-<col min="1" max="1" width="21" customWidth="1"/><col min="2" max="2" width="24" customWidth="1"/><col min="3" max="3" width="26" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="13" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/>
+<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="13.5"/><cols>
+<col min="1" max="1" width="25.7109375" customWidth="1"/><col min="2" max="2" width="30.7109375" customWidth="1"/><col min="3" max="3" width="12.7109375" customWidth="1"/><col min="4" max="4" width="14.7109375" customWidth="1"/><col min="5" max="5" width="12.7109375" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.7109375" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
 </worksheet>`;
   }
+
 
   function contentTypes(hasLogo) {
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>${hasLogo ? '<Default Extension="png" ContentType="image/png"/>' : ''}<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${hasLogo ? '<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>' : ''}</Types>`;
@@ -620,22 +662,31 @@
     const address = el('regAddress')?.value.trim() || '';
     const phone = el('regPhone')?.value.trim() || '';
     const email = el('regEmail')?.value.trim() || '';
-    const r68 = Math.max(0, parseInt(el('regR68')?.value || '0', 10) || 0);
-    const r88 = Math.max(0, parseInt(el('regR88')?.value || '0', 10) || 0);
+    const tables = Math.max(0, parseInt(el('regTables')?.value || '0', 10) || 0);
+    const useR68 = !!el('regUseR68')?.checked, useR88 = !!el('regUseR88')?.checked;
+    const useBreak = !!el('regUseBreak')?.checked, useJump = !!el('regUseJump')?.checked;
+    const r68 = useR68 ? Math.max(0, parseInt(el('regR68')?.value || '0', 10) || 0) : 0;
+    const r88 = useR88 ? Math.max(0, parseInt(el('regR88')?.value || '0', 10) || 0) : 0;
+    const breakCues = useBreak ? Math.max(0, parseInt(el('regBreakQty')?.value || '0', 10) || 0) : 0;
+    const jumpCues = useJump ? Math.max(0, parseInt(el('regJumpQty')?.value || '0', 10) || 0) : 0;
+    const requestedPlaying = r68 + r88;
+    const recommendedPlaying = tables * 2;
+    const recommendedBreakJump = tables ? Math.ceil(tables / 3) : 0;
+    const playing = requestedPlaying;
+    const breakJump = breakCues + jumpCues;
     const delivery = el('regDelivery')?.value || '';
     const end = delivery ? addDays(delivery, 30) : null;
     return {
-      customer, club, address, phone, email, r68, r88,
-      total: r68 + r88,
-      delivery,
-      endDate: end ? end.toLocaleDateString('vi-VN') : '',
-      duration: 30
+      customer, club, address, phone, email, tables, useR68, useR88, r68, r88,
+      requestedPlaying, recommendedPlaying, playing, useBreak, useJump, breakCues, jumpCues,
+      breakJump, recommendedBreakJump, total: playing + breakJump, delivery,
+      endDate: end ? end.toLocaleDateString('vi-VN') : '', duration: 30
     };
   }
 
   async function exportPromoRegistration(data) {
     const registration = data || readRegistrationFromPage();
-    if (!registration.customer || !registration.club || !registration.address || !registration.phone || !registration.delivery) {
+    if (!registration.customer || !registration.club || !registration.address || !registration.phone || !registration.tables || !registration.delivery) {
       throw new Error('Thiếu trường bắt buộc của phiếu đăng ký trải nghiệm.');
     }
 
@@ -648,7 +699,7 @@
   }
 
   const API = {
-    version: '2.2.0',
+    version: '2.5.0',
     exportQuote,
     exportPromoRegistration,
     readRegistrationFromPage,
