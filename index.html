@@ -482,6 +482,10 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
   .secondary strong{font-size:14px!important}
 }
 
+
+/* V25 — Pilot 30 ngày + ưu đãi Sau Pilot */
+.pilot-config{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.pilot-config>div{border:1px solid #e1ecea;background:#f8fbfa;border-radius:11px;padding:10px 8px;text-align:center}.pilot-config strong{display:block;color:var(--navy);font-size:15px;line-height:1.1;font-weight:900}.pilot-config span{display:block;color:#6f8088;font-size:11px;font-weight:700;margin-top:3px;line-height:1.25}.pilot-price-callout{margin-top:12px;padding:12px 14px;border-radius:12px;background:#fff8eb;border:1px solid #f0ddba;text-align:center}.pilot-price-callout span,.pilot-price-callout small{display:block;color:#7a6a50;font-size:11px;font-weight:700}.pilot-price-callout strong{display:block;color:#d16a19;font-size:21px;font-weight:950;line-height:1.15;margin:3px 0}.loyal-calc-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #dbe6e8;border-radius:12px;overflow:hidden;background:#fbfdfc}.loyal-calc-preview>div{padding:10px 11px;min-width:0}.loyal-calc-preview>div:nth-child(even){border-left:1px solid #e3ebed}.loyal-calc-preview>div:nth-child(n+3){border-top:1px solid #e3ebed}.loyal-calc-preview span{display:block;color:#73848d;font-size:12px;font-weight:650;line-height:1.2}.loyal-calc-preview strong{display:block;color:var(--navy);font-size:17px;font-weight:900;line-height:1.25;margin-top:4px}.pilot-suggest strong{font-size:15px!important}.post-pilot-badge{color:#d16a19!important;background:#fff4e5!important;border-color:#efd7b0!important}
+@media(max-width:760px){.pilot-config{grid-template-columns:1fr 1fr}.pilot-config>div:last-child{grid-column:1/-1}.pilot-config strong{font-size:14px}.pilot-config span{font-size:11px}.pilot-price-callout strong{font-size:18px}.loyal-calc-preview strong{font-size:16px}}
 </style>
 
 <style id="v20-readability-and-smart-fields">
@@ -668,6 +672,35 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
   .primary-metric.hero-number strong{font-size:clamp(20px,6vw,24px)!important}
 }
 </style>
+
+<style id="v27-pilot-allocation-ui">
+/* V27 — Pilot product allocation: checkbox + editable quantities. */
+.pilot-product-step{justify-content:flex-start!important;align-items:stretch!important;padding-top:14px!important}
+.pilot-choice-list{width:100%;display:grid;gap:10px}
+.pilot-choice-row{display:grid;grid-template-columns:minmax(150px,1fr) minmax(150px,.85fr);align-items:center;gap:12px;padding:12px 14px;border:1px solid #dce7e8;border-radius:13px;background:#fbfdfc;transition:border-color .16s,box-shadow .16s,background .16s}
+.pilot-choice-row.selected{border-color:rgba(17,143,126,.42);background:#f2faf7;box-shadow:0 0 0 2px rgba(17,143,126,.055)}
+.wizard-step .pilot-choice-label{width:auto!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;margin:0!important;font-size:15px!important;font-weight:850!important;color:var(--navy)!important;cursor:pointer}
+.pilot-choice-check{appearance:none;-webkit-appearance:none;width:21px!important;height:21px!important;min-width:21px!important;padding:0!important;margin:0!important;border:1.5px solid #aebec4!important;border-radius:6px!important;background:#fff!important;box-shadow:none!important;display:grid!important;place-items:center!important;cursor:pointer}
+.pilot-choice-check:checked{background:var(--teal)!important;border-color:var(--teal)!important}
+.pilot-choice-check:checked::after{content:'✓';color:#fff;font-size:14px;font-weight:950;line-height:1}
+.pilot-choice-qty{display:grid;grid-template-columns:auto minmax(74px,104px);align-items:center;justify-content:end;gap:9px;min-width:0}
+.pilot-choice-qty>span{font-size:12px;font-weight:650;color:#7b8b92;white-space:nowrap}
+.wizard-step .pilot-choice-qty input{width:100%!important;height:42px!important;padding:0 10px!important;border-radius:10px!important;font-size:16px!important;font-weight:850!important;text-align:right}
+.wizard-step .pilot-choice-qty input:disabled{background:#f2f5f5!important;color:#a6b0b5!important;border-color:#e1e7e9!important;opacity:1}
+.pilot-allocation-hint{width:100%;margin-top:11px;padding:10px 12px;border-radius:10px;background:#f4f8f8;color:#667982;font-size:12px;line-height:1.4;font-weight:600}
+.pilot-allocation-hint strong{color:var(--teal);font-weight:850}
+@media(max-width:760px){
+  .pilot-product-step{padding-top:8px!important}
+  .pilot-choice-row{grid-template-columns:minmax(0,1fr) minmax(132px,.9fr);padding:10px 11px;gap:8px}
+  .wizard-step .pilot-choice-label{font-size:14px!important}.pilot-choice-qty{grid-template-columns:auto 76px;gap:7px}.pilot-choice-qty>span{font-size:11px}.wizard-step .pilot-choice-qty input{height:40px!important;font-size:15px!important}.pilot-allocation-hint{font-size:11px}
+}
+@media(max-width:390px){
+  .pilot-choice-row{grid-template-columns:1fr;gap:8px}.pilot-choice-qty{grid-template-columns:1fr 92px;justify-content:stretch}.pilot-choice-qty>span{font-size:11px}
+}
+@media(orientation:landscape) and (max-height:520px){
+  .pilot-choice-list{gap:7px}.pilot-choice-row{padding:8px 10px}.pilot-allocation-hint{margin-top:7px;padding:7px 9px}
+}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -681,8 +714,8 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
       <div class="promo-menu-wrap" id="promoMenuWrap">
         <button class="nav-icon-btn promo promo-menu-trigger" id="promoMenuTrigger" type="button" title="CT Khuyến mại" aria-label="CT Khuyến mại" aria-haspopup="true" aria-expanded="false"><span class="menu-ico">★</span><span class="menu-label">CT Khuyến mại</span><span class="menu-caret">▾</span></button>
         <div class="promo-dropdown" id="promoDropdown" role="menu" aria-hidden="true">
-          <button type="button" data-open="promoModal" role="menuitem"><span class="promo-drop-icon">◎</span><span><b>Trải nghiệm 30 ngày</b><small>R68 / R88 miễn phí</small></span></button>
-          <button type="button" data-open="loyalPromoModal" role="menuitem"><span class="promo-drop-icon">✦</span><span><b>Đặc quyền Đồng hành</b><small>Gói 6+2 · 12+6</small></span></button>
+          <button type="button" data-open="promoModal" role="menuitem"><span class="promo-drop-icon">◎</span><span><b>Pilot 30 ngày</b><small>Hệ thống gậy Carbon miễn phí</small></span></button>
+          <button type="button" data-open="loyalPromoModal" role="menuitem"><span class="promo-drop-icon">✦</span><span><b>Đặc quyền Sau Pilot</b><small>Gói 6+2 · 12+6</small></span></button>
         </div>
       </div>
     </div>
@@ -699,8 +732,8 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
     <button type="button" data-open="buyModal"><span>₫</span>Giá mua</button>
     <button type="button" class="promo drawer-promo-toggle" id="drawerPromoToggle" aria-expanded="false"><span>★</span>CT Khuyến mại <i>⌄</i></button>
     <div class="drawer-subnav" id="drawerPromoSubnav" aria-hidden="true">
-      <button type="button" data-open="promoModal"><span>◎</span>Trải nghiệm 30 ngày</button>
-      <button type="button" data-open="loyalPromoModal"><span>✦</span>Đặc quyền Đồng hành <small>6+2 · 12+6</small></button>
+      <button type="button" data-open="promoModal"><span>◎</span>Pilot 30 ngày</button>
+      <button type="button" data-open="loyalPromoModal"><span>✦</span>Đặc quyền Sau Pilot <small>6+2 · 12+6</small></button>
     </div>
   </nav>
 </aside>
@@ -771,7 +804,7 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
             <tr class="benefit-row"><td>Giá ưu đãi thực tế</td><td><span class="price-big" id="c3Eff">—</span></td><td><span class="price-big" id="c6Eff">—</span></td><td class="best-col"><span class="price-big" id="c12Eff">—</span></td></tr>
             <tr class="benefit-row"><td>Tiết kiệm quy đổi</td><td>—</td><td><span class="saving" id="c6Save">—</span></td><td class="best-col"><span class="saving" id="c12Save">—</span></td></tr>
             <tr><td>Tổng gậy thực nhận</td><td id="c3Total">—</td><td id="c6Total">—</td><td class="best-col" id="c12Total">—</td></tr>
-            <tr><td>Thời gian sử dụng</td><td>3 tháng</td><td>7 tháng <span class="subtle">+1 tháng tặng</span></td><td class="best-col">14 tháng <span class="subtle">+2 tháng tặng</span></td></tr>
+            <tr><td>Thời gian sử dụng</td><td>3 tháng</td><td id="c6Use">7 tháng <span class="subtle">+1 tháng tặng</span></td><td class="best-col" id="c12Use">14 tháng <span class="subtle">+2 tháng tặng</span></td></tr>
             <tr><td>Tổng tiền thuê</td><td id="c3Rent">—</td><td id="c6Rent">—</td><td class="best-col" id="c12Rent">—</td></tr>
             <tr><td>Đơn giá</td><td id="c3Unit">—</td><td id="c6Unit">—</td><td class="best-col" id="c12Unit">—</td></tr>
             <tr><td>Gậy dự phòng</td><td id="c3Backup">—</td><td id="c6Backup">—</td><td class="best-col" id="c12Backup">—</td></tr>
@@ -876,18 +909,23 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
   <div class="promo-card">
     <button class="promo-close" data-close="promoModal" aria-label="Đóng">×</button>
     <div class="promo-top">
-      <div class="eyebrow">Chương trình dành cho CLB</div>
-      <h3 id="promoTitle">Trải nghiệm 30 ngày miễn phí</h3>
-      <p>Dùng thử Rhino R68 & R88 — dòng gậy mới dành cho CLB.</p>
+      <div class="eyebrow">Chương trình Pilot dành cho CLB</div>
+      <h3 id="promoTitle">Pilot 30 ngày – Hệ thống gậy Carbon cho CLB</h3>
+      <p>Trải nghiệm hệ thống gậy đánh, gậy phá/nhảy và dịch vụ bảo dưỡng thực tế tại CLB.</p>
     </div>
     <div class="promo-body">
       <div class="promo-chips">
+        <div class="promo-chip"><strong>30 ngày</strong>Trải nghiệm thực tế</div>
         <div class="promo-chip"><strong>0</strong>Phí trải nghiệm</div>
         <div class="promo-chip"><strong>0</strong>Tiền cọc</div>
-        <div class="promo-chip"><strong>30 ngày</strong>Trải nghiệm thực tế</div>
+      </div>
+      <div class="pilot-config">
+        <div><strong>2</strong><span>gậy đánh / bàn</span></div>
+        <div><strong>1</strong><span>gậy phá/nhảy / ~3 bàn</span></div>
+        <div><strong>Carbon duyệt</strong><span>số lượng thực tế</span></div>
       </div>
       <p class="promo-deadline">Hạn đăng ký: <b>15/12/2026</b></p>
-      <button class="action-btn teal promo-register-btn" id="promoRegisterBtn" type="button">Đăng ký trải nghiệm</button>
+      <button class="action-btn teal promo-register-btn" id="promoRegisterBtn" type="button">Đăng ký Pilot</button>
     </div>
   </div>
 </div>
@@ -897,17 +935,18 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
   <div class="promo-card loyal-promo-card">
     <button class="promo-close" data-close="loyalPromoModal" aria-label="Đóng">×</button>
     <div class="promo-top loyal-top">
-      <div class="eyebrow">Dành riêng cho CLB đang sử dụng dịch vụ thuê</div>
-      <h3 id="loyalPromoTitle">Đặc quyền Đồng hành</h3>
-      <p>Ưu đãi gia tăng thời gian sử dụng dành cho đối tác đang đồng hành cùng Rhino.</p>
+      <div class="eyebrow">Dành cho CLB đã hoàn thành Pilot 30 ngày</div>
+      <h3 id="loyalPromoTitle">Đặc quyền Sau Pilot</h3>
+      <p>Chuyển đổi sang khách hàng chính thức với thời gian sử dụng mở rộng và giữ nguyên đơn giá gói.</p>
     </div>
     <div class="promo-body">
       <div class="loyal-grid">
         <div class="loyal-offer"><span>Gói 06 tháng</span><strong>6 + 2</strong><small>Thanh toán 6 · sử dụng 8 tháng</small></div>
         <div class="loyal-offer best"><span>Gói 12 tháng</span><strong>12 + 6</strong><small>Thanh toán 12 · sử dụng 18 tháng</small></div>
       </div>
-      <p class="promo-deadline">Áp dụng cho CLB đang sử dụng dịch vụ thuê gậy.</p>
-      <button class="action-btn teal loyal-register-btn" id="loyalRegisterBtn" type="button">Đăng ký ưu đãi</button>
+      <div class="pilot-price-callout"><span>Giá quy đổi tham khảo</span><strong>Từ 29.000 / cây / tháng</strong><small>Ví dụ bậc từ 100 gậy, gói 12+6, tính trên toàn bộ gậy thực nhận.</small></div>
+      <p class="promo-deadline">Chỉ áp dụng cho CLB đã hoàn thành Pilot và chuyển đổi sang khách hàng chính thức.</p>
+      <button class="action-btn teal loyal-register-btn" id="loyalRegisterBtn" type="button">Tính ưu đãi Sau Pilot</button>
     </div>
   </div>
 </div>
@@ -915,15 +954,22 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
 <!-- Existing-customer privilege registration -->
 <div class="modal" id="loyalRegisterModal" role="dialog" aria-modal="true" aria-labelledby="loyalRegisterTitle">
   <div class="modal-card compact">
-    <div class="modal-head"><h3 id="loyalRegisterTitle">Đăng ký Đặc quyền Đồng hành</h3><button class="close" data-close="loyalRegisterModal" aria-label="Đóng">×</button></div>
+    <div class="modal-head"><h3 id="loyalRegisterTitle">Tính ưu đãi Sau Pilot</h3><button class="close" data-close="loyalRegisterModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
       <div class="loyal-register-form">
         <div class="loyal-form-row"><label for="loyalCustomer">Tên khách hàng <small>* Bắt buộc</small></label><input id="loyalCustomer" type="text" autocomplete="name" maxlength="60" placeholder="Nhập họ và tên" /></div>
         <div class="loyal-form-row"><label for="loyalClub">Tên quán / CLB <small>* Bắt buộc</small></label><input id="loyalClub" type="text" autocomplete="organization" maxlength="100" placeholder="Nhập tên quán hoặc CLB" /></div>
         <div class="loyal-form-row"><label for="loyalPhone">Số điện thoại <small>* Bắt buộc</small></label><input id="loyalPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="Nhập số điện thoại" /></div>
+        <div class="loyal-form-row"><label for="loyalQty">Số gậy tính phí <small>* Bắt buộc</small></label><input id="loyalQty" type="number" min="1" max="9999" step="1" inputmode="numeric" placeholder="Nhập số gậy" /></div>
         <div class="loyal-form-row"><label for="loyalPlan">Gói ưu đãi <small>* Bắt buộc</small></label><select id="loyalPlan"><option value="">Chọn gói</option><option value="6+2">Gói 6 + 2</option><option value="12+6">Gói 12 + 6</option></select></div>
+        <div class="loyal-calc-preview" id="loyalCalcPreview">
+          <div><span>Chi phí thực tế</span><strong id="loyalEff">—</strong></div>
+          <div><span>Tổng thực nhận</span><strong id="loyalTotalCues">—</strong></div>
+          <div><span>Thời gian dùng</span><strong id="loyalUseMonths">—</strong></div>
+          <div><span>Tổng tiền thuê</span><strong id="loyalRent">—</strong></div>
+        </div>
         <div class="loyal-form-error" id="loyalFormError"></div>
-        <div class="loyal-form-actions"><button class="action-btn" type="button" data-close="loyalRegisterModal">Thoát</button><button class="action-btn teal" id="loyalSubmitBtn" type="button">Xác nhận đăng ký</button></div>
+        <div class="loyal-form-actions"><button class="action-btn" type="button" data-close="loyalRegisterModal">Thoát</button><button class="action-btn teal" id="loyalSubmitBtn" type="button">Áp dụng vào bảng tính</button></div>
       </div>
     </div>
   </div>
@@ -932,7 +978,7 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
 <!-- Step-by-step 30-day registration -->
 <div class="modal wizard-modal" id="promoRegisterModal" role="dialog" aria-modal="true" aria-labelledby="promoRegisterTitle">
   <div class="modal-card compact wizard-card">
-    <div class="modal-head"><div><h3 id="promoRegisterTitle">Đăng ký trải nghiệm 30 ngày</h3><div class="wizard-progress-text" id="wizardProgressText">Bước 1 / 8</div></div><button class="close" data-close="promoRegisterModal" aria-label="Đóng">×</button></div>
+    <div class="modal-head"><div><h3 id="promoRegisterTitle">Đăng ký Pilot 30 ngày</h3><div class="wizard-progress-text" id="wizardProgressText">Bước 1 / 9</div></div><button class="close" data-close="promoRegisterModal" aria-label="Đóng">×</button></div>
     <div class="wizard-progress"><span id="wizardProgressBar"></span></div>
     <div class="modal-body wizard-body">
       <section class="wizard-step active" data-step="0">
@@ -956,14 +1002,39 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
         <input id="regEmail" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="Nhập email nếu có" />
       </section>
       <section class="wizard-step" data-step="5">
-        <label for="regR68">Số lượng gậy R-68 <span class="optional-note">Không bắt buộc</span></label>
-        <input id="regR68" type="number" min="0" max="9999" step="1" inputmode="numeric" placeholder="0" />
+        <label for="regTables">Số bàn tại CLB <span class="req-note">* Bắt buộc</span></label>
+        <input id="regTables" type="number" min="1" max="999" step="1" inputmode="numeric" placeholder="Nhập số bàn" />
+        <div class="wizard-term pilot-suggest"><span>Cấu hình Pilot tham chiếu</span><strong id="regPlayingSuggest">—</strong><small id="regBreakSuggest">Gậy phá/nhảy đề xuất: —</small></div>
       </section>
-      <section class="wizard-step" data-step="6">
-        <label for="regR88">Số lượng gậy R-88 <span class="optional-note">Không bắt buộc</span></label>
-        <input id="regR88" type="number" min="0" max="9999" step="1" inputmode="numeric" placeholder="0" />
+      <section class="wizard-step pilot-product-step" data-step="6">
+        <label>Chọn gậy đánh <span class="req-note">* Bắt buộc</span></label>
+        <div class="pilot-choice-list" id="playingChoiceList">
+          <div class="pilot-choice-row" data-choice-row="r68">
+            <label class="pilot-choice-label" for="regUseR68"><input class="pilot-choice-check" id="regUseR68" type="checkbox" /><span>R-68</span></label>
+            <div class="pilot-choice-qty"><span>Số lượng</span><input id="regR68" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
+          </div>
+          <div class="pilot-choice-row" data-choice-row="r88">
+            <label class="pilot-choice-label" for="regUseR88"><input class="pilot-choice-check" id="regUseR88" type="checkbox" /><span>R-88</span></label>
+            <div class="pilot-choice-qty"><span>Số lượng</span><input id="regR88" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
+          </div>
+        </div>
+        <div class="pilot-allocation-hint" id="regPlayingAllocationHint">Chọn R-68, R-88 hoặc cả hai để hệ thống tự phân bổ số gậy đánh.</div>
       </section>
-      <section class="wizard-step" data-step="7">
+      <section class="wizard-step pilot-product-step" data-step="7">
+        <label>Chọn gậy phá / gậy nhảy <span class="req-note">* Bắt buộc</span></label>
+        <div class="pilot-choice-list" id="specialChoiceList">
+          <div class="pilot-choice-row" data-choice-row="break">
+            <label class="pilot-choice-label" for="regUseBreak"><input class="pilot-choice-check" id="regUseBreak" type="checkbox" /><span>Gậy phá</span></label>
+            <div class="pilot-choice-qty"><span>Số lượng</span><input id="regBreakQty" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
+          </div>
+          <div class="pilot-choice-row" data-choice-row="jump">
+            <label class="pilot-choice-label" for="regUseJump"><input class="pilot-choice-check" id="regUseJump" type="checkbox" /><span>Gậy nhảy</span></label>
+            <div class="pilot-choice-qty"><span>Số lượng</span><input id="regJumpQty" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
+          </div>
+        </div>
+        <div class="pilot-allocation-hint" id="regSpecialAllocationHint">Chọn gậy phá, gậy nhảy hoặc cả hai để hệ thống tự phân bổ cấu hình theo số bàn.</div>
+      </section>
+      <section class="wizard-step" data-step="8">
         <label for="regDeliveryDisplay">Ngày giao nhận dự kiến <span class="req-note">* Bắt buộc</span></label>
         <div class="date-control">
           <input id="regDeliveryDisplay" class="date-display" type="text" inputmode="none" readonly placeholder="DD/MM/YYYY" aria-label="Ngày giao nhận dự kiến" />
@@ -989,7 +1060,7 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
     <div class="modal-body">
       <div class="review-list" id="promoReviewList"></div>
       <div class="review-finance">
-        <div><span>Tổng số gậy</span><strong id="reviewTotalCues">0</strong></div>
+        <div><span>Tổng số gậy dự kiến</span><strong id="reviewTotalCues">0</strong></div>
         <div><span>Khuyến mại</span><strong>100%</strong></div>
         <div class="review-total"><span>Tổng thanh toán</span><strong>0 VND</strong></div>
       </div>
@@ -1020,12 +1091,21 @@ function basePlan(n,term){
   const backup=roundHalfUp(n*backupPct),total=n+backup,effective=rent/(total*use);
   return {n,t,term,unit,paid,use,gift,backupPct,backup,total,rent,deposit,initial,effective};
 }
+let postPilotEligible=false;
+function postPilotPlan(n,term){
+  const t=tier(n),backupPct=.20,backup=roundHalfUp(n*backupPct),total=n+backup;
+  if(term===6){const unit=price6[t],paid=6,use=8,gift=2,rent=n*unit*paid;return {n,t,term,unit,paid,use,gift,backupPct,backup,total,rent,deposit:0,initial:rent,effective:rent/(total*use),name:'Gói 06 tháng · tặng 02 tháng sử dụng',status:'ƯU ĐÃI SAU PILOT',postPilot:true}}
+  const unit=price12[t],paid=12,use=18,gift=6,rent=n*unit*paid;return {n,t,term:12,unit,paid,use,gift,backupPct,backup,total,rent,deposit:0,initial:rent,effective:rent/(total*use),name:'Gói 12 tháng · tặng 06 tháng sử dụng',status:'★ BEST CHOICE · SAU PILOT',postPilot:true};
+}
+
 function combinedPlan(n,months){
   const t=tier(n),backupPct=months<=2?.10:.20,backup=roundHalfUp(n*backupPct),total=n+backup;
   let name,status,rent,initial,deposit=0,use=months,unit=0,gift=0;
   if(months===1){const p=basePlan(n,1);return {...p,name:'Kỳ 01 tháng',status:'KỲ NGẮN HẠN'}}
   if(months===2){const p=basePlan(n,2);return {...p,name:'Kỳ 02 tháng',status:'KỲ NGẮN HẠN'}}
   if(months===3){const p=basePlan(n,3);return {...p,name:'Gói 03 tháng',status:'GÓI TIÊU CHUẨN'}}
+  if(postPilotEligible&&months===6)return postPilotPlan(n,6);
+  if(postPilotEligible&&months===12)return postPilotPlan(n,12);
   if(months===4){rent=n*(price3[t]*3+price1[t]);initial=rent;unit=rent/(n*4);name='Gói 03 tháng + kỳ 01 tháng';status='LINH HOẠT'}
   else if(months===5){rent=n*(price3[t]*3+price2[t]*2);initial=rent;unit=rent/(n*5);name='Gói 03 tháng + kỳ 02 tháng';status='LINH HOẠT'}
   else if(months<=7){const p=basePlan(n,6);return {...p,name:'Gói 06 tháng · tặng 01 tháng sử dụng',status:'TỐI ƯU CHI PHÍ'}}
@@ -1060,12 +1140,14 @@ function render(){
   document.querySelectorAll('[data-month]').forEach(btn=>btn.classList.toggle('active',selectedQuickMonth!==null && Number(btn.dataset.month)===selectedQuickMonth));
 
   if(cues!==null){
-    const a=basePlan(cues,3),b=basePlan(cues,6),c=basePlan(cues,12);
+    const a=basePlan(cues,3),b=postPilotEligible?postPilotPlan(cues,6):basePlan(cues,6),c=postPilotEligible?postPilotPlan(cues,12):basePlan(cues,12);
     $('c3Unit').textContent=fmt(a.unit);$('c6Unit').textContent=fmt(b.unit);$('c12Unit').textContent=fmt(c.unit);
     $('c3Rent').textContent=fmt(a.rent);$('c6Rent').textContent=fmt(b.rent);$('c12Rent').textContent=fmt(c.rent);
     $('c3Backup').textContent=`${a.backup} gậy (+20%)`;$('c6Backup').textContent=`${b.backup} gậy (+20%)`;$('c12Backup').textContent=`${c.backup} gậy (+20%)`;
     $('c3Total').textContent=a.total+' gậy';$('c6Total').textContent=b.total+' gậy';$('c12Total').textContent=c.total+' gậy';
     $('c3Eff').textContent=fmt(a.effective);$('c6Eff').textContent=fmt(b.effective);$('c12Eff').textContent=fmt(c.effective);
+    if($('c6Use'))$('c6Use').innerHTML=`${b.use} tháng <span class="subtle">+${b.gift} tháng tặng</span>`;
+    if($('c12Use'))$('c12Use').innerHTML=`${c.use} tháng <span class="subtle">+${c.gift} tháng tặng</span>`;
     const save6=(a.effective*b.total*b.use)-b.rent;const save12=(a.effective*c.total*c.use)-c.rent;
     $('c6Save').textContent=fmt(save6);$('c12Save').textContent=fmt(save12);
   }else{
@@ -1087,8 +1169,9 @@ function render(){
 }
 $('cues').addEventListener('input',render);
 $('tables').addEventListener('input',render);
-$('months').addEventListener('input',()=>{selectedQuickMonth=null;render();});
+$('months').addEventListener('input',()=>{selectedQuickMonth=null;postPilotEligible=false;render();});
 document.querySelectorAll('[data-month]').forEach(btn=>btn.addEventListener('click',()=>{
+  postPilotEligible=false;
   selectedQuickMonth=Number(btn.dataset.month);
   $('months').value='';
   render();
@@ -1258,87 +1341,139 @@ document.addEventListener('focusin',e=>{
   setTimeout(()=>{try{e.target.scrollIntoView({block:'center',inline:'nearest',behavior:'smooth'})}catch(_){e.target.scrollIntoView()}},220);
 });
 
-const regFieldIds=['regCustomer','regClub','regAddress','regPhone','regEmail','regR68','regR88','regDeliveryDisplay'];
-const regLabels=['Tên khách hàng','Tên quán / CLB','Địa chỉ','Số điện thoại','Email','Số lượng gậy R-68','Số lượng gậy R-88','Ngày giao nhận dự kiến'];
+const wizardFocusIds=['regCustomer','regClub','regAddress','regPhone','regEmail','regTables','regUseR68','regUseBreak','regDeliveryDisplay'];
+const regLabels=['Tên khách hàng','Tên quán / CLB','Địa chỉ','Số điện thoại','Email','Số bàn tại CLB','Cấu hình gậy đánh','Cấu hình gậy phá / nhảy','Ngày giao nhận dự kiến'];
 let wizardStep=0;
 function dateVi(value){if(!value)return '—';const d=new Date(value+'T00:00:00');return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('vi-VN')}
 function addDays(value,days){if(!value)return null;const d=new Date(value+'T00:00:00');if(Number.isNaN(d.getTime()))return null;d.setDate(d.getDate()+days);return d}
+function pilotSuggested(tables){const t=Math.max(0,parseInt(tables||'0',10)||0);return {playing:t*2,breakJump:t?Math.ceil(t/3):0}}
+function splitIntegerTotal(total,count){
+  total=Math.max(0,Math.floor(Number(total)||0));count=Math.max(0,Math.floor(Number(count)||0));
+  if(!count)return [];
+  const base=Math.floor(total/count),extra=total%count;
+  return Array.from({length:count},(_,i)=>base+(i<extra?1:0));
+}
+function setQtyEnabled(inputId,enabled){const el=$(inputId);if(!el)return;el.disabled=!enabled;if(!enabled)el.value='0'}
+function applyPlayingAllocation(){
+  const total=pilotSuggested($('regTables').value).playing;
+  const selected=[];if($('regUseR68').checked)selected.push('regR68');if($('regUseR88').checked)selected.push('regR88');
+  setQtyEnabled('regR68',$('regUseR68').checked);setQtyEnabled('regR88',$('regUseR88').checked);
+  const parts=splitIntegerTotal(total,selected.length);selected.forEach((id,i)=>$(id).value=String(parts[i]||0));
+  renderAllocationState();
+}
+function applySpecialAllocation(){
+  const total=pilotSuggested($('regTables').value).breakJump;
+  const selected=[];if($('regUseBreak').checked)selected.push('regBreakQty');if($('regUseJump').checked)selected.push('regJumpQty');
+  setQtyEnabled('regBreakQty',$('regUseBreak').checked);setQtyEnabled('regJumpQty',$('regUseJump').checked);
+  const parts=splitIntegerTotal(total,selected.length);selected.forEach((id,i)=>$(id).value=String(parts[i]||0));
+  renderAllocationState();
+}
+function renderAllocationState(){
+  [['r68','regUseR68'],['r88','regUseR88'],['break','regUseBreak'],['jump','regUseJump']].forEach(([key,id])=>document.querySelector(`[data-choice-row="${key}"]`)?.classList.toggle('selected',!!$(id)?.checked));
+  const s=pilotSuggested($('regTables').value);
+  const r68=$('regUseR68')?.checked?(parseInt($('regR68').value||'0',10)||0):0,r88=$('regUseR88')?.checked?(parseInt($('regR88').value||'0',10)||0):0;
+  const br=$('regUseBreak')?.checked?(parseInt($('regBreakQty').value||'0',10)||0):0,jp=$('regUseJump')?.checked?(parseInt($('regJumpQty').value||'0',10)||0):0;
+  if($('regPlayingAllocationHint'))$('regPlayingAllocationHint').innerHTML=s.playing?`Cấu hình tham chiếu: <strong>${s.playing} gậy đánh</strong>. Đang phân bổ: R-68 <strong>${r68}</strong> · R-88 <strong>${r88}</strong>. Có thể sửa số lượng trực tiếp.`:'Nhập số bàn trước, sau đó chọn R-68, R-88 hoặc cả hai.';
+  if($('regSpecialAllocationHint'))$('regSpecialAllocationHint').innerHTML=s.breakJump?`Cấu hình tham chiếu: <strong>${s.breakJump} gậy phá/nhảy</strong>. Đang phân bổ: Phá <strong>${br}</strong> · Nhảy <strong>${jp}</strong>. Có thể sửa số lượng trực tiếp.`:'Nhập số bàn trước, sau đó chọn gậy phá, gậy nhảy hoặc cả hai.';
+}
 function registrationData(){
-  const r68=Math.max(0,parseInt($('regR68').value||'0',10)||0),r88=Math.max(0,parseInt($('regR88').value||'0',10)||0);
-  const delivery=$('regDelivery').value;
-  const end=addDays(delivery,30);
-  return {customer:$('regCustomer').value.trim(),club:$('regClub').value.trim(),address:$('regAddress').value.trim(),phone:$('regPhone').value.trim(),email:$('regEmail').value.trim(),r68,r88,total:r68+r88,delivery,endDate:end?end.toLocaleDateString('vi-VN'):'—',duration:30};
+  const tables=Math.max(0,parseInt($('regTables').value||'0',10)||0),suggested=pilotSuggested(tables);
+  const useR68=!!$('regUseR68')?.checked,useR88=!!$('regUseR88')?.checked,useBreak=!!$('regUseBreak')?.checked,useJump=!!$('regUseJump')?.checked;
+  const r68=useR68?Math.max(0,parseInt($('regR68').value||'0',10)||0):0,r88=useR88?Math.max(0,parseInt($('regR88').value||'0',10)||0):0;
+  const breakCues=useBreak?Math.max(0,parseInt($('regBreakQty').value||'0',10)||0):0,jumpCues=useJump?Math.max(0,parseInt($('regJumpQty').value||'0',10)||0):0;
+  const requestedPlaying=r68+r88,playing=requestedPlaying,breakJump=breakCues+jumpCues;
+  const delivery=$('regDelivery').value,end=addDays(delivery,30);
+  return {customer:$('regCustomer').value.trim(),club:$('regClub').value.trim(),address:$('regAddress').value.trim(),phone:$('regPhone').value.trim(),email:$('regEmail').value.trim(),tables,useR68,useR88,r68,r88,requestedPlaying,recommendedPlaying:suggested.playing,playing,useBreak,useJump,breakCues,jumpCues,breakJump,recommendedBreakJump:suggested.breakJump,total:playing+breakJump,delivery,endDate:end?end.toLocaleDateString('vi-VN'):'—',duration:30};
 }
 function validateWizardStep(step=wizardStep){
-  const d=registrationData(),rawEmail=$('regEmail').value.trim(),rawR68=$('regR68').value.trim(),rawR88=$('regR88').value.trim();
+  const d=registrationData(),rawEmail=$('regEmail').value.trim();
   if(step===0&&!validHumanName(d.customer))return 'Tên khách hàng cần có ít nhất 2 ký tự chữ và không chứa ký tự bất thường.';
   if(step===1&&!validClub(d.club))return 'Tên quán / CLB chưa hợp lệ.';
   if(step===2&&!validAddress(d.address))return 'Địa chỉ cần rõ ràng và có ít nhất 5 ký tự.';
   if(step===3&&!validPhone(d.phone))return 'Số điện thoại phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
   if(step===4&&!validEmail(rawEmail))return 'Email chưa đúng cấu trúc, ví dụ ten@gmail.com.';
-  if(step===5&&!validOptionalInteger(rawR68))return 'Số lượng R-68 phải là số nguyên từ 0 đến 9.999.';
-  if(step===6&&!validOptionalInteger(rawR88))return 'Số lượng R-88 phải là số nguyên từ 0 đến 9.999.';
-  if(step===7&&!d.delivery)return 'Vui lòng chọn ngày giao nhận dự kiến.';
+  if(step===5&&(!Number.isInteger(d.tables)||d.tables<1||d.tables>999))return 'Số bàn phải là số nguyên từ 1 đến 999.';
+  if(step===6){
+    if(!d.useR68&&!d.useR88)return 'Vui lòng chọn ít nhất một loại gậy đánh: R-68 hoặc R-88.';
+    if((d.useR68&&!validOptionalInteger($('regR68').value))||(d.useR88&&!validOptionalInteger($('regR88').value)))return 'Số lượng gậy đánh phải là số nguyên từ 0 đến 9.999.';
+    if(d.playing<1)return 'Tổng số gậy đánh phải lớn hơn 0.';
+  }
+  if(step===7){
+    if(!d.useBreak&&!d.useJump)return 'Vui lòng chọn ít nhất gậy phá hoặc gậy nhảy.';
+    if((d.useBreak&&!validOptionalInteger($('regBreakQty').value))||(d.useJump&&!validOptionalInteger($('regJumpQty').value)))return 'Số lượng gậy phá/nhảy phải là số nguyên từ 0 đến 9.999.';
+    if(d.breakJump<1)return 'Tổng số gậy phá/nhảy phải lớn hơn 0.';
+  }
+  if(step===8&&!d.delivery)return 'Vui lòng chọn ngày giao nhận dự kiến.';
   return '';
 }
-function validateRegistration(){
-  for(let i=0;i<regFieldIds.length;i++){const msg=validateWizardStep(i);if(msg)return {ok:false,step:i,msg}}
-  return {ok:true,data:registrationData()};
+function validateRegistration(){for(let i=0;i<wizardFocusIds.length;i++){const msg=validateWizardStep(i);if(msg)return {ok:false,step:i,msg}}return {ok:true,data:registrationData()}}
+function renderPilotSuggestion(){
+  const d=registrationData();
+  if($('regPlayingSuggest'))$('regPlayingSuggest').textContent=d.tables?`${d.recommendedPlaying} gậy đánh`:'—';
+  if($('regBreakSuggest'))$('regBreakSuggest').textContent=d.tables?`Gậy phá/nhảy đề xuất: ${d.recommendedBreakJump} cây`:'Gậy phá/nhảy đề xuất: —';
+  renderAllocationState();
 }
 function renderWizard(){
   document.querySelectorAll('.wizard-step').forEach((el,i)=>el.classList.toggle('active',i===wizardStep));
-  $('wizardProgressText').textContent=`Bước ${wizardStep+1} / ${regFieldIds.length}`;
-  $('wizardProgressBar').style.width=`${((wizardStep+1)/regFieldIds.length)*100}%`;
-  const actions=$('wizardActions');actions.classList.toggle('first',wizardStep===0);actions.classList.toggle('final',wizardStep===regFieldIds.length-1);
+  $('wizardProgressText').textContent=`Bước ${wizardStep+1} / ${wizardFocusIds.length}`;
+  $('wizardProgressBar').style.width=`${((wizardStep+1)/wizardFocusIds.length)*100}%`;
+  const actions=$('wizardActions');actions.classList.toggle('first',wizardStep===0);actions.classList.toggle('final',wizardStep===wizardFocusIds.length-1);
   $('wizardError').textContent='';
-  const deliveryValue=$('regDelivery').value;
-  $('regDeliveryDisplay').value=deliveryValue?dateVi(deliveryValue):'';
+  const deliveryValue=$('regDelivery').value;$('regDeliveryDisplay').value=deliveryValue?dateVi(deliveryValue):'';
   const end=addDays(deliveryValue,30);$('regEndDate').textContent=`Ngày kết thúc dự kiến: ${end?end.toLocaleDateString('vi-VN'):'—'}`;
-  const next=$('wizardNext');
-  if(next)next.disabled=!!validateWizardStep(wizardStep);
-  setTimeout(()=>{const el=$(regFieldIds[wizardStep]);if(el && window.innerWidth>760 && wizardStep!==7)el.focus({preventScroll:true})},80);
+  renderPilotSuggestion();const next=$('wizardNext');if(next)next.disabled=!!validateWizardStep(wizardStep);
+  setTimeout(()=>{const el=$(wizardFocusIds[wizardStep]);if(el&&window.innerWidth>760&&wizardStep!==8)el.focus({preventScroll:true})},80);
 }
-function gotoWizard(step,focus=true){wizardStep=Math.max(0,Math.min(regFieldIds.length-1,step));renderWizard();if(focus)setTimeout(()=>$(regFieldIds[wizardStep])?.focus(),120)}
-$('wizardNext')?.addEventListener('click',()=>{const err=validateWizardStep();if(err){$('wizardError').textContent=err;$(regFieldIds[wizardStep])?.classList.add('invalid');return}gotoWizard(wizardStep+1)});
+function gotoWizard(step,focus=true){wizardStep=Math.max(0,Math.min(wizardFocusIds.length-1,step));renderWizard();if(focus)setTimeout(()=>$(wizardFocusIds[wizardStep])?.focus(),120)}
+$('wizardNext')?.addEventListener('click',()=>{const err=validateWizardStep();if(err){$('wizardError').textContent=err;$(wizardFocusIds[wizardStep])?.classList.add('invalid');return}gotoWizard(wizardStep+1)});
 $('wizardBack')?.addEventListener('click',()=>gotoWizard(wizardStep-1));
-function openDeliveryPicker(){
-  const picker=$('regDelivery');
-  if(!picker)return;
-  try{if(typeof picker.showPicker==='function')picker.showPicker();else picker.click()}catch(_){picker.click()}
-}
-$('regDeliveryDisplay')?.addEventListener('click',openDeliveryPicker);
-$('regDeliveryDisplay')?.addEventListener('focus',openDeliveryPicker);
-$('regDelivery')?.addEventListener('change',()=>{renderWizard();$('wizardError').textContent=''});
-regFieldIds.forEach((id,i)=>{
-  const el=$(id);if(!el)return;
-  el.addEventListener('input',()=>{el.classList.remove('invalid');$('wizardError').textContent='';if(i===wizardStep)renderWizard()});
-  el.addEventListener('keydown',e=>{if(e.key==='Enter' && i<regFieldIds.length-1){e.preventDefault();const err=validateWizardStep(i);if(err){$('wizardError').textContent=err;el.classList.add('invalid');return}gotoWizard(i+1)}});
+function openDeliveryPicker(){const picker=$('regDelivery');if(!picker)return;try{if(typeof picker.showPicker==='function')picker.showPicker();else picker.click()}catch(_){picker.click()}}
+$('regDeliveryDisplay')?.addEventListener('click',openDeliveryPicker);$('regDeliveryDisplay')?.addEventListener('focus',openDeliveryPicker);$('regDelivery')?.addEventListener('change',()=>{renderWizard();$('wizardError').textContent=''});
+['regCustomer','regClub','regAddress','regPhone','regEmail','regTables','regR68','regR88','regBreakQty','regJumpQty'].forEach(id=>{
+  const el=$(id);if(!el)return;el.addEventListener('input',()=>{el.classList.remove('invalid');$('wizardError').textContent='';if(id==='regTables'){if($('regUseR68').checked||$('regUseR88').checked)applyPlayingAllocation();if($('regUseBreak').checked||$('regUseJump').checked)applySpecialAllocation()}renderPilotSuggestion();renderWizard()});
 });
-
+$('regUseR68')?.addEventListener('change',()=>{applyPlayingAllocation();renderWizard()});$('regUseR88')?.addEventListener('change',()=>{applyPlayingAllocation();renderWizard()});
+$('regUseBreak')?.addEventListener('change',()=>{applySpecialAllocation();renderWizard()});$('regUseJump')?.addEventListener('change',()=>{applySpecialAllocation();renderWizard()});
+['regR68','regR88','regBreakQty','regJumpQty'].forEach(id=>$(id)?.addEventListener('input',renderAllocationState));
+['regCustomer','regClub','regAddress','regPhone','regEmail','regTables'].forEach((id,i)=>$(id)?.addEventListener('keydown',e=>{if(e.key==='Enter'&&i<5){e.preventDefault();const err=validateWizardStep(i);if(err){$('wizardError').textContent=err;$(id).classList.add('invalid');return}gotoWizard(i+1)}}));
 function buildRegistrationReview(){
   const d=registrationData();
-  const vals=[d.customer,d.club,d.address,d.phone,d.email||'Không có',`${d.r68} gậy`,`${d.r88} gậy`,`${dateVi(d.delivery)} → ${d.endDate}`];
+  const playingParts=[];if(d.useR68)playingParts.push(`R-68: ${d.r68} gậy`);if(d.useR88)playingParts.push(`R-88: ${d.r88} gậy`);
+  const specialParts=[];if(d.useBreak)specialParts.push(`Gậy phá: ${d.breakCues}`);if(d.useJump)specialParts.push(`Gậy nhảy: ${d.jumpCues}`);
+  const vals=[d.customer,d.club,d.address,d.phone,d.email||'Không có',`${d.tables} bàn`,playingParts.join(' · '),specialParts.join(' · '),`${dateVi(d.delivery)} → ${d.endDate}`];
   $('promoReviewList').innerHTML=vals.map((v,i)=>`<button class="review-row" type="button" data-edit-step="${i}"><span>${regLabels[i]}</span><strong>${xmlEsc(v)}</strong></button>`).join('');
-  $('reviewTotalCues').textContent=`${d.total} gậy`;
-  document.querySelectorAll('[data-edit-step]').forEach(btn=>btn.addEventListener('click',()=>{closeModal('promoReviewModal');gotoWizard(Number(btn.dataset.editStep));}));
+  $('reviewTotalCues').textContent=`${d.total} gậy`;document.querySelectorAll('[data-edit-step]').forEach(btn=>btn.addEventListener('click',()=>{closeModal('promoReviewModal');gotoWizard(Number(btn.dataset.editStep))}));
 }
+
 function showRegistrationReview(){
   const check=validateRegistration();if(!check.ok){gotoWizard(check.step);$('wizardError').textContent=check.msg;return}
   document.activeElement?.blur();buildRegistrationReview();openModal('promoReviewModal',false);
 }
 $('wizardCheck')?.addEventListener('click',showRegistrationReview);
 $('reviewBackBtn')?.addEventListener('click',()=>closeModal('promoReviewModal'));
-$('promoRegisterBtn')?.addEventListener('click',()=>{closeModal('promoModal');wizardStep=0;renderWizard();openModal('promoRegisterModal',false);setTimeout(()=>$(regFieldIds[0])?.focus(),120)});
-$('loyalRegisterBtn')?.addEventListener('click',()=>{closeModal('loyalPromoModal');$('loyalFormError').textContent='';openModal('loyalRegisterModal',false);setTimeout(()=>$('loyalCustomer')?.focus(),120)});
+$('promoRegisterBtn')?.addEventListener('click',()=>{closeModal('promoModal');wizardStep=0;renderWizard();openModal('promoRegisterModal',false);setTimeout(()=>$(wizardFocusIds[0])?.focus(),120)});
+function loyalOfferData(){
+  const raw=$('loyalQty')?.value.trim()||'';const qty=/^\d+$/.test(raw)?Number(raw):null;const plan=$('loyalPlan')?.value||'';
+  if(!Number.isSafeInteger(qty)||qty<1||!['6+2','12+6'].includes(plan))return null;
+  return postPilotPlan(qty,plan==='6+2'?6:12);
+}
+function renderLoyalCalc(){
+  const p=loyalOfferData();
+  $('loyalEff').textContent=p?`${fmt(p.effective)}/tháng`:'—';$('loyalTotalCues').textContent=p?`${p.total} gậy`:'—';$('loyalUseMonths').textContent=p?`${p.use} tháng`:'—';$('loyalRent').textContent=p?fmt(p.rent):'—';
+}
+$('loyalQty')?.addEventListener('input',renderLoyalCalc);$('loyalPlan')?.addEventListener('change',renderLoyalCalc);
+$('loyalRegisterBtn')?.addEventListener('click',()=>{closeModal('loyalPromoModal');$('loyalFormError').textContent='';renderLoyalCalc();openModal('loyalRegisterModal',false);setTimeout(()=>$('loyalCustomer')?.focus(),120)});
 $('loyalSubmitBtn')?.addEventListener('click',()=>{
-  const customer=compactSpaces($('loyalCustomer').value),club=compactSpaces($('loyalClub').value),phone=$('loyalPhone').value.trim(),plan=$('loyalPlan').value;
+  const customer=compactSpaces($('loyalCustomer').value),club=compactSpaces($('loyalClub').value),phone=$('loyalPhone').value.trim(),p=loyalOfferData(),plan=$('loyalPlan').value;
   let err='';
   if(!validHumanName(customer))err='Tên khách hàng chưa hợp lệ.';
   else if(!validClub(club))err='Tên quán / CLB chưa hợp lệ.';
   else if(!validPhone(phone))err='Số điện thoại phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
-  else if(!plan)err='Vui lòng chọn gói ưu đãi.';
+  else if(!p)err='Vui lòng nhập số gậy hợp lệ và chọn gói ưu đãi.';
   if(err){$('loyalFormError').textContent=err;return}
-  $('loyalFormError').textContent='Thông tin đã đầy đủ. Bản demo chưa kết nối hệ thống tiếp nhận đăng ký.';
+  postPilotEligible=true;selectedQuickMonth=plan==='6+2'?6:12;$('months').value='';$('cues').value=String(p.n);render();
+  $('loyalFormError').textContent='';closeModal('loyalRegisterModal');
+  document.querySelector('.summary-panel')?.scrollIntoView({behavior:'smooth',block:'center'});
 });
 
 function buildPromoRegistrationSheet(data,hasLogo,createdAt){
@@ -1353,7 +1488,9 @@ function buildPromoRegistrationSheet(data,hasLogo,createdAt){
   rows.push(row(10,[cell(0,10,'SẢN PHẨM',3),cell(1,10,'SỐ LƯỢNG',3),cell(3,10,'ĐƠN GIÁ CT',3),cell(4,10,'THÀNH TIỀN',3)],24));
   rows.push(row(11,[cell(0,11,'Rhino R-68',4),cell(1,11,`${data.r68} gậy`,4),cell(3,11,0,5,'n'),cell(4,11,0,5,'n')],23));
   rows.push(row(12,[cell(0,12,'Rhino R-88',4),cell(1,12,`${data.r88} gậy`,4),cell(3,12,0,5,'n'),cell(4,12,0,5,'n')],23));
-  rows.push(row(14,[cell(0,14,'TỔNG SỐ GẬY',7),cell(1,14,`${data.total} gậy`,10),cell(3,14,'KHUYẾN MẠI',7),cell(4,14,'100%',10)],23));
+  rows.push(row(13,[cell(0,13,'Gậy phá CLB',4),cell(1,13,`${data.breakCues||0} gậy`,4),cell(3,13,0,5,'n'),cell(4,13,0,5,'n')],23));
+  rows.push(row(14,[cell(0,14,'Gậy nhảy CLB',4),cell(1,14,`${data.jumpCues||0} gậy`,4),cell(3,14,0,5,'n'),cell(4,14,0,5,'n')],23));
+  rows.push(row(16,[cell(0,16,'TỔNG SỐ GẬY',7),cell(1,16,`${data.total} gậy`,10),cell(3,16,'KHUYẾN MẠI',7),cell(4,16,'100%',10)],23));
   rows.push(row(15,[cell(0,15,'Phí trải nghiệm',4),cell(1,15,'0 VND',4),cell(3,15,'Tiền cọc',4),cell(4,15,'0 VND',4)],22));
   rows.push(row(16,[cell(0,16,'TỔNG THANH TOÁN',7),cell(1,16,'0 VND',6)],25));
   rows.push(row(18,[cell(0,18,'Thời hạn trải nghiệm: 30 ngày kể từ ngày giao nhận dự kiến. Chương trình áp dụng theo điều kiện xác nhận của Rhino tại thời điểm triển khai.',8)],34));
