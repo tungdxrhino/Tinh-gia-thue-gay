@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V30
+  Rhino Cue Platform - Excel Export V28
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -153,7 +153,7 @@
   <border><bottom style="thin"><color rgb="FF138879"/></bottom></border>
 </borders>
 <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-<cellXfs count="25">
+<cellXfs count="23">
   <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
@@ -177,8 +177,6 @@
   <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf>
   <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
   <xf numFmtId="3" fontId="9" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="3" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="3" fontId="7" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
 </cellXfs>
 <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
 </styleSheet>`;
@@ -209,28 +207,17 @@
     ], 28);
   }
 
-  function pilotTableHeader(r) {
-    return row(r, [
-      cell(0, r, 'NỘI DUNG', 3),
-      cell(1, r, 'THÔNG TIN', 3),
-      cell(2, r, 'QUY CÁCH', 3),
-      cell(3, r, 'GIÁ THUÊ', 3),
-      cell(4, r, 'SỐ LƯỢNG', 3),
-      cell(5, r, 'THÀNH TIỀN', 3)
-    ], 27.95);
-  }
-
   function rentalTableHeader(r) {
     return row(r, [
       cell(0, r, 'NỘI DUNG', 3),
       cell(1, r, 'THÔNG TIN', 3),
       cell(2, r, 'QUY CÁCH', 3),
-      cell(3, r, 'GIÁ THUÊ', 3),
+      cell(3, r, 'ĐƠN GIÁ', 3),
       cell(4, r, 'SỐ LƯỢNG', 3),
-      cell(5, r, 'TỔNG GIÁ / THÁNG', 3),
+      cell(5, r, 'GIÁ / THÁNG', 3),
       cell(6, r, 'SỐ THÁNG', 3),
       cell(7, r, 'THÀNH TIỀN', 3)
-    ], 27.95);
+    ], 28);
   }
 
   function tableRow(r, values, opts = {}) {
@@ -443,7 +430,7 @@
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="13.5"/><cols>
-<col min="1" max="1" width="25.75" customWidth="1"/><col min="2" max="2" width="30.75" customWidth="1"/><col min="3" max="3" width="12.75" customWidth="1"/><col min="4" max="4" width="14.75" customWidth="1"/><col min="5" max="5" width="12.75" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.75" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
+<col min="1" max="1" width="25.7109375" customWidth="1"/><col min="2" max="2" width="30.7109375" customWidth="1"/><col min="3" max="3" width="12.7109375" customWidth="1"/><col min="4" max="4" width="14.7109375" customWidth="1"/><col min="5" max="5" width="12.7109375" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.7109375" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
@@ -502,7 +489,7 @@
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="13.5"/><cols>
-<col min="1" max="1" width="25.75" customWidth="1"/><col min="2" max="2" width="30.75" customWidth="1"/><col min="3" max="3" width="12.75" customWidth="1"/><col min="4" max="4" width="14.75" customWidth="1"/><col min="5" max="5" width="12.75" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.75" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
+<col min="1" max="1" width="25.7109375" customWidth="1"/><col min="2" max="2" width="30.7109375" customWidth="1"/><col min="3" max="3" width="12.7109375" customWidth="1"/><col min="4" max="4" width="14.7109375" customWidth="1"/><col min="5" max="5" width="12.7109375" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.7109375" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
@@ -510,121 +497,89 @@
   }
 
 
-  function pilotPlayingUnitPrice(qty) {
-    const n = Math.max(0, Number(qty || 0));
-    if (n <= 0) return 0;
-    if (n <= 9) return 89000;
-    if (n <= 20) return 87000;
-    if (n <= 49) return 85000;
-    if (n <= 99) return 83000;
-    return 81000;
-  }
-
-  function pilotSummaryRow(r, label, value, kind = 'base') {
-    if (kind === 'promo') return row(r, [cell(0, r, label, 14), cell(5, r, value, 22, 'n')], 27);
-    if (kind === 'payable') return row(r, [cell(0, r, label, 15), cell(5, r, value, 16, 'n')], 27.95);
-    return row(r, [cell(0, r, label, 4), cell(5, r, value, 24, 'n')], 27);
-  }
-
   function buildPromoRegistrationSheet(data, hasLogo, createdAt) {
     const tables = Math.max(0, Number(data.tables || 0));
     const recommendedPlaying = Math.max(0, Number(data.recommendedPlaying || (tables * 2)));
     const requestedPlaying = Math.max(0, Number(data.requestedPlaying || ((Number(data.r68 || 0)) + (Number(data.r88 || 0)))));
     const playing = requestedPlaying > 0 ? requestedPlaying : recommendedPlaying;
-    const r68 = Math.max(0, Number(data.r68 || 0));
-    const r88 = Math.max(0, Number(data.r88 || 0));
     const breakCues = Math.max(0, Number(data.breakCues ?? 0));
     const jumpCues = Math.max(0, Number(data.jumpCues ?? 0));
     const legacyBreakJump = Math.max(0, Number(data.breakJump ?? data.recommendedBreakJump ?? (tables ? Math.ceil(tables / 3) : 0)));
     const breakJump = (breakCues + jumpCues) > 0 ? (breakCues + jumpCues) : legacyBreakJump;
-
-    // Pilot 30 ngày: quy đổi giá trị theo đơn giá thuê lẻ 01 tháng.
-    // Gậy đánh dùng bậc giá 01 tháng; gậy phá/nhảy = 100.000/cây/tháng.
-    const playingUnit = pilotPlayingUnitPrice(playing);
-    const specialUnit = 100000;
-    const playingValue = Math.round(playingUnit * playing);
-    const specialValue = Math.round(specialUnit * breakJump);
-    const grossValue = playingValue + specialValue;
-    const promoValue = grossValue; // Miễn phí 100%.
-    const finalPay = 0;
-
-    // Cấu trúc CHỐT theo file mẫu Pilot người dùng cung cấp: A:F.
+    const total = playing + breakJump;
     const rows = [
-      row(1, [cell(3, 1, COMPANY, 1)], 45),
+      row(1, [cell(4, 1, COMPANY, 1)], 45),
       row(2, [cell(0, 2, 'PHIẾU ĐĂNG KÝ PILOT 30 NGÀY – HỆ THỐNG GẬY CARBON CHO CLB', 2)], 30),
       row(3, [cell(0, 3, '(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 21)], 20.1),
-      infoRow(4, 'Khách hàng', data.customer, 'Thời gian lập phiếu', createdAt),
-      infoRow(5, 'Câu lạc bộ / Quán', data.club, 'Người lập phiếu', data.seller),
-      infoRow(6, 'Địa chỉ câu lạc bộ', data.address, 'Liên hệ', data.sellerPhone),
-      infoRow(7, 'Số bàn', tables ? tables : '', 'Showroom', data.showroom),
-      infoRow(8, 'Số điện thoại khách', data.phone, 'Giao nhận dự kiến', formatDateVi(data.delivery)),
-      infoRow(9, 'Email khách hàng', data.email || '', 'Kết thúc dự kiến', data.endDate)
+      infoRowWide(4, 'Khách hàng', data.customer, 'Thời gian lập phiếu', createdAt),
+      infoRowWide(5, 'Câu lạc bộ / Quán', data.club, 'Người lập phiếu', data.seller),
+      infoRowWide(6, 'Địa chỉ câu lạc bộ', data.address, 'Liên hệ', data.sellerPhone),
+      infoRowWide(7, 'Số điện thoại khách', data.phone, 'Showroom', data.showroom),
+      infoRowWide(8, 'Email khách hàng', data.email || '', '', ''),
+      infoRowWide(9, 'Giao nhận dự kiến', formatDateVi(data.delivery), '', ''),
+      infoRowWide(10, 'Kết thúc dự kiến', data.endDate, '', '')
     ];
     const merges = [
-      'D1:F1','A2:F2','A3:F3',
-      'E4:F4','E5:F5','E6:F6','E7:F7','E8:F8','E9:F9'
+      'E1:H1','A2:H2','A3:H3',
+      'B4:D4','G4:H4','B5:D5','G5:H5','B6:D6','G6:H6','B7:D7','G7:H7','B8:D8','B9:D9','B10:D10'
     ];
-
-    let r = 11;
-    rows.push(pilotTableHeader(r)); r++;
+    let r = 12;
+    rows.push(tableHeader(r)); r++;
 
     if (requestedPlaying > 0) {
-      if (r68 > 0) {
-        rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R-68', 'Gậy', playingUnit, r68, playingUnit * r68], { height: 24 })); r++;
+      if (Number(data.r68 || 0) > 0) {
+        rows.push(tableRow(r, ['Gậy đánh CLB R-68', 'Pilot 30 ngày', 'Gậy', 0, Number(data.r68 || 0), 0])); r++;
       }
-      if (r88 > 0) {
-        rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R-88', 'Gậy', playingUnit, r88, playingUnit * r88], { height: 24 })); r++;
+      if (Number(data.r88 || 0) > 0) {
+        rows.push(tableRow(r, ['Gậy đánh CLB R-88', 'Pilot 30 ngày', 'Gậy', 0, Number(data.r88 || 0), 0])); r++;
       }
-    } else if (playing > 0) {
-      rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R-68 / R-88', 'Gậy', playingUnit, playing, playingValue], { height: 24 })); r++;
+    } else {
+      rows.push(tableRow(r, ['Gậy đánh CLB R-68 / R-88', 'Cấu hình đề xuất – Carbon duyệt', 'Gậy', 0, playing, 0])); r++;
     }
 
     if ((breakCues + jumpCues) > 0) {
-      if (breakCues > 0) {
-        rows.push(tableRow(r, ['Gậy phá', 'Gậy phá CLB', 'Gậy', specialUnit, breakCues, specialUnit * breakCues], { height: 24 })); r++;
-      }
-      if (jumpCues > 0) {
-        rows.push(tableRow(r, ['Gậy nhảy CLB', 'Gậy nhảy CLB', 'Gậy', specialUnit, jumpCues, specialUnit * jumpCues], { height: 24 })); r++;
-      }
+      if (breakCues > 0) { rows.push(tableRow(r, ['Gậy phá CLB', 'Cấu hình Pilot – Carbon duyệt', 'Gậy', 0, breakCues, 0])); r++; }
+      if (jumpCues > 0) { rows.push(tableRow(r, ['Gậy nhảy CLB', 'Cấu hình Pilot – Carbon duyệt', 'Gậy', 0, jumpCues, 0])); r++; }
     } else if (breakJump > 0) {
-      rows.push(tableRow(r, ['Gậy phá / nhảy', 'Cấu hình Pilot – Carbon duyệt', 'Gậy', specialUnit, breakJump, specialValue], { height: 24 })); r++;
+      rows.push(tableRow(r, ['Gậy phá/nhảy CLB', 'Trung bình ~3 bàn dùng chung 1 cây', 'Gậy', 0, breakJump, 0])); r++;
     }
 
-    rows.push(tableRow(r, ['Dịch vụ bảo dưỡng', 'Bao gồm trong thời gian Pilot', 'Gói', 0, 1, 0], { height: 24 })); r++;
+    rows.push(tableRow(r, ['Dịch vụ bảo dưỡng', 'Bao gồm trong thời gian Pilot', 'Gói', 0, 1, 0])); r++;
+    rows.push(tableRow(r, ['Khuyến mại', 'Miễn phí 100% chương trình Pilot', 'Gói', 0, 1, 0], { promo: true })); r++;
+    rows.push(tableRow(r, ['Ưu đãi', 'Không đặt cọc', 'Gói', 0, 1, 0], { promo: true })); r++;
 
-    rows.push(pilotSummaryRow(r, 'TỔNG GIÁ TRỊ TRẢI NGHIỆM', grossValue, 'base'));
+    rows.push(purchaseSummaryRow(r, 'TỔNG SỐ GẬY DỰ KIẾN', total, false));
     merges.push(`A${r}:E${r}`); r++;
-    rows.push(pilotSummaryRow(r, 'TỔNG ƯU ĐÃI · MIỄN PHÍ 100%', promoValue, 'promo'));
-    merges.push(`A${r}:E${r}`); r++;
-    rows.push(pilotSummaryRow(r, 'KHÁCH HÀNG CHI TRẢ', finalPay, 'payable'));
+    rows.push(purchaseSummaryRow(r, 'TỔNG GIÁ TRỊ KHÁCH HÀNG CHI TRẢ', 0, true));
     merges.push(`A${r}:E${r}`); r++;
 
     rows.push(row(r, [], 15));
     rows.push(row(r + 1, [cell(0, r + 1,
-      'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 14)], 33.95));
-    merges.push(`A${r + 1}:F${r + 1}`);
+      'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 14)], 34));
+    merges.push(`A${r + 1}:H${r + 1}`);
     rows.push(row(r + 2, [cell(0, r + 2,
       'Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 13)], 30));
-    merges.push(`A${r + 2}:F${r + 2}`);
+    merges.push(`A${r + 2}:H${r + 2}`);
     rows.push(row(r + 3, [], 15));
     rows.push(row(r + 4, [cell(0, r + 4,
       'Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 19)], 30));
-    merges.push(`A${r + 4}:F${r + 4}`);
+    merges.push(`A${r + 4}:H${r + 4}`);
     rows.push(row(r + 5, [cell(0, r + 5,
       `Trân trọng — ${COMPANY}`, 20)], 15));
-    merges.push(`A${r + 5}:F${r + 5}`);
+    merges.push(`A${r + 5}:H${r + 5}`);
     r = r + 5;
 
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:F${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
-<sheetFormatPr defaultRowHeight="15"/><cols>
-<col min="1" max="1" width="21" customWidth="1"/><col min="2" max="2" width="43.75" customWidth="1"/><col min="3" max="3" width="17.5" customWidth="1"/><col min="4" max="4" width="18.125" customWidth="1"/><col min="5" max="5" width="12.75" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/>
+<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="13.5"/><cols>
+<col min="1" max="1" width="25.7109375" customWidth="1"/><col min="2" max="2" width="30.7109375" customWidth="1"/><col min="3" max="3" width="12.7109375" customWidth="1"/><col min="4" max="4" width="14.7109375" customWidth="1"/><col min="5" max="5" width="12.7109375" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="12.7109375" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
-<pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
+<pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
 </worksheet>`;
   }
+
 
   function contentTypes(hasLogo) {
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>${hasLogo ? '<Default Extension="png" ContentType="image/png"/>' : ''}<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${hasLogo ? '<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>' : ''}</Types>`;
@@ -753,7 +708,7 @@
   }
 
   const API = {
-    version: '3.0.0',
+    version: '2.8.0',
     exportQuote,
     exportPromoRegistration,
     readRegistrationFromPage,
