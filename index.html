@@ -425,6 +425,63 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
   .loyal-register-form{gap:9px}.loyal-form-row input,.loyal-form-row select{height:42px;font-size:13px}
 }
 
+
+
+/* V21 — summary hierarchy, one-line secondary labels, descender-safe metrics */
+.summary-head{padding-block:14px;min-height:64px}
+.summary-plan{display:flex;align-items:center;min-width:0}
+.summary-head h2{margin:0;line-height:1.24;padding-block:.06em .10em}
+
+/* Primary metrics: remove unused third row where no supporting line exists. */
+.primary-metric{grid-template-rows:minmax(24px,auto) minmax(42px,auto);align-content:center;overflow:visible}
+.primary-metric:has(small:not(:empty)){grid-template-rows:minmax(24px,auto) minmax(42px,auto) minmax(24px,auto)}
+.primary-metric span,
+.primary-metric strong,
+.primary-metric small{overflow:visible;text-overflow:unset}
+.primary-metric span{line-height:1.32;padding-block:.04em .10em}
+.primary-metric strong{line-height:1.26;padding-block:.08em .14em}
+.primary-metric small{line-height:1.42;padding-block:.04em .12em}
+
+/* Secondary summary: desktop reference = 12px / 500 labels and 18px values. */
+.secondary{padding:13px 12px;grid-template-rows:minmax(22px,auto) minmax(30px,auto);align-content:center;overflow:visible}
+.secondary span{font-size:12px!important;font-weight:500!important;line-height:1.28!important;white-space:nowrap;letter-spacing:0!important;text-transform:none;overflow:visible;text-overflow:unset;padding-block:.04em .10em}
+.secondary strong{font-size:18px!important;font-weight:800;line-height:1.28!important;white-space:nowrap;overflow:visible;text-overflow:unset;padding-block:.06em .12em}
+
+.calc-unit{display:inline-flex;align-items:center;gap:7px;line-height:1.35}
+.meta-sep{font-weight:500;color:#a8b4ba}
+
+/* General safeguard for Vietnamese descenders/diacritics in compact data modules. */
+.status-pill,.tag,.plan-title,.price-big,.saving,.buy-metric span,.buy-metric strong,
+.field label,.quick-month,.action-btn,.table-unit,.calc-unit{line-height:1.3}
+.buy-metric,.promo-chip,.status-pill{overflow:visible}
+.buy-metric strong,.buy-metric span{padding-block:.04em .10em}
+
+@media (min-width:1280px){
+  .secondary span{font-size:12px!important}
+  .secondary strong{font-size:18px!important}
+}
+@media (min-width:761px) and (max-width:1100px){
+  .secondary{padding:12px 10px}
+  .secondary span{font-size:11px!important}
+  .secondary strong{font-size:16px!important}
+}
+@media (max-width:760px){
+  .summary-head{min-height:58px;padding-block:11px}
+  .primary-metric{grid-template-rows:minmax(21px,auto) minmax(36px,auto);min-height:88px}
+  .primary-metric:has(small:not(:empty)){grid-template-rows:minmax(21px,auto) minmax(36px,auto) minmax(21px,auto);min-height:98px}
+  .secondary{padding:10px 9px;grid-template-rows:minmax(20px,auto) minmax(28px,auto)}
+  .secondary span{font-size:10.5px!important}
+  .secondary strong{font-size:15px!important}
+}
+@media (max-width:390px){
+  .secondary span{font-size:10px!important}
+  .secondary strong{font-size:14px!important}
+}
+@media (orientation:landscape) and (max-height:520px){
+  .secondary span{font-size:10px!important}
+  .secondary strong{font-size:14px!important}
+}
+
 </style>
 
 <style id="v20-readability-and-smart-fields">
@@ -499,6 +556,89 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
   body,.modal-body,.promo-top p,.promo-chip,.promo-deadline{font-size:13px}.modal-head h3{font-size:17px}.promo-top h3{font-size:21px}
 }
 </style>
+
+<style id="v21-final-summary-tuning">
+/* V21 final — keep desktop as the reference scale, then step down gently. */
+.summary-head{min-height:64px;padding:13px 17px}
+.summary-plan{display:flex;align-items:center;min-width:0}
+.summary-head h2{margin:0;font-size:clamp(19px,1.28vw,22px);font-weight:900;line-height:1.26;padding:.04em 0 .10em}
+
+.primary-metric{overflow:visible;align-content:center}
+.primary-metric span{line-height:1.34;padding:.04em 0 .12em;overflow:visible}
+.primary-metric strong{line-height:1.28;padding:.08em 0 .16em;overflow:visible;text-overflow:unset}
+.primary-metric small{line-height:1.42;padding:.05em 0 .14em;overflow:visible}
+/* Only the time metric still needs a supporting line. */
+.primary-metric:not(:has(small)){grid-template-rows:minmax(24px,auto) minmax(42px,auto)}
+
+.secondary{padding:13px 12px;grid-template-rows:minmax(22px,auto) minmax(31px,auto);align-content:center;overflow:visible}
+.secondary span{
+  font-size:12px!important;font-weight:500!important;line-height:1.30!important;
+  letter-spacing:0!important;text-transform:none!important;white-space:nowrap!important;
+  overflow:visible!important;text-overflow:unset!important;padding:.04em 0 .10em;
+}
+.secondary strong{
+  font-size:18px!important;font-weight:800!important;line-height:1.32!important;
+  white-space:nowrap!important;overflow:visible!important;text-overflow:unset!important;
+  padding:.06em 0 .14em;
+}
+
+.calc-unit{display:inline-flex;align-items:center;gap:7px;line-height:1.35}
+.calc-unit .meta-sep{font-weight:500;color:#a7b3b9}
+
+/* Guard common compact modules against cropped Vietnamese descenders/diacritics. */
+.status-pill,.tag,.plan-title,.price-big,.saving,.buy-metric span,.buy-metric strong,
+.promo-chip strong,.wizard-step label,.quote-field label,.field label,.quick-month,.action-btn{
+  line-height:1.3;
+}
+.buy-metric strong,.buy-metric span,.promo-chip strong,.status-pill,.tag{padding-bottom:.08em}
+
+@media (min-width:761px) and (max-width:1100px){
+  .summary-head h2{font-size:19px}
+  .secondary{padding:12px 10px}
+  .secondary span{font-size:12px!important}
+  .secondary strong{font-size:17px!important}
+}
+@media (max-width:760px){
+  .summary-head{min-height:58px;padding:11px 12px}
+  .summary-head h2{font-size:17px}
+  .primary-metric{min-height:92px}
+  .primary-metric strong{line-height:1.30;padding-bottom:.17em}
+  .primary-metric small{line-height:1.44;padding-bottom:.15em}
+  .secondary{padding:10px 9px;grid-template-rows:minmax(20px,auto) minmax(29px,auto)}
+  .secondary span{font-size:12px!important}
+  .secondary strong{font-size:16px!important}
+}
+@media (max-width:390px){
+  .secondary span{font-size:12px!important}
+  .secondary strong{font-size:15px!important}
+}
+@media (orientation:landscape) and (max-height:520px){
+  .secondary span{font-size:12px!important}
+  .secondary strong{font-size:15px!important}
+}
+</style>
+
+
+<style id="v22-typography-layout">
+/* V22 — desktop is the reference scale; tablet/mobile step down proportionally. */
+.quote-field select{height:44px;width:100%;border:1px solid #cdd9de;border-radius:10px;padding:0 12px;color:var(--navy);background:#fff;font-size:13px;font-weight:700;outline:none}
+.quote-field select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,136,121,.10)}
+@media (min-width:1101px){
+  .primary-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1.14fr) minmax(0,1.43fr) minmax(0,1.14fr)}
+  .primary-metric span{font-size:14px!important;font-weight:600!important;white-space:nowrap;letter-spacing:-.005em;text-transform:none}
+  .secondary span{font-size:14px!important;font-weight:500!important}
+}
+@media (min-width:761px) and (max-width:1100px){
+  .primary-metric span{font-size:13.5px!important;font-weight:600!important;white-space:nowrap;letter-spacing:-.01em;text-transform:none}
+  .secondary span{font-size:13.5px!important;font-weight:500!important}
+}
+@media (max-width:760px){
+  .primary-metric span{font-size:13px!important;font-weight:600!important;white-space:nowrap;letter-spacing:-.018em;text-transform:none}
+  .secondary span{font-size:13px!important;font-weight:500!important}
+  .quote-field select{height:40px;font-size:13px}
+}
+</style>
+
 </head>
 <body>
 <header class="topbar">
@@ -557,14 +697,14 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
       <div class="summary-wrap">
         <div class="panel summary-panel" id="summaryPanel">
           <div class="summary-head">
-            <div><div class="summary-kicker">Phương án phù hợp</div><h2 id="planName">Gói 06 tháng</h2></div>
+            <div class="summary-plan"><h2 id="planName">Gói 06 tháng</h2></div>
             <div class="status-pill" id="planStatus">TỐI ƯU CHI PHÍ</div>
           </div>
           <div class="primary-grid">
-            <div class="primary-metric hero-number"><span>Chi phí thực tế</span><strong class="num" id="effective">—</strong><small>gậy thực nhận / tháng</small></div>
-            <div class="primary-metric"><span>Tổng gậy thực nhận</span><strong class="num" id="totalCues">—</strong><small id="backupMini">—</small></div>
+            <div class="primary-metric hero-number"><span>Chi phí thực tế</span><strong class="num" id="effective">—</strong></div>
+            <div class="primary-metric"><span>Tổng gậy thực nhận</span><strong class="num" id="totalCues">—</strong></div>
             <div class="primary-metric"><span>Tổng thời gian sử dụng</span><strong class="num" id="useMonths">—</strong><small id="giftText"></small></div>
-            <div class="primary-metric"><span>Tổng tiền thuê</span><strong class="num" id="rentTotal">—</strong><small>Đã gồm VAT</small></div>
+            <div class="primary-metric"><span>Tổng tiền thuê</span><strong class="num" id="rentTotal">—</strong></div>
           </div>
           <div class="secondary-grid">
             <div class="secondary"><span>Đơn giá áp dụng</span><strong class="num" id="unitPrice">—</strong></div>
@@ -576,7 +716,7 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
       </div>
     </section>
     <div class="calc-meta-row">
-      <span class="calc-unit">Đơn vị tính: VND</span>
+      <span class="calc-unit">Đơn vị tính: VND <b class="meta-sep">|</b> Đã gồm VAT</span>
       <button class="action-btn teal export-rental" id="exportRentalBtn" type="button">⇩ Xuất báo giá thuê</button>
     </div>
   </div>
@@ -689,6 +829,7 @@ th,td{line-height:1.42}.field label,.quote-field label,.buy-field label,.wizard-
         </div>
         <div class="quote-field"><label for="quoteClubName">Tên CLB / Quán <small>* Bắt buộc</small></label><input id="quoteClubName" type="text" autocomplete="off" maxlength="100" placeholder="Nhập tên CLB / quán" /></div>
         <div class="quote-field"><label for="quoteAddress">Địa chỉ <small>* Bắt buộc</small></label><input id="quoteAddress" type="text" autocomplete="off" maxlength="180" placeholder="Nhập địa chỉ" /></div>
+        <div class="quote-field" id="quoteRentalModelField"><label for="quoteRentalModel">Loại gậy thuê <small>* Bắt buộc</small></label><select id="quoteRentalModel"><option value="R-68">R-68</option><option value="R-88">R-88</option></select></div>
         <div class="quote-field smart-field">
           <label for="quoteSellerName">Người lập báo giá <small>* Bắt buộc</small></label>
           <div class="smart-input-wrap"><input id="quoteSellerName" type="text" autocomplete="off" maxlength="60" placeholder="Nhập tên người báo giá" /><div class="smart-suggestions" id="sellerSuggestions" aria-hidden="true"></div></div>
@@ -880,7 +1021,7 @@ function values(){
 function clearMainSummary(){
   $('planName').textContent='Chưa chọn phương án';$('planStatus').textContent='—';
   ['effective','totalCues','useMonths','rentTotal','unitPrice','backup','initialTotal','depositValue'].forEach(id=>$(id).textContent='—');
-  $('backupMini').textContent='';$('giftText').textContent='';
+  $('giftText').textContent='';
 }
 function clearCompare(){
   ['c3Unit','c6Unit','c12Unit','c3Rent','c6Rent','c12Rent','c3Backup','c6Backup','c12Backup','c3Total','c6Total','c12Total','c3Eff','c6Eff','c12Eff','c6Save','c12Save'].forEach(id=>$(id).textContent='—');
@@ -908,8 +1049,8 @@ function render(){
   }
   const p=combinedPlan(cues,months);
   $('planName').textContent=p.name;$('planStatus').textContent=p.status;
-  $('effective').textContent=fmt(p.effective);
-  $('totalCues').textContent=p.total+' gậy';$('backupMini').textContent=`${p.backup} gậy dự phòng (+${Math.round(p.backupPct*100)}%)`;
+  $('effective').textContent=fmt(p.effective)+'/tháng';
+  $('totalCues').textContent=p.total+' gậy';
   $('useMonths').textContent=p.use+' tháng';$('giftText').textContent=p.gift>0?`Đã gồm +${p.gift} tháng tặng`:'';
   $('rentTotal').textContent=fmt(p.rent);
   $('unitPrice').textContent=fmt(p.unit);$('backup').textContent=`${p.backup} gậy (+${Math.round(p.backupPct*100)}%)`;
@@ -1027,6 +1168,7 @@ function validateQuoteInfo(info){
 function openQuoteClient(type){
   if(type==='rental'){const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}}
   else{const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}}
+  const rentalModelField=$('quoteRentalModelField');if(rentalModelField)rentalModelField.hidden=type!=='rental';
   pendingQuoteType=type;$('quoteError').textContent='';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
 }
 $('exportRentalBtn').addEventListener('click',()=>openQuoteClient('rental'));
@@ -1036,7 +1178,7 @@ $('confirmQuoteExport').addEventListener('click',async()=>{
   const btn=$('confirmQuoteExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
   try{
     if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');
-    if(pendingQuoteType==='rental'){const {cues,months}=values();await window.RhinoExcel.exportQuote('rental',info,combinedPlan(cues,months))}
+    if(pendingQuoteType==='rental'){const {cues,months}=values();const rentalData=combinedPlan(cues,months);rentalData.model=$('quoteRentalModel')?.value||'R-68';await window.RhinoExcel.exportQuote('rental',info,rentalData)}
     else{await window.RhinoExcel.exportQuote('purchase',info,currentBuy())}
     saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address});saveSmartEntry('sellers',{name:info.seller,phone:info.sellerPhone});
     closeModal('quoteClientModal');
