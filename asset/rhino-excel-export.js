@@ -15,6 +15,7 @@
 (function (window, document) {
   'use strict';
 
+  // Excel compatibility note: worksheet child order follows ECMA-376 (pageMargins/pageSetup before drawing).
   const MIME_XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
   const COMPANY = 'CÔNG TY TNHH CARBON BILLIARDS';
   const LOGO_PATH = 'asset/logo.png';
@@ -207,8 +208,8 @@
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <dimension ref="A1:F${end}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="18"/><cols><col min="1" max="1" width="25" customWidth="1"/><col min="2" max="3" width="16" customWidth="1"/><col min="4" max="4" width="18" customWidth="1"/><col min="5" max="6" width="17" customWidth="1"/></cols>
-<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
-<pageMargins left="0.35" right="0.35" top="0.5" bottom="0.5" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>
+<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
+<pageMargins left="0.35" right="0.35" top="0.5" bottom="0.5" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
 </worksheet>`;
   }
 
@@ -241,8 +242,8 @@
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <dimension ref="A1:F21"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="18"/><cols><col min="1" max="1" width="24" customWidth="1"/><col min="2" max="3" width="17" customWidth="1"/><col min="4" max="4" width="19" customWidth="1"/><col min="5" max="6" width="18" customWidth="1"/></cols>
-<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
-<pageMargins left="0.35" right="0.35" top="0.5" bottom="0.5" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>
+<sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
+<pageMargins left="0.35" right="0.35" top="0.5" bottom="0.5" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
 </worksheet>`;
   }
 
@@ -359,7 +360,7 @@
   }
 
   const API = {
-    version: '1.0.0',
+    version: '1.1.0',
     exportQuote,
     exportPromoRegistration,
     readRegistrationFromPage,
