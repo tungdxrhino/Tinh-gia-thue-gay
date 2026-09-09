@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V23
+  Rhino Cue Platform - Excel Export V24
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -125,26 +125,26 @@
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
 <fonts count="12">
-  <font><sz val="10"/><name val="Aptos"/><color rgb="FF263944"/></font>
-  <font><b/><sz val="10.5"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
-  <font><b/><sz val="18"/><name val="Aptos Display"/><color rgb="FF0B3B59"/></font>
-  <font><b/><sz val="12"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
-  <font><b/><sz val="10"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
-  <font><b/><sz val="10"/><name val="Aptos"/><color rgb="FF138879"/></font>
-  <font><i/><sz val="9.5"/><name val="Aptos"/><color rgb="FF6E7E88"/></font>
-  <font><b/><sz val="10.5"/><name val="Aptos"/><color rgb="FFB55D20"/></font>
+  <font><sz val="11"/><name val="Aptos"/><color rgb="FF263944"/></font>
   <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
-  <font><b/><sz val="10.5"/><name val="Aptos"/><color rgb="FF138879"/></font>
-  <font><sz val="10"/><name val="Aptos"/><color rgb="FF4B5E67"/></font>
+  <font><b/><sz val="20"/><name val="Aptos Display"/><color rgb="FF0B3B59"/></font>
+  <font><b/><sz val="13"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
+  <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
+  <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF138879"/></font>
+  <font><i/><sz val="11"/><name val="Aptos"/><color rgb="FF6E7E88"/></font>
+  <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FFE06A1A"/></font>
+  <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FFFFFFFF"/></font>
+  <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF138879"/></font>
+  <font><sz val="11"/><name val="Aptos"/><color rgb="FF4B5E67"/></font>
   <font><b/><sz val="11"/><name val="Aptos"/><color rgb="FF0B3B59"/></font>
 </fonts>
 <fills count="7">
   <fill><patternFill patternType="none"/></fill>
   <fill><patternFill patternType="gray125"/></fill>
   <fill><patternFill patternType="solid"><fgColor rgb="FF0B3B59"/><bgColor indexed="64"/></patternFill></fill>
-  <fill><patternFill patternType="solid"><fgColor rgb="FFF6F9FA"/><bgColor indexed="64"/></patternFill></fill>
-  <fill><patternFill patternType="solid"><fgColor rgb="FFE9F7F4"/><bgColor indexed="64"/></patternFill></fill>
-  <fill><patternFill patternType="solid"><fgColor rgb="FFFFF4E8"/><bgColor indexed="64"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFF7F9FA"/><bgColor indexed="64"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFEEF9F6"/><bgColor indexed="64"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFFFF6EC"/><bgColor indexed="64"/></patternFill></fill>
   <fill><patternFill patternType="solid"><fgColor rgb="FF138879"/><bgColor indexed="64"/></patternFill></fill>
 </fills>
 <borders count="3">
@@ -153,29 +153,30 @@
   <border><bottom style="thin"><color rgb="FF138879"/></bottom></border>
 </borders>
 <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-<cellXfs count="22">
+<cellXfs count="23">
   <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="10" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="0"/></xf>
+  <xf numFmtId="0" fontId="4" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="10" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="3" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="10" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="3" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="9" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="10" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="9" fillId="4" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="9" fillId="4" borderId="2" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="4" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
   <xf numFmtId="3" fontId="7" fillId="5" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
   <xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
-  <xf numFmtId="3" fontId="5" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  <xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
-  <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="3" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+  <xf numFmtId="0" fontId="11" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf>
   <xf numFmtId="0" fontId="6" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+  <xf numFmtId="3" fontId="9" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
 </cellXfs>
 <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
 </styleSheet>`;
@@ -186,13 +187,13 @@
       cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)
     ];
     if (rightLabel) cells.push(cell(3, r, rightLabel, 17), cell(4, r, textOrDash(rightValue), rightValue ? 0 : 8));
-    return row(r, cells, 21);
+    return row(r, cells, 23);
   }
 
   function infoRowWide(r, leftLabel, leftValue, rightLabel, rightValue) {
     const cells = [cell(0, r, leftLabel, 17), cell(1, r, textOrDash(leftValue), 0)];
     if (rightLabel) cells.push(cell(5, r, rightLabel, 17), cell(6, r, textOrDash(rightValue), rightValue ? 0 : 8));
-    return row(r, cells, 21);
+    return row(r, cells, 23);
   }
 
   function tableHeader(r) {
@@ -203,7 +204,7 @@
       cell(3, r, 'ĐƠN GIÁ', 3),
       cell(4, r, 'SỐ LƯỢNG', 3),
       cell(5, r, 'THÀNH TIỀN', 3)
-    ], 25);
+    ], 28);
   }
 
   function rentalTableHeader(r) {
@@ -216,7 +217,7 @@
       cell(5, r, 'TỔNG GIÁ / THÁNG', 3),
       cell(6, r, 'SỐ THÁNG', 3),
       cell(7, r, 'THÀNH TIỀN', 3)
-    ], 27);
+    ], 28);
   }
 
   function tableRow(r, values, opts = {}) {
@@ -224,13 +225,14 @@
     const styleText = promo ? 9 : 5;
     const styleNum = promo ? 18 : 7;
     const styleDash = promo ? 11 : 8;
+    const lastStyle = promo ? 22 : styleNum;
     return row(r, [
       cell(0, r, textOrDash(values[0]), values[0] ? styleText : styleDash),
       cell(1, r, textOrDash(values[1]), values[1] ? styleText : styleDash),
       cell(2, r, textOrDash(values[2]), values[2] ? styleText : styleDash),
       numOrDash(3, r, values[3], styleNum, styleDash),
       numOrDash(4, r, values[4], styleNum, styleDash),
-      numOrDash(5, r, values[5], styleNum, styleDash)
+      numOrDash(5, r, values[5], lastStyle, styleDash)
     ], opts.height || 24);
   }
 
@@ -239,7 +241,7 @@
     const styleText = promo ? 9 : 5;
     const styleNum = promo ? 18 : 7;
     const styleDash = promo ? 11 : 8;
-    const payableStyle = opts.payableLast ? 10 : styleNum;
+    const lastStyle = promo ? 22 : (opts.payableLast ? 10 : styleNum);
     return row(r, [
       cell(0, r, textOrDash(values[0]), values[0] ? styleText : styleDash),
       cell(1, r, textOrDash(values[1]), values[1] ? styleText : styleDash),
@@ -248,7 +250,7 @@
       numOrDash(4, r, values[4], styleNum, styleDash),
       numOrDash(5, r, values[5], styleNum, styleDash),
       numOrDash(6, r, values[6], styleNum, styleDash),
-      numOrDash(7, r, values[7], payableStyle, styleDash)
+      numOrDash(7, r, values[7], lastStyle, styleDash)
     ], opts.height || 25);
   }
 
@@ -256,10 +258,10 @@
     const now = new Date();
     if (wide) {
       const out = [
-        row(1, [cell(4, 1, COMPANY, 1)], 22),
-        row(2, [cell(0, 2, title, 2)], 30)
+        row(1, [cell(4, 1, COMPANY, 1)], 24),
+        row(2, [cell(0, 2, title, 2)], 34)
       ];
-      if (subtitle) out.push(row(3, [cell(0, 3, subtitle, 21)], 20));
+      if (subtitle) out.push(row(3, [cell(0, 3, subtitle, 21)], 23));
       out.push(
         infoRowWide(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
         infoRowWide(5, 'CLB / Quán', info.club, 'Người lập báo giá', info.seller),
@@ -268,8 +270,8 @@
       return out;
     }
     return [
-      row(1, [cell(3, 1, COMPANY, 1)], 22),
-      row(2, [cell(0, 2, title, 2)], 30),
+      row(1, [cell(3, 1, COMPANY, 1)], 24),
+      row(2, [cell(0, 2, title, 2)], 34),
       infoRow(4, 'Khách hàng', info.customer, 'Ngày báo giá', now.toLocaleDateString('vi-VN')),
       infoRow(5, 'CLB / Quán', info.club, 'Người lập báo giá', info.seller),
       infoRow(6, 'Địa chỉ', info.address, 'Liên hệ', info.sellerPhone)
@@ -325,12 +327,12 @@
 
   function rentalSummaryRow(r, label, value, total = false) {
     if (total) return row(r, [cell(0, r, label, 15), cell(7, r, value, 16, 'n')], 28);
-    return row(r, [cell(0, r, label, 14), cell(7, r, value, 18, 'n')], 27);
+    return row(r, [cell(0, r, label, 14), cell(7, r, value, 22, 'n')], 27);
   }
 
   function purchaseSummaryRow(r, label, value, total = false) {
     if (total) return row(r, [cell(0, r, label, 15), cell(5, r, value, 16, 'n')], 28);
-    return row(r, [cell(0, r, label, 14), cell(5, r, value, 18, 'n')], 27);
+    return row(r, [cell(0, r, label, 14), cell(5, r, value, 22, 'n')], 27);
   }
 
   function buildQuoteSheet(info, type, data, hasLogo) {
@@ -424,10 +426,10 @@
         'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], 27));
       merges.push(`A${r + 2}:H${r + 2}`);
       rows.push(row(r + 4, [cell(0, r + 4,
-        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], 30));
+        'Cảm ơn Quý khách đã quan tâm đến sản phẩm và giải pháp của Rhino Cue Platform.', 19)], 32));
       merges.push(`A${r + 4}:H${r + 4}`);
       rows.push(row(r + 6, [cell(0, r + 6,
-        `Trân trọng — ${COMPANY}`, 20)], 25));
+        `Trân trọng — ${COMPANY}`, 20)], 27));
       merges.push(`A${r + 6}:H${r + 6}`);
       r = r + 6;
 
@@ -435,7 +437,7 @@
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <dimension ref="A1:H${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="19"/><cols>
-<col min="1" max="1" width="24" customWidth="1"/><col min="2" max="2" width="25" customWidth="1"/><col min="3" max="3" width="12" customWidth="1"/><col min="4" max="4" width="14" customWidth="1"/><col min="5" max="5" width="11" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/><col min="7" max="7" width="11" customWidth="1"/><col min="8" max="8" width="18" customWidth="1"/>
+<col min="1" max="1" width="25" customWidth="1"/><col min="2" max="2" width="27" customWidth="1"/><col min="3" max="3" width="12.5" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="12.5" customWidth="1"/><col min="6" max="6" width="21" customWidth="1"/><col min="7" max="7" width="12.5" customWidth="1"/><col min="8" max="8" width="19" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
@@ -480,7 +482,7 @@
       'Cảm ơn Quý khách đã quan tâm đến sản phẩm Rhino.', 19)], 30));
     merges.push(`A${r + 3}:F${r + 3}`);
     rows.push(row(r + 5, [cell(0, r + 5,
-      `Trân trọng — ${COMPANY}`, 20)], 25));
+      `Trân trọng — ${COMPANY}`, 20)], 27));
     merges.push(`A${r + 5}:F${r + 5}`);
     r = r + 5;
 
@@ -488,7 +490,7 @@
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <dimension ref="A1:F${r}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
 <sheetFormatPr defaultRowHeight="19"/><cols>
-<col min="1" max="1" width="22" customWidth="1"/><col min="2" max="2" width="29" customWidth="1"/><col min="3" max="3" width="13" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="13" customWidth="1"/><col min="6" max="6" width="18" customWidth="1"/>
+<col min="1" max="1" width="24" customWidth="1"/><col min="2" max="2" width="30" customWidth="1"/><col min="3" max="3" width="13" customWidth="1"/><col min="4" max="4" width="16" customWidth="1"/><col min="5" max="5" width="14" customWidth="1"/><col min="6" max="6" width="19" customWidth="1"/>
 </cols>
 <sheetData>${rows.join('')}</sheetData><mergeCells count="${merges.length}">${merges.map((m) => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
 <pageMargins left="0.3" right="0.3" top="0.45" bottom="0.45" header="0.2" footer="0.2"/><pageSetup orientation="portrait" fitToWidth="1" fitToHeight="0" paperSize="9"/>${hasLogo ? '<drawing r:id="rId1"/>' : ''}
