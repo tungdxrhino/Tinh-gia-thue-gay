@@ -1066,7 +1066,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
   <div class="modal-card compact">
     <div class="modal-head"><h3 id="buyTitle">Giá mua gậy</h3><button class="close" data-close="buyModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
-      <div class="buy-field buy-model-field"><label>Loại gậy</label><div class="segment model-segment" id="modelSegment"><button type="button" class="active" data-model="r68">R-68</button><button type="button" data-model="r88">R-88</button></div></div>
+      <div class="buy-field buy-model-field"><label>Loại gậy</label><div class="segment model-segment" id="modelSegment"><button type="button" class="active" data-model="r68">R68</button><button type="button" data-model="r88">R88</button></div></div>
       <div class="buy-grid">
         <div class="buy-field"><label>Số lượng gậy</label><input id="buyQty" type="number" min="5" step="1" value="" inputmode="numeric" /></div>
         <div class="buy-field"><label>Trạng thái khách hàng</label><div class="segment" id="customerSegment"><button type="button" class="active" data-customer="new">Khách mới</button><button type="button" data-customer="rental">Đã dùng gói thuê</button></div></div>
@@ -1099,11 +1099,11 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
           <label>Phân bổ loại gậy thuê <small>* Bắt buộc</small></label>
           <div class="quote-cue-choice-list">
             <div class="quote-cue-choice-row" data-quote-cue-row="r68">
-              <label class="quote-cue-choice-label" for="quoteUseR68"><input class="quote-cue-choice-check" id="quoteUseR68" type="checkbox" /><span>R-68</span></label>
+              <label class="quote-cue-choice-label" for="quoteUseR68"><input class="quote-cue-choice-check" id="quoteUseR68" type="checkbox" /><span>R68</span></label>
               <div class="quote-cue-choice-qty"><span>Số lượng</span><input id="quoteQtyR68" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
             </div>
             <div class="quote-cue-choice-row" data-quote-cue-row="r88">
-              <label class="quote-cue-choice-label" for="quoteUseR88"><input class="quote-cue-choice-check" id="quoteUseR88" type="checkbox" /><span>R-88</span></label>
+              <label class="quote-cue-choice-label" for="quoteUseR88"><input class="quote-cue-choice-check" id="quoteUseR88" type="checkbox" /><span>R88</span></label>
               <div class="quote-cue-choice-qty"><span>Số lượng</span><input id="quoteQtyR88" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
             </div>
           </div>
@@ -1263,15 +1263,15 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <label>Chọn gậy đánh <span class="req-note">* Bắt buộc</span></label>
         <div class="pilot-choice-list" id="playingChoiceList">
           <div class="pilot-choice-row" data-choice-row="r68">
-            <label class="pilot-choice-label" for="regUseR68"><input class="pilot-choice-check" id="regUseR68" type="checkbox" /><span>R-68</span></label>
+            <label class="pilot-choice-label" for="regUseR68"><input class="pilot-choice-check" id="regUseR68" type="checkbox" /><span>R68</span></label>
             <div class="pilot-choice-qty"><span>Số lượng</span><input id="regR68" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
           </div>
           <div class="pilot-choice-row" data-choice-row="r88">
-            <label class="pilot-choice-label" for="regUseR88"><input class="pilot-choice-check" id="regUseR88" type="checkbox" /><span>R-88</span></label>
+            <label class="pilot-choice-label" for="regUseR88"><input class="pilot-choice-check" id="regUseR88" type="checkbox" /><span>R88</span></label>
             <div class="pilot-choice-qty"><span>Số lượng</span><input id="regR88" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
           </div>
         </div>
-        <div class="pilot-allocation-hint" id="regPlayingAllocationHint">Chọn R-68, R-88 hoặc cả hai để hệ thống tự phân bổ số gậy đánh.</div>
+        <div class="pilot-allocation-hint" id="regPlayingAllocationHint">Chọn R68, R88 hoặc cả hai để hệ thống tự phân bổ số gậy đánh.</div>
       </section>
       <section class="wizard-step pilot-product-step" data-step="7">
         <label>Chọn gậy phá / gậy nhảy <span class="req-note">* Bắt buộc</span></label>
@@ -1450,7 +1450,7 @@ function currentBuy(){
   const safeQty=Number.isSafeInteger(qty)&&qty>=5?qty:null;
   const base=buyTierPrice(safeQty);
   const unit=base===null?null:Math.max(0,base-(buyCustomer==='rental'?50000:0));
-  return {qty:safeQty,base,unit,total:unit===null?null:safeQty*unit,model:buyModel==='r68'?'R-68':'R-88',customerType:buyCustomer};
+  return {qty:safeQty,base,unit,total:unit===null?null:safeQty*unit,model:buyModel==='r68'?'R68':'R88',customerType:buyCustomer};
 }
 function renderBuy(){
   const p=currentBuy();
@@ -1543,7 +1543,7 @@ function quoteCueAllocation(){
   const useR68=!!$('quoteUseR68')?.checked,useR88=!!$('quoteUseR88')?.checked;
   const r68=useR68?Math.max(0,parseInt($('quoteQtyR68')?.value||'0',10)||0):0;
   const r88=useR88?Math.max(0,parseInt($('quoteQtyR88')?.value||'0',10)||0):0;
-  const models=[];if(useR68&&r68>0)models.push({model:'R-68',qty:r68});if(useR88&&r88>0)models.push({model:'R-88',qty:r88});
+  const models=[];if(useR68&&r68>0)models.push({model:'R68',qty:r68});if(useR88&&r88>0)models.push({model:'R88',qty:r88});
   return {useR68,useR88,r68,r88,total:r68+r88,models};
 }
 function setQuoteCueQtyEnabled(id,enabled){const el=$(id);if(!el)return;el.disabled=!enabled;if(!enabled)el.value='0'}
@@ -1551,7 +1551,7 @@ function renderQuoteCueAllocation(){
   const total=values().cues||0,d=quoteCueAllocation();
   document.querySelector('[data-quote-cue-row="r68"]')?.classList.toggle('selected',d.useR68);
   document.querySelector('[data-quote-cue-row="r88"]')?.classList.toggle('selected',d.useR88);
-  const hint=$('quoteAllocationHint');if(hint)hint.innerHTML=total?`Tổng theo bảng tính: <strong>${total} gậy</strong> · R-68 <strong>${d.r68}</strong> · R-88 <strong>${d.r88}</strong>${d.total!==total?` · <span style="color:#b85f43">Còn lệch ${Math.abs(total-d.total)} gậy</span>`:''}.`:'Chưa có số gậy từ bảng tính.';
+  const hint=$('quoteAllocationHint');if(hint)hint.innerHTML=total?`Tổng theo bảng tính: <strong>${total} gậy</strong> · R68 <strong>${d.r68}</strong> · R88 <strong>${d.r88}</strong>${d.total!==total?` · <span style="color:#b85f43">Còn lệch ${Math.abs(total-d.total)} gậy</span>`:''}.`:'Chưa có số gậy từ bảng tính.';
 }
 function applyQuoteCueAllocation(){
   const total=values().cues||0,selected=[];
@@ -1566,9 +1566,9 @@ function initQuoteCueAllocation(){
 }
 function validateQuoteCueAllocation(){
   const total=values().cues||0,d=quoteCueAllocation();
-  if(!d.useR68&&!d.useR88)return 'Vui lòng chọn ít nhất một loại gậy: R-68 hoặc R-88.';
+  if(!d.useR68&&!d.useR88)return 'Vui lòng chọn ít nhất một loại gậy: R68 hoặc R88.';
   for(const id of ['quoteQtyR68','quoteQtyR88']){const el=$(id);if(el&&!el.disabled&&!/^\d+$/.test(el.value.trim()))return 'Số lượng từng loại gậy phải là số nguyên không âm.'}
-  if(d.total!==total)return `Tổng số lượng R-68 và R-88 phải bằng ${total} gậy theo bảng tính.`;
+  if(d.total!==total)return `Tổng số lượng R68 và R88 phải bằng ${total} gậy theo bảng tính.`;
   return '';
 }
 $('quoteUseR68')?.addEventListener('change',applyQuoteCueAllocation);$('quoteUseR88')?.addEventListener('change',applyQuoteCueAllocation);
@@ -1732,7 +1732,7 @@ function renderAllocationState(){
   const s=pilotSuggested($('regTables').value);
   const r68=$('regUseR68')?.checked?(parseInt($('regR68').value||'0',10)||0):0,r88=$('regUseR88')?.checked?(parseInt($('regR88').value||'0',10)||0):0;
   const br=$('regUseBreak')?.checked?(parseInt($('regBreakQty').value||'0',10)||0):0,jp=$('regUseJump')?.checked?(parseInt($('regJumpQty').value||'0',10)||0):0;
-  if($('regPlayingAllocationHint'))$('regPlayingAllocationHint').innerHTML=s.playing?`Cấu hình tham chiếu: <strong>${s.playing} gậy đánh</strong>. Đang phân bổ: R-68 <strong>${r68}</strong> · R-88 <strong>${r88}</strong>. Có thể sửa số lượng trực tiếp.`:'Nhập số bàn trước, sau đó chọn R-68, R-88 hoặc cả hai.';
+  if($('regPlayingAllocationHint'))$('regPlayingAllocationHint').innerHTML=s.playing?`Cấu hình tham chiếu: <strong>${s.playing} gậy đánh</strong>. Đang phân bổ: R68 <strong>${r68}</strong> · R88 <strong>${r88}</strong>. Có thể sửa số lượng trực tiếp.`:'Nhập số bàn trước, sau đó chọn R68, R88 hoặc cả hai.';
   if($('regSpecialAllocationHint'))$('regSpecialAllocationHint').innerHTML=s.breakJump?`Cấu hình tham chiếu: <strong>${s.breakJump} gậy phá/nhảy</strong>. Đang phân bổ: Phá <strong>${br}</strong> · Nhảy <strong>${jp}</strong>. Có thể sửa số lượng trực tiếp.`:'Nhập số bàn trước, sau đó chọn gậy phá, gậy nhảy hoặc cả hai.';
 }
 function registrationData(){
@@ -1753,7 +1753,7 @@ function validateWizardStep(step=wizardStep){
   if(step===4&&!validEmail(rawEmail))return 'Email chưa đúng cấu trúc, ví dụ ten@gmail.com.';
   if(step===5&&(!Number.isInteger(d.tables)||d.tables<1||d.tables>999))return 'Số bàn phải là số nguyên từ 1 đến 999.';
   if(step===6){
-    if(!d.useR68&&!d.useR88)return 'Vui lòng chọn ít nhất một loại gậy đánh: R-68 hoặc R-88.';
+    if(!d.useR68&&!d.useR88)return 'Vui lòng chọn ít nhất một loại gậy đánh: R68 hoặc R88.';
     if((d.useR68&&!validOptionalInteger($('regR68').value))||(d.useR88&&!validOptionalInteger($('regR88').value)))return 'Số lượng gậy đánh phải là số nguyên từ 0 đến 9.999.';
     if(d.playing<1)return 'Tổng số gậy đánh phải lớn hơn 0.';
   }
@@ -1798,7 +1798,7 @@ $('regUseBreak')?.addEventListener('change',()=>{applySpecialAllocation();render
 ['regCustomer','regClub','regAddress','regPhone','regEmail','regTables'].forEach((id,i)=>$(id)?.addEventListener('keydown',e=>{if(e.key==='Enter'&&i<5){e.preventDefault();const err=validateWizardStep(i);if(err){$('wizardError').textContent=err;$(id).classList.add('invalid');return}gotoWizard(i+1)}}));
 function buildRegistrationReview(){
   const d=registrationData();
-  const playingParts=[];if(d.useR68)playingParts.push(`R-68: ${d.r68} gậy`);if(d.useR88)playingParts.push(`R-88: ${d.r88} gậy`);
+  const playingParts=[];if(d.useR68)playingParts.push(`R68: ${d.r68} gậy`);if(d.useR88)playingParts.push(`R88: ${d.r88} gậy`);
   const specialParts=[];if(d.useBreak)specialParts.push(`Gậy phá: ${d.breakCues}`);if(d.useJump)specialParts.push(`Gậy nhảy: ${d.jumpCues}`);
   const vals=[d.customer,d.club,d.address,d.phone,d.email||'Không có',`${d.tables} bàn`,playingParts.join(' · '),specialParts.join(' · '),`${dateVi(d.delivery)} → ${d.endDate}`,d.seller||'—'];
   $('promoReviewList').innerHTML=vals.map((v,i)=>`<button class="review-row" type="button" data-edit-step="${i}"><span>${regLabels[i]}</span><strong>${xmlEsc(v)}</strong></button>`).join('');
@@ -1846,8 +1846,8 @@ function buildPromoRegistrationSheet(data,hasLogo,createdAt){
   rows.push(row(7,[cell(0,7,'Địa chỉ',2),cell(1,7,data.address,0)],26));
   rows.push(row(8,[cell(0,8,'Giao nhận dự kiến',2),cell(1,8,dateVi(data.delivery),0),cell(3,8,'Kết thúc dự kiến',2),cell(4,8,data.endDate,0)],21));
   rows.push(row(10,[cell(0,10,'SẢN PHẨM',3),cell(1,10,'SỐ LƯỢNG',3),cell(3,10,'ĐƠN GIÁ CT',3),cell(4,10,'THÀNH TIỀN',3)],24));
-  rows.push(row(11,[cell(0,11,'Rhino R-68',4),cell(1,11,`${data.r68} gậy`,4),cell(3,11,0,5,'n'),cell(4,11,0,5,'n')],23));
-  rows.push(row(12,[cell(0,12,'Rhino R-88',4),cell(1,12,`${data.r88} gậy`,4),cell(3,12,0,5,'n'),cell(4,12,0,5,'n')],23));
+  rows.push(row(11,[cell(0,11,'Rhino R68',4),cell(1,11,`${data.r68} gậy`,4),cell(3,11,0,5,'n'),cell(4,11,0,5,'n')],23));
+  rows.push(row(12,[cell(0,12,'Rhino R88',4),cell(1,12,`${data.r88} gậy`,4),cell(3,12,0,5,'n'),cell(4,12,0,5,'n')],23));
   rows.push(row(13,[cell(0,13,'Gậy phá CLB',4),cell(1,13,`${data.breakCues||0} gậy`,4),cell(3,13,0,5,'n'),cell(4,13,0,5,'n')],23));
   rows.push(row(14,[cell(0,14,'Gậy nhảy CLB',4),cell(1,14,`${data.jumpCues||0} gậy`,4),cell(3,14,0,5,'n'),cell(4,14,0,5,'n')],23));
   rows.push(row(16,[cell(0,16,'TỔNG SỐ GẬY',7),cell(1,16,`${data.total} gậy`,10),cell(3,16,'KHUYẾN MẠI',7),cell(4,16,'100%',10)],23));
