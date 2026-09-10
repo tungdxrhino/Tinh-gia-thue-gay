@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - Excel Export V31
+  Rhino Cue Platform - Excel Export V32
   Requirement: asset/jszip.min.js must be loaded BEFORE this file.
 
   Public API:
@@ -385,7 +385,15 @@
       rows.push(rentalTableHeader(r));
       r++;
       const p = rentalPricing(data);
-      const model = data.model === 'R-88' ? 'R-88' : 'R-68';
+      const rawModels = Array.isArray(data.models) ? data.models : [];
+      let allocations = rawModels
+        .map(x => ({ model: x && x.model === 'R-88' ? 'R-88' : 'R-68', qty: Math.max(0, Math.floor(Number(x && x.qty) || 0)) }))
+        .filter(x => x.qty > 0);
+      const allocatedTotal = allocations.reduce((sum, x) => sum + x.qty, 0);
+      if (!allocations.length || allocatedTotal !== p.n) {
+        const fallbackModel = data.model === 'R-88' ? 'R-88' : 'R-68';
+        allocations = [{ model: fallbackModel, qty: p.n }];
+      }
       const monthlyTotal = Math.round(p.unit * p.n);
       const backupCount = Math.max(0, Number(data.backup || 0));
       const backupPct = Math.round(Math.max(0, Number(data.backupPct || 0)) * 100);
@@ -394,17 +402,21 @@
       const backupValue = Math.round(backupMonthlyValue * p.use);
       const promoTotal = giftValue + backupValue;
 
-      rows.push(rentalTableRow(r, [
-        `Thuê gậy CLB ${model}`,
-        rentalPlanLabel(data, p),
-        'Gậy',
-        p.unit,
-        p.n,
-        monthlyTotal,
-        p.paid,
-        p.rent
-      ], { payableLast: true, height: 24.95 }));
-      r++;
+      allocations.forEach((part) => {
+        const partMonthly = Math.round(p.unit * part.qty);
+        const partRent = Math.round(partMonthly * p.paid);
+        rows.push(rentalTableRow(r, [
+          `Thuê gậy CLB ${part.model}`,
+          rentalPlanLabel(data, p),
+          'Gậy',
+          p.unit,
+          part.qty,
+          partMonthly,
+          p.paid,
+          partRent
+        ], { payableLast: true, height: 24.95 }));
+        r++;
+      });
 
       if (p.gift > 0) {
         rows.push(rentalTableRow(r, [
@@ -733,7 +745,11 @@
 
     const blob = await createWorkbookBlob('BÁO GIÁ', (hasLogo) => buildQuoteSheet(info, type, data, hasLogo));
     const nameBase = type === 'rental' ? 'Bao_gia_thue_gay_Rhino' : 'Bao_gia_mua_gay_Rhino';
-    const model = data.model ? `${safeName(data.model)}_` : '';
+    let modelLabel = data.model || '';
+    if (type === 'rental' && Array.isArray(data.models) && data.models.length) {
+      modelLabel = data.models.filter(x => Number(x && x.qty) > 0).map(x => x.model).join('_');
+    }
+    const model = modelLabel ? `${safeName(modelLabel)}_` : '';
     const fileName = `${nameBase}_${model}${safeName(info.club)}_${new Date().toISOString().slice(0, 10)}.xlsx`;
     downloadBlob(blob, fileName);
     return fileName;
@@ -786,7 +802,7 @@
   }
 
   const API = {
-    version: '3.1.0',
+    version: '3.2.0',
     exportQuote,
     exportPromoRegistration,
     readRegistrationFromPage,
