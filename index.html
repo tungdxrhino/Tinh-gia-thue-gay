@@ -862,6 +862,38 @@ body[data-theme="dark"] .smart-pick strong{color:#e7eef0!important}
 body[data-theme="dark"] .smart-pick small,body[data-theme="dark"] .smart-suggest-head{color:#9fb0b6!important}
 </style>
 
+
+<style id="v32-quote-export-ui">
+/* V32 — rental cue allocation + output format selector. */
+.quote-rental-allocation{min-width:0}
+.quote-cue-choice-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.quote-cue-choice-row{display:grid;grid-template-columns:minmax(92px,1fr) minmax(128px,.9fr);align-items:center;gap:10px;padding:9px 10px;border:1px solid #dce7e8;border-radius:11px;background:#fbfdfc;transition:.16s ease}
+.quote-cue-choice-row.selected{border-color:rgba(17,143,126,.45);background:#f1faf7;box-shadow:0 0 0 2px rgba(17,143,126,.05)}
+.quote-cue-choice-label{display:flex!important;align-items:center;gap:8px!important;margin:0!important;color:var(--navy)!important;font-size:14px!important;font-weight:800!important;cursor:pointer}
+.quote-cue-choice-check{appearance:none;-webkit-appearance:none;width:20px!important;height:20px!important;min-width:20px!important;padding:0!important;margin:0!important;border:1.5px solid #aebec4!important;border-radius:6px!important;background:#fff!important;box-shadow:none!important;display:grid!important;place-items:center!important;cursor:pointer}
+.quote-cue-choice-check:checked{background:var(--teal)!important;border-color:var(--teal)!important}
+.quote-cue-choice-check:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:950;line-height:1}
+.quote-cue-choice-qty{display:grid;grid-template-columns:auto minmax(68px,86px);align-items:center;justify-content:end;gap:7px;min-width:0}
+.quote-cue-choice-qty>span{font-size:12px;font-weight:600;color:#73858d;white-space:nowrap}
+.quote-cue-choice-qty input{width:100%!important;height:38px!important;padding:0 9px!important;text-align:right;font-size:15px!important;font-weight:800!important}
+.quote-cue-choice-qty input:disabled{background:#f2f5f5!important;color:#a6b0b5!important;border-color:#e1e7e9!important;opacity:1}
+.quote-allocation-hint{margin-top:8px;padding:8px 10px;border-radius:9px;background:#f4f8f8;color:#667982;font-size:12px;line-height:1.4;font-weight:600}
+.quote-allocation-hint strong{color:var(--teal);font-weight:850}
+.export-format-card{width:min(520px,calc(100vw - 28px))!important}
+.export-format-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.export-format-option{min-height:106px;border:1px solid #d9e4e7;border-radius:13px;background:#fff;color:var(--navy);display:grid;grid-template-rows:auto auto auto;place-items:center;align-content:center;gap:3px;cursor:pointer;transition:.16s ease;padding:12px}
+.export-format-option:hover{border-color:#b7d5d0;background:#f8fbfa}.export-format-option.active{border-color:var(--teal);box-shadow:0 0 0 2px rgba(19,136,121,.08);background:#f0faf7}
+.export-format-icon{font-size:25px;line-height:1;color:var(--teal);font-weight:800}.export-format-option strong{font-size:16px;font-weight:850}.export-format-option small{font-size:12px;color:#71838b;font-weight:600}
+.pdf-orientation-wrap{margin-top:12px;padding-top:12px;border-top:1px solid #e2eaec}.pdf-orientation-label{display:block;margin-bottom:7px;font-size:13px;font-weight:750;color:#667982}
+.pdf-orientation-options{display:grid;grid-template-columns:1fr 1fr;border:1px solid #d9e4e7;border-radius:10px;overflow:hidden}.pdf-orientation-option{height:42px;border:0;background:#fff;color:var(--navy);font-size:13px;font-weight:750;cursor:pointer}.pdf-orientation-option+.pdf-orientation-option{border-left:1px solid #d9e4e7}.pdf-orientation-option.active{background:var(--accent-warm,#e8892d);color:#fff}
+body[data-theme="dark"] .quote-cue-choice-row,body[data-theme="dark"] .export-format-option,body[data-theme="dark"] .pdf-orientation-option{background:#0f1b21;color:#e8f2f4;border-color:#35474f}
+body[data-theme="dark"] .quote-cue-choice-row.selected,body[data-theme="dark"] .export-format-option.active{background:#172b2d;border-color:#d88a38}
+body[data-theme="dark"] .quote-cue-choice-label{color:#e8f2f4!important}body[data-theme="dark"] .quote-cue-choice-qty>span,body[data-theme="dark"] .quote-allocation-hint,body[data-theme="dark"] .export-format-option small,body[data-theme="dark"] .pdf-orientation-label{color:#afc0c5}
+body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-theme="dark"] .quote-allocation-hint strong,body[data-theme="dark"] .export-format-icon{color:#f0a04f}
+@media(max-width:760px){.quote-cue-choice-list{grid-template-columns:1fr}.quote-cue-choice-row{grid-template-columns:minmax(0,1fr) minmax(126px,.85fr)}.export-format-option{min-height:96px}.export-format-option strong{font-size:15px}.quote-allocation-hint{font-size:11px}}
+@media(max-width:390px){.quote-cue-choice-row{grid-template-columns:1fr;gap:7px}.quote-cue-choice-qty{grid-template-columns:1fr 88px;justify-content:stretch}.export-format-grid{gap:8px}.export-format-option{min-height:90px;padding:9px}.export-format-icon{font-size:22px}}
+</style>
+
 </head>
 <body>
 <header class="topbar">
@@ -1063,11 +1095,46 @@ body[data-theme="dark"] .smart-pick small,body[data-theme="dark"] .smart-suggest
         <div class="quote-field"><label for="quoteClubName">Tên CLB / Quán <small>* Bắt buộc</small></label><input id="quoteClubName" type="text" autocomplete="off" maxlength="100" placeholder="Nhập tên CLB / quán" /></div>
         <div class="quote-field"><label for="quoteAddress">Địa chỉ <small>* Bắt buộc</small></label><input id="quoteAddress" type="text" autocomplete="off" maxlength="180" placeholder="Nhập địa chỉ" /></div>
         <div class="quote-field"><label for="quoteCustomerEmail">Email khách hàng <small>Không bắt buộc</small></label><input id="quoteCustomerEmail" type="email" autocomplete="email" maxlength="120" placeholder="Nhập email nếu có" /></div>
-        <div class="quote-field" id="quoteRentalModelField"><label for="quoteRentalModel">Loại gậy thuê <small>* Bắt buộc</small></label><select id="quoteRentalModel"><option value="R-68">R-68</option><option value="R-88">R-88</option></select></div>
+        <div class="quote-field quote-rental-allocation" id="quoteRentalModelField">
+          <label>Phân bổ loại gậy thuê <small>* Bắt buộc</small></label>
+          <div class="quote-cue-choice-list">
+            <div class="quote-cue-choice-row" data-quote-cue-row="r68">
+              <label class="quote-cue-choice-label" for="quoteUseR68"><input class="quote-cue-choice-check" id="quoteUseR68" type="checkbox" /><span>R-68</span></label>
+              <div class="quote-cue-choice-qty"><span>Số lượng</span><input id="quoteQtyR68" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
+            </div>
+            <div class="quote-cue-choice-row" data-quote-cue-row="r88">
+              <label class="quote-cue-choice-label" for="quoteUseR88"><input class="quote-cue-choice-check" id="quoteUseR88" type="checkbox" /><span>R-88</span></label>
+              <div class="quote-cue-choice-qty"><span>Số lượng</span><input id="quoteQtyR88" type="number" min="0" max="9999" step="1" inputmode="numeric" value="0" disabled /></div>
+            </div>
+          </div>
+          <div class="quote-allocation-hint" id="quoteAllocationHint">Hệ thống sẽ tự chia số gậy theo bảng tính; bạn có thể sửa lại số lượng từng loại.</div>
+        </div>
         <div class="quote-field"><label for="quoteSellerSelect">Người lập báo giá <small>* Bắt buộc</small></label><select id="quoteSellerSelect" class="seller-select"><option value="">Chọn người báo giá</option></select></div>
       </div>
       <div class="quote-error" id="quoteError"></div>
-      <div class="modal-actions"><button class="action-btn" data-close="quoteClientModal" type="button">Thoát</button><button class="action-btn teal" id="confirmQuoteExport" type="button">Xác nhận & tải Excel</button></div>
+      <div class="modal-actions"><button class="action-btn" data-close="quoteClientModal" type="button">Thoát</button><button class="action-btn teal" id="confirmQuoteExport" type="button">Tiếp tục</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Export format modal -->
+<div class="modal" id="quoteFormatModal" role="dialog" aria-modal="true" aria-labelledby="quoteFormatTitle">
+  <div class="modal-card compact export-format-card">
+    <div class="modal-head"><h3 id="quoteFormatTitle">Chọn định dạng xuất</h3><button class="close" data-close="quoteFormatModal" aria-label="Đóng">×</button></div>
+    <div class="modal-body">
+      <div class="export-format-grid" id="exportFormatGrid">
+        <button class="export-format-option active" type="button" data-export-format="excel"><span class="export-format-icon">▦</span><strong>Excel</strong><small>Bảng báo giá .xlsx</small></button>
+        <button class="export-format-option" type="button" data-export-format="pdf"><span class="export-format-icon">▤</span><strong>PDF</strong><small>1 trang A4</small></button>
+      </div>
+      <div class="pdf-orientation-wrap" id="pdfOrientationWrap" hidden>
+        <span class="pdf-orientation-label">Khổ giấy A4</span>
+        <div class="pdf-orientation-options">
+          <button class="pdf-orientation-option active" type="button" data-pdf-orientation="portrait">Khổ dọc</button>
+          <button class="pdf-orientation-option" type="button" data-pdf-orientation="landscape">Khổ ngang</button>
+        </div>
+      </div>
+      <div class="quote-error" id="quoteFormatError"></div>
+      <div class="modal-actions"><button class="action-btn" id="quoteFormatBack" type="button">Quay lại</button><button class="action-btn teal" id="confirmFormatExport" type="button">Xuất Excel</button></div>
     </div>
   </div>
 </div>
@@ -1472,6 +1539,41 @@ function setupSmartInput(inputId){const input=$(inputId);if(!input)return;input.
 setupSmartInput('quoteCustomerName');
 document.addEventListener('click',e=>{if(!e.target.closest('.smart-field'))document.querySelectorAll('.smart-suggestions').forEach(x=>{x.classList.remove('open');x.setAttribute('aria-hidden','true')})});
 
+function quoteCueAllocation(){
+  const useR68=!!$('quoteUseR68')?.checked,useR88=!!$('quoteUseR88')?.checked;
+  const r68=useR68?Math.max(0,parseInt($('quoteQtyR68')?.value||'0',10)||0):0;
+  const r88=useR88?Math.max(0,parseInt($('quoteQtyR88')?.value||'0',10)||0):0;
+  const models=[];if(useR68&&r68>0)models.push({model:'R-68',qty:r68});if(useR88&&r88>0)models.push({model:'R-88',qty:r88});
+  return {useR68,useR88,r68,r88,total:r68+r88,models};
+}
+function setQuoteCueQtyEnabled(id,enabled){const el=$(id);if(!el)return;el.disabled=!enabled;if(!enabled)el.value='0'}
+function renderQuoteCueAllocation(){
+  const total=values().cues||0,d=quoteCueAllocation();
+  document.querySelector('[data-quote-cue-row="r68"]')?.classList.toggle('selected',d.useR68);
+  document.querySelector('[data-quote-cue-row="r88"]')?.classList.toggle('selected',d.useR88);
+  const hint=$('quoteAllocationHint');if(hint)hint.innerHTML=total?`Tổng theo bảng tính: <strong>${total} gậy</strong> · R-68 <strong>${d.r68}</strong> · R-88 <strong>${d.r88}</strong>${d.total!==total?` · <span style="color:#b85f43">Còn lệch ${Math.abs(total-d.total)} gậy</span>`:''}.`:'Chưa có số gậy từ bảng tính.';
+}
+function applyQuoteCueAllocation(){
+  const total=values().cues||0,selected=[];
+  if($('quoteUseR68')?.checked)selected.push('quoteQtyR68');if($('quoteUseR88')?.checked)selected.push('quoteQtyR88');
+  setQuoteCueQtyEnabled('quoteQtyR68',!!$('quoteUseR68')?.checked);setQuoteCueQtyEnabled('quoteQtyR88',!!$('quoteUseR88')?.checked);
+  if(selected.length){const base=Math.floor(total/selected.length),extra=total%selected.length;selected.forEach((id,i)=>$(id).value=String(base+(i<extra?1:0)))}
+  renderQuoteCueAllocation();
+}
+function initQuoteCueAllocation(){
+  if(!$('quoteUseR68')||!$('quoteUseR88'))return;
+  $('quoteUseR68').checked=true;$('quoteUseR88').checked=true;applyQuoteCueAllocation();
+}
+function validateQuoteCueAllocation(){
+  const total=values().cues||0,d=quoteCueAllocation();
+  if(!d.useR68&&!d.useR88)return 'Vui lòng chọn ít nhất một loại gậy: R-68 hoặc R-88.';
+  for(const id of ['quoteQtyR68','quoteQtyR88']){const el=$(id);if(el&&!el.disabled&&!/^\d+$/.test(el.value.trim()))return 'Số lượng từng loại gậy phải là số nguyên không âm.'}
+  if(d.total!==total)return `Tổng số lượng R-68 và R-88 phải bằng ${total} gậy theo bảng tính.`;
+  return '';
+}
+$('quoteUseR68')?.addEventListener('change',applyQuoteCueAllocation);$('quoteUseR88')?.addEventListener('change',applyQuoteCueAllocation);
+$('quoteQtyR68')?.addEventListener('input',renderQuoteCueAllocation);$('quoteQtyR88')?.addEventListener('input',renderQuoteCueAllocation);
+
 function quoteInfoFromForm(){
   const seller=sellerInfo($('quoteSellerSelect')?.value||'');
   return {customer:compactSpaces($('quoteCustomerName').value),club:compactSpaces($('quoteClubName').value),address:compactSpaces($('quoteAddress').value),customerEmail:$('quoteCustomerEmail')?.value.trim()||'',...(seller||{})};
@@ -1484,25 +1586,51 @@ function validateQuoteInfo(info){
   if(!info.sellerId||!info.seller||!info.sellerPhone||!info.showroom)return 'Vui lòng chọn người lập báo giá.';
   return '';
 }
+let pendingQuotePayload=null,selectedQuoteFormat='excel',selectedPdfOrientation='portrait';
+function rentalQuoteData(){
+  const {cues,months}=values(),data=combinedPlan(cues,months),alloc=quoteCueAllocation();
+  data.models=alloc.models;data.model=alloc.models.length===1?alloc.models[0].model:alloc.models.map(x=>x.model).join(' + ');return data;
+}
+function setQuoteFormat(format){
+  selectedQuoteFormat=format==='pdf'?'pdf':'excel';
+  document.querySelectorAll('[data-export-format]').forEach(b=>b.classList.toggle('active',b.dataset.exportFormat===selectedQuoteFormat));
+  const wrap=$('pdfOrientationWrap');if(wrap)wrap.hidden=selectedQuoteFormat!=='pdf';
+  if($('confirmFormatExport'))$('confirmFormatExport').textContent=selectedQuoteFormat==='pdf'?'Xuất PDF':'Xuất Excel';
+}
+function setPdfOrientation(orientation){selectedPdfOrientation=orientation==='landscape'?'landscape':'portrait';document.querySelectorAll('[data-pdf-orientation]').forEach(b=>b.classList.toggle('active',b.dataset.pdfOrientation===selectedPdfOrientation))}
 function openQuoteClient(type){
   if(type==='rental'){const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}}
   else{const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}}
   const rentalModelField=$('quoteRentalModelField');if(rentalModelField)rentalModelField.hidden=type!=='rental';renderSellerSelects();
-  pendingQuoteType=type;$('quoteError').textContent='';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
+  if(type==='rental')initQuoteCueAllocation();
+  pendingQuoteType=type;$('quoteError').textContent='';$('confirmQuoteExport').textContent=type==='rental'?'Tiếp tục':'Xác nhận & tải Excel';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
 }
 $('exportRentalBtn').addEventListener('click',()=>openQuoteClient('rental'));
 $('exportBuyBtn').addEventListener('click',()=>openQuoteClient('purchase'));
 $('quoteSellerSelect')?.addEventListener('change',e=>rememberSeller(e.target.value));
 $('regSellerSelect')?.addEventListener('change',e=>{rememberSeller(e.target.value);renderWizard()});
 $('confirmQuoteExport').addEventListener('click',async()=>{
-  const info=quoteInfoFromForm(),err=validateQuoteInfo(info);if(err){$('quoteError').textContent=err;return}$('quoteError').textContent='';
+  const info=quoteInfoFromForm(),err=validateQuoteInfo(info);if(err){$('quoteError').textContent=err;return}
+  if(pendingQuoteType==='rental'){const allocErr=validateQuoteCueAllocation();if(allocErr){$('quoteError').textContent=allocErr;return}}
+  $('quoteError').textContent='';
+  if(pendingQuoteType==='rental'){
+    pendingQuotePayload={type:'rental',info,data:rentalQuoteData()};setQuoteFormat('excel');setPdfOrientation('portrait');$('quoteFormatError').textContent='';closeModal('quoteClientModal');openModal('quoteFormatModal',false);return;
+  }
   const btn=$('confirmQuoteExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
+  try{if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');await window.RhinoExcel.exportQuote('purchase',info,currentBuy());saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address,email:info.customerEmail});rememberSeller(info.sellerId);closeModal('quoteClientModal')}
+  catch(ex){console.error(ex);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
+  finally{btn.disabled=false;btn.textContent=old}
+});
+document.querySelectorAll('[data-export-format]').forEach(btn=>btn.addEventListener('click',()=>setQuoteFormat(btn.dataset.exportFormat)));
+document.querySelectorAll('[data-pdf-orientation]').forEach(btn=>btn.addEventListener('click',()=>setPdfOrientation(btn.dataset.pdfOrientation)));
+$('quoteFormatBack')?.addEventListener('click',()=>{closeModal('quoteFormatModal');openModal('quoteClientModal',false)});
+$('confirmFormatExport')?.addEventListener('click',async()=>{
+  if(!pendingQuotePayload)return;const btn=$('confirmFormatExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';$('quoteFormatError').textContent='';
   try{
-    if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');
-    if(pendingQuoteType==='rental'){const {cues,months}=values();const rentalData=combinedPlan(cues,months);rentalData.model=$('quoteRentalModel')?.value||'R-68';await window.RhinoExcel.exportQuote('rental',info,rentalData)}
-    else{await window.RhinoExcel.exportQuote('purchase',info,currentBuy())}
-    saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address,email:info.customerEmail});rememberSeller(info.sellerId);closeModal('quoteClientModal');
-  }catch(ex){console.error(ex);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
+    if(selectedQuoteFormat==='excel'){if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');await window.RhinoExcel.exportQuote(pendingQuotePayload.type,pendingQuotePayload.info,pendingQuotePayload.data)}
+    else{if(!window.RhinoPDF)throw new Error('Thiếu asset/rhino-pdf-export.js');await window.RhinoPDF.exportQuote(pendingQuotePayload.type,pendingQuotePayload.info,pendingQuotePayload.data,selectedPdfOrientation)}
+    const info=pendingQuotePayload.info;saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address,email:info.customerEmail});rememberSeller(info.sellerId);closeModal('quoteFormatModal');pendingQuotePayload=null;
+  }catch(ex){console.error(ex);$('quoteFormatError').textContent=selectedQuoteFormat==='pdf'?'Không thể tạo file PDF. Vui lòng thử lại.':'Không thể tạo file Excel. Vui lòng thử lại.'}
   finally{btn.disabled=false;btn.textContent=old}
 });
 
@@ -1796,5 +1924,6 @@ setTimeout(()=>{if(!document.querySelector('.modal.open'))openModal('promoModal'
 render();renderBuy();renderWizard();syncVisualViewport();
 </script>
 <script src="asset/rhino-excel-export.js"></script>
+<script src="asset/rhino-pdf-export.js"></script>
 </body>
 </html>
