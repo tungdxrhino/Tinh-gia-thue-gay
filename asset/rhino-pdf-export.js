@@ -40,7 +40,11 @@
     ctx.beginPath();ctx.roundRect?ctx.roundRect(x,y,w,h,r):(ctx.rect(x,y,w,h));
     if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=.6;ctx.stroke()}
   }
-  function setFont(ctx,size,weight='400',italic=false){ctx.font=`${italic?'italic ':''}${weight} ${size}px Arial, Helvetica, sans-serif`}
+  function setFont(ctx,size,weight='400',italic=false){
+    // Prefer Windows/UI fonts with complete Vietnamese glyph coverage.
+    // Keeping the fallback chain local avoids external font dependencies.
+    ctx.font=`${italic?'italic ':''}${weight} ${size}px \"Segoe UI\", Tahoma, Arial, \"Noto Sans\", \"DejaVu Sans\", sans-serif`;
+  }
   function wrapLines(ctx,value,maxW){
     const raw=String(value??'');if(!raw)return ['-'];const lines=[];
     raw.split(/\n/).forEach(par=>{const words=par.split(/\s+/);let line='';for(const word of words){const test=line?`${line} ${word}`:word;if(ctx.measureText(test).width<=maxW||!line)line=test;else{lines.push(line);line=word}}if(line)lines.push(line)});
@@ -97,8 +101,9 @@
   }
 
   async function renderQuoteCanvas(type,info,data,orientation){
-    const landscape=orientation==='landscape',pageW=landscape?841.89:595.28,pageH=landscape?595.28:841.89,scale=2.1;
-    const canvas=document.createElement('canvas');canvas.width=Math.round(pageW*scale);canvas.height=Math.round(pageH*scale);const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.fillStyle='#fff';ctx.fillRect(0,0,pageW,pageH);
+    const landscape=orientation==='landscape',pageW=landscape?841.89:595.28,pageH=landscape?595.28:841.89,scale=3.2;
+    if(document.fonts&&document.fonts.ready){try{await document.fonts.ready}catch(_){}}
+    const canvas=document.createElement('canvas');canvas.width=Math.round(pageW*scale);canvas.height=Math.round(pageH*scale);const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle='#fff';ctx.fillRect(0,0,pageW,pageH);
     const margin=landscape?21:17,contentW=pageW-margin*2;let y=14;
     const logo=await loadLogo();if(logo){const targetH=34,targetW=Math.min(115,logo.naturalWidth*(targetH/logo.naturalHeight));ctx.drawImage(logo,margin,y,targetW,targetH)}else{setFont(ctx,13,'800');ctx.fillStyle='#25363D';ctx.fillText('RHINO',margin,y+5);setFont(ctx,7,'700');ctx.fillText('CUE PLATFORM',margin,y+20)}
     setFont(ctx,10.2,'700');ctx.fillStyle='#0B3B59';ctx.textAlign='right';ctx.textBaseline='top';ctx.fillText(COMPANY,pageW-margin,y+1);
@@ -106,7 +111,16 @@
     setFont(ctx,7.5,'400',true);ctx.fillStyle='#6E7E88';ctx.fillText('(Báo giá có giá trị 14 ngày kể từ ngày báo giá)',pageW/2,y+50);y+=75;
 
     const colGap=landscape?45:22,leftW=(contentW-colGap)/2,rightX=margin+leftW+colGap;const infoRows=[['Khách hàng',info.customer,'Thời gian lập phiếu',new Date().toLocaleString('vi-VN')],['Câu lạc bộ / Quán',info.club,'Người lập báo giá',info.seller],['Địa chỉ câu lạc bộ',info.address,'Liên hệ',info.sellerPhone],['Email khách hàng',info.customerEmail||'','Showroom',info.showroom||'']];
-    let iy=y;infoRows.forEach(row=>{setFont(ctx,8.1,'700');const leftLines=Math.max(wrapLines(ctx,text(row[1]),leftW-75).length,1),rightLines=Math.max(wrapLines(ctx,text(row[3]),leftW-75).length,1),rh=Math.max(18,Math.max(leftLines,rightLines)*10.5+3);drawLabelValue(ctx,row[0],row[1],margin,iy,leftW,72,8.1);drawLabelValue(ctx,row[2],row[3],rightX,iy,leftW,72,8.1);iy+=rh});y=iy+6;
+    // The right-hand labels are intentionally wider so long labels such as
+    // “Thời gian lập phiếu” and “Người lập báo giá” always stay on one line.
+    const leftLabelW=72,rightLabelW=landscape?104:100,infoFont=8.25,infoLineH=11.4;
+    let iy=y;infoRows.forEach(row=>{
+      setFont(ctx,infoFont,'700');
+      const leftLines=Math.max(wrapLines(ctx,text(row[1]),leftW-leftLabelW-3).length,1),rightLines=Math.max(wrapLines(ctx,text(row[3]),leftW-rightLabelW-3).length,1),rh=Math.max(19,Math.max(leftLines,rightLines)*infoLineH+3);
+      drawLabelValue(ctx,row[0],row[1],margin,iy,leftW,leftLabelW,infoFont);
+      drawLabelValue(ctx,row[2],row[3],rightX,iy,leftW,rightLabelW,infoFont);
+      iy+=rh;
+    });y=iy+6;
 
     ctx.strokeStyle='#D5E1E5';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(margin,y);ctx.lineTo(pageW-margin,y);ctx.stroke();y+=7;
     if(type==='rental'){
@@ -131,7 +145,7 @@
   function asciiBytes(str){return new TextEncoder().encode(str)}
   function concatBytes(parts){let len=parts.reduce((s,p)=>s+p.length,0),out=new Uint8Array(len),off=0;parts.forEach(p=>{out.set(p,off);off+=p.length});return out}
   async function canvasToPdfBlob(canvas,pageW,pageH){
-    const jpgBlob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Không thể rasterize PDF.')),'image/jpeg',0.94));
+    const jpgBlob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Không thể rasterize PDF.')),'image/jpeg',0.995));
     const jpg=new Uint8Array(await jpgBlob.arrayBuffer());const objs=[];
     objs[1]=[asciiBytes('<< /Type /Catalog /Pages 2 0 R >>')];
     objs[2]=[asciiBytes('<< /Type /Pages /Kids [3 0 R] /Count 1 >>')];
@@ -152,5 +166,5 @@
     const blob=await createQuoteBlob(type,info,data,orientation);let modelLabel=data.model||'';if(type==='rental'&&Array.isArray(data.models)&&data.models.length)modelLabel=data.models.filter(x=>Number(x&&x.qty)>0).map(x=>x.model).join('_');const base=type==='rental'?'Bao_gia_thue_gay_Rhino':'Bao_gia_mua_gay_Rhino';const model=modelLabel?`${safeName(modelLabel)}_`:'';const fileName=`${base}_${model}${safeName(info.club)}_${new Date().toISOString().slice(0,10)}.pdf`;downloadBlob(blob,fileName);return fileName;
   }
 
-  window.RhinoPDF={version:'1.0.0',exportQuote,createQuoteBlob,safeName};
+  window.RhinoPDF={version:'1.1.0',exportQuote,createQuoteBlob,safeName};
 })(window,document);
