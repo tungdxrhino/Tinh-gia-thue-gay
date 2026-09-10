@@ -27,8 +27,8 @@
     return data.postPilot?`${label} · Sau Pilot`:label;
   }
   function rentalAllocations(data,p){
-    let arr=(Array.isArray(data.models)?data.models:[]).map(x=>({model:x&&x.model==='R-88'?'R-88':'R-68',qty:Math.max(0,Math.floor(Number(x&&x.qty)||0))})).filter(x=>x.qty>0);
-    if(!arr.length||arr.reduce((a,b)=>a+b.qty,0)!==p.n)arr=[{model:data.model==='R-88'?'R-88':'R-68',qty:p.n}];
+    let arr=(Array.isArray(data.models)?data.models:[]).map(x=>({model:x&&x.model==='R88'?'R88':'R68',qty:Math.max(0,Math.floor(Number(x&&x.qty)||0))})).filter(x=>x.qty>0);
+    if(!arr.length||arr.reduce((a,b)=>a+b.qty,0)!==p.n)arr=[{model:data.model==='R88'?'R88':'R68',qty:p.n}];
     return arr;
   }
   function purchasePricing(data){

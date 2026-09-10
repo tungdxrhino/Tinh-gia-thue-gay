@@ -8,7 +8,7 @@
 
   Quote info object:
     { customer, club, address, customerEmail?, seller, sellerPhone, showroom }
-    Rental data may also include: { model: 'R-68' | 'R-88' }
+    Rental data may also include: { model: 'R68' | 'R88' }
 */
 (function (window, document) {
   'use strict';
@@ -387,11 +387,11 @@
       const p = rentalPricing(data);
       const rawModels = Array.isArray(data.models) ? data.models : [];
       let allocations = rawModels
-        .map(x => ({ model: x && x.model === 'R-88' ? 'R-88' : 'R-68', qty: Math.max(0, Math.floor(Number(x && x.qty) || 0)) }))
+        .map(x => ({ model: x && x.model === 'R88' ? 'R88' : 'R68', qty: Math.max(0, Math.floor(Number(x && x.qty) || 0)) }))
         .filter(x => x.qty > 0);
       const allocatedTotal = allocations.reduce((sum, x) => sum + x.qty, 0);
       if (!allocations.length || allocatedTotal !== p.n) {
-        const fallbackModel = data.model === 'R-88' ? 'R-88' : 'R-68';
+        const fallbackModel = data.model === 'R88' ? 'R88' : 'R68';
         allocations = [{ model: fallbackModel, qty: p.n }];
       }
       const monthlyTotal = Math.round(p.unit * p.n);
@@ -615,13 +615,13 @@
 
     if (requestedPlaying > 0) {
       if (r68 > 0) {
-        rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R-68', 'Gậy', playingUnit, r68, playingUnit * r68], { height: 24 })); r++;
+        rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R68', 'Gậy', playingUnit, r68, playingUnit * r68], { height: 24 })); r++;
       }
       if (r88 > 0) {
-        rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R-88', 'Gậy', playingUnit, r88, playingUnit * r88], { height: 24 })); r++;
+        rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R88', 'Gậy', playingUnit, r88, playingUnit * r88], { height: 24 })); r++;
       }
     } else if (playing > 0) {
-      rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R-68 / R-88', 'Gậy', playingUnit, playing, playingValue], { height: 24 })); r++;
+      rows.push(tableRow(r, ['Gậy đánh', 'Gậy CLB R68 / R88', 'Gậy', playingUnit, playing, playingValue], { height: 24 })); r++;
     }
 
     if ((breakCues + jumpCues) > 0) {
