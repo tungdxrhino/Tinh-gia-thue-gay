@@ -1,4 +1,4 @@
-/* Rhino Cue Platform - Rental contract DOCX exporter (V38)
+/* Rhino Cue Platform - Rental contract DOCX exporter (V39)
  * Uses the existing JSZip dependency and the bookmarked Word template.
  * Keeps pricing/plan data external: this module never recalculates rental pricing.
  */
@@ -68,10 +68,17 @@
     const use=intNumber(plan?.use),gift=intNumber(plan?.gift);return Math.max(0,use-gift);
   }
   function contractPlanName(plan){
-    let name=String(plan?.name||'').replace(/[★☆]/g,'').replace(/\bBEST\s*CHOICE\b/gi,'').replace(/\bTỐI ƯU CHI PHÍ\b/gi,'').replace(/\s*·\s*·\s*/g,' · ').trim();
+    let name=String(plan?.name||'')
+      .replace(/[★☆]/g,'')
+      .replace(/\bBEST\s*CHOICE\b/gi,'')
+      .replace(/\bTỐI ƯU CHI PHÍ\b/gi,'')
+      .replace(/\s*[·|]\s*tặng\s*\d+\s*tháng(?:\s*sử\s*dụng)?/gi,'')
+      .replace(/\s*[·|]\s*dùng\s*\d+\s*tháng/gi,'')
+      .replace(/\s*·\s*·\s*/g,' · ')
+      .trim();
     if(!name)name=`Gói ${String(plan?.term||paidMonthsFromPlan(plan)||'').padStart(2,'0')} tháng`;
     if(plan?.postPilot&&!/sau\s*(pilot|trải nghiệm)/i.test(name))name+=' · Sau Pilot';
-    return name.replace(/\s{2,}/g,' ').replace(/^·|·$/g,'').trim();
+    return name.replace(/\s{2,}/g,' ').replace(/^[·|]+|[·|]+$/g,'').trim();
   }
   function allocationRows(allocation){
     const rows=[];const models=Array.isArray(allocation?.models)?allocation.models:[];
