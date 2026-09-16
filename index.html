@@ -483,7 +483,7 @@ body.keyboard-open .modal-card,body.keyboard-open .promo-card{margin:0 auto;max-
 }
 
 
-/* V25 — Pilot 30 ngày + ưu đãi Sau Pilot */
+/* V25 — Pilot 30 ngày + ưu đãi Sau trải nghiệm */
 .pilot-config{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.pilot-config>div{border:1px solid #e1ecea;background:#f8fbfa;border-radius:11px;padding:10px 8px;text-align:center}.pilot-config strong{display:block;color:var(--navy);font-size:15px;line-height:1.1;font-weight:900}.pilot-config span{display:block;color:#6f8088;font-size:11px;font-weight:700;margin-top:3px;line-height:1.25}.pilot-price-callout{margin-top:12px;padding:12px 14px;border-radius:12px;background:#fff8eb;border:1px solid #f0ddba;text-align:center}.pilot-price-callout span,.pilot-price-callout small{display:block;color:#7a6a50;font-size:11px;font-weight:700}.pilot-price-callout strong{display:block;color:#d16a19;font-size:21px;font-weight:950;line-height:1.15;margin:3px 0}.loyal-calc-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #dbe6e8;border-radius:12px;overflow:hidden;background:#fbfdfc}.loyal-calc-preview>div{padding:10px 11px;min-width:0}.loyal-calc-preview>div:nth-child(even){border-left:1px solid #e3ebed}.loyal-calc-preview>div:nth-child(n+3){border-top:1px solid #e3ebed}.loyal-calc-preview span{display:block;color:#73848d;font-size:12px;font-weight:650;line-height:1.2}.loyal-calc-preview strong{display:block;color:var(--navy);font-size:17px;font-weight:900;line-height:1.25;margin-top:4px}.pilot-suggest strong{font-size:15px!important}.post-pilot-badge{color:#d16a19!important;background:#fff4e5!important;border-color:#efd7b0!important}
 @media(max-width:760px){.pilot-config{grid-template-columns:1fr 1fr}.pilot-config>div:last-child{grid-column:1/-1}.pilot-config strong{font-size:14px}.pilot-config span{font-size:11px}.pilot-price-callout strong{font-size:18px}.loyal-calc-preview strong{font-size:16px}}
 </style>
@@ -863,6 +863,11 @@ body[data-theme="dark"] .smart-pick small,body[data-theme="dark"] .smart-suggest
 </style>
 
 
+<style id="v35-consistency-ui">
+.required-legend{font-size:11px;line-height:1.35;font-weight:500;font-style:italic;color:#7a8991;margin:0 0 10px}.required-legend span,.req-star{color:#d35434;font-style:normal;font-weight:800}.req-star{margin-left:3px}.quote-form>.required-legend,.loyal-register-form>.required-legend,.user-edit-panel>.required-legend{grid-column:1/-1}.wizard-required-legend{margin:8px 18px 0}.loyal-form-actions.three{grid-template-columns:auto 1fr 1fr}.loyal-form-actions.three .action-btn{min-width:0}.export-format-option small{font-style:normal}.optional-note,.quote-field label small{font-weight:500;color:#7a8991}
+@media(max-width:640px){.loyal-form-actions.three{grid-template-columns:1fr 1fr}.loyal-form-actions.three>[data-close]{grid-column:1/-1;order:3}.required-legend{font-size:11px}}
+body[data-theme="dark"] .required-legend{color:#aebbc1}body[data-theme="dark"] .req-star,body[data-theme="dark"] .required-legend span{color:#ff7d64}
+</style>
 <style id="v32-quote-export-ui">
 /* V32 — rental cue allocation + output format selector. */
 .quote-rental-allocation{min-width:0}
@@ -894,6 +899,36 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
 @media(max-width:390px){.quote-cue-choice-row{grid-template-columns:1fr;gap:7px}.quote-cue-choice-qty{grid-template-columns:1fr 88px;justify-content:stretch}.export-format-grid{gap:8px}.export-format-option{min-height:90px;padding:9px}.export-format-icon{font-size:22px}}
 </style>
 
+
+<style id="contract-ui-styles">
+.quote-form>.contract-details{grid-column:1/-1}.contract-details{margin-top:4px;border:1px solid var(--line,#dbe3e7);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.34)}
+.contract-details>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;padding:10px 13px;cursor:pointer;color:var(--navy);font-size:14px;font-weight:700}
+.contract-details>summary::-webkit-details-marker{display:none}
+.contract-details>summary:after{content:'＋';font-size:18px;font-weight:500;line-height:1;color:var(--teal)}
+.contract-details[open]>summary:after{content:'−'}
+.contract-details>summary small{margin-left:auto;font-size:11px;font-weight:500;font-style:italic;opacity:.72}
+.contract-section-body{border-top:1px solid var(--line,#dbe3e7);padding:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 12px}
+.contract-section-body .required-legend,.contract-section-body .contract-wide{grid-column:1/-1}
+.contract-section-body .quote-field{min-width:0}
+.contract-same-address{grid-column:1/-1;display:flex;align-items:center;gap:9px;margin-top:-2px;font-size:12px;font-weight:600;color:var(--muted,#64747d)}
+.contract-same-address input{width:17px;height:17px;accent-color:var(--teal);flex:0 0 auto}
+.contract-section-body input[readonly]{background:rgba(13,59,78,.045);color:var(--muted,#64747d)}
+.quote-field.field-error input,.quote-field.field-error select{border-color:#cf5a4b!important;box-shadow:0 0 0 3px rgba(207,90,75,.12)!important}
+.quote-field.field-error label{color:#b6473b}
+.export-format-option.contract-option .export-format-icon{font-family:Arial,sans-serif;font-weight:900}#exportFormatGrid.contract-enabled{grid-template-columns:repeat(3,minmax(0,1fr))}
+body[data-theme="dark"] .contract-details{background:rgba(255,255,255,.025);border-color:rgba(255,255,255,.13)}
+body[data-theme="dark"] .contract-details>summary{color:#f1f4f5}
+body[data-theme="dark"] .contract-section-body{border-color:rgba(255,255,255,.13)}
+body[data-theme="dark"] .contract-same-address{color:#c3cdd1}
+body[data-theme="dark"] .contract-section-body input[readonly]{background:rgba(255,255,255,.045);color:#cbd4d7}
+@media(max-width:760px){
+  #exportFormatGrid.contract-enabled{grid-template-columns:1fr}
+  .contract-section-body{grid-template-columns:1fr;padding:10px;gap:10px}
+  .contract-details>summary{font-size:13px;align-items:flex-start;flex-wrap:wrap}
+  .contract-details>summary small{width:100%;margin:0}
+}
+</style>
+
 </head>
 <body>
 <header class="topbar">
@@ -917,8 +952,8 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
       <div class="promo-menu-wrap" id="promoMenuWrap">
         <button class="nav-icon-btn promo promo-menu-trigger" id="promoMenuTrigger" type="button" title="CT Khuyến mại" aria-label="CT Khuyến mại" aria-haspopup="true" aria-expanded="false"><span class="menu-ico">★</span><span class="menu-label">CT Khuyến mại</span><span class="menu-caret">▾</span></button>
         <div class="promo-dropdown" id="promoDropdown" role="menu" aria-hidden="true">
-          <button type="button" data-open="promoModal" role="menuitem"><span class="promo-drop-icon">◎</span><span><b>Pilot 30 ngày</b><small>Hệ thống gậy Carbon miễn phí</small></span></button>
-          <button type="button" data-open="loyalPromoModal" role="menuitem"><span class="promo-drop-icon">✦</span><span><b>Đặc quyền Sau Pilot</b><small>Gói 6+2 · 12+6</small></span></button>
+          <button type="button" data-open="promoModal" role="menuitem"><span class="promo-drop-icon">◎</span><span><b>Trải nghiệm 30 ngày</b><small>Hệ thống gậy Carbon miễn phí</small></span></button>
+          <button type="button" data-open="loyalPromoModal" role="menuitem"><span class="promo-drop-icon">✦</span><span><b>Đặc quyền sau trải nghiệm</b><small>Gói 6+2 · 12+6</small></span></button>
         </div>
       </div>
     </div>
@@ -935,8 +970,8 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
     <button type="button" data-open="buyModal"><span>₫</span>Giá mua</button>
     <button type="button" class="promo drawer-promo-toggle" id="drawerPromoToggle" aria-expanded="false"><span>★</span>CT Khuyến mại <i>⌄</i></button>
     <div class="drawer-subnav" id="drawerPromoSubnav" aria-hidden="true">
-      <button type="button" data-open="promoModal"><span>◎</span>Pilot 30 ngày</button>
-      <button type="button" data-open="loyalPromoModal"><span>✦</span>Đặc quyền Sau Pilot <small>6+2 · 12+6</small></button>
+      <button type="button" data-open="promoModal"><span>◎</span>Trải nghiệm 30 ngày</button>
+      <button type="button" data-open="loyalPromoModal"><span>✦</span>Đặc quyền sau trải nghiệm <small>6+2 · 12+6</small></button>
     </div>
   </nav>
 </aside>
@@ -1033,7 +1068,6 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
             <tr><td>21–49 gậy</td><td>65.000</td><td>60.000</td><td>55.000</td></tr>
             <tr><td>50–99 gậy</td><td>63.000</td><td>58.000</td><td>53.000</td></tr>
             <tr><td>Từ 100 gậy</td><td>61.000</td><td>56.000</td><td>51.000</td></tr>
-            <tr><td><b>Gậy dự phòng</b></td><td>20%</td><td>20%</td><td>20%</td></tr>
             <tr><td><b>Thời gian sử dụng</b></td><td>3 tháng</td><td>7 tháng / trả 6</td><td>14 tháng / trả 12</td></tr>
           </tbody>
         </table>
@@ -1050,7 +1084,6 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
               <tr><td>21–49 gậy</td><td>85.000</td><td>75.000</td></tr>
               <tr><td>50–99 gậy</td><td>83.000</td><td>73.000</td></tr>
               <tr><td>Từ 100 gậy</td><td>81.000</td><td>71.000</td></tr>
-              <tr><td><b>Gậy dự phòng</b></td><td>10%</td><td>10%</td></tr>
             </tbody>
           </table>
           <div class="short-note">Kỳ thuê ngắn có tính phí, tách biệt với chương trình trải nghiệm miễn phí 30 ngày.</div>
@@ -1088,15 +1121,17 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
     <div class="modal-head"><h3 id="quoteClientTitle">Thông tin báo giá</h3><button class="close" data-close="quoteClientModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
       <div class="quote-form">
+        <div class="required-legend"><span>*</span> là bắt buộc</div>
         <div class="quote-field smart-field">
-          <label for="quoteCustomerName">Tên khách hàng <small>* Bắt buộc</small></label>
+          <label for="quoteCustomerName">Tên khách hàng <span class="req-star" aria-hidden="true">*</span></label>
           <div class="smart-input-wrap"><input id="quoteCustomerName" type="text" autocomplete="off" maxlength="60" placeholder="Nhập tên khách hàng" /><div class="smart-suggestions" id="customerSuggestions" aria-hidden="true"></div></div>
         </div>
-        <div class="quote-field"><label for="quoteClubName">Tên CLB / Quán <small>* Bắt buộc</small></label><input id="quoteClubName" type="text" autocomplete="off" maxlength="100" placeholder="Nhập tên CLB / quán" /></div>
-        <div class="quote-field"><label for="quoteAddress">Địa chỉ <small>* Bắt buộc</small></label><input id="quoteAddress" type="text" autocomplete="off" maxlength="180" placeholder="Nhập địa chỉ" /></div>
+        <div class="quote-field"><label for="quoteClubName">Tên CLB / Quán <span class="req-star" aria-hidden="true">*</span></label><input id="quoteClubName" type="text" autocomplete="off" maxlength="100" placeholder="Nhập tên CLB / quán" /></div>
+        <div class="quote-field"><label for="quoteAddress">Địa chỉ <span class="req-star" aria-hidden="true">*</span></label><input id="quoteAddress" type="text" autocomplete="off" maxlength="180" placeholder="Nhập địa chỉ" /></div>
+        <div class="quote-field" data-contract-field="quoteCustomerPhone"><label for="quoteCustomerPhone">Điện thoại người liên hệ <small>Dùng chung cho báo giá và hợp đồng</small></label><input id="quoteCustomerPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="Ví dụ: 0916165851 hoặc +84..." /></div>
         <div class="quote-field"><label for="quoteCustomerEmail">Email khách hàng <small>Không bắt buộc</small></label><input id="quoteCustomerEmail" type="email" autocomplete="email" maxlength="120" placeholder="Nhập email nếu có" /></div>
         <div class="quote-field quote-rental-allocation" id="quoteRentalModelField">
-          <label>Phân bổ loại gậy thuê <small>* Bắt buộc</small></label>
+          <label>Phân bổ loại gậy thuê <span class="req-star" aria-hidden="true">*</span></label>
           <div class="quote-cue-choice-list">
             <div class="quote-cue-choice-row" data-quote-cue-row="r68">
               <label class="quote-cue-choice-label" for="quoteUseR68"><input class="quote-cue-choice-check" id="quoteUseR68" type="checkbox" /><span>R68</span></label>
@@ -1109,7 +1144,22 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
           </div>
           <div class="quote-allocation-hint" id="quoteAllocationHint">Hệ thống sẽ tự chia số gậy theo bảng tính; bạn có thể sửa lại số lượng từng loại.</div>
         </div>
-        <div class="quote-field"><label for="quoteSellerSelect">Người lập báo giá <small>* Bắt buộc</small></label><select id="quoteSellerSelect" class="seller-select"><option value="">Chọn người báo giá</option></select></div>
+        <div class="quote-field"><label for="quoteSellerSelect">Người lập báo giá <span class="req-star" aria-hidden="true">*</span></label><select id="quoteSellerSelect" class="seller-select"><option value="">Chọn người báo giá</option></select></div>
+
+        <details class="contract-details" id="contractDetails">
+          <summary><span>Thông tin hợp đồng</span><small>Chỉ cần khi xuất Hợp đồng Word</small></summary>
+          <div class="contract-section-body">
+            <div class="required-legend"><span>*</span> bắt buộc khi xuất hợp đồng</div>
+            <div class="quote-field contract-wide" data-contract-field="contractLegalName"><label for="contractLegalName">Tên pháp nhân / Hộ kinh doanh <span class="req-star" aria-hidden="true">*</span></label><input id="contractLegalName" type="text" maxlength="150" placeholder="Nhập đúng tên đăng ký pháp lý" /></div>
+            <div class="quote-field contract-wide" data-contract-field="contractLegalAddress"><label for="contractLegalAddress">Địa chỉ pháp lý <span class="req-star" aria-hidden="true">*</span></label><input id="contractLegalAddress" type="text" maxlength="220" placeholder="Nhập địa chỉ pháp lý" /></div>
+            <div class="quote-field" data-contract-field="contractTaxId"><label for="contractTaxId">Mã số thuế / CCCD <span class="req-star" aria-hidden="true">*</span></label><input id="contractTaxId" type="text" inputmode="numeric" maxlength="20" placeholder="MST / CCCD / CMND" /></div>
+            <div class="quote-field" data-contract-field="contractRepresentativeTitle"><label for="contractRepresentativeTitle">Chức vụ <span class="req-star" aria-hidden="true">*</span></label><input id="contractRepresentativeTitle" type="text" maxlength="80" placeholder="Ví dụ: Chủ hộ kinh doanh" /></div>
+            <div class="quote-field contract-wide" data-contract-field="contractRepresentativeName"><label for="contractRepresentativeName">Người đại diện Bên B <span class="req-star" aria-hidden="true">*</span></label><input id="contractRepresentativeName" type="text" maxlength="80" placeholder="Họ và tên người đại diện" /></div>
+            <div class="quote-field" data-contract-field="contractNo"><label for="contractNo">Số hợp đồng <span class="req-star" aria-hidden="true">*</span></label><input id="contractNo" type="text" maxlength="50" placeholder="001/2026/HĐCT-RHINO" /></div>
+            <div class="quote-field" data-contract-field="contractDate"><label for="contractDate">Ngày ký hợp đồng <span class="req-star" aria-hidden="true">*</span></label><input id="contractDate" type="date" /></div>
+            <div class="quote-field contract-wide" data-contract-field="contractPlace"><label for="contractPlace">Địa điểm ký <span class="req-star" aria-hidden="true">*</span></label><input id="contractPlace" type="text" maxlength="80" placeholder="Hà Nội / Nghệ An..." /></div>
+          </div>
+        </details>
       </div>
       <div class="quote-error" id="quoteError"></div>
       <div class="modal-actions"><button class="action-btn" data-close="quoteClientModal" type="button">Thoát</button><button class="action-btn teal" id="confirmQuoteExport" type="button">Tiếp tục</button></div>
@@ -1117,14 +1167,16 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
   </div>
 </div>
 
+
 <!-- Export format modal -->
 <div class="modal" id="quoteFormatModal" role="dialog" aria-modal="true" aria-labelledby="quoteFormatTitle">
   <div class="modal-card compact export-format-card">
     <div class="modal-head"><h3 id="quoteFormatTitle">Chọn định dạng xuất</h3><button class="close" data-close="quoteFormatModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
       <div class="export-format-grid" id="exportFormatGrid">
-        <button class="export-format-option active" type="button" data-export-format="excel"><span class="export-format-icon">▦</span><strong>Excel</strong><small>Bảng báo giá .xlsx</small></button>
+        <button class="export-format-option active" type="button" data-export-format="excel"><span class="export-format-icon">▦</span><strong>Excel</strong><small>File Excel .xlsx</small></button>
         <button class="export-format-option" type="button" data-export-format="pdf"><span class="export-format-icon">▤</span><strong>PDF</strong><small>1 trang A4</small></button>
+        <button class="export-format-option contract-option" id="contractFormatOption" type="button" data-export-format="contract" hidden><span class="export-format-icon">W</span><strong>Hợp đồng Word</strong><small>Template .docx</small></button>
       </div>
       <div class="pdf-orientation-wrap" id="pdfOrientationWrap" hidden>
         <span class="pdf-orientation-label">Khổ giấy A4</span>
@@ -1134,7 +1186,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         </div>
       </div>
       <div class="quote-error" id="quoteFormatError"></div>
-      <div class="modal-actions"><button class="action-btn" id="quoteFormatBack" type="button">Quay lại</button><button class="action-btn teal" id="confirmFormatExport" type="button">Xuất Excel</button></div>
+      <div class="modal-actions"><button class="action-btn" id="quoteFormatBack" type="button">Quay lại</button><button class="action-btn teal" id="confirmFormatExport" type="button">Xuất file</button></div>
     </div>
   </div>
 </div>
@@ -1146,10 +1198,11 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
     <div class="modal-body user-manager-body">
       <div class="user-list" id="userList"></div>
       <div class="user-edit-panel">
+        <div class="required-legend"><span>*</span> là bắt buộc</div>
         <input id="userEditId" type="hidden" />
-        <div class="quote-field"><label for="userEditName">Họ và tên <small>* Bắt buộc</small></label><input id="userEditName" type="text" maxlength="60" placeholder="Nhập họ và tên" /></div>
-        <div class="quote-field"><label for="userEditPhone">Số điện thoại <small>* Bắt buộc</small></label><input id="userEditPhone" type="tel" maxlength="20" inputmode="tel" placeholder="Ví dụ: 0906.263.999" /></div>
-        <div class="quote-field"><label for="userEditShowroom">Địa chỉ / Showroom <small>* Bắt buộc</small></label><input id="userEditShowroom" type="text" maxlength="180" placeholder="Nhập địa chỉ phụ trách" /></div>
+        <div class="quote-field"><label for="userEditName">Họ và tên <span class="req-star" aria-hidden="true">*</span></label><input id="userEditName" type="text" maxlength="60" placeholder="Nhập họ và tên" /></div>
+        <div class="quote-field"><label for="userEditPhone">Số điện thoại <span class="req-star" aria-hidden="true">*</span></label><input id="userEditPhone" type="tel" maxlength="20" inputmode="tel" placeholder="Ví dụ: 0906.263.999" /></div>
+        <div class="quote-field"><label for="userEditShowroom">Địa chỉ / Showroom <span class="req-star" aria-hidden="true">*</span></label><input id="userEditShowroom" type="text" maxlength="180" placeholder="Nhập địa chỉ phụ trách" /></div>
         <div class="quote-error" id="userEditError"></div>
         <div class="user-edit-actions"><button class="action-btn" id="userNewBtn" type="button">+ Thêm mới</button><button class="action-btn teal" id="userSaveBtn" type="button">Lưu người dùng</button></div>
       </div>
@@ -1162,8 +1215,8 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
   <div class="promo-card">
     <button class="promo-close" data-close="promoModal" aria-label="Đóng">×</button>
     <div class="promo-top">
-      <div class="eyebrow">Chương trình Pilot dành cho CLB</div>
-      <h3 id="promoTitle">Pilot 30 ngày – Hệ thống gậy Carbon cho CLB</h3>
+      <div class="eyebrow">Chương trình trải nghiệm dành cho CLB</div>
+      <h3 id="promoTitle">Trải nghiệm 30 ngày · Hệ thống gậy Carbon cho CLB</h3>
       <p>Trải nghiệm hệ thống gậy đánh, gậy phá/nhảy và dịch vụ bảo dưỡng thực tế tại CLB.</p>
     </div>
     <div class="promo-body">
@@ -1178,7 +1231,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <div><strong>Carbon duyệt</strong><span>số lượng thực tế</span></div>
       </div>
       <p class="promo-deadline">Hạn đăng ký: <b>15/12/2026</b></p>
-      <button class="action-btn teal promo-register-btn" id="promoRegisterBtn" type="button">Đăng ký Pilot</button>
+      <button class="action-btn teal promo-register-btn" id="promoRegisterBtn" type="button">Đăng ký trải nghiệm</button>
     </div>
   </div>
 </div>
@@ -1188,8 +1241,8 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
   <div class="promo-card loyal-promo-card">
     <button class="promo-close" data-close="loyalPromoModal" aria-label="Đóng">×</button>
     <div class="promo-top loyal-top">
-      <div class="eyebrow">Dành cho CLB đã hoàn thành Pilot 30 ngày</div>
-      <h3 id="loyalPromoTitle">Đặc quyền Sau Pilot</h3>
+      <div class="eyebrow">Dành cho CLB đã hoàn thành trải nghiệm 30 ngày</div>
+      <h3 id="loyalPromoTitle">Đặc quyền sau trải nghiệm</h3>
       <p>Chuyển đổi sang khách hàng chính thức với thời gian sử dụng mở rộng và giữ nguyên đơn giá gói.</p>
     </div>
     <div class="promo-body">
@@ -1198,8 +1251,8 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <div class="loyal-offer best"><span>Gói 12 tháng</span><strong>12 + 6</strong><small>Thanh toán 12 · sử dụng 18 tháng</small></div>
       </div>
       <div class="pilot-price-callout"><span>Giá quy đổi tham khảo</span><strong>Từ 29.000 / cây / tháng</strong><small>Ví dụ bậc từ 100 gậy, gói 12+6, tính trên toàn bộ gậy thực nhận.</small></div>
-      <p class="promo-deadline">Chỉ áp dụng cho CLB đã hoàn thành Pilot và chuyển đổi sang khách hàng chính thức.</p>
-      <button class="action-btn teal loyal-register-btn" id="loyalRegisterBtn" type="button">Tính ưu đãi Sau Pilot</button>
+      <p class="promo-deadline">Chỉ áp dụng cho CLB đã hoàn thành chương trình trải nghiệm và chuyển đổi sang khách hàng chính thức.</p>
+      <button class="action-btn teal loyal-register-btn" id="loyalRegisterBtn" type="button">Tính ưu đãi sau trải nghiệm</button>
     </div>
   </div>
 </div>
@@ -1207,14 +1260,15 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
 <!-- Existing-customer privilege registration -->
 <div class="modal" id="loyalRegisterModal" role="dialog" aria-modal="true" aria-labelledby="loyalRegisterTitle">
   <div class="modal-card compact">
-    <div class="modal-head"><h3 id="loyalRegisterTitle">Tính ưu đãi Sau Pilot</h3><button class="close" data-close="loyalRegisterModal" aria-label="Đóng">×</button></div>
+    <div class="modal-head"><h3 id="loyalRegisterTitle">Tính ưu đãi sau trải nghiệm</h3><button class="close" data-close="loyalRegisterModal" aria-label="Đóng">×</button></div>
     <div class="modal-body">
       <div class="loyal-register-form">
-        <div class="loyal-form-row"><label for="loyalCustomer">Tên khách hàng <small>* Bắt buộc</small></label><input id="loyalCustomer" type="text" autocomplete="name" maxlength="60" placeholder="Nhập họ và tên" /></div>
-        <div class="loyal-form-row"><label for="loyalClub">Tên quán / CLB <small>* Bắt buộc</small></label><input id="loyalClub" type="text" autocomplete="organization" maxlength="100" placeholder="Nhập tên quán hoặc CLB" /></div>
-        <div class="loyal-form-row"><label for="loyalPhone">Số điện thoại <small>* Bắt buộc</small></label><input id="loyalPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="Nhập số điện thoại" /></div>
-        <div class="loyal-form-row"><label for="loyalQty">Số gậy tính phí <small>* Bắt buộc</small></label><input id="loyalQty" type="number" min="1" max="9999" step="1" inputmode="numeric" placeholder="Nhập số gậy" /></div>
-        <div class="loyal-form-row"><label for="loyalPlan">Gói ưu đãi <small>* Bắt buộc</small></label><select id="loyalPlan"><option value="">Chọn gói</option><option value="6+2">Gói 6 + 2</option><option value="12+6">Gói 12 + 6</option></select></div>
+        <div class="required-legend"><span>*</span> là bắt buộc</div>
+        <div class="loyal-form-row"><label for="loyalCustomer">Tên khách hàng <span class="req-star" aria-hidden="true">*</span></label><input id="loyalCustomer" type="text" autocomplete="name" maxlength="60" placeholder="Nhập họ và tên" /></div>
+        <div class="loyal-form-row"><label for="loyalClub">Tên quán / CLB <span class="req-star" aria-hidden="true">*</span></label><input id="loyalClub" type="text" autocomplete="organization" maxlength="100" placeholder="Nhập tên quán hoặc CLB" /></div>
+        <div class="loyal-form-row"><label for="loyalPhone">Số điện thoại <span class="req-star" aria-hidden="true">*</span></label><input id="loyalPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="Nhập số điện thoại" /></div>
+        <div class="loyal-form-row"><label for="loyalQty">Số gậy tính phí <span class="req-star" aria-hidden="true">*</span></label><input id="loyalQty" type="number" min="1" max="9999" step="1" inputmode="numeric" placeholder="Nhập số gậy" /></div>
+        <div class="loyal-form-row"><label for="loyalPlan">Gói ưu đãi <span class="req-star" aria-hidden="true">*</span></label><select id="loyalPlan"><option value="">Chọn gói</option><option value="6+2">Gói 6 + 2</option><option value="12+6">Gói 12 + 6</option></select></div>
         <div class="loyal-calc-preview" id="loyalCalcPreview">
           <div><span>Chi phí thực tế</span><strong id="loyalEff">—</strong></div>
           <div><span>Tổng thực nhận</span><strong id="loyalTotalCues">—</strong></div>
@@ -1222,7 +1276,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
           <div><span>Tổng tiền thuê</span><strong id="loyalRent">—</strong></div>
         </div>
         <div class="loyal-form-error" id="loyalFormError"></div>
-        <div class="loyal-form-actions"><button class="action-btn" type="button" data-close="loyalRegisterModal">Thoát</button><button class="action-btn teal" id="loyalSubmitBtn" type="button">Áp dụng vào bảng tính</button></div>
+        <div class="loyal-form-actions three"><button class="action-btn" type="button" data-close="loyalRegisterModal">Thoát</button><button class="action-btn" id="loyalExportBtn" type="button">⇩ Xuất file</button><button class="action-btn teal" id="loyalSubmitBtn" type="button">Áp dụng vào bảng tính</button></div>
       </div>
     </div>
   </div>
@@ -1231,23 +1285,24 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
 <!-- Step-by-step 30-day registration -->
 <div class="modal wizard-modal" id="promoRegisterModal" role="dialog" aria-modal="true" aria-labelledby="promoRegisterTitle">
   <div class="modal-card compact wizard-card">
-    <div class="modal-head"><div><h3 id="promoRegisterTitle">Đăng ký Pilot 30 ngày</h3><div class="wizard-progress-text" id="wizardProgressText">Bước 1 / 10</div></div><button class="close" data-close="promoRegisterModal" aria-label="Đóng">×</button></div>
+    <div class="modal-head"><div><h3 id="promoRegisterTitle">Đăng ký trải nghiệm 30 ngày</h3><div class="wizard-progress-text" id="wizardProgressText">Bước 1 / 10</div></div><button class="close" data-close="promoRegisterModal" aria-label="Đóng">×</button></div>
     <div class="wizard-progress"><span id="wizardProgressBar"></span></div>
+    <div class="required-legend wizard-required-legend"><span>*</span> là bắt buộc</div>
     <div class="modal-body wizard-body">
       <section class="wizard-step active" data-step="0">
-        <label for="regCustomer">Tên khách hàng <span class="req-note">* Bắt buộc</span></label>
+        <label for="regCustomer">Tên khách hàng <span class="req-star" aria-hidden="true">*</span></label>
         <input id="regCustomer" type="text" autocomplete="name" maxlength="60" placeholder="Nhập họ và tên" />
       </section>
       <section class="wizard-step" data-step="1">
-        <label for="regClub">Tên quán / CLB <span class="req-note">* Bắt buộc</span></label>
+        <label for="regClub">Tên quán / CLB <span class="req-star" aria-hidden="true">*</span></label>
         <input id="regClub" type="text" autocomplete="organization" maxlength="100" placeholder="Nhập tên quán hoặc CLB" />
       </section>
       <section class="wizard-step" data-step="2">
-        <label for="regAddress">Địa chỉ <span class="req-note">* Bắt buộc</span></label>
+        <label for="regAddress">Địa chỉ <span class="req-star" aria-hidden="true">*</span></label>
         <input id="regAddress" type="text" autocomplete="street-address" maxlength="180" placeholder="Nhập địa chỉ giao nhận" />
       </section>
       <section class="wizard-step" data-step="3">
-        <label for="regPhone">Số điện thoại <span class="req-note">* Bắt buộc</span></label>
+        <label for="regPhone">Số điện thoại <span class="req-star" aria-hidden="true">*</span></label>
         <input id="regPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="Nhập số điện thoại" />
       </section>
       <section class="wizard-step" data-step="4">
@@ -1255,12 +1310,12 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <input id="regEmail" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="Nhập email nếu có" />
       </section>
       <section class="wizard-step" data-step="5">
-        <label for="regTables">Số bàn tại CLB <span class="req-note">* Bắt buộc</span></label>
+        <label for="regTables">Số bàn tại CLB <span class="req-star" aria-hidden="true">*</span></label>
         <input id="regTables" type="number" min="1" max="999" step="1" inputmode="numeric" placeholder="Nhập số bàn" />
-        <div class="wizard-term pilot-suggest"><span>Cấu hình Pilot tham chiếu</span><strong id="regPlayingSuggest">—</strong><small id="regBreakSuggest">Gậy phá/nhảy đề xuất: —</small></div>
+        <div class="wizard-term pilot-suggest"><span>Cấu hình tham chiếu</span><strong id="regPlayingSuggest">—</strong><small id="regBreakSuggest">Gậy phá/nhảy đề xuất: —</small></div>
       </section>
       <section class="wizard-step pilot-product-step" data-step="6">
-        <label>Chọn gậy đánh <span class="req-note">* Bắt buộc</span></label>
+        <label>Chọn gậy đánh <span class="req-star" aria-hidden="true">*</span></label>
         <div class="pilot-choice-list" id="playingChoiceList">
           <div class="pilot-choice-row" data-choice-row="r68">
             <label class="pilot-choice-label" for="regUseR68"><input class="pilot-choice-check" id="regUseR68" type="checkbox" /><span>R68</span></label>
@@ -1274,7 +1329,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <div class="pilot-allocation-hint" id="regPlayingAllocationHint">Chọn R68, R88 hoặc cả hai để hệ thống tự phân bổ số gậy đánh.</div>
       </section>
       <section class="wizard-step pilot-product-step" data-step="7">
-        <label>Chọn gậy phá / gậy nhảy <span class="req-note">* Bắt buộc</span></label>
+        <label>Chọn gậy phá / gậy nhảy <span class="req-star" aria-hidden="true">*</span></label>
         <div class="pilot-choice-list" id="specialChoiceList">
           <div class="pilot-choice-row" data-choice-row="break">
             <label class="pilot-choice-label" for="regUseBreak"><input class="pilot-choice-check" id="regUseBreak" type="checkbox" /><span>Gậy phá</span></label>
@@ -1288,7 +1343,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <div class="pilot-allocation-hint" id="regSpecialAllocationHint">Chọn gậy phá, gậy nhảy hoặc cả hai để hệ thống tự phân bổ cấu hình theo số bàn.</div>
       </section>
       <section class="wizard-step" data-step="8">
-        <label for="regDeliveryDisplay">Ngày giao nhận dự kiến <span class="req-note">* Bắt buộc</span></label>
+        <label for="regDeliveryDisplay">Ngày giao nhận dự kiến <span class="req-star" aria-hidden="true">*</span></label>
         <div class="date-control">
           <input id="regDeliveryDisplay" class="date-display" type="text" inputmode="none" readonly placeholder="DD/MM/YYYY" aria-label="Ngày giao nhận dự kiến" />
           <input id="regDelivery" class="date-native" type="date" tabindex="-1" aria-hidden="true" />
@@ -1296,16 +1351,16 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <div class="wizard-term"><span>Thời hạn trải nghiệm</span><strong>30 ngày</strong><small id="regEndDate">Ngày kết thúc dự kiến: —</small></div>
       </section>
       <section class="wizard-step" data-step="9">
-        <label for="regSellerSelect">Người lập phiếu <span class="req-note">* Bắt buộc</span></label>
+        <label for="regSellerSelect">Người lập phiếu <span class="req-star" aria-hidden="true">*</span></label>
         <select id="regSellerSelect" class="seller-select"><option value="">Chọn người lập phiếu</option></select>
-        <div class="wizard-term"><span>Thông tin liên hệ</span><strong>Tự động theo người đã chọn</strong><small>Số điện thoại và showroom sẽ tự điền vào file Excel.</small></div>
+        <div class="wizard-term"><span>Thông tin liên hệ</span><strong>Tự động theo người đã chọn</strong><small>Số điện thoại và showroom sẽ tự điền vào file xuất.</small></div>
       </section>
       <div class="wizard-error" id="wizardError"></div>
       <div class="wizard-actions" id="wizardActions">
         <button class="action-btn wizard-back" id="wizardBack" type="button">Quay lại</button>
         <button class="action-btn teal wizard-next" id="wizardNext" type="button">Tiếp theo</button>
         <button class="action-btn wizard-check" id="wizardCheck" type="button">Kiểm tra</button>
-        <button class="action-btn teal wizard-export" id="wizardExport" type="button">Xuất Excel</button>
+        <button class="action-btn teal wizard-export" id="wizardExport" type="button">Xuất file</button>
       </div>
     </div>
   </div>
@@ -1322,7 +1377,7 @@ body[data-theme="dark"] .quote-allocation-hint{background:#101c21}body[data-them
         <div><span>Khuyến mại</span><strong>100%</strong></div>
         <div class="review-total"><span>Tổng thanh toán</span><strong>0 VND</strong></div>
       </div>
-      <div class="modal-actions review-actions"><button class="action-btn" id="reviewBackBtn" type="button">Quay lại chỉnh sửa</button><button class="action-btn teal" id="reviewExportBtn" type="button">Xuất Excel</button></div>
+      <div class="modal-actions review-actions"><button class="action-btn" id="reviewBackBtn" type="button">Quay lại chỉnh sửa</button><button class="action-btn teal" id="reviewExportBtn" type="button">Xuất file</button></div>
     </div>
   </div>
 </div>
@@ -1352,8 +1407,8 @@ function basePlan(n,term){
 let postPilotEligible=false;
 function postPilotPlan(n,term){
   const t=tier(n),backupPct=.20,backup=roundHalfUp(n*backupPct),total=n+backup;
-  if(term===6){const unit=price6[t],paid=6,use=8,gift=2,rent=n*unit*paid;return {n,t,term,unit,paid,use,gift,backupPct,backup,total,rent,deposit:0,initial:rent,effective:rent/(total*use),name:'Gói 06 tháng · tặng 02 tháng sử dụng',status:'ƯU ĐÃI SAU PILOT',postPilot:true}}
-  const unit=price12[t],paid=12,use=18,gift=6,rent=n*unit*paid;return {n,t,term:12,unit,paid,use,gift,backupPct,backup,total,rent,deposit:0,initial:rent,effective:rent/(total*use),name:'Gói 12 tháng · tặng 06 tháng sử dụng',status:'★ BEST CHOICE · SAU PILOT',postPilot:true};
+  if(term===6){const unit=price6[t],paid=6,use=8,gift=2,rent=n*unit*paid;return {n,t,term,unit,paid,use,gift,backupPct,backup,total,rent,deposit:0,initial:rent,effective:rent/(total*use),name:'Gói 06 tháng · tặng 02 tháng sử dụng',status:'ƯU ĐÃI SAU TRẢI NGHIỆM',postPilot:true}}
+  const unit=price12[t],paid=12,use=18,gift=6,rent=n*unit*paid;return {n,t,term:12,unit,paid,use,gift,backupPct,backup,total,rent,deposit:0,initial:rent,effective:rent/(total*use),name:'Gói 12 tháng · tặng 06 tháng sử dụng',status:'★ BEST CHOICE · SAU TRẢI NGHIỆM',postPilot:true};
 }
 
 function combinedPlan(n,months){
@@ -1401,7 +1456,7 @@ function render(){
     const a=basePlan(cues,3),b=postPilotEligible?postPilotPlan(cues,6):basePlan(cues,6),c=postPilotEligible?postPilotPlan(cues,12):basePlan(cues,12);
     $('c3Unit').textContent=fmt(a.unit);$('c6Unit').textContent=fmt(b.unit);$('c12Unit').textContent=fmt(c.unit);
     $('c3Rent').textContent=fmt(a.rent);$('c6Rent').textContent=fmt(b.rent);$('c12Rent').textContent=fmt(c.rent);
-    $('c3Backup').textContent=`${a.backup} gậy (+20%)`;$('c6Backup').textContent=`${b.backup} gậy (+20%)`;$('c12Backup').textContent=`${c.backup} gậy (+20%)`;
+    $('c3Backup').textContent=`+${a.backup} gậy`;$('c6Backup').textContent=`+${b.backup} gậy`;$('c12Backup').textContent=`+${c.backup} gậy`;
     $('c3Total').textContent=a.total+' gậy';$('c6Total').textContent=b.total+' gậy';$('c12Total').textContent=c.total+' gậy';
     $('c3Eff').textContent=fmt(a.effective);$('c6Eff').textContent=fmt(b.effective);$('c12Eff').textContent=fmt(c.effective);
     if($('c6Use'))$('c6Use').innerHTML=`${b.use} tháng <span class="subtle">+${b.gift} tháng tặng</span>`;
@@ -1422,7 +1477,7 @@ function render(){
   $('totalCues').textContent=p.total+' gậy';
   $('useMonths').textContent=p.use+' tháng';$('giftText').textContent='';
   $('rentTotal').textContent=fmt(p.rent);
-  $('unitPrice').textContent=fmt(p.unit);$('backup').textContent=`${p.backup} gậy (+${Math.round(p.backupPct*100)}%)`;
+  $('unitPrice').textContent=fmt(p.unit);$('backup').textContent=`+${p.backup} gậy`;
   $('initialTotal').textContent=fmt(p.initial);$('depositValue').textContent=p.deposit>0?fmt(p.deposit):'0';
 }
 $('cues').addEventListener('input',render);
@@ -1495,11 +1550,19 @@ function validEmail(v){const s=String(v||'').trim();if(!s)return true;if(s.lengt
 function phoneDigits(v){return String(v||'').replace(/\D/g,'')}
 function isSimpleSequence(s){const bad=['0123456789','1234567890','9876543210','0987654321'];if(bad.some(x=>s.includes(x)))return true;if(/^(\d)\1{9,}$/.test(s))return true;return false}
 function validPhone(v){const raw=String(v||'').trim();if(!/^[+\d][\d .-]*$/.test(raw))return false;const d=phoneDigits(raw);return d.length>=10&&d.length<=15&&!isSimpleSequence(d)}
+function validTaxOrIdentity(v){const s=String(v||'').trim().replace(/\s+/g,'');return /^(?:\d{9}|\d{10}|\d{12}|\d{10}-\d{3})$/.test(s)}
+function validRequiredText(v,min=2,max=120){const s=compactSpaces(v);return s.length>=min&&s.length<=max&&/[\p{L}\p{N}]/u.test(s)}
+function validContractDate(v){
+  // The native <input type="date"> is the source of truth. If the user can select a day, accept it.
+  // Browsers normalize a valid selected date; an invalid/cleared date returns an empty value.
+  return String(v||'').trim()!=='';
+}
+function todayLocalISO(){const d=new Date(),pad=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
 function validOptionalInteger(raw,max=9999){const s=String(raw??'').trim();if(!s)return true;return /^\d+$/.test(s)&&Number(s)>=0&&Number(s)<=max}
 function readStore(key){try{const x=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(x)?x:[]}catch(_){return []}}
 function writeStore(key,items){try{localStorage.setItem(key,JSON.stringify(items.slice(0,60)))}catch(_){}}
 function entryKey(kind,item){return `${item.name}|${item.club}|${item.address}`}
-function saveSmartEntry(kind,item){const key=RHINO_MEMORY_KEYS[kind],list=readStore(key),ek=entryKey(kind,item).toLowerCase();const next=[item,...list.filter(x=>entryKey(kind,x).toLowerCase()!==ek)];writeStore(key,next)}
+function saveSmartEntry(kind,item){const key=RHINO_MEMORY_KEYS[kind],list=readStore(key),ek=entryKey(kind,item).toLowerCase();const old=list.find(x=>entryKey(kind,x).toLowerCase()===ek)||{};const merged={...old};Object.entries(item||{}).forEach(([k,v])=>{if(v!==undefined&&v!==null&&v!=='')merged[k]=v;else if(!(k in merged))merged[k]=v});const next=[merged,...list.filter(x=>entryKey(kind,x).toLowerCase()!==ek)];writeStore(key,next)}
 function deleteSmartEntry(kind,index){const key=RHINO_MEMORY_KEYS[kind],list=readStore(key);list.splice(index,1);writeStore(key,list)}
 
 function slugUser(name){return compactSpaces(name).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||`user-${Date.now()}`}
@@ -1532,7 +1595,22 @@ function renderSmartSuggestions(kind,query=''){
   box.innerHTML='';if(!all.length||(!indexed.length&&q)){box.classList.remove('open');box.setAttribute('aria-hidden','true');return}
   const head=document.createElement('div');head.className='smart-suggest-head';head.innerHTML='<span>Khách hàng đã lưu</span>';
   const clear=document.createElement('button');clear.type='button';clear.className='smart-clear';clear.textContent='Xóa tất cả';clear.addEventListener('click',e=>{e.stopPropagation();writeStore(RHINO_MEMORY_KEYS.customers,[]);renderSmartSuggestions('customers','')});head.appendChild(clear);box.appendChild(head);
-  indexed.forEach(({item,index})=>{const row=document.createElement('div');row.className='smart-option';const pick=document.createElement('button');pick.type='button';pick.className='smart-pick';const sub=[item.club,item.address].filter(Boolean).join(' · ');const strong=document.createElement('strong');strong.textContent=item.name||'';const small=document.createElement('small');small.textContent=sub||'';pick.append(strong,small);pick.addEventListener('click',()=>{$('quoteCustomerName').value=item.name||'';$('quoteClubName').value=item.club||'';$('quoteAddress').value=item.address||'';$('quoteCustomerEmail').value=item.email||'';box.classList.remove('open');box.setAttribute('aria-hidden','true')});const del=document.createElement('button');del.type='button';del.className='smart-delete';del.textContent='×';del.title='Xóa mục đã lưu';del.addEventListener('click',e=>{e.stopPropagation();deleteSmartEntry('customers',index);renderSmartSuggestions('customers',query)});row.append(pick,del);box.appendChild(row)});
+  indexed.forEach(({item,index})=>{
+    const row=document.createElement('div');row.className='smart-option';
+    const pick=document.createElement('button');pick.type='button';pick.className='smart-pick';
+    const sub=[item.club,item.address].filter(Boolean).join(' · ');const strong=document.createElement('strong');strong.textContent=item.name||'';const small=document.createElement('small');small.textContent=sub||'';pick.append(strong,small);
+    pick.addEventListener('click',()=>{
+      $('quoteCustomerName').value=item.name||'';$('quoteClubName').value=item.club||'';$('quoteAddress').value=item.address||'';$('quoteCustomerEmail').value=item.email||'';
+      if($('quoteCustomerPhone'))$('quoteCustomerPhone').value=item.phone||'';
+      if($('contractLegalName')){const el=$('contractLegalName');el.value=item.legalName||item.club||'';el.dataset.autoFilled=item.legalName?'0':'1'}
+      if($('contractLegalAddress')){const el=$('contractLegalAddress');el.value=item.legalAddress||item.address||'';el.dataset.autoFilled=item.legalAddress?'0':'1'}
+      if($('contractTaxId'))$('contractTaxId').value=item.taxId||'';
+      if($('contractRepresentativeName')){const el=$('contractRepresentativeName');el.value=item.representativeName||item.name||'';el.dataset.autoFilled=item.representativeName?'0':'1'}
+      if($('contractRepresentativeTitle'))$('contractRepresentativeTitle').value=item.representativeTitle||'Chủ hộ kinh doanh';
+      clearContractErrors();box.classList.remove('open');box.setAttribute('aria-hidden','true');
+    });
+    const del=document.createElement('button');del.type='button';del.className='smart-delete';del.textContent='×';del.title='Xóa mục đã lưu';del.addEventListener('click',e=>{e.stopPropagation();deleteSmartEntry('customers',index);renderSmartSuggestions('customers',query)});row.append(pick,del);box.appendChild(row)
+  });
   box.classList.add('open');box.setAttribute('aria-hidden','false');
 }
 function setupSmartInput(inputId){const input=$(inputId);if(!input)return;input.addEventListener('focus',()=>renderSmartSuggestions('customers',input.value));input.addEventListener('input',()=>renderSmartSuggestions('customers',input.value))}
@@ -1574,36 +1652,123 @@ function validateQuoteCueAllocation(){
 $('quoteUseR68')?.addEventListener('change',applyQuoteCueAllocation);$('quoteUseR88')?.addEventListener('change',applyQuoteCueAllocation);
 $('quoteQtyR68')?.addEventListener('input',renderQuoteCueAllocation);$('quoteQtyR88')?.addEventListener('input',renderQuoteCueAllocation);
 
+const RHINO_CONTRACT_SEQ_KEY='rhino_contract_sequence_v1';
 function quoteInfoFromForm(){
   const seller=sellerInfo($('quoteSellerSelect')?.value||'');
-  return {customer:compactSpaces($('quoteCustomerName').value),club:compactSpaces($('quoteClubName').value),address:compactSpaces($('quoteAddress').value),customerEmail:$('quoteCustomerEmail')?.value.trim()||'',...(seller||{})};
+  return {customer:compactSpaces($('quoteCustomerName').value),club:compactSpaces($('quoteClubName').value),address:compactSpaces($('quoteAddress').value),customerEmail:$('quoteCustomerEmail')?.value.trim()||'',customerPhone:$('quoteCustomerPhone')?.value.trim()||'',...(seller||{})};
+}
+function contractInfoFromForm(){
+  return {
+    customerPhone:$('quoteCustomerPhone')?.value.trim()||'',
+    legalName:compactSpaces($('contractLegalName')?.value||''),
+    legalAddress:compactSpaces($('contractLegalAddress')?.value||''),
+    taxId:String($('contractTaxId')?.value||'').trim(),
+    representativeName:compactSpaces($('contractRepresentativeName')?.value||''),
+    representativeTitle:compactSpaces($('contractRepresentativeTitle')?.value||''),
+    contractNo:compactSpaces($('contractNo')?.value||''),
+    contractDate:String($('contractDate')?.value||''),
+    contractPlace:compactSpaces($('contractPlace')?.value||'')
+  };
+}
+function contractDefaultPlace(){
+  const seller=sellerInfo($('quoteSellerSelect')?.value||'');const place=String(seller?.showroom||'');
+  return /Nghệ An|Thành Vinh/i.test(place)?'Nghệ An':'Hà Nội';
+}
+function readContractSequence(){try{return JSON.parse(localStorage.getItem(RHINO_CONTRACT_SEQ_KEY)||'{}')||{}}catch(_){return {}}}
+function suggestedContractNo(dateValue){
+  const year=String(dateValue||new Date().toISOString().slice(0,10)).slice(0,4)||String(new Date().getFullYear());
+  const seq=readContractSequence(),next=Math.max(1,Number(seq[year]||0)+1);return `${String(next).padStart(3,'0')}/${year}/HĐCT-RHINO`;
+}
+function rememberContractNo(no,dateValue){
+  const year=String(dateValue||'').slice(0,4)||String(new Date().getFullYear()),m=String(no||'').match(/^(\d{1,6})\//);if(!m)return;
+  const seq=readContractSequence();seq[year]=Math.max(Number(seq[year]||0),Number(m[1]));try{localStorage.setItem(RHINO_CONTRACT_SEQ_KEY,JSON.stringify(seq))}catch(_){}
+}
+function syncContractAutoFill(force=false){
+  const map=[
+    ['contractLegalName','quoteClubName'],
+    ['contractRepresentativeName','quoteCustomerName'],
+    ['contractLegalAddress','quoteAddress']
+  ];
+  map.forEach(([targetId,sourceId])=>{
+    const target=$(targetId),source=$(sourceId);if(!target||!source)return;
+    if(force||!target.value||target.dataset.autoFilled==='1'){target.value=source.value||'';target.dataset.autoFilled='1';target.readOnly=false}
+  });
+}
+function ensureContractDefaults(){
+  syncContractAutoFill(false);
+  const titleEl=$('contractRepresentativeTitle');if(titleEl&&!titleEl.value)titleEl.value='Chủ hộ kinh doanh';
+  const dateEl=$('contractDate');if(dateEl&&!dateEl.value)dateEl.value=todayLocalISO();
+  const noEl=$('contractNo');if(noEl&&!noEl.value)noEl.value=suggestedContractNo(dateEl?.value);
+  const placeEl=$('contractPlace');if(placeEl&&!placeEl.value){placeEl.value=contractDefaultPlace();placeEl.dataset.autoPlace='1'}
+}
+function clearContractErrors(){document.querySelectorAll('[data-contract-field].field-error').forEach(x=>x.classList.remove('field-error'))}
+function validateContractInfo(c){
+  const checks=[
+    ['contractLegalName',validRequiredText(c.legalName,2,150),'Vui lòng nhập Tên pháp nhân / Hộ kinh doanh.'],
+    ['contractLegalAddress',validRequiredText(c.legalAddress,5,220),'Địa chỉ pháp lý chưa hợp lệ.'],
+    ['contractTaxId',validTaxOrIdentity(c.taxId),'MST/CCCD chưa hợp lệ. Chấp nhận MST 10 số, MST chi nhánh 10 số-3 số, CCCD 12 số hoặc CMND 9 số.'],
+    ['contractRepresentativeName',validHumanName(c.representativeName),'Người đại diện Bên B chưa hợp lệ.'],
+    ['contractRepresentativeTitle',validRequiredText(c.representativeTitle,2,80),'Vui lòng nhập chức vụ người đại diện.'],
+    ['quoteCustomerPhone',validPhone(c.customerPhone),'Điện thoại liên hệ phải có tối thiểu 10 chữ số thực và chỉ dùng số hoặc dấu + ở đầu.'],
+    ['contractNo',validRequiredText(c.contractNo,3,50),'Vui lòng nhập số hợp đồng.'],
+    ['contractDate',validContractDate(c.contractDate),'Ngày ký hợp đồng chưa hợp lệ.'],
+    ['contractPlace',validRequiredText(c.contractPlace,2,80),'Vui lòng nhập địa điểm ký.']
+  ];
+  for(const [field,ok,msg] of checks)if(!ok)return {ok:false,field,msg};return {ok:true};
+}
+function openContractError(result){
+  closeModal('quoteFormatModal');openModal('quoteClientModal',false);const details=$('contractDetails');if(details)details.open=true;clearContractErrors();
+  const el=$(result.field),wrap=el?.closest('.quote-field');if(wrap)wrap.classList.add('field-error');$('quoteError').textContent=result.msg;
+  setTimeout(()=>{el?.scrollIntoView({behavior:'smooth',block:'center'});el?.focus({preventScroll:true})},120);
+}
+function customerMemoryFromQuote(info){
+  const c=contractInfoFromForm();return {name:info.customer,club:info.club,address:info.address,email:info.customerEmail||'',phone:c.customerPhone||'',legalName:c.legalName||'',legalAddress:c.legalAddress||'',taxId:c.taxId||'',representativeName:c.representativeName||'',representativeTitle:c.representativeTitle||''};
 }
 function validateQuoteInfo(info){
   if(!validHumanName(info.customer))return 'Tên khách hàng cần có ít nhất 2 ký tự chữ và không chứa ký tự bất thường.';
   if(!validClub(info.club))return 'Tên CLB / quán chưa hợp lệ.';
   if(!validAddress(info.address))return 'Địa chỉ cần rõ ràng và có ít nhất 5 ký tự.';
+  if(info.customerPhone&&!validPhone(info.customerPhone))return 'Điện thoại người liên hệ chưa hợp lệ.';
   if(!validEmail(info.customerEmail))return 'Email chưa đúng cấu trúc, ví dụ ten@gmail.com.';
   if(!info.sellerId||!info.seller||!info.sellerPhone||!info.showroom)return 'Vui lòng chọn người lập báo giá.';
   return '';
 }
-let pendingQuotePayload=null,selectedQuoteFormat='excel',selectedPdfOrientation='portrait';
+['quoteCustomerName','quoteClubName','quoteAddress'].forEach(id=>$(id)?.addEventListener('input',()=>syncContractAutoFill(false)));
+$('quoteCustomerName')?.addEventListener('input',()=>{const t=$('contractRepresentativeTitle');if(t&&!t.value)t.value='Chủ hộ kinh doanh'});
+$('contractPlace')?.addEventListener('input',e=>{e.target.dataset.autoPlace='0'});
+$('quoteSellerSelect')?.addEventListener('change',()=>{const p=$('contractPlace');if(p&&(!p.value||p.dataset.autoPlace==='1')){p.value=contractDefaultPlace();p.dataset.autoPlace='1'}});
+['quoteCustomerPhone','contractLegalName','contractLegalAddress','contractTaxId','contractRepresentativeName','contractRepresentativeTitle','contractNo','contractDate','contractPlace'].forEach(id=>$(id)?.addEventListener('input',e=>{e.target.closest('.quote-field')?.classList.remove('field-error');if(['contractLegalName','contractLegalAddress','contractRepresentativeName'].includes(id))e.target.dataset.autoFilled='0'}));
+$('quoteCustomerPhone')?.addEventListener('input',e=>{const raw=e.target.value;const plus=raw.trim().startsWith('+');const digits=raw.replace(/\D/g,'');e.target.value=(plus?'+':'')+digits});
+$('contractTaxId')?.addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^\d-]/g,'').replace(/-+/g,'-')});
+let pendingQuotePayload=null,pendingSpecialExport=null,selectedQuoteFormat='excel',selectedPdfOrientation='portrait';
 function rentalQuoteData(){
   const {cues,months}=values(),data=combinedPlan(cues,months),alloc=quoteCueAllocation();
   data.models=alloc.models;data.model=alloc.models.length===1?alloc.models[0].model:alloc.models.map(x=>x.model).join(' + ');return data;
 }
+function setContractFormatAvailability(show){
+  const btn=$('contractFormatOption');if(btn)btn.hidden=!show;$('exportFormatGrid')?.classList.toggle('contract-enabled',!!show);
+  if(!show&&selectedQuoteFormat==='contract')selectedQuoteFormat='excel';
+}
+function openSpecialFormat(kind,data,backModal,title){
+  pendingQuotePayload=null;pendingSpecialExport={kind,data,backModal:backModal||null};setContractFormatAvailability(false);
+  if($('quoteFormatTitle'))$('quoteFormatTitle').textContent=title||'Chọn định dạng xuất';
+  setQuoteFormat('excel');setPdfOrientation('portrait');$('quoteFormatError').textContent='';
+  if(backModal)closeModal(backModal);openModal('quoteFormatModal',false);
+}
 function setQuoteFormat(format){
-  selectedQuoteFormat=format==='pdf'?'pdf':'excel';
+  selectedQuoteFormat=format==='pdf'?'pdf':format==='contract'?'contract':'excel';
   document.querySelectorAll('[data-export-format]').forEach(b=>b.classList.toggle('active',b.dataset.exportFormat===selectedQuoteFormat));
   const wrap=$('pdfOrientationWrap');if(wrap)wrap.hidden=selectedQuoteFormat!=='pdf';
-  if($('confirmFormatExport'))$('confirmFormatExport').textContent=selectedQuoteFormat==='pdf'?'Xuất PDF':'Xuất Excel';
+  if($('confirmFormatExport'))$('confirmFormatExport').textContent=selectedQuoteFormat==='pdf'?'Xuất PDF':selectedQuoteFormat==='contract'?'Xuất hợp đồng':'Xuất Excel';
 }
 function setPdfOrientation(orientation){selectedPdfOrientation=orientation==='landscape'?'landscape':'portrait';document.querySelectorAll('[data-pdf-orientation]').forEach(b=>b.classList.toggle('active',b.dataset.pdfOrientation===selectedPdfOrientation))}
 function openQuoteClient(type){
   if(type==='rental'){const {cues,months}=values();if(cues===null||months===null){alert('Vui lòng nhập số gậy và thời gian thuê trước khi xuất báo giá.');return}}
   else{const p=currentBuy();if(p.qty===null||p.qty<5||p.unit===null){alert('Vui lòng nhập số lượng gậy hợp lệ trước khi xuất báo giá.');return}}
-  const rentalModelField=$('quoteRentalModelField');if(rentalModelField)rentalModelField.hidden=type!=='rental';renderSellerSelects();
-  if(type==='rental')initQuoteCueAllocation();
-  pendingQuoteType=type;$('quoteError').textContent='';$('confirmQuoteExport').textContent=type==='rental'?'Tiếp tục':'Xác nhận & tải Excel';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
+  const rentalModelField=$('quoteRentalModelField');if(rentalModelField)rentalModelField.hidden=type!=='rental';
+  const contractDetails=$('contractDetails');if(contractDetails)contractDetails.hidden=type!=='rental';renderSellerSelects();
+  if(type==='rental'){initQuoteCueAllocation();ensureContractDefaults()}clearContractErrors();
+  pendingQuoteType=type;pendingSpecialExport=null;setContractFormatAvailability(false);if($('quoteFormatTitle'))$('quoteFormatTitle').textContent='Chọn định dạng xuất';$('quoteError').textContent='';$('confirmQuoteExport').textContent=type==='rental'?'Tiếp tục':'Xác nhận & tải Excel';openModal('quoteClientModal',false);setTimeout(()=>$('quoteCustomerName').focus(),100);
 }
 $('exportRentalBtn').addEventListener('click',()=>openQuoteClient('rental'));
 $('exportBuyBtn').addEventListener('click',()=>openQuoteClient('purchase'));
@@ -1614,24 +1779,55 @@ $('confirmQuoteExport').addEventListener('click',async()=>{
   if(pendingQuoteType==='rental'){const allocErr=validateQuoteCueAllocation();if(allocErr){$('quoteError').textContent=allocErr;return}}
   $('quoteError').textContent='';
   if(pendingQuoteType==='rental'){
-    pendingQuotePayload={type:'rental',info,data:rentalQuoteData()};setQuoteFormat('excel');setPdfOrientation('portrait');$('quoteFormatError').textContent='';closeModal('quoteClientModal');openModal('quoteFormatModal',false);return;
+    pendingQuotePayload={type:'rental',info,data:rentalQuoteData(),allocation:quoteCueAllocation()};setContractFormatAvailability(true);setQuoteFormat('excel');setPdfOrientation('portrait');$('quoteFormatError').textContent='';closeModal('quoteClientModal');openModal('quoteFormatModal',false);return;
   }
   const btn=$('confirmQuoteExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';
-  try{if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');await window.RhinoExcel.exportQuote('purchase',info,currentBuy());saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address,email:info.customerEmail});rememberSeller(info.sellerId);closeModal('quoteClientModal')}
+  try{if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');await window.RhinoExcel.exportQuote('purchase',info,currentBuy());saveSmartEntry('customers',customerMemoryFromQuote(info));rememberSeller(info.sellerId);closeModal('quoteClientModal')}
   catch(ex){console.error(ex);$('quoteError').textContent='Không thể tạo file Excel. Vui lòng thử lại.'}
   finally{btn.disabled=false;btn.textContent=old}
 });
 document.querySelectorAll('[data-export-format]').forEach(btn=>btn.addEventListener('click',()=>setQuoteFormat(btn.dataset.exportFormat)));
 document.querySelectorAll('[data-pdf-orientation]').forEach(btn=>btn.addEventListener('click',()=>setPdfOrientation(btn.dataset.pdfOrientation)));
-$('quoteFormatBack')?.addEventListener('click',()=>{closeModal('quoteFormatModal');openModal('quoteClientModal',false)});
+$('quoteFormatBack')?.addEventListener('click',()=>{closeModal('quoteFormatModal');if(pendingSpecialExport?.backModal)openModal(pendingSpecialExport.backModal,false);else openModal('quoteClientModal',false)});
 $('confirmFormatExport')?.addEventListener('click',async()=>{
-  if(!pendingQuotePayload)return;const btn=$('confirmFormatExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';$('quoteFormatError').textContent='';
+  const btn=$('confirmFormatExport'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';$('quoteFormatError').textContent='';
   try{
-    if(selectedQuoteFormat==='excel'){if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');await window.RhinoExcel.exportQuote(pendingQuotePayload.type,pendingQuotePayload.info,pendingQuotePayload.data)}
-    else{if(!window.RhinoPDF)throw new Error('Thiếu asset/rhino-pdf-export.js');await window.RhinoPDF.exportQuote(pendingQuotePayload.type,pendingQuotePayload.info,pendingQuotePayload.data,selectedPdfOrientation)}
-    const info=pendingQuotePayload.info;saveSmartEntry('customers',{name:info.customer,club:info.club,address:info.address,email:info.customerEmail});rememberSeller(info.sellerId);closeModal('quoteFormatModal');pendingQuotePayload=null;
-  }catch(ex){console.error(ex);$('quoteFormatError').textContent=selectedQuoteFormat==='pdf'?'Không thể tạo file PDF. Vui lòng thử lại.':'Không thể tạo file Excel. Vui lòng thử lại.'}
-  finally{btn.disabled=false;btn.textContent=old}
+    if(pendingSpecialExport?.kind==='registration'){
+      if(selectedQuoteFormat==='excel'){
+        if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');
+        await window.RhinoExcel.exportPromoRegistration(pendingSpecialExport.data);
+      }else{
+        if(!window.RhinoPDF?.exportPromoRegistration)throw new Error('Thiếu chức năng PDF đăng ký trải nghiệm.');
+        await window.RhinoPDF.exportPromoRegistration(pendingSpecialExport.data,selectedPdfOrientation);
+      }
+      const d=pendingSpecialExport.data;
+      saveSmartEntry('customers',{name:d.customer,club:d.club,address:d.address,email:d.email||'',phone:d.phone||''});rememberSeller(d.sellerId);
+      closeModal('quoteFormatModal');closeModal('promoReviewModal');closeModal('promoRegisterModal');pendingSpecialExport=null;
+      return;
+    }
+    if(!pendingQuotePayload)throw new Error('Không có dữ liệu xuất file.');
+    if(selectedQuoteFormat==='contract'){
+      if(pendingQuotePayload.type!=='rental')throw new Error('Hợp đồng Word chỉ áp dụng cho báo giá thuê.');
+      const allocErr=validateQuoteCueAllocation();if(allocErr){closeModal('quoteFormatModal');openModal('quoteClientModal',false);$('quoteError').textContent=allocErr;throw new Error(allocErr)}
+      const contractInfo=contractInfoFromForm(),check=validateContractInfo(contractInfo);
+      if(!check.ok){btn.disabled=false;btn.textContent=old;openContractError(check);return}
+      if(!window.RhinoContract?.exportRentalContract)throw new Error('Thiếu asset/rhino-contract-export.js');
+      await window.RhinoContract.exportRentalContract(pendingQuotePayload.info,pendingQuotePayload.data,pendingQuotePayload.allocation,contractInfo);
+      rememberContractNo(contractInfo.contractNo,contractInfo.contractDate);
+    }else if(selectedQuoteFormat==='excel'){
+      if(!window.RhinoExcel)throw new Error('Thiếu asset/rhino-excel-export.js');
+      await window.RhinoExcel.exportQuote(pendingQuotePayload.type,pendingQuotePayload.info,pendingQuotePayload.data);
+    }else{
+      if(!window.RhinoPDF)throw new Error('Thiếu asset/rhino-pdf-export.js');
+      await window.RhinoPDF.exportQuote(pendingQuotePayload.type,pendingQuotePayload.info,pendingQuotePayload.data,selectedPdfOrientation);
+    }
+    const info=pendingQuotePayload.info;saveSmartEntry('customers',customerMemoryFromQuote(info));rememberSeller(info.sellerId);
+    closeModal('quoteFormatModal');pendingQuotePayload=null;
+  }catch(ex){
+    console.error(ex);if(!document.querySelector('#quoteClientModal.open'))$('quoteFormatError').textContent=selectedQuoteFormat==='pdf'?'Không thể tạo file PDF. Vui lòng thử lại.':selectedQuoteFormat==='contract'?('Không thể tạo hợp đồng Word. '+(ex?.message||'Vui lòng kiểm tra dữ liệu và thử lại.')):'Không thể tạo file Excel. Vui lòng thử lại.';
+  }finally{
+    btn.disabled=false;setQuoteFormat(selectedQuoteFormat);if(btn.textContent==='Đang tạo file...')btn.textContent=old;
+  }
 });
 
 /* Logo menu / theme / user directory */
@@ -1823,18 +2019,14 @@ function renderLoyalCalc(){
 }
 $('loyalQty')?.addEventListener('input',renderLoyalCalc);$('loyalPlan')?.addEventListener('change',renderLoyalCalc);
 $('loyalRegisterBtn')?.addEventListener('click',()=>{closeModal('loyalPromoModal');$('loyalFormError').textContent='';renderLoyalCalc();openModal('loyalRegisterModal',false);setTimeout(()=>$('loyalCustomer')?.focus(),120)});
-$('loyalSubmitBtn')?.addEventListener('click',()=>{
+function validateLoyalForm(){
   const customer=compactSpaces($('loyalCustomer').value),club=compactSpaces($('loyalClub').value),phone=$('loyalPhone').value.trim(),p=loyalOfferData(),plan=$('loyalPlan').value;
-  let err='';
-  if(!validHumanName(customer))err='Tên khách hàng chưa hợp lệ.';
-  else if(!validClub(club))err='Tên quán / CLB chưa hợp lệ.';
-  else if(!validPhone(phone))err='Số điện thoại phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';
-  else if(!p)err='Vui lòng nhập số gậy hợp lệ và chọn gói ưu đãi.';
-  if(err){$('loyalFormError').textContent=err;return}
-  postPilotEligible=true;selectedQuickMonth=plan==='6+2'?6:12;$('months').value='';$('cues').value=String(p.n);render();
-  $('loyalFormError').textContent='';closeModal('loyalRegisterModal');
-  document.querySelector('.summary-panel')?.scrollIntoView({behavior:'smooth',block:'center'});
-});
+  let err='';if(!validHumanName(customer))err='Tên khách hàng chưa hợp lệ.';else if(!validClub(club))err='Tên quán / CLB chưa hợp lệ.';else if(!validPhone(phone))err='Số điện thoại phải gồm 10–15 chữ số, chỉ được có dấu + ở đầu và không dùng chuỗi số giả định.';else if(!p)err='Vui lòng nhập số gậy hợp lệ và chọn gói ưu đãi.';
+  return {ok:!err,err,customer,club,phone,p,plan};
+}
+function applyLoyalOffer(v,close=true){postPilotEligible=true;selectedQuickMonth=v.plan==='6+2'?6:12;$('months').value='';$('cues').value=String(v.p.n);render();$('loyalFormError').textContent='';if(close)closeModal('loyalRegisterModal')}
+$('loyalSubmitBtn')?.addEventListener('click',()=>{const v=validateLoyalForm();if(!v.ok){$('loyalFormError').textContent=v.err;return}applyLoyalOffer(v,true);document.querySelector('.summary-panel')?.scrollIntoView({behavior:'smooth',block:'center'});});
+$('loyalExportBtn')?.addEventListener('click',()=>{const v=validateLoyalForm();if(!v.ok){$('loyalFormError').textContent=v.err;return}applyLoyalOffer(v,false);closeModal('loyalRegisterModal');openQuoteClient('rental');setTimeout(()=>{if($('quoteCustomerName'))$('quoteCustomerName').value=v.customer;if($('quoteClubName'))$('quoteClubName').value=v.club},80);});
 
 function buildPromoRegistrationSheet(data,hasLogo,createdAt){
   const rows=[];
@@ -1878,12 +2070,12 @@ async function createPromoRegistrationXlsx(){
   const pad=n=>String(n).padStart(2,'0'),stamp=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
   const fileName=`Dang_ky_trai_nghiem_Rhino_${safeName(data.club)}_${stamp}.xlsx`;const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
-async function exportRegistration(btn){
+async function exportRegistration(btn,backModal){
   const check=validateRegistration();if(!check.ok){if($('promoReviewModal').classList.contains('open'))closeModal('promoReviewModal');gotoWizard(check.step);$('wizardError').textContent=check.msg;return}
-  document.activeElement?.blur();const old=btn.textContent;btn.disabled=true;btn.textContent='Đang tạo file...';try{if(!window.RhinoExcel){throw new Error('Thiếu asset/rhino-excel-export.js')}await window.RhinoExcel.exportPromoRegistration(check.data);saveSmartEntry('customers',{name:check.data.customer,club:check.data.club,address:check.data.address,email:check.data.email||''});rememberSeller(check.data.sellerId);closeModal('promoReviewModal');closeModal('promoRegisterModal')}catch(err){console.error(err);alert('Không thể tạo file Excel. Vui lòng thử lại.')}finally{btn.disabled=false;btn.textContent=old}
+  document.activeElement?.blur();openSpecialFormat('registration',check.data,backModal||($('promoReviewModal').classList.contains('open')?'promoReviewModal':'promoRegisterModal'),'Xuất đăng ký trải nghiệm');
 }
-$('wizardExport')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
-$('reviewExportBtn')?.addEventListener('click',e=>exportRegistration(e.currentTarget));
+$('wizardExport')?.addEventListener('click',e=>exportRegistration(e.currentTarget,'promoRegisterModal'));
+$('reviewExportBtn')?.addEventListener('click',e=>exportRegistration(e.currentTarget,'promoReviewModal'));
 
 const mobileMenuToggle=$('mobileMenuToggle');
 const mobileDrawer=$('mobileDrawer');
@@ -1925,5 +2117,6 @@ render();renderBuy();renderWizard();syncVisualViewport();
 </script>
 <script src="asset/rhino-excel-export.js"></script>
 <script src="asset/rhino-pdf-export.js"></script>
+<script src="asset/rhino-contract-export.js"></script>
 </body>
 </html>
