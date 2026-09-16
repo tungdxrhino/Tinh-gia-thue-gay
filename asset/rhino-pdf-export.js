@@ -1,5 +1,5 @@
 /*
-  Rhino Cue Platform - PDF Export V32
+  Rhino Cue Platform - PDF Export V35
   Creates a real one-page A4 PDF in the browser without external PDF libraries.
   Text is rasterized through Canvas, preserving Vietnamese glyphs with the browser's system font.
 */
@@ -24,7 +24,7 @@
     let label='';
     if(Number(data.term)===1)label='Kỳ 01 tháng';else if(Number(data.term)===2)label='Kỳ 02 tháng';else if(Number(data.term)===3)label='Gói 03 tháng';else if(Number(data.term)===6)label='Gói 06 tháng';else if(Number(data.term)===12)label='Gói 12 tháng';
     else label=String(data.name||'Phương án thuê').replace(/\s*[·-]\s*dùng\s*\d+\s*tháng.*$/i,'').replace(/\s*[·-]\s*tặng(?:\s*thêm)?\s*\d+\s*tháng(?:\s*sử dụng)?.*$/i,'').trim();
-    return data.postPilot?`${label} · Sau Pilot`:label;
+    return data.postPilot?`${label} · Sau trải nghiệm`:label;
   }
   function rentalAllocations(data,p){
     let arr=(Array.isArray(data.models)?data.models:[]).map(x=>({model:x&&x.model==='R88'?'R88':'R68',qty:Math.max(0,Math.floor(Number(x&&x.qty)||0))})).filter(x=>x.qty>0);
@@ -80,7 +80,7 @@
       setFont(ctx,fontSize,isTotal||isPay?'700':'400');
       let maxLines=1;row.cells.forEach((v,i)=>{maxLines=Math.max(maxLines,wrapLines(ctx,text(v),Math.max(8,widths[i]-padX*2)).length)});const rh=Math.max(24,padY*2+maxLines*lineH);
       ctx.fillStyle=isPromo?'#EEF9F6':(isPay?'#FFF6EC':isTotal?'#F2FAF7':'#F8FAFB');ctx.fillRect(x,cy,totalW,rh);
-      cx=x;row.cells.forEach((v,i)=>{ctx.strokeStyle='#D8E4E7';ctx.lineWidth=.5;ctx.strokeRect(cx,cy,widths[i],rh);const numeric=i>=3;ctx.fillStyle=(i===7&&isPromo)?'#138879':(i===7&&isPay)?'#E06A1A':'#263944';setFont(ctx,fontSize,(i===7&&(isPromo||isPay))||isTotal?'700':'400');drawWrapped(ctx,text(v),cx+padX,cy+padY,widths[i]-padX*2,lineH,{align:numeric?'right':'left'});cx+=widths[i]});cy+=rh;
+      cx=x;row.cells.forEach((v,i)=>{ctx.strokeStyle='#D8E4E7';ctx.lineWidth=.5;ctx.strokeRect(cx,cy,widths[i],rh);const numeric=i>=3;const lastIndex=row.cells.length-1;ctx.fillStyle=(i===lastIndex&&isPromo)?'#138879':(i===lastIndex&&isPay)?'#E06A1A':'#263944';setFont(ctx,fontSize,(i===lastIndex&&(isPromo||isPay))||isTotal?'700':'400');drawWrapped(ctx,text(v),cx+padX,cy+padY,widths[i]-padX*2,lineH,{align:numeric?'right':'left'});cx+=widths[i]});cy+=rh;
     });
     return cy;
   }
@@ -90,7 +90,7 @@
     const rows=[];
     alloc.forEach(part=>{const partMonthly=p.unit*part.qty;rows.push({cells:[`Thuê gậy CLB ${part.model}`,rentalPlanLabel(data,p),'Gậy',money(p.unit),String(part.qty),money(partMonthly),String(p.paid),money(partMonthly*p.paid)]})});
     if(p.gift>0)rows.push({kind:'promo',cells:['Khuyến mại',`Tặng ${p.gift} tháng sử dụng`,'Tháng',money(monthlyTotal),'-',money(monthlyTotal),String(p.gift),money(giftValue)]});
-    if(backupCount>0)rows.push({kind:'promo',cells:['Ưu đãi',`Gậy dự phòng ${backupPct}%`,'Gậy',money(p.unit),String(backupCount),money(backupMonthly),String(p.use),money(backupValue)]});
+    if(backupCount>0)rows.push({kind:'promo',cells:['Ưu đãi','Gậy dự phòng','Gậy',money(p.unit),String(backupCount),money(backupMonthly),String(p.use),money(backupValue)]});
     if(p.deposit>0)rows.push({cells:['Tiền cọc','Hoàn lại sau đối soát','-',money(p.deposit),'1','-','-',money(p.deposit)]});
     return {p,rows,promoTotal};
   }
@@ -130,7 +130,7 @@
       function totalRow(label,value,kind){const h=26;ctx.fillStyle=kind==='pay'?'#FFF6EC':'#EEF9F6';ctx.fillRect(margin,y,totalW,h);ctx.strokeStyle='#D8E4E7';ctx.strokeRect(margin,y,labelW,h);ctx.strokeRect(margin+labelW,y,lastW,h);setFont(ctx,8.4,'800');ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillStyle=kind==='pay'?'#263944':'#138879';ctx.fillText(label,margin+5,y+h/2);ctx.textAlign='right';ctx.fillStyle=kind==='pay'?'#E06A1A':'#138879';ctx.fillText(money(value),margin+totalW-5,y+h/2);y+=h}
       totalRow('TỔNG ƯU ĐÃI TƯƠNG ĐƯƠNG',built.promoTotal,'promo');totalRow('TỔNG TIỀN KHÁCH HÀNG CHI TRẢ',built.p.finalPay,'pay');
       y+=9;setFont(ctx,8.1,'700');ctx.textAlign='left';ctx.textBaseline='top';ctx.fillStyle='#138879';const note=`Chi phí thực tế sau ưu đãi: ${money(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total||0)} gậy; thời gian sử dụng ${built.p.use} tháng.`;y+=drawWrapped(ctx,note,margin,y,contentW,11)+6;
-      setFont(ctx,7.6,'400',true);ctx.fillStyle='#6E7E88';y+=drawWrapped(ctx,'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.',margin,y,contentW,10.5)+10;
+      setFont(ctx,7.6,'400',true);ctx.fillStyle='#6E7E88';const backupNote=`Gậy dự phòng cộng thêm tương đương ${Math.round(Math.max(0,Number(data.backupPct||0))*100)}% số gậy tính phí theo gói/kỳ đăng ký. Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.`;y+=drawWrapped(ctx,backupNote,margin,y,contentW,10.5)+10;
     }else{
       const built=buildPurchaseRows(data),widths=tableLayout(orientation,pageW).slice(0,6),sum=widths.reduce((a,b)=>a+b,0),factor=contentW/sum;for(let i=0;i<widths.length;i++)widths[i]*=factor;
       y=drawTable(ctx,margin,y,widths,['NỘI DUNG','THÔNG TIN','QUY CÁCH','ĐƠN GIÁ','SỐ LƯỢNG','THÀNH TIỀN'],built.rows,landscape?8.5:7.7);
@@ -158,6 +158,60 @@
   }
   function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1800)}
 
+
+  function pilotPlayingUnitPrice(qty){
+    const n=Math.max(0,Number(qty||0));if(n<=0)return 0;if(n<=9)return 89000;if(n<=20)return 87000;if(n<=49)return 85000;if(n<=99)return 83000;return 81000;
+  }
+  function dateVi(value){
+    if(!value)return '-';const d=value instanceof Date?value:new Date(`${value}T00:00:00`);return Number.isNaN(d.getTime())?text(value):d.toLocaleDateString('vi-VN');
+  }
+  function promoRegistrationData(data){
+    const tables=Math.max(0,Number(data.tables||0)),r68=Math.max(0,Number(data.r68||0)),r88=Math.max(0,Number(data.r88||0));
+    const breakCues=Math.max(0,Number(data.breakCues||0)),jumpCues=Math.max(0,Number(data.jumpCues||0));
+    const playing=(r68+r88)>0?(r68+r88):Math.max(0,Number(data.requestedPlaying||data.recommendedPlaying||(tables*2)));
+    const special=(breakCues+jumpCues)>0?(breakCues+jumpCues):Math.max(0,Number(data.breakJump||data.recommendedBreakJump||(tables?Math.ceil(tables/3):0)));
+    const playingUnit=pilotPlayingUnitPrice(playing),specialUnit=100000,gross=playingUnit*playing+specialUnit*special;
+    const rows=[];
+    if(r68>0)rows.push({cells:['Gậy đánh','Gậy CLB R68','Gậy',money(playingUnit),String(r68),money(playingUnit*r68)]});
+    if(r88>0)rows.push({cells:['Gậy đánh','Gậy CLB R88','Gậy',money(playingUnit),String(r88),money(playingUnit*r88)]});
+    if(r68+r88===0&&playing>0)rows.push({cells:['Gậy đánh','Gậy CLB R68 / R88','Gậy',money(playingUnit),String(playing),money(playingUnit*playing)]});
+    if(breakCues>0)rows.push({cells:['Gậy phá','Gậy phá CLB','Gậy',money(specialUnit),String(breakCues),money(specialUnit*breakCues)]});
+    if(jumpCues>0)rows.push({cells:['Gậy nhảy','Gậy nhảy CLB','Gậy',money(specialUnit),String(jumpCues),money(specialUnit*jumpCues)]});
+    if(breakCues+jumpCues===0&&special>0)rows.push({cells:['Gậy phá / nhảy','Cấu hình do Carbon duyệt','Gậy',money(specialUnit),String(special),money(specialUnit*special)]});
+    rows.push({cells:['Dịch vụ bảo dưỡng','Bao gồm trong thời gian trải nghiệm','Gói','0','1','0']});
+    return {tables,r68,r88,breakCues,jumpCues,playing,special,playingUnit,specialUnit,gross,rows};
+  }
+  function promoTableWidths(contentW){const weights=[.16,.29,.11,.15,.11,.18],sum=weights.reduce((a,b)=>a+b,0);return weights.map(v=>contentW*v/sum)}
+  async function renderPromoRegistrationCanvas(data,orientation='portrait'){
+    const landscape=orientation==='landscape',pageW=landscape?841.89:595.28,pageH=landscape?595.28:841.89,scale=3.2;
+    if(document.fonts&&document.fonts.ready){try{await document.fonts.ready}catch(_){}}
+    const canvas=document.createElement('canvas');canvas.width=Math.round(pageW*scale);canvas.height=Math.round(pageH*scale);const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle='#fff';ctx.fillRect(0,0,pageW,pageH);
+    const margin=landscape?21:17,contentW=pageW-margin*2;let y=14;
+    const logo=await loadLogo();if(logo){const targetH=34,targetW=Math.min(115,logo.naturalWidth*(targetH/logo.naturalHeight));ctx.drawImage(logo,margin,y,targetW,targetH)}else{setFont(ctx,13,'800');ctx.fillStyle='#25363D';ctx.fillText('RHINO',margin,y+5);setFont(ctx,7,'700');ctx.fillText('CUE PLATFORM',margin,y+20)}
+    setFont(ctx,10.2,'700');ctx.fillStyle='#0B3B59';ctx.textAlign='right';ctx.textBaseline='top';ctx.fillText(COMPANY,pageW-margin,y+1);
+    setFont(ctx,landscape?17:15.8,'800');ctx.textAlign='center';ctx.fillText('PHIẾU ĐĂNG KÝ TRẢI NGHIỆM 30 NGÀY',pageW/2,y+27);
+    setFont(ctx,7.5,'400',true);ctx.fillStyle='#6E7E88';ctx.fillText('(Miễn phí 100% · không đặt cọc)',pageW/2,y+50);y+=75;
+    const built=promoRegistrationData(data),colGap=landscape?45:22,leftW=(contentW-colGap)/2,rightX=margin+leftW+colGap;
+    const infoRows=[['Khách hàng',data.customer,'Thời gian lập phiếu',new Date().toLocaleString('vi-VN')],['Câu lạc bộ / Quán',data.club,'Người lập phiếu',data.seller],['Địa chỉ câu lạc bộ',data.address,'Liên hệ',data.sellerPhone],['Số bàn',built.tables||'-','Showroom',data.showroom||'-'],['Số điện thoại khách',data.phone,'Giao nhận dự kiến',dateVi(data.delivery)],['Email khách hàng',data.email||'-','Kết thúc dự kiến',data.endDate||'-']];
+    const leftLabelW=landscape?84:76,rightLabelW=landscape?104:100,infoFont=8.1,infoLineH=11.2;let iy=y;
+    infoRows.forEach(row=>{setFont(ctx,infoFont,'700');const ll=Math.max(wrapLines(ctx,text(row[1]),leftW-leftLabelW-3).length,1),rl=Math.max(wrapLines(ctx,text(row[3]),leftW-rightLabelW-3).length,1),rh=Math.max(18,Math.max(ll,rl)*infoLineH+3);drawLabelValue(ctx,row[0],row[1],margin,iy,leftW,leftLabelW,infoFont);drawLabelValue(ctx,row[2],row[3],rightX,iy,leftW,rightLabelW,infoFont);iy+=rh});y=iy+5;
+    ctx.strokeStyle='#D5E1E5';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(margin,y);ctx.lineTo(pageW-margin,y);ctx.stroke();y+=7;
+    const widths=promoTableWidths(contentW);y=drawTable(ctx,margin,y,widths,['NỘI DUNG','THÔNG TIN','QUY CÁCH','GIÁ THUÊ','SỐ LƯỢNG','THÀNH TIỀN'],built.rows,landscape?8.2:7.2);
+    const totalW=contentW,labelW=widths.slice(0,5).reduce((a,b)=>a+b,0),lastW=widths[5];
+    function totalRow(label,value,kind){const h=25;ctx.fillStyle=kind==='pay'?'#FFF6EC':kind==='promo'?'#EEF9F6':'#F8FAFB';ctx.fillRect(margin,y,totalW,h);ctx.strokeStyle='#D8E4E7';ctx.strokeRect(margin,y,labelW,h);ctx.strokeRect(margin+labelW,y,lastW,h);setFont(ctx,8.3,'800');ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillStyle=kind==='promo'?'#138879':'#263944';ctx.fillText(label,margin+5,y+h/2);ctx.textAlign='right';ctx.fillStyle=kind==='pay'?'#E06A1A':kind==='promo'?'#138879':'#263944';ctx.fillText(money(value),margin+totalW-5,y+h/2);y+=h}
+    totalRow('TỔNG GIÁ TRỊ TRẢI NGHIỆM',built.gross,'base');totalRow('TỔNG ƯU ĐÃI · MIỄN PHÍ 100%',built.gross,'promo');totalRow('KHÁCH HÀNG CHI TRẢ',0,'pay');
+    y+=9;setFont(ctx,7.7,'400',true);ctx.fillStyle='#6E7E88';y+=drawWrapped(ctx,'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.',margin,y,contentW,10.5)+5;
+    y+=drawWrapped(ctx,'Sau khi hoàn thành trải nghiệm, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.',margin,y,contentW,10.5)+9;
+    setFont(ctx,9.1,'800');ctx.fillStyle='#0B3B59';y+=drawWrapped(ctx,'Cảm ơn Quý CLB đã đăng ký chương trình trải nghiệm 30 ngày của Carbon Billiards.',margin,y,contentW,12)+12;setFont(ctx,8.4,'700');ctx.fillText(`Trân trọng — ${COMPANY}`,margin,y);
+    return {canvas,pageW,pageH};
+  }
+  async function createPromoRegistrationBlob(data,orientation='portrait'){
+    if(!data||!data.customer||!data.club||!data.address||!data.phone||!data.seller)throw new Error('Thiếu thông tin đăng ký trải nghiệm.');const rendered=await renderPromoRegistrationCanvas(data,orientation);return canvasToPdfBlob(rendered.canvas,rendered.pageW,rendered.pageH);
+  }
+  async function exportPromoRegistration(data,orientation='portrait'){
+    const blob=await createPromoRegistrationBlob(data,orientation),fileName=`Dang_ky_trai_nghiem_Rhino_${safeName(data.club)}_${new Date().toISOString().slice(0,10)}.pdf`;downloadBlob(blob,fileName);return fileName;
+  }
+
   async function createQuoteBlob(type,info,data,orientation='portrait'){
     if(!['rental','purchase'].includes(type))throw new Error('Loại báo giá không hợp lệ.');if(!info||!info.customer||!info.club||!info.address||!info.seller)throw new Error('Thiếu thông tin báo giá.');if(!data)throw new Error('Thiếu dữ liệu báo giá.');
     const rendered=await renderQuoteCanvas(type,info,data,orientation);return canvasToPdfBlob(rendered.canvas,rendered.pageW,rendered.pageH);
@@ -166,5 +220,5 @@
     const blob=await createQuoteBlob(type,info,data,orientation);let modelLabel=data.model||'';if(type==='rental'&&Array.isArray(data.models)&&data.models.length)modelLabel=data.models.filter(x=>Number(x&&x.qty)>0).map(x=>x.model).join('_');const base=type==='rental'?'Bao_gia_thue_gay_Rhino':'Bao_gia_mua_gay_Rhino';const model=modelLabel?`${safeName(modelLabel)}_`:'';const fileName=`${base}_${model}${safeName(info.club)}_${new Date().toISOString().slice(0,10)}.pdf`;downloadBlob(blob,fileName);return fileName;
   }
 
-  window.RhinoPDF={version:'1.1.0',exportQuote,createQuoteBlob,safeName};
+  window.RhinoPDF={version:'1.2.0',exportQuote,createQuoteBlob,exportPromoRegistration,createPromoRegistrationBlob,safeName};
 })(window,document);

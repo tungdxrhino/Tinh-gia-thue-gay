@@ -361,7 +361,7 @@
         .trim();
       label = raw || `Phương án ${p.paid || ''} tháng`;
     }
-    return data.postPilot ? `${label} · Sau Pilot` : label;
+    return data.postPilot ? `${label} · Sau trải nghiệm` : label;
   }
 
   function rentalSummaryRow(r, label, value, total = false) {
@@ -435,7 +435,7 @@
       if (backupCount > 0) {
         rows.push(rentalTableRow(r, [
           'Ưu đãi',
-          `Gậy dự phòng ${backupPct}%`,
+          'Gậy dự phòng',
           'Gậy',
           p.unit,
           backupCount,
@@ -473,7 +473,7 @@
         `Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 14)], autoRowHeight(`Chi phí thực tế sau ưu đãi: ${moneyText(data.effective)} VND / gậy thực nhận / tháng. Tổng thực nhận ${Number(data.total || 0)} gậy; thời gian sử dụng ${p.use} tháng.`, 145, 30, 15)));
       merges.push(`A${r + 1}:H${r + 1}`);
       rows.push(row(r + 2, [cell(0, r + 2,
-        'Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 13)], autoRowHeight('Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.', 145, 27, 14)));
+        `Gậy dự phòng cộng thêm tương đương ${backupPct}% số gậy tính phí theo gói/kỳ đăng ký. Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.`, 13)], autoRowHeight(`Gậy dự phòng cộng thêm tương đương ${backupPct}% số gậy tính phí theo gói/kỳ đăng ký. Giá thuê đã gồm VAT. Các nội dung áp dụng theo chính sách và hợp đồng tại thời điểm ký kết.`, 145, 30, 14)));
       merges.push(`A${r + 2}:H${r + 2}`);
       rows.push(row(r + 3, [], 15));
       rows.push(row(r + 4, [cell(0, r + 4,
@@ -583,7 +583,7 @@
     const legacyBreakJump = Math.max(0, Number(data.breakJump ?? data.recommendedBreakJump ?? (tables ? Math.ceil(tables / 3) : 0)));
     const breakJump = (breakCues + jumpCues) > 0 ? (breakCues + jumpCues) : legacyBreakJump;
 
-    // Pilot 30 ngày: quy đổi giá trị theo đơn giá thuê lẻ 01 tháng.
+    // Trải nghiệm 30 ngày: quy đổi giá trị theo đơn giá thuê lẻ 01 tháng.
     // Gậy đánh dùng bậc giá 01 tháng; gậy phá/nhảy = 100.000/cây/tháng.
     const playingUnit = pilotPlayingUnitPrice(playing);
     const specialUnit = 100000;
@@ -593,10 +593,10 @@
     const promoValue = grossValue; // Miễn phí 100%.
     const finalPay = 0;
 
-    // Cấu trúc CHỐT theo file mẫu Pilot người dùng cung cấp: A:F.
+    // Cấu trúc CHỐT theo file mẫu trải nghiệm người dùng cung cấp: A:F.
     const rows = [
       row(1, [cell(3, 1, COMPANY, 1)], 45),
-      row(2, [cell(0, 2, 'PHIẾU ĐĂNG KÝ PILOT 30 NGÀY – HỆ THỐNG GẬY CARBON CHO CLB', 2)], 30),
+      row(2, [cell(0, 2, 'PHIẾU ĐĂNG KÝ TRẢI NGHIỆM 30 NGÀY · HỆ THỐNG GẬY CARBON CHO CLB', 2)], 30),
       row(3, [cell(0, 3, '(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 21)], autoRowHeight('(Chương trình trải nghiệm 30 ngày miễn phí · không đặt cọc)', 120, 20.1, 14)),
       infoRow(4, 'Khách hàng', data.customer, 'Thời gian lập phiếu', createdAt),
       infoRow(5, 'Câu lạc bộ / Quán', data.club, 'Người lập phiếu', data.seller),
@@ -632,10 +632,10 @@
         rows.push(tableRow(r, ['Gậy nhảy CLB', 'Gậy nhảy CLB', 'Gậy', specialUnit, jumpCues, specialUnit * jumpCues], { height: 24 })); r++;
       }
     } else if (breakJump > 0) {
-      rows.push(tableRow(r, ['Gậy phá / nhảy', 'Cấu hình Pilot – Carbon duyệt', 'Gậy', specialUnit, breakJump, specialValue], { height: 24 })); r++;
+      rows.push(tableRow(r, ['Gậy phá / nhảy', 'Cấu hình do Carbon duyệt', 'Gậy', specialUnit, breakJump, specialValue], { height: 24 })); r++;
     }
 
-    rows.push(tableRow(r, ['Dịch vụ bảo dưỡng', 'Bao gồm trong thời gian Pilot', 'Gói', 0, 1, 0], { height: 24 })); r++;
+    rows.push(tableRow(r, ['Dịch vụ bảo dưỡng', 'Bao gồm trong thời gian trải nghiệm', 'Gói', 0, 1, 0], { height: 24 })); r++;
 
     rows.push(pilotSummaryRow(r, 'TỔNG GIÁ TRỊ TRẢI NGHIỆM', grossValue, 'base'));
     merges.push(`A${r}:E${r}`); r++;
@@ -649,11 +649,11 @@
       'Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 14)], autoRowHeight('Số lượng thực tế do Carbon duyệt theo quy mô và tình hình vận hành của từng CLB. Phỏng vấn online là bước xét duyệt cuối trước khi bàn giao.', 120, 33.95, 15)));
     merges.push(`A${r + 1}:F${r + 1}`);
     rows.push(row(r + 2, [cell(0, r + 2,
-      'Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 13)], autoRowHeight('Sau khi hoàn thành Pilot, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 120, 30, 15)));
+      'Sau khi hoàn thành trải nghiệm, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 13)], autoRowHeight('Sau khi hoàn thành trải nghiệm, CLB đủ điều kiện chuyển đổi có thể áp dụng gói 6+2 hoặc 12+6 theo chính sách tại thời điểm xác nhận.', 120, 30, 15)));
     merges.push(`A${r + 2}:F${r + 2}`);
     rows.push(row(r + 3, [], 15));
     rows.push(row(r + 4, [cell(0, r + 4,
-      'Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 19)], autoRowHeight('Cảm ơn Quý CLB đã đăng ký chương trình Pilot 30 ngày của Carbon Billiards.', 120, 30, 15)));
+      'Cảm ơn Quý CLB đã đăng ký chương trình trải nghiệm 30 ngày của Carbon Billiards.', 19)], autoRowHeight('Cảm ơn Quý CLB đã đăng ký chương trình trải nghiệm 30 ngày của Carbon Billiards.', 120, 30, 15)));
     merges.push(`A${r + 4}:F${r + 4}`);
     rows.push(row(r + 5, [cell(0, r + 5,
       `Trân trọng — ${COMPANY}`, 20)], autoRowHeight(`Trân trọng — ${COMPANY}`, 120, 18, 14)));
